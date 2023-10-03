@@ -1,3 +1,11 @@
+application.name: HebergOS
+application.descriptionHTML: Destiné au club ./insa.sh pour permettre aux membres de monitorer leurs projets hostés sur le serveur du club,
+  HebergOS se décompose en deux grandes parties.<br>
+  L'application Web (ici)<br>
+  La partie sombre
+title.readme: README
+title.technologies: Technologies
+
 auth.title.login: Connexion
 auth.title.register: Enregistrer un compte
 auth.login: Email

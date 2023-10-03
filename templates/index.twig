@@ -1,2 +1,45 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('mainPage') }}
+{% endblock %}
+
+{% block body %}
+<header>
+    {% block header %}
+
+    {% endblock %}
+</header>
+
+<main>
+    {% block main %}
+        <div class="light-border border-radius-5" id="readme">
+            <div id="readme-title">
+                <h2>{{ 'title.readme' | trans }} <a class="github" href="https://github.com/Miunn/herbergOS" target="_blank"><img class="little-img" src="{{ asset('build/images/github-white.png') }}" alt="Github"></a></h2>
+            </div>
+
+            <div id="readme-body">
+                <h1>{{ 'application.name' | trans }}</h1>
+                {% include 'extra/logo-ascii-rounded.twig' %}
+
+                <p>{{ 'application.descriptionHTML' | trans | raw }}</p>
+
+                <h1>{{ 'title.technologies' | trans }}</h1>
+
+                <div id="technologies">
+                    <a href="https://symfony.com" target="_blank"><img class="medium-img" src="{{ asset('build/images/symfony-white.png') }}" alt="Symfony"></a>
+                    <a href="https://docker.com" target="_blank"><img class="medium-img" src="{{ asset('build/images/docker-logo.png') }}" alt="Docker"></a>
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+</main>
+
+<footer>
+    {% block footer %}
+
+    {% endblock %}
+</footer>
+{% endblock %}

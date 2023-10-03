@@ -1,0 +1,55 @@
+body {
+  background-color: var(--dark-background);
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#readme {
+  background-color: var(--primary-gray);
+  width: 900px;
+  margin-top: 125px;
+  color: white;
+
+  #readme-title {
+    padding: 10px;
+    border-bottom: 1px solid var(--accent-gray);
+
+    h2 {
+      font-weight: 400;
+      display: flex;
+      justify-content: space-between;
+
+      a {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  #readme-body {
+    padding: 20px;
+
+    h1 {
+      &:not(:nth-child(1)) {
+        margin-top: 20px;
+      }
+    }
+
+    #technologies {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  #logo-ascii {
+    font-size: 0.2rem;
+    margin: 20px auto;
+  }
+}
