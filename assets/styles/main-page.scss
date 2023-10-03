@@ -20,9 +20,12 @@ main {
     border-bottom: 1px solid var(--accent-gray);
 
     h2 {
+      font-size: 1.2rem;
       font-weight: 400;
       display: flex;
+      align-items: center;
       justify-content: space-between;
+      padding: 0 10px;
 
       a {
         display: flex;
