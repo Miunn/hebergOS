@@ -1,3 +1,16 @@
+@import "@radix-ui/colors/crimson.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/indigo.css";
+@import "@radix-ui/colors/amber.css";
+@import "@radix-ui/colors/jade.css";
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/crimson-dark.css";
+@import "@radix-ui/colors/mauve-dark.css";
+@import "@radix-ui/colors/indigo-dark.css";
+@import "@radix-ui/colors/amber-dark.css";
+@import "@radix-ui/colors/jade-dark.css";
+@import "@radix-ui/colors/red-dark.css";
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
 
 :root {
@@ -9,6 +22,32 @@
   --error-red: #f5564a;
 
   --logo-color: #FD769F;
+
+  --background-1: var(--mauve-1);
+  --background-2: var(--mauve-2);
+  --component-background: var(--crimson-3);
+  --component-background-hover: var(--crimson-4);
+  --component-background-selected: var(--crimson-5);
+  --border-not-interactive: var(--crimson-6);
+  --border-interactive: var(--crimson-7);
+  --border-strong: var(--crimson-8);
+
+  --text-low-contrast: var(--mauve-11);
+  --text-high-contrast: var(--mauve-11);
+}
+
+.dark {
+  --background-1: var(--mauve-1);
+  --background-2: var(--mauve-2);
+  --component-background: var(--crimson-3);
+  --component-background-hover: var(--crimson-4);
+  --component-background-selected: var(--crimson-5);
+  --border-not-interactive: var(--crimson-6);
+  --border-interactive: var(--crimson-7);
+  --border-strong: var(--crimson-8);
+
+  --text-low-contrast: var(--mauve-11);
+  --text-high-contrast: var(--mauve-11);
 }
 
 /**
@@ -24,7 +63,7 @@ Reset css
 }
 
 body {
-  background-color: var(--primary-gray);
+  background-color: var(--background-1);
 }
 
 button {
