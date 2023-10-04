@@ -11,7 +11,6 @@ form {
 
   .title {
     text-align: center;
-    color: var(--accent-green);
 
     text-transform: uppercase;
     font-weight: 300;
@@ -43,7 +42,6 @@ form {
   button[type='submit'] {
     width: 100%;
     padding: 15px 0;
-    background-color: var(--accent-green);
     color: #000;
     font-size: 1.2rem;
     font-weight: 600;

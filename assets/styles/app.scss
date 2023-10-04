@@ -31,9 +31,13 @@
   --border-not-interactive: var(--crimson-6);
   --border-interactive: var(--crimson-7);
   --border-strong: var(--crimson-8);
+  --solid-background: var(--crimson-9);
+  --solid-background-hover: var(--crimson-10);
+  --text-low-contrast-gray: var(--mauve-11);
+  --text-high-contrast-gray: var(--mauve-12);
 
-  --text-low-contrast: var(--mauve-11);
-  --text-high-contrast: var(--mauve-11);
+  --text-low-contrast: var(--crimson-11);
+  --text-high-contrast: var(--crimson-12);
 }
 
 .dark {
@@ -45,9 +49,13 @@
   --border-not-interactive: var(--crimson-6);
   --border-interactive: var(--crimson-7);
   --border-strong: var(--crimson-8);
+  --solid-background: var(--crimson-9);
+  --solid-background-hover: var(--crimson-10);
+  --text-low-contrast-gray: var(--mauve-11);
+  --text-high-contrast-gray: var(--mauve-12);
 
-  --text-low-contrast: var(--mauve-11);
-  --text-high-contrast: var(--mauve-11);
+  --text-low-contrast: var(--crimson-11);
+  --text-high-contrast: var(--crimson-12);
 }
 
 /**
@@ -66,6 +74,19 @@ body {
   background-color: var(--background-1);
 }
 
+p, h1, h2, h3, h4, h5, h6, label, a {
+  color: var(--text-high-contrast-gray);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
 button {
   all: unset;
   cursor: pointer;
@@ -80,6 +101,38 @@ input {
   Default rules
  */
 
+header {
+  background-color: var(--solid-background);
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+
+    h1, h2, a {
+      color: white;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+.club-name {
+  font-weight: 400;
+}
+
 .light-border {
   border: 1px solid var(--accent-gray);
 }
@@ -90,6 +143,10 @@ input {
 
 .text-center {
   text-align: center;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
 }
 
 .dot {
@@ -109,4 +166,16 @@ input {
 
 .medium-img {
   height: 40px;
+}
+
+.cta {
+  background-color: var(--component-background);
+}
+
+.cta:hover {
+  background-color: var(--component-background-hover);
+}
+
+.cta:focus {
+  background-color: var(--component-background-selected);
 }

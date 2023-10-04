@@ -10,7 +10,6 @@ class CoreController extends AbstractController
 {
     #[Route('/', name: 'app_core_index')]
     public function index(): Response {
-        dump(urlencode('!'));
         return $this->render('index.twig');
     }
 }
