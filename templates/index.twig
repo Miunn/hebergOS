@@ -30,7 +30,16 @@
 
 <main>
     {% block main %}
-        {% include 'extra/logo-ascii-rounded.twig' %}
+
+        <div id="main-head">
+            <div>
+                <h1 class="app-name">{{ 'application.name' | trans }}</h1>
+
+                <h2>{{ 'title.catchLine.first' | trans }}</h2>
+                <h2>{{ 'title.catchLine.second' | trans }}</h2>
+            </div>
+            {% include 'extra/logo-ascii-rounded.twig' %}
+        </div>
     {% endblock %}
 </main>
 

@@ -9,6 +9,8 @@ application.github: GitHub
 title.club: ./insa.sh
 title.readme: README
 title.technologies: Technologies
+title.catchLine.first: Pour le club,
+title.catchLine.second: par le club
 
 auth.title.login: Connexion
 auth.title.register: Enregistrer un compte
