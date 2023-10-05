@@ -1,5 +1,9 @@
 {% extends 'index.twig' %}
 
-{% block main %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 
+{% block main %}
+    <h1>{{ 'app.titles.projects' | trans }}</h1>
 {% endblock %}

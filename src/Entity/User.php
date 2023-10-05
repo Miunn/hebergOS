@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -26,6 +30,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\ManyToMany(targetEntity: Containers::class, mappedBy: 'user')]
+    private Collection $containers;
+
+    public function __construct()
+    {
+        $this->containers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -95,5 +107,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Containers>
+     */
+    public function getContainers(): Collection
+    {
+        return $this->containers;
+    }
+
+    public function addContainer(Containers $container): static
+    {
+        if (!$this->containers->contains($container)) {
+            $this->containers->add($container);
+            $container->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContainer(Containers $container): static
+    {
+        if ($this->containers->removeElement($container)) {
+            $container->removeUser($this);
+        }
+
+        return $this;
     }
 }

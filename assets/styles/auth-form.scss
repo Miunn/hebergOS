@@ -1,31 +1,28 @@
 form {
   width: 500px;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   gap: 25px;
   padding: 50px;
+  margin-top: 5%;
 
   .title {
     text-align: center;
 
     text-transform: uppercase;
     font-weight: 300;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
   }
 
   input {
     position: relative;
     width: 100%;
-    background-color: var(--secondary-gray);
+    background-color: var(--component-background);
     border: none;
+    border-bottom: var(--border-interactive);
     outline: none;
     padding: 15px 10px;
     border-radius: 4px;
-    color: #ffffff;
     font-weight: 500;
     font-size: 1em;
   }
@@ -34,7 +31,7 @@ form {
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-text-fill-color: var(--accent-green);
+    -webkit-text-fill-color: var(--text-high-contrast-gray);
     -webkit-box-shadow: none;
     transition: background-color 5000s ease-in-out 0s;
   }
@@ -42,7 +39,6 @@ form {
   button[type='submit'] {
     width: 100%;
     padding: 15px 0;
-    color: #000;
     font-size: 1.2rem;
     font-weight: 600;
     text-align: center;

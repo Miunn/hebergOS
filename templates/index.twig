@@ -9,7 +9,14 @@
 <header>
     {% block header %}
         <nav>
-            <h1>{{ 'application.name' | trans }}</h1>
+            <h1>
+                <a
+                        {% if is_granted('IS_AUTHENTICATED') %}
+                        href="{{ path('app_app_index') }}"
+                        {% else %}
+                        href="{{ path('app_core_index') }}"
+                        {% endif %}
+                >{{ 'application.name' | trans }}</a></h1>
 
             <h2 class="club-name">{{ 'title.club' | trans }}</h2>
 
