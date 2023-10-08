@@ -22,4 +22,13 @@ class AdminController extends AbstractController
             'containers' => $containers
         ]);
     }
+
+    #[Route('/container/{container_id}', name: 'app_admin_container')]
+    public function container(string $container_id): Response {
+
+        $stats = $this->appService->getContainerStats($container_id, 0);
+        return $this->render('app/container-view.twig', [
+            'stats' => $stats
+        ]);
+    }
 }

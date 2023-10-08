@@ -1,4 +1,4 @@
-<div class="container" id="{{ id }}">
+<a class="container" id="{{ id }}" href="{{ container_view_uri }}">
     <h2 class="name">{{ container.name }}</h2>
 
     {% set dot_color = "black" %}
@@ -20,4 +20,4 @@
     {% endif %}
 
     <p class="state"><span class="dot {{ dot_color -}}-dot"></span> {{ container.state }}</p>
-</div>
+</a>

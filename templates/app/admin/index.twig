@@ -1,17 +1,22 @@
 {% extends 'index.twig' %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('app') }}
     {{ encore_entry_link_tags('admin') }}
     {{ encore_entry_link_tags('container') }}
 {% endblock %}
 
-{% block main %}
-    <div class="wrapper">
-        <h1>{{ 'app.titles.admin.containers' | trans }}</h1>
+{% block javascripts %}
 
+{% endblock %}
+
+{% block main %}
+    <h1>{{ 'app.titles.admin.containers' | trans }}</h1>
+
+    <section class="containers">
         {% for key, container in containers %}
-            {% include 'app/components/container.twig' with {'id': key, 'container': container} %}
+            {% include 'app/components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_admin_container', {'container_id': key}) } %}
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'index.twig' %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('containerView') }}
+{% endblock %}
+
+{% block main %}
+    <div id="data-stats" data-stats="{{ stats }}"></div>
+
+    <div class="chart-wrapper">
+        <canvas class="chart" id="ram-chart" ></canvas>
+    </div>
+
+    <div class="chart-wrapper">
+        <canvas class="chart" id="cpu-chart"></canvas>
+    </div>
+
+    <div class="chart-wrapper">
+        <canvas class="chart" id="net-chart"></canvas>
+    </div>
+
+    <div class="chart-wrapper">
+        <canvas class="chart" id="net-delta-chart"></canvas>
+    </div>
+{% endblock %}

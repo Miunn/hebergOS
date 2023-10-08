@@ -20,4 +20,6 @@ auth.login: Email
 auth.password: Mot de passe
 
 app.titles.projects: Mes projets
+app.projects.new: Nouveau projet
+app.projects.new.first: Créer un premier projet
 app.titles.admin.containers: Conteneurs hébergées

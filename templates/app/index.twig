@@ -1,6 +1,7 @@
 {% extends 'index.twig' %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
@@ -8,4 +9,14 @@
 
 {% block main %}
     <h1>{{ 'app.titles.projects' | trans }}</h1>
+
+    {% if containers|length == 0 %}
+        <button class="first-project" type="button">{{ 'app.projects.new.first'|trans }}</button>
+    {% else %}
+        <section class="containers">
+            {% for key, container in containers %}
+                {% include 'app/components/container.twig' with {'id': key, 'container': container} %}
+            {% endfor %}
+        </section>
+    {% endif %}
 {% endblock %}

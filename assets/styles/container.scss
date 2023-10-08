@@ -1,14 +1,22 @@
 .container {
-  max-width: 250px;
+  display: block;
+  width: 250px;
   padding: 20px;
   border: 1px solid var(--border-interactive);
   border-radius: 10px;
+  transition: background-color 200ms;
 
   .state {
+    margin-top: 10px;
     text-transform: capitalize;
 
     span {
       margin-right: 5px;
     }
+  }
+
+  &:hover {
+    background-color: var(--component-background-hover);
+    cursor: pointer;
   }
 }

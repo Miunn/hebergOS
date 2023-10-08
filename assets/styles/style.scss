@@ -1,0 +1,223 @@
+@import "@radix-ui/colors/crimson.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/indigo.css";
+@import "@radix-ui/colors/amber.css";
+@import "@radix-ui/colors/jade.css";
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/crimson-dark.css";
+@import "@radix-ui/colors/mauve-dark.css";
+@import "@radix-ui/colors/indigo-dark.css";
+@import "@radix-ui/colors/amber-dark.css";
+@import "@radix-ui/colors/jade-dark.css";
+@import "@radix-ui/colors/red-dark.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+  --dark-background: #0D1117;
+  --primary-gray: #121212;
+  --accent-gray: #525252;
+  --secondary-gray: #333333;
+  --accent-green: #00ff00;
+  --error-red: #f5564a;
+
+  --logo-color: #FD769F;
+
+  --background-1: var(--mauve-1);
+  --background-2: var(--mauve-2);
+  --component-background: var(--crimson-3);
+  --component-background-hover: var(--crimson-4);
+  --component-background-selected: var(--crimson-5);
+  --border-not-interactive: var(--crimson-6);
+  --border-interactive: var(--crimson-7);
+  --border-strong: var(--crimson-8);
+  --solid-background: var(--crimson-9);
+  --solid-background-hover: var(--crimson-10);
+  --text-low-contrast-gray: var(--mauve-11);
+  --text-high-contrast-gray: var(--mauve-12);
+
+  --text-low-contrast: var(--crimson-11);
+  --text-high-contrast: var(--crimson-12);
+}
+
+.dark {
+  --background-1: var(--mauve-1);
+  --background-2: var(--mauve-2);
+  --component-background: var(--crimson-3);
+  --component-background-hover: var(--crimson-4);
+  --component-background-selected: var(--crimson-5);
+  --border-not-interactive: var(--crimson-6);
+  --border-interactive: var(--crimson-7);
+  --border-strong: var(--crimson-8);
+  --solid-background: var(--crimson-9);
+  --solid-background-hover: var(--crimson-10);
+  --text-low-contrast-gray: var(--mauve-11);
+  --text-high-contrast-gray: var(--mauve-12);
+
+  --text-low-contrast: var(--crimson-11);
+  --text-high-contrast: var(--crimson-12);
+}
+
+/**
+Reset css
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Roboto Mono', monospace;
+}
+
+body {
+  background-color: var(--background-1);
+}
+
+p, h1, h2, h3, h4, h5, h6, label, a, button {
+  color: var(--text-high-contrast-gray);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+/*
+  Default rules
+ */
+
+header {
+  background-color: var(--solid-background);
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+
+    h1, h2, a {
+      color: white;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+.wrapper {
+  margin: 10px auto;
+  width: min(1800px, 90%);
+  display: flex;
+  flex-direction: column;
+}
+
+.club-name {
+  font-weight: 400;
+}
+
+.light-border {
+  border: 1px solid var(--accent-gray);
+}
+
+.border-radius-5 {
+  border-radius: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: fit-content;
+  padding: 10px;
+  background-color: var(--component-background);
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var(--component-background-hover);
+  }
+
+  &:active {
+    background-color: var(--component-background-selected);
+  }
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.green-dot {
+  background-color: #00ff00;
+}
+
+.blue-dot {
+  background-color: #0000ff;
+}
+
+.white-dot {
+  background-color: #bbbbbb;
+}
+
+.yellow-dot {
+  background-color: #ffff00;
+}
+
+.red-dot {
+  background-color: var(--error-red);
+}
+
+.black-dot {
+  background-color: black;
+}
+
+.little-img {
+  width: 30px;
+}
+
+.medium-img {
+  height: 40px;
+}
+
+.cta {
+  background-color: var(--component-background);
+}
+
+.cta:hover {
+  background-color: var(--component-background-hover);
+}
+
+.cta:focus {
+  background-color: var(--component-background-selected);
+}

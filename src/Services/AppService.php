@@ -59,4 +59,20 @@ class AppService
 
         return $userContainers;
     }
+
+    public function getContainerStats(string $container_id, int $timestamp): ?string
+    {
+        $requestUri = "$this->apiUrl/v1/container/stats?id=$container_id&since=$timestamp";
+
+        try {
+            $response = $this->httpClient->request(
+                'GET',
+                $requestUri
+            );
+            return $response->getContent();
+
+        } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface $e) {
+        }
+        return null;
+    }
 }
