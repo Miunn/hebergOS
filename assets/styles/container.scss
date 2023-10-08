@@ -1,0 +1,14 @@
+.container {
+  max-width: 250px;
+  padding: 20px;
+  border: 1px solid var(--border-interactive);
+  border-radius: 10px;
+
+  .state {
+    text-transform: capitalize;
+
+    span {
+      margin-right: 5px;
+    }
+  }
+}

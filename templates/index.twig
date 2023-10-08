@@ -21,9 +21,19 @@
             <h2 class="club-name">{{ 'title.club' | trans }}</h2>
 
             <ul>
-                {% if not is_granted('IS_AUTHENTICATED') %}
+                {% if is_granted('IS_AUTHENTICATED') and is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a class="hover-underline" href="{{ path('app_admin_index') }}">{{ 'title.admin' | trans }}</a>
+                    </li>
+                {% elseif not is_granted('IS_AUTHENTICATED') %}
                     <li>
                         <a class="hover-underline" href="{{ path('app_login') }}">{{ 'application.getApp' | trans }}</a>
+                    </li>
+                {% endif %}
+
+                {% if is_granted('IS_AUTHENTICATED') %}
+                    <li>
+                        <a class="hover-underline" href="{{ path('app_logout') }}">{{ 'auth.title.logout' | trans }}</a>
                     </li>
                 {% endif %}
 
@@ -36,18 +46,19 @@
 </header>
 
 <main>
-    {% block main %}
+    <div class="wrapper">
+        {% block main %}
+            <div id="main-head">
+                <div>
+                    <h1 class="app-name">{{ 'application.name' | trans }}</h1>
 
-        <div id="main-head">
-            <div>
-                <h1 class="app-name">{{ 'application.name' | trans }}</h1>
-
-                <h2>{{ 'title.catchLine.first' | trans }}</h2>
-                <h2>{{ 'title.catchLine.second' | trans }}</h2>
+                    <h2>{{ 'title.catchLine.first' | trans }}</h2>
+                    <h2>{{ 'title.catchLine.second' | trans }}</h2>
+                </div>
+                {% include 'extra/logo-ascii-rounded.twig' %}
             </div>
-            {% include 'extra/logo-ascii-rounded.twig' %}
-        </div>
-    {% endblock %}
+        {% endblock %}
+    </div>
 </main>
 
 <footer>

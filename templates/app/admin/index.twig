@@ -1,0 +1,17 @@
+{% extends 'index.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('admin') }}
+    {{ encore_entry_link_tags('container') }}
+{% endblock %}
+
+{% block main %}
+    <div class="wrapper">
+        <h1>{{ 'app.titles.admin.containers' | trans }}</h1>
+
+        {% for key, container in containers %}
+            {% include 'app/components/container.twig' with {'id': key, 'container': container} %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,4 +1,23 @@
-<div class="container" id="{{ container.id }}">
-    <h2>{{ container.name }}</h2>
-    <p>{{ container.state }}</p>
+<div class="container" id="{{ id }}">
+    <h2 class="name">{{ container.name }}</h2>
+
+    {% set dot_color = "black" %}
+
+    {% if container.state == "running" %}
+        {% set dot_color = "green" %}
+    {% elseif constainer.state == "exited" %}
+        {% set dot_color = "white" %}
+    {% elseif constainer.state == "paused" %}
+        {% set dot_color = "yellow" %}
+    {% elseif constainer.state == "restarting" %}
+        {% set dot_color = "yellow" %}
+    {% elseif constainer.state == "removing" %}
+        {% set dot_color = "red" %}
+    {% elseif constainer.state == "dead" %}
+        {% set dot_color = "black" %}
+    {% elseif constainer.state == "created" %}
+        {% set dot_color = "blue" %}
+    {% endif %}
+
+    <p class="state"><span class="dot {{ dot_color -}}-dot"></span> {{ container.state }}</p>
 </div>

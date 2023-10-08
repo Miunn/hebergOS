@@ -129,6 +129,11 @@ header {
   }
 }
 
+.wrapper {
+  margin: 10px auto;
+  max-width: min(1800px, 90%);
+}
+
 .club-name {
   font-weight: 400;
 }
@@ -150,14 +155,34 @@ header {
 }
 
 .dot {
-  display: block;
+  display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
 
+.green-dot {
+  background-color: #00ff00;
+}
+
+.blue-dot {
+  background-color: #0000ff;
+}
+
+.white-dot {
+  background-color: #bbbbbb;
+}
+
+.yellow-dot {
+  background-color: #ffff00;
+}
+
 .red-dot {
   background-color: var(--error-red);
+}
+
+.black-dot {
+  background-color: black;
 }
 
 .little-img {
