@@ -1,5 +1,10 @@
 {% extends 'index.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('containerView') }}
+{% endblock %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('containerView') }}
 {% endblock %}
@@ -7,19 +12,21 @@
 {% block main %}
     <div id="data-stats" data-stats="{{ stats }}"></div>
 
-    <div class="chart-wrapper">
-        <canvas class="chart" id="ram-chart" ></canvas>
-    </div>
+    <div class="charts">
+        <div class="chart-wrapper">
+            <canvas class="chart" id="ram-chart" ></canvas>
+        </div>
 
-    <div class="chart-wrapper">
-        <canvas class="chart" id="cpu-chart"></canvas>
-    </div>
+        <div class="chart-wrapper">
+            <canvas class="chart" id="cpu-chart"></canvas>
+        </div>
 
-    <div class="chart-wrapper">
-        <canvas class="chart" id="net-chart"></canvas>
-    </div>
+        <div class="chart-wrapper">
+            <canvas class="chart" id="net-chart"></canvas>
+        </div>
 
-    <div class="chart-wrapper">
-        <canvas class="chart" id="net-delta-chart"></canvas>
+        <div class="chart-wrapper">
+            <canvas class="chart" id="net-delta-chart"></canvas>
+        </div>
     </div>
 {% endblock %}

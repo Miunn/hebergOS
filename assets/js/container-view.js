@@ -1,4 +1,7 @@
+import '../styles/container-view.scss';
 import {Chart} from 'chart.js/auto';
+import zoomPlugin from 'chartjs-plugin-zoom';
+Chart.register(zoomPlugin);
 
 function createChart(chartCanvas, labels, datasets, opts={}) {
     const options = Object.assign({}, {
@@ -6,10 +9,26 @@ function createChart(chartCanvas, labels, datasets, opts={}) {
             point: {
                 radius: 0
             }
+        },
+        plugins: {
+            zoom: {
+                pan: {
+                    enabled: true,
+                    mode: 'x'
+                },
+                zoom: {
+                    wheel: {
+                        enabled: true,
+                    },
+                    pinch: {
+                        enabled: true
+                    },
+                    mode: 'x',
+                }
+            }
         }
     }, opts);
 
-    console.log(options);
     new Chart(chartCanvas, {
         type: 'line',
         data: {
@@ -18,7 +37,7 @@ function createChart(chartCanvas, labels, datasets, opts={}) {
         },
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
-        options: options
+        options: options,
     });
 }
 
@@ -29,8 +48,6 @@ const cpuChart = document.getElementById("cpu-chart");
 const netChart = document.getElementById("net-chart");
 const netDeltaChart = document.getElementById("net-delta-chart");
 
-console.log(ramChart);
-
 let timestamps = [];
 let ramData = [];
 let cpuData = [];
@@ -39,11 +56,11 @@ let netTotalDownData = [];
 let netDeltaUpData = [];
 let netDeltaDownData = [];
 
-
+var i = 0;
 Object.entries(data).forEach((entry) => {
     const [timestamp, stat] = entry;
 
-    timestamps.push(timestamp);
+    timestamps.push(new Date(timestamp*1000).toLocaleTimeString());
 
     ramData.push(stat["memory"]["used"]);
     cpuData.push(stat["cpu"]["usage_percent"]);
@@ -52,34 +69,48 @@ Object.entries(data).forEach((entry) => {
     netDeltaUpData.push(stat["net"]["delta_up"]);
     netDeltaDownData.push(stat["net"]["delta_down"]);
 
+    i++;
 });
 
-//console.log(ramData);
-console.log(cpuData);
-console.log(netDeltaUpData);
-console.log(netDeltaDownData);
 
 createChart(ramChart, timestamps, [{
     label: 'RAM',
     data: ramData,
+    fill: true,
     borderWidth: 5
-}]);
+}], {
+    scales: {
+        y: {
+            suggestedMax: 0.06,
+            beginAtZero: true
+        }
+    },
+});
 
 createChart(cpuChart, timestamps, [{
     label: 'CPU',
     data: cpuData,
+    fill: true,
     borderWidth: 5
-}]);
+}], {
+    scales: {
+        y: {
+            beginAtZero: true
+        }
+    },
+});
 
 createChart(netChart, timestamps, [
     {
-        label: 'NET Up',
-        data: netTotalUpData,
+        label: 'NET Down',
+        data: netTotalDownData,
+        fill: true,
         borderWidth: 5
     },
     {
-        label: 'NET Down',
-        data: netTotalDownData,
+        label: 'NET Up',
+        data: netTotalUpData,
+        fill: true,
         borderWidth: 5
     }
 ], {
@@ -93,13 +124,15 @@ createChart(netChart, timestamps, [
 
 createChart(netDeltaChart, timestamps, [
     {
-        label: 'NET Delta Up',
-        data: netDeltaUpData,
+        label: 'NET Delta Down',
+        data: netDeltaDownData,
+        fill: true,
         borderWidth: 5
     },
     {
-        label: 'NET Delta Down',
-        data: netDeltaDownData,
+        label: 'NET Delta Up',
+        data: netDeltaUpData,
+        fill: true,
         borderWidth: 5
     }
 ], {
