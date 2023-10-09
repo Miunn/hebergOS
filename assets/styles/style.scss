@@ -136,8 +136,17 @@ header {
   flex-direction: column;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .club-name {
   font-weight: 400;
+}
+
+.icon-little {
+  width: 20px;
+  height: 20px;
 }
 
 .light-border {

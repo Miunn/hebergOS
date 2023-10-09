@@ -22,4 +22,13 @@ auth.password: Mot de passe
 app.titles.projects: Mes projets
 app.projects.new: Nouveau projet
 app.projects.new.first: Créer un premier projet
-app.titles.admin.containers: Conteneurs hébergées
+
+admin.containers.title: Conteneurs hébergés
+admin.users.title: Utilisateurs de l'application
+admin.users.email: Adresse mail
+admin.users.containers: Conteneurs accessibles
+admin.users.containers.empty: Aucun
+admin.users.roles: Roles
+admin.users.action.title: Actions
+admin.users.action.edit: Editer l'utilisateur
+admin.users.action.delete: Supprimer l'utilisateur

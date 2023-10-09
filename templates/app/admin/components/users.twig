@@ -1,0 +1,27 @@
+<table id="users-table" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <th>{{ 'admin.users.email'|trans }}</th>
+            <th>{{ 'admin.users.containers'|trans }}</th>
+            <th>{{ 'admin.users.roles'|trans }}</th>
+            <th>{{ 'admin.users.action.title'|trans }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            {% set user_containers = user.containers.toArray %}
+            <tr>
+                <td>{{ user.email }}</td>
+                {% if user_containers|length == 0 %}
+                    <td class="italic">{{ 'admin.users.containers.empty'|trans }}</td>
+                {% else %}
+                    <td>{{ user_containers|join(', ') }}</td>
+                {% endif %}
+                <td>{{ user.roles|join(', ') }}</td>
+                <td><a class="hover-underline" href="#"><img class="icon-little" src="{{ asset('build/images/config.png') }}" alt="Config">{{ 'admin.users.action.edit'|trans }}</a></td>
+                <td><a class="hover-underline delete-user" href="{{ path('app_admin_delete_user', {'user': user.id}) }}"><img class="icon-little" src="{{ asset('build/images/remove.png') }}" alt="Remove">{{ 'admin.users.action.delete'|trans }}</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

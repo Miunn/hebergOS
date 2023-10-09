@@ -9,3 +9,27 @@
 
 import '../styles/style.scss';
 import '../styles/logo-ascii.scss';
+import Swal from "sweetalert2";
+
+export function fireConfirmationSwal(title, confirmAction, icon=null, callback=(r)=>{}) {
+    Swal.fire({
+        title: title,
+        icon: icon,
+        showCancelButton: true,
+        confirmButtonText: confirmAction,
+        reverseButtons: true
+    }).then(callback);
+}
+
+export function fireBasicSwal(title, icon, callback=(r)=>{}) {
+    Swal.fire(title, '', icon)
+        .then(callback);
+}
+
+/*(result) => {
+if (result.isConfirmed) {
+    Swal.fire('Saved!', '', 'success')
+} else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+}
+}*/
