@@ -35,6 +35,7 @@ Encore
     .addEntry('register', './assets/js/register.js')
     .addEntry('app', './assets/js/app.js')
     .addEntry('users', './assets/js/users.js')
+    .addEntry('edit-user', './assets/js/edit-user.js')
     .addEntry('container', './assets/js/container.js')
     .addEntry('containerView', './assets/js/container-view.js')
 

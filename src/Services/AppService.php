@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Entity\Containers;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -16,7 +18,7 @@ class AppService
         private readonly HttpClientInterface $httpClient,
         private readonly string $apiUrl,
     ) {}
-    public function getContainers(): array
+    public function getContainers(EntityManagerInterface $entityManager): array
     {
         $requestUri = $this->apiUrl . '/v1/container';
         try {
@@ -24,10 +26,19 @@ class AppService
                 'GET',
                 $requestUri
             );
-            return $response->toArray();
-        } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            $containers = $response->toArray();
+            $containersRepository = $entityManager->getRepository(Containers::class);
+            foreach ($containers as $key=>$container) {
+                if ($containersRepository->findOneBy(['id' => $key]) == null) {
+                    $newContainer = new Containers($key);
+                    $newContainer->setName($container['name']);
+                    $entityManager->persist($newContainer);
+                }
+            }
+            $entityManager->flush();
+            return $containers;
+        } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
-        } catch (DecodingExceptionInterface $e) {
         }
         return [];
     }
@@ -40,20 +51,19 @@ class AppService
             return [];
         }
 
-        $userContainers = [];
+        $userContainers = null;
         $requestUri = $this->apiUrl . '/v1/container?';
         foreach ($user->getContainers() as $container) {
-            $requestUri = $requestUri . 'id=' . $container->getDockerId();
+            $requestUri = $requestUri . 'id=' . $container->getId().'&';
         }
 
         try {
             $response = $this->httpClient->request(
                 'GET',
-                $requestUri
+                substr($requestUri, 0, strlen($requestUri)-1)
             );
-            dump($response);
-            $userContainers[] = $response->getContent();
-        } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            $userContainers = $response->toArray();
+        } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
         }
 

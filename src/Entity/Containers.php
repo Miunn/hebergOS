@@ -11,34 +11,29 @@ use Doctrine\ORM\Mapping as ORM;
 class Containers
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 64)]
-    private ?string $docker_id = null;
+    private ?string $id = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers')]
     private Collection $user;
 
-    public function __construct()
+    #[ORM\Column(length: 30)]
+    private ?string $name = null;
+
+    public function __construct(string $id)
     {
+        $this->setId($id);
         $this->user = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getDockerId(): ?string
+    public function setId(string $id): static
     {
-        return $this->docker_id;
-    }
-
-    public function setDockerId(string $docker_id): static
-    {
-        $this->docker_id = $docker_id;
+        $this->id = $id;
 
         return $this;
     }
@@ -63,6 +58,18 @@ class Containers
     public function removeUser(User $user): static
     {
         $this->user->removeElement($user);
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

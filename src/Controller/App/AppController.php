@@ -25,9 +25,18 @@ class AppController extends AbstractController
         }
 
         $userContainers = $this->appService->getUserContainers($user);
-
+        dump($userContainers);
         return $this->render('app/index.twig', [
             'containers' => $userContainers,
+        ]);
+    }
+
+    #[Route('/container/{container_id}', name: 'app_container')]
+    public function container(string $container_id): Response {
+
+        $stats = $this->appService->getContainerStats($container_id, 0);
+        return $this->render('app/container-view.twig', [
+            'stats' => $stats
         ]);
     }
 }

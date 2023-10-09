@@ -1,0 +1,26 @@
+{% extends 'app/index.twig' %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('edit-user') }}
+{% endblock %}
+
+{% block main %}
+
+    {{ form_start(userForm) }}
+
+    {{ form_row(userForm.email) }}
+    {{ form_row(userForm.plainPassword) }}
+    {{ form_row(userForm.roles) }}
+
+    {{ form_row(userForm.containers, {'attr': {'class': 'containers'}}) }}
+    {# <ul class="containers"
+        data-index="{{ userForm.containers|length > 0 ? userForm.containers|last.vars.name + 1 : 0 }}"
+        data-prototype="{{ form_widget(userForm.containers.vars.prototype)|e('html_attr') }}"
+    ></ul>#}
+    <button type="button" class="add_item_link" data-collection-holder-class="containers">{{ 'admin.users.action.addContainer'|trans }}</button>
+
+
+    <button type="submit">Sauvegarder</button>
+    {{ form_end(userForm) }}
+
+{% endblock %}

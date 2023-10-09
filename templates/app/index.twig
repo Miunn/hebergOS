@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('container') }}
 {% endblock %}
 
 
@@ -15,7 +16,7 @@
     {% else %}
         <section class="containers">
             {% for key, container in containers %}
-                {% include 'app/components/container.twig' with {'id': key, 'container': container} %}
+                {% include 'app/components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_container', {'container_id': key})} %}
             {% endfor %}
         </section>
     {% endif %}

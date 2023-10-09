@@ -14,13 +14,12 @@
 {% endblock %}
 
 {% block main %}
-    <h1>{{ 'admin.users.title' | trans }}</h1>
+    <h1>{{ 'admin.users.title' | trans }} <a href="{{ path('app_register') }}">{{ 'admin.users.action.add'|trans }}</a></h1>
     <section class="users">
         {% include 'app/admin/components/users.twig' with {'users': users} %}
     </section>
 
     <h1>{{ 'admin.containers.title' | trans }}</h1>
-
 
     <section class="containers">
         {% for key, container in containers %}
