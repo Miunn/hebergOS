@@ -13,6 +13,12 @@ title.catchLine.first: Pour le club,
 title.catchLine.second: par le club
 title.admin: Administration
 
+container.overview: Vue d'ensemble
+container.stats: Graphiques
+container.actions: Actions
+container.shell: Console
+container.admin: Administration
+
 auth.title.logout: Deconnexion
 auth.title.login: Connexion
 auth.title.register: Enregistrer un compte

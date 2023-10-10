@@ -2,6 +2,7 @@
 
 namespace App\Controller\App;
 
+use App\Entity\Containers;
 use App\Entity\User;
 use App\Services\AppService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,18 +27,67 @@ class AppController extends AbstractController
         }
 
         $userContainers = $this->appService->getUserContainers($user, $entityManager);
-        dump($userContainers);
         return $this->render('app/index.twig', [
             'containers' => $userContainers,
         ]);
     }
 
-    #[Route('/container/{container_id}', name: 'app_container')]
-    public function container(string $container_id): Response {
+    #[Route('/container/overview/{container}', name: 'app_container_overview')]
+    public function container(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
 
-        $stats = $this->appService->getContainerStats($container_id, 0);
-        return $this->render('app/container-view.twig', [
+        $overview = $this->appService->getContainer($container->getId());
+        return $this->render('app/view/container-overview.twig', [
+            'container' => $container,
+            'overview' => $overview
+        ]);
+    }
+
+    #[Route('/container/stats/{container}', name: 'app_container_stats')]
+    public function containerStats(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        dump($stats);
+        return $this->render('app/view/container-stats.twig', [
+            'container' => $container,
             'stats' => $stats
+        ]);
+    }
+
+    #[Route('/container/shell/{container}', name: 'app_container_shell')]
+    public function containerShell(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        return $this->render('app/view/container-shell.twig', [
+            'container' => $container,
+        ]);
+    }
+
+    #[Route('/container/actions/{container}', name: 'app_container_actions')]
+    public function containerActions(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        return $this->render('app/view/container-actions.twig', [
+            'container' => $container,
         ]);
     }
 }

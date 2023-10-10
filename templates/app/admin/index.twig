@@ -22,7 +22,7 @@
     <h1 class="section-title">{{ 'admin.containers.title' | trans }}</h1>
     <section class="containers">
         {% for key, container in containers %}
-            {% include 'app/components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_admin_container', {'container_id': key}) } %}
+            {% include 'app/components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_admin_container', {'container': key}) } %}
         {% endfor %}
     </section>
 {% endblock %}

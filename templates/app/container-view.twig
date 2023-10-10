@@ -10,23 +10,30 @@
 {% endblock %}
 
 {% block main %}
-    <div id="data-stats" data-stats="{{ stats }}"></div>
+    <div id="container-head">
+        <h1>{{ container.name }}</h1>
 
-    <div class="charts">
-        <div class="chart-wrapper">
-            <canvas class="chart" id="ram-chart" ></canvas>
-        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ path('app_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-        <div class="chart-wrapper">
-            <canvas class="chart" id="cpu-chart"></canvas>
-        </div>
+    <div class="content">
+        {% block content %}
 
-        <div class="chart-wrapper">
-            <canvas class="chart" id="net-chart"></canvas>
-        </div>
-
-        <div class="chart-wrapper">
-            <canvas class="chart" id="net-delta-chart"></canvas>
-        </div>
+        {% endblock %}
     </div>
 {% endblock %}

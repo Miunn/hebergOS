@@ -15,10 +15,11 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class AppService
 {
     public function __construct(
+        private readonly EntityManagerInterface $entityManager,
         private readonly HttpClientInterface $httpClient,
         private readonly string $apiUrl,
     ) {}
-    public function getContainers(EntityManagerInterface $entityManager): array
+    public function getContainers(): array
     {
         $requestUri = $this->apiUrl . '/v1/container';
         try {
@@ -28,7 +29,7 @@ class AppService
             );
             $containers = $response->toArray();
 
-            $this->syncContainers($containers, $entityManager);
+            $this->syncContainers($containers);
             return $containers['success'];
         } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
@@ -54,7 +55,7 @@ class AppService
                 substr($requestUri, 0, strlen($requestUri)-1)
             );
             $userContainers = $response->toArray();
-            $this->syncContainers($userContainers, $entityManager);
+            $this->syncContainers($userContainers);
         } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
         }
@@ -62,7 +63,23 @@ class AppService
         return $userContainers['success'];
     }
 
-    public function getContainerStats(string $container_id, int $timestamp): ?string
+    public function getContainer(string $container_id): array
+    {
+        $requestUri = "$this->apiUrl/v1/container?id=$container_id";
+
+        try {
+            $response = $this->httpClient->request(
+                'GET',
+                $requestUri
+            );
+            return $response->toArray();
+        } catch (TransportExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            dump($e);
+        }
+        return [];
+    }
+
+    public function getContainerStats(string $container_id, int $timestamp): string
     {
         $requestUri = "$this->apiUrl/v1/container/stats?id=$container_id&since=$timestamp";
 
@@ -73,28 +90,29 @@ class AppService
             );
             return $response->getContent();
 
-        } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface $e) {
+        } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface $e) {
+            dump($e);
         }
-        return null;
+        return "{}";
     }
 
-    public function syncContainers(array $containers, EntityManagerInterface $entityManager): void
+    public function syncContainers(array $containers): void
     {
         // Register new containers
-        $containersRepository = $entityManager->getRepository(Containers::class);
+        $containersRepository = $this->entityManager->getRepository(Containers::class);
         $should_flush = false;
         foreach ($containers['success'] as $key=>$container) {
             if ($containersRepository->findOneBy(['id' => $key]) == null) {
                 $newContainer = new Containers($key);
                 $newContainer->setName($container['name']);
-                $entityManager->persist($newContainer);
+                $this->entityManager->persist($newContainer);
                 $should_flush = true;
             }
         }
 
         if (!array_key_exists('error', $containers)) {
             if ($should_flush) {
-                $entityManager->flush();
+                $this->entityManager->flush();
             }
             return;
         }
@@ -104,13 +122,13 @@ class AppService
             $container = $containersRepository->findOneBy(['id' => $key]);
             // Security but in theory it shouldn't be null
             if ($container != null) {
-                $entityManager->remove($container);
+                $this->entityManager->remove($container);
                 $should_flush = true;
             }
         }
 
         if ($should_flush) {
-            $entityManager->flush();
+            $this->entityManager->flush();
         }
     }
 }
