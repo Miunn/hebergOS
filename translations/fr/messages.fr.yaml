@@ -16,6 +16,13 @@ title.admin: Administration
 container.overview: Vue d'ensemble
 container.stats: Graphiques
 container.actions: Actions
+
+container.actions.start: Démarrer
+container.actions.stop: Arrêter
+container.actions.restart: Redémarrer
+container.actions.restart.hint: A privilégier dans la plupart des cas
+container.actions.delete: Supprimer
+
 container.shell: Console
 container.admin: Administration
 

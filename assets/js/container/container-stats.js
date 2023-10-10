@@ -1,4 +1,3 @@
-import '../styles/container-view.scss';
 import {Chart} from 'chart.js/auto';
 import zoomPlugin from 'chartjs-plugin-zoom';
 Chart.register(zoomPlugin);
@@ -7,7 +6,7 @@ function createChart(chartCanvas, labels, datasets, opts={}) {
     const options = Object.assign({}, {
         elements: {
             point: {
-                radius: 0
+                radius: 0.05
             }
         },
         plugins: {

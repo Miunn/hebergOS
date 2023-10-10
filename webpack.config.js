@@ -37,7 +37,8 @@ Encore
     .addEntry('users', './assets/js/users.js')
     .addEntry('edit-user', './assets/js/edit-user.js')
     .addEntry('container', './assets/js/container.js')
-    .addEntry('containerView', './assets/js/container-view.js')
+    .addEntry('containerView', './assets/js/container/container-view.js')
+    .addEntry('containerStats', './assets/js/container/container-stats.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

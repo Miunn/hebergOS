@@ -16,16 +16,32 @@
         <nav>
             <ul>
                 <li>
-                    <a href="{{ path('app_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                    {% if admin|default(false) %}
+                        <a aria-current="{{ overview|default != null }}" href="{{ path('app_admin_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                    {% else %}
+                        <a aria-current="{{ overview|default != null }}" href="{{ path('app_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                    {% endif %}
                 </li>
                 <li>
-                    <a href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                    {% if admin|default(false) %}
+                        <a aria-current="{{ stats|default != null }}" href="{{ path('app_admin_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                    {% else %}
+                        <a aria-current="{{ stats|default != null }}" href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                    {% endif %}
                 </li>
                 <li>
-                    <a href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                    {% if admin|default(false) %}
+                        <a aria-current="{{ shell|default != null }}" href="{{ path('app_admin_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                    {% else %}
+                        <a aria-current="{{ shell|default != null }}" href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                    {% endif %}
                 </li>
                 <li>
-                    <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                    {% if admin|default(false) %}
+                        <a aria-current="{{ actions|default != null }}" href="{{ path('app_admin_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                    {% else %}
+                        <a aria-current="{{ actions|default != null }}" href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                    {% endif %}
                 </li>
             </ul>
         </nav>

@@ -1,3 +1,17 @@
+#container-head {
+  nav {
+    ul {
+      display: flex;
+      gap: 20px;
+    }
+
+    a[aria-current="1"] {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+}
+
 .chart-wrapper {
   margin: auto auto 20px;
   max-width: 80%;

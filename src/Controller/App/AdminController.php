@@ -75,6 +75,7 @@ class AdminController extends AbstractController
 
         $overview = $this->appService->getContainer($container->getId());
         return $this->render('app/view/container-overview.twig', [
+            'admin' => true,
             'container' => $container,
             'overview' => $overview
         ]);
@@ -85,6 +86,7 @@ class AdminController extends AbstractController
 
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-stats.twig', [
+            'admin' => true,
             'container' => $container,
             'stats' => $stats
         ]);
@@ -95,7 +97,9 @@ class AdminController extends AbstractController
 
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-shell.twig', [
+            'admin' => true,
             'container' => $container,
+            'shell' => "1"
         ]);
     }
 
@@ -104,7 +108,9 @@ class AdminController extends AbstractController
 
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-actions.twig', [
+            'admin' => true,
             'container' => $container,
+            'actions' => "1"
         ]);
     }
 }

@@ -1,5 +1,10 @@
 {% extends 'app/container-view.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('containerStats') }}
+{% endblock %}
+
 {% block content %}
 <div id="data-stats" data-stats="{{ stats }}"></div>
 

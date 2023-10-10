@@ -56,7 +56,6 @@ class AppController extends AbstractController
         }
 
         $stats = $this->appService->getContainerStats($container->getId(), 0);
-        dump($stats);
         return $this->render('app/view/container-stats.twig', [
             'container' => $container,
             'stats' => $stats
@@ -74,6 +73,7 @@ class AppController extends AbstractController
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-shell.twig', [
             'container' => $container,
+            'shell' => "1"
         ]);
     }
 
@@ -88,6 +88,7 @@ class AppController extends AbstractController
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-actions.twig', [
             'container' => $container,
+            'actions' => "1"
         ]);
     }
 }
