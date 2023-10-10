@@ -1,5 +1,9 @@
 {% extends 'app/container-view.twig' %}
 
 {% block content %}
-
+    <iframe id="shell"
+            title="{{ 'container.shell'|trans }}"
+            width="900"
+            height="800"
+            src="https://ssh.pixelwar.insash.fr/wetty"></iframe>
 {% endblock %}

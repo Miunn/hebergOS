@@ -9,6 +9,7 @@ use App\Services\AdminService;
 use App\Services\AppService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -28,7 +29,7 @@ class AdminController extends AbstractController
     {
         $usersRepository = $entityManager->getRepository(User::class);
         $users = $usersRepository->findAll();
-        $containers = $this->appService->getContainers($entityManager);
+        $containers = $this->appService->getContainers();
 
         return $this->render('app/admin/index.twig', [
             'users' => $users,
@@ -62,19 +63,48 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/container/{container_id}', name: 'app_admin_container')]
-    public function container(string $container_id): Response {
-
-        $stats = $this->appService->getContainerStats($container_id, 0);
-        return $this->render('app/container-view.twig', [
-            'stats' => $stats
-        ]);
-    }
-
     #[Route('/user/delete/{user}', name: 'app_admin_delete_user')]
     public function deleteUser(User $user, EntityManagerInterface $entityManager): Response
     {
         $this->adminService->deleteUser($user, $entityManager);
         return new Response("No Content", Response::HTTP_NO_CONTENT);
+    }
+
+    #[Route('/container/overview/{container}', name: 'app_admin_container_overview')]
+    public function container(Containers $container): Response {
+
+        $overview = $this->appService->getContainer($container->getId());
+        return $this->render('app/view/container-overview.twig', [
+            'container' => $container,
+            'overview' => $overview
+        ]);
+    }
+
+    #[Route('/container/stats/{container}', name: 'app_admin_container_stats')]
+    public function containerStats(Containers $container): Response {
+
+        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        return $this->render('app/view/container-stats.twig', [
+            'container' => $container,
+            'stats' => $stats
+        ]);
+    }
+
+    #[Route('/container/shell/{container}', name: 'app_admin_container_shell')]
+    public function containerShell(Containers $container): Response {
+
+        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        return $this->render('app/view/container-shell.twig', [
+            'container' => $container,
+        ]);
+    }
+
+    #[Route('/container/actions/{container}', name: 'app_admin_container_actions')]
+    public function containerActions(Containers $container): Response {
+
+        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        return $this->render('app/view/container-actions.twig', [
+            'container' => $container,
+        ]);
     }
 }
