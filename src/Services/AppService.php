@@ -28,14 +28,19 @@ class AppService
             );
             $containers = $response->toArray();
             $containersRepository = $entityManager->getRepository(Containers::class);
+            $should_flush = false;
             foreach ($containers as $key=>$container) {
                 if ($containersRepository->findOneBy(['id' => $key]) == null) {
+                    dump("ADD CONTAINER:".$container['name']);
                     $newContainer = new Containers($key);
                     $newContainer->setName($container['name']);
                     $entityManager->persist($newContainer);
+                    $should_flush = true;
                 }
             }
-            $entityManager->flush();
+            if ($should_flush) {
+                $entityManager->flush();
+            }
             return $containers;
         } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
@@ -51,7 +56,7 @@ class AppService
             return [];
         }
 
-        $userContainers = null;
+        $userContainers = [];
         $requestUri = $this->apiUrl . '/v1/container?';
         foreach ($user->getContainers() as $container) {
             $requestUri = $requestUri . 'id=' . $container->getId().'&';

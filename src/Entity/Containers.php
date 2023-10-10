@@ -17,7 +17,7 @@ class Containers
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers')]
     private Collection $user;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
 
     public function __construct(string $id)

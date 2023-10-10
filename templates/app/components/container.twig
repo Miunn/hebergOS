@@ -1,21 +1,21 @@
 <a class="container" id="{{ id }}" href="{{ container_view_uri }}">
-    <h2 class="name">{{ container.name }}</h2>
+    <h2 class="name" title="{{ container.name }}">{{ container.name }}</h2>
 
     {% set dot_color = "black" %}
 
     {% if container.state == "running" %}
         {% set dot_color = "green" %}
-    {% elseif constainer.state == "exited" %}
+    {% elseif container.state == "exited" %}
         {% set dot_color = "white" %}
-    {% elseif constainer.state == "paused" %}
+    {% elseif container.state == "paused" %}
         {% set dot_color = "yellow" %}
-    {% elseif constainer.state == "restarting" %}
+    {% elseif container.state == "restarting" %}
         {% set dot_color = "yellow" %}
-    {% elseif constainer.state == "removing" %}
+    {% elseif container.state == "removing" %}
         {% set dot_color = "red" %}
-    {% elseif constainer.state == "dead" %}
+    {% elseif container.state == "dead" %}
         {% set dot_color = "black" %}
-    {% elseif constainer.state == "created" %}
+    {% elseif container.state == "created" %}
         {% set dot_color = "blue" %}
     {% endif %}
 
