@@ -1,0 +1,45 @@
+.section-title {
+  margin-bottom: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+#add-user {
+  float: right;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 10px;
+  background-color: var(--component-background);
+  border: 2px solid var(--border-strong);
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 30px;
+  }
+
+  &:hover {
+    background-color: var(--component-background-hover);
+  }
+
+  &:active {
+    background-color: var(--component-background-selected);
+  }
+}
+
+.role-pad {
+  padding: 3px 8px;
+  border-radius: 20px;
+  background-color: #009C41;
+  color: white;
+}
+
+.pad-role_admin {
+  color: black;
+  background-color: #FFCD02;
+}

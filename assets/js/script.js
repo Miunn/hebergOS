@@ -16,6 +16,7 @@ export function fireConfirmationSwal(title, confirmAction, icon=null, callback=(
         title: title,
         icon: icon,
         showCancelButton: true,
+        cancelButtonText: "Annuler",
         confirmButtonText: confirmAction,
         reverseButtons: true
     }).then(callback);

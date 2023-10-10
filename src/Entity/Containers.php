@@ -6,6 +6,7 @@ use App\Repository\ContainersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\This;
 
 #[ORM\Entity(repositoryClass: ContainersRepository::class)]
 class Containers
@@ -14,7 +15,7 @@ class Containers
     #[ORM\Column(length: 64)]
     private ?string $id = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers', orphanRemoval: true)]
     private Collection $user;
 
     #[ORM\Column(length: 50)]
@@ -70,6 +71,15 @@ class Containers
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function removeUsers(): static
+    {
+        foreach ($this->user->toArray() as $user) {
+            $this->removeUser($user);
+        }
 
         return $this;
     }

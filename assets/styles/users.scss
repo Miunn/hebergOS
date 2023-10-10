@@ -33,14 +33,19 @@
         align-items: center;
         gap: 10px;
       }
-    }
 
-    td:first-child {
-      padding-left: 20px;
-    }
+      &#roles-cell {
+        display: flex;
+        gap: 10px;
+      }
 
-    td:last-child {
-      padding-right: 20px;
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      &:last-child {
+        padding-right: 20px;
+      }
     }
   }
 }

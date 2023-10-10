@@ -4,6 +4,7 @@ namespace App\Controller\App;
 
 use App\Entity\User;
 use App\Services\AppService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +18,14 @@ class AppController extends AbstractController
     ) {}
 
     #[Route('/', name: 'app_app_index')]
-    public function index(): Response {
+    public function index(EntityManagerInterface $entityManager): Response {
         $user = $this->getUser();
 
         if (!$user instanceof User) {
             throw new AccessDeniedException();
         }
 
-        $userContainers = $this->appService->getUserContainers($user);
+        $userContainers = $this->appService->getUserContainers($user, $entityManager);
         dump($userContainers);
         return $this->render('app/index.twig', [
             'containers' => $userContainers,

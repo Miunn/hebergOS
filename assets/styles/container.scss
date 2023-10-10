@@ -4,7 +4,7 @@
   padding: 20px;
   border: 1px solid var(--border-interactive);
   border-radius: 10px;
-  transition: background-color 200ms;
+  transition: background-color 200ms, transform 200ms;
 
   .name {
     overflow: hidden;
@@ -25,5 +25,7 @@
   &:hover {
     background-color: var(--component-background-hover);
     cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transform: translate(2px, -3px);
   }
 }

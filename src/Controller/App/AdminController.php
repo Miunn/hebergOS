@@ -29,7 +29,7 @@ class AdminController extends AbstractController
         $usersRepository = $entityManager->getRepository(User::class);
         $users = $usersRepository->findAll();
         $containers = $this->appService->getContainers($entityManager);
-        dump($containers);
+
         return $this->render('app/admin/index.twig', [
             'users' => $users,
             'containers' => $containers

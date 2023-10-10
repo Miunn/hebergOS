@@ -27,31 +27,17 @@ class AppService
                 $requestUri
             );
             $containers = $response->toArray();
-            $containersRepository = $entityManager->getRepository(Containers::class);
-            $should_flush = false;
-            foreach ($containers as $key=>$container) {
-                if ($containersRepository->findOneBy(['id' => $key]) == null) {
-                    dump("ADD CONTAINER:".$container['name']);
-                    $newContainer = new Containers($key);
-                    $newContainer->setName($container['name']);
-                    $entityManager->persist($newContainer);
-                    $should_flush = true;
-                }
-            }
-            if ($should_flush) {
-                $entityManager->flush();
-            }
-            return $containers;
+
+            $this->syncContainers($containers, $entityManager);
+            return $containers['success'];
         } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
         }
         return [];
     }
 
-    public function getUserContainers(User $user): array
+    public function getUserContainers(User $user, EntityManagerInterface $entityManager): array
     {
-        dump($user);
-        dump($user->getContainers()->toArray());
         if (empty($user->getContainers()->toArray())) {
             return [];
         }
@@ -68,11 +54,12 @@ class AppService
                 substr($requestUri, 0, strlen($requestUri)-1)
             );
             $userContainers = $response->toArray();
+            $this->syncContainers($userContainers, $entityManager);
         } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
         }
 
-        return $userContainers;
+        return $userContainers['success'];
     }
 
     public function getContainerStats(string $container_id, int $timestamp): ?string
@@ -89,5 +76,41 @@ class AppService
         } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface $e) {
         }
         return null;
+    }
+
+    public function syncContainers(array $containers, EntityManagerInterface $entityManager): void
+    {
+        // Register new containers
+        $containersRepository = $entityManager->getRepository(Containers::class);
+        $should_flush = false;
+        foreach ($containers['success'] as $key=>$container) {
+            if ($containersRepository->findOneBy(['id' => $key]) == null) {
+                $newContainer = new Containers($key);
+                $newContainer->setName($container['name']);
+                $entityManager->persist($newContainer);
+                $should_flush = true;
+            }
+        }
+
+        if (!array_key_exists('error', $containers)) {
+            if ($should_flush) {
+                $entityManager->flush();
+            }
+            return;
+        }
+
+        // Remove errors containers
+        foreach ($containers['error'] as $key=>$container) {
+            $container = $containersRepository->findOneBy(['id' => $key]);
+            // Security but in theory it shouldn't be null
+            if ($container != null) {
+                $entityManager->remove($container);
+                $should_flush = true;
+            }
+        }
+
+        if ($should_flush) {
+            $entityManager->flush();
+        }
     }
 }

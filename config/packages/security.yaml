@@ -37,7 +37,7 @@ security:
     access_control:
         - { path: ^/app/admin, roles: ROLE_ADMIN}
         - { path: ^/app, roles: ROLE_USER}
-        - { path: ^/register, roles: ROLE_ADMIN }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: PUBLIC_ACCESS }
         # - { path: ^/admin, roles: ROLE_ADMIN }
