@@ -17,13 +17,28 @@ container.overview: Vue d'ensemble
 container.stats: Graphiques
 container.actions: Actions
 
+container.actions.title: Gérer <span class="inline-container-name">{{ container.name }}</span>
+container.actions.current.running: 'Actuellement <span class="inline-container-name">{{ container.name }}</span> est en ligne depuis <span class="uptime">{{ date("now").diff(date(containerApi.started_at))|date("%ajours %Hh %Imins") }}</span> et accessible à votre adresse'
+container.actions.current.exited: Actuellement <span class="inline-container-name">{{ container.name }}</span> est arrêté. Vous pouvez le démarrer ci-dessous !
+container.actions.current.paused: Actuellement <span class="inline-container-name">{{ container.name }}</span> est en pause
+container.actions.current.restarting: Actuellement <span class="inline-container-name">{{ container.name }}</span> redémarre
+container.actions.current.created: Pour l'instant <span class="inline-container-name">{{ container.name }}</span> a été créé mais jamais lancé. Offrez lui son baptême ci-dessous
+container.actions.records: Activité
+container.actions.records.empty: Aucune activité
+container.actions.basic.title: Actions
+container.actions.extra.title: Actions spéciales
 container.actions.start: Démarrer
 container.actions.stop: Arrêter
 container.actions.restart: Redémarrer
 container.actions.restart.hint: A privilégier dans la plupart des cas
+container.actions.askDelete: Demander une suppression
 container.actions.delete: Supprimer
+container.actions.askConfig: Demander un changement de configuration
+container.actions.config: Changer la configuration
 
 container.shell: Console
+container.shell.title: Connexion SSH
+container.shell.size.select: "Taille du terminal: "
 container.admin: Administration
 
 auth.title.logout: Deconnexion

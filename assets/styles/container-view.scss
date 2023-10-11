@@ -6,9 +6,54 @@
 }
 
 #container-head {
+
+  #domain-wrapper {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    vertical-align: middle;
+
+    #edit-domain {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 50%;
+      transition: background-color 200ms;
+      vertical-align: middle;
+
+      &:hover {
+        background-color: var(--component-background-hover);
+      }
+
+      img {
+        width: 20px;
+      }
+    }
+
+    &:hover {
+      .expanded-domain {
+        color: inherit;
+      }
+    }
+  }
+  h1 {
+    width: fit-content;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .expanded-domain {
+    color: lightgray;
+    transition: color 200ms;
+  }
+
+
   nav {
     width: fit-content;
-    margin: 20px 0;
+    margin: 20px auto;
     border: 1px solid var(--border-interactive);
     border-radius: 20px;
     overflow: hidden;
@@ -17,7 +62,6 @@
       display: flex;
 
       li {
-        padding: 10px 20px;
 
         &:not(:last-child) {
           border-right: 1px solid var(--border-interactive);
@@ -29,11 +73,18 @@
         }
 
         a {
+          display: block;
+          padding: 10px 20px;
           text-align: center;
         }
       }
     }
   }
+}
+
+.content {
+  width: max(1000px, 90%);
+  margin: auto;
 }
 
 .chart-wrapper {
@@ -44,4 +95,77 @@
 
 .chart {
   max-height: 250px;
+}
+
+#shell-wrapper {
+  width: fit-content;
+  margin: auto;
+
+  #shell-head {
+    width: fit-content;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+
+    #shell-size {
+      display: flex;
+      border-bottom: 2px solid lightgray;
+      transition: border-bottom-color 200ms;
+
+      input {
+        width: 50px;
+        background-color: transparent;
+        outline: none;
+        text-align: center;
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+
+      &:focus-within {
+        border-bottom: 2px solid black;
+      }
+    }
+  }
+}
+
+#actions-wrapper {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .row {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+
+    #container-activities {
+      grid-row: 1/-1;
+    }
+  }
+
+  .card {
+    .title {
+      margin-bottom: 10px;
+    }
+  }
+
+  .flex-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 }

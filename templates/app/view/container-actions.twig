@@ -2,4 +2,59 @@
 
 {% block content %}
 
+    <!--    Action possibles:
+        Arrêt
+        Démarrage
+        Redémarrage
+        Contacter l'administration
+        Demander une suppression
+        Demander un changement de configuration
+
+        Administration:
+        Suppression
+        Re-allocation
+    -->
+
+    <div id="actions-wrapper">
+        <section class="head card">
+            <h1 class="title">{{ include(template_from_string('container.actions.title'|trans)) }}</h1>
+            <p>{{ include(template_from_string(('container.actions.current.'~containerApi.state)|trans)) }}</p>
+        </section>
+
+        <div class="row">
+            <section class="card" id="container-activities">
+                <h2 class="title">{{ 'container.actions.records'|trans }}</h2>
+
+                {% if container.containerActivities|length == 0 %}
+                    <p class="italic text-center">{{ 'container.actions.records.empty'|trans }}</p>
+                {% endif %}
+
+                {% for activity in container.containerActivities %}
+                    <div class="activity">
+
+                    </div>
+                {% endfor %}
+            </section>
+
+            <section class="card">
+                <h2 class="title">{{ 'container.actions.basic.title'|trans }}</h2>
+
+                <div class="flex-actions">
+                    <button class="cta">{{ 'container.actions.start'|trans }}</button>
+                    <button class="cta">{{ 'container.actions.stop'|trans }}</button>
+                    <button class="cta">{{ 'container.actions.restart'|trans }}</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2 class="title">{{ 'container.actions.extra.title'|trans }}</h2>
+
+                <div class="flex-actions">
+                    <button class="cta">{{ 'container.actions.askDelete'|trans }}</button>
+                    <button class="cta">{{ 'container.actions.askConfig'|trans }}</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
 {% endblock %}

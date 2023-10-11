@@ -30,8 +30,18 @@
             {% set dot_color = "blue" %}
         {% endif %}
 
-        <h1 id="container-name">{{ container.name }}</h1>
+        {% if container.club_project|default(true) %}
+            <div id="domain-wrapper">
+                <h1 id="container-name"><a href="https://{{- container.name|slice(1) -}}.insash.fr"><span
+                                class="expanded-domain">https://</span>{{- container.name|slice(1) -}}<span
+                                class="expanded-domain">.insash.fr</span></a></h1>
+                <button id="edit-domain"><img src="{{ asset('build/images/edit.png') }}" alt="Edit"></button>
+            </div>
+        {% else %}
+            <h1 id="container-name">{{ container.name}}</h1>
+        {% endif %}
         <h2 class="container-state"><span class="dot {{ dot_color -}}-dot"></span> {{ containerApi.state }}</h2>
+
         <nav>
             <ul>
                 <li aria-current="{{ overview|default != null }}">

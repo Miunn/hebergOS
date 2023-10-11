@@ -21,10 +21,17 @@ class Containers
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $domain = null;
+
+    #[ORM\OneToMany(mappedBy: 'container', targetEntity: ContainerActivity::class, orphanRemoval: true)]
+    private Collection $containerActivities;
+
     public function __construct(string $id)
     {
         $this->setId($id);
         $this->user = new ArrayCollection();
+        $this->containerActivities = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -79,6 +86,48 @@ class Containers
     {
         foreach ($this->user->toArray() as $user) {
             $this->removeUser($user);
+        }
+
+        return $this;
+    }
+
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+
+    public function setDomain(?string $domain): static
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContainerActivity>
+     */
+    public function getContainerActivities(): Collection
+    {
+        return $this->containerActivities;
+    }
+
+    public function addContainerActivity(ContainerActivity $containerActivity): static
+    {
+        if (!$this->containerActivities->contains($containerActivity)) {
+            $this->containerActivities->add($containerActivity);
+            $containerActivity->setContainer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContainerActivity(ContainerActivity $containerActivity): static
+    {
+        if ($this->containerActivities->removeElement($containerActivity)) {
+            // set the owning side to null (unless already changed)
+            if ($containerActivity->getContainer() === $this) {
+                $containerActivity->setContainer(null);
+            }
         }
 
         return $this;

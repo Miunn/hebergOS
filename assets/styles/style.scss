@@ -230,3 +230,9 @@ button {
 .cta:focus {
   background-color: var(--component-background-selected);
 }
+
+.card {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #f5f5f5;
+}
