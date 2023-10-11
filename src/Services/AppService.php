@@ -72,7 +72,7 @@ class AppService
                 'GET',
                 $requestUri
             );
-            return $response->toArray();
+            return $response->toArray()['success'][$container_id];
         } catch (TransportExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
             dump($e);
         }

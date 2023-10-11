@@ -6,41 +6,60 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {{ encore_entry_script_tags('containerView') }}
 {% endblock %}
 
 {% block main %}
     <div id="container-head">
-        <h1>{{ container.name }}</h1>
+        {% set dot_color = "black" %}
 
+        {% if containerApi.state == "running" %}
+            {% set dot_color = "green" %}
+        {% elseif containerApi.state == "exited" %}
+            {% set dot_color = "white" %}
+        {% elseif containerApi.state == "paused" %}
+            {% set dot_color = "yellow" %}
+        {% elseif containerApi.state == "restarting" %}
+            {% set dot_color = "yellow" %}
+        {% elseif containerApi.state == "removing" %}
+            {% set dot_color = "red" %}
+        {% elseif containerApi.state == "dead" %}
+            {% set dot_color = "black" %}
+        {% elseif containerApi.state == "created" %}
+            {% set dot_color = "blue" %}
+        {% endif %}
+
+        <h1 id="container-name">{{ container.name }}</h1>
+        <h2 class="container-state"><span class="dot {{ dot_color -}}-dot"></span> {{ containerApi.state }}</h2>
         <nav>
             <ul>
-                <li>
+                <li aria-current="{{ overview|default != null }}">
                     {% if admin|default(false) %}
-                        <a aria-current="{{ overview|default != null }}" href="{{ path('app_admin_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                        <a href="{{ path('app_admin_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
                     {% else %}
-                        <a aria-current="{{ overview|default != null }}" href="{{ path('app_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                        <a href="{{ path('app_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
                     {% endif %}
                 </li>
-                <li>
+                <li aria-current="{{ stats|default != null }}">
                     {% if admin|default(false) %}
-                        <a aria-current="{{ stats|default != null }}" href="{{ path('app_admin_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                        <a href="{{ path('app_admin_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
                     {% else %}
-                        <a aria-current="{{ stats|default != null }}" href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                        <a href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
                     {% endif %}
                 </li>
-                <li>
+                <li aria-current="{{ shell|default != null }}">
                     {% if admin|default(false) %}
-                        <a aria-current="{{ shell|default != null }}" href="{{ path('app_admin_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                        <a href="{{ path('app_admin_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
                     {% else %}
-                        <a aria-current="{{ shell|default != null }}" href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                        <a href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
                     {% endif %}
                 </li>
-                <li>
+                <li aria-current="{{ actions|default != null }}">
                     {% if admin|default(false) %}
-                        <a aria-current="{{ actions|default != null }}" href="{{ path('app_admin_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                        <a href="{{ path('app_admin_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
                     {% else %}
-                        <a aria-current="{{ actions|default != null }}" href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                        <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
                     {% endif %}
                 </li>
             </ul>

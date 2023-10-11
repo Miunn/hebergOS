@@ -73,10 +73,12 @@ class AdminController extends AbstractController
     #[Route('/container/overview/{container}', name: 'app_admin_container_overview')]
     public function container(Containers $container): Response {
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $overview = $this->appService->getContainer($container->getId());
         return $this->render('app/view/container-overview.twig', [
             'admin' => true,
             'container' => $container,
+            'containerApi' => $containerApi,
             'overview' => $overview
         ]);
     }
@@ -84,10 +86,12 @@ class AdminController extends AbstractController
     #[Route('/container/stats/{container}', name: 'app_admin_container_stats')]
     public function containerStats(Containers $container): Response {
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-stats.twig', [
             'admin' => true,
             'container' => $container,
+            'containerApi' => $containerApi,
             'stats' => $stats
         ]);
     }
@@ -95,10 +99,12 @@ class AdminController extends AbstractController
     #[Route('/container/shell/{container}', name: 'app_admin_container_shell')]
     public function containerShell(Containers $container): Response {
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-shell.twig', [
             'admin' => true,
             'container' => $container,
+            'containerApi' => $containerApi,
             'shell' => "1"
         ]);
     }
@@ -106,10 +112,12 @@ class AdminController extends AbstractController
     #[Route('/container/actions/{container}', name: 'app_admin_container_actions')]
     public function containerActions(Containers $container): Response {
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-actions.twig', [
             'admin' => true,
             'container' => $container,
+            'containerApi' => $containerApi,
             'actions' => "1"
         ]);
     }

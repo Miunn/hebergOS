@@ -1,13 +1,37 @@
+.container-state {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: capitalize;
+}
+
 #container-head {
   nav {
+    width: fit-content;
+    margin: 20px 0;
+    border: 1px solid var(--border-interactive);
+    border-radius: 20px;
+    overflow: hidden;
+
     ul {
       display: flex;
-      gap: 20px;
-    }
 
-    a[aria-current="1"] {
-      color: blue;
-      text-decoration: underline;
+      li {
+        padding: 10px 20px;
+
+        &:not(:last-child) {
+          border-right: 1px solid var(--border-interactive);
+        }
+
+        &[aria-current="1"] {
+          font-weight: bold;
+          background-color: var(--component-background);
+        }
+
+        a {
+          text-align: center;
+        }
+      }
     }
   }
 }

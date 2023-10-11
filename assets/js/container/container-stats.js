@@ -1,4 +1,7 @@
 import {Chart} from 'chart.js/auto';
+//import 'chartjs-adapter-moment';
+import 'chartjs-adapter-date-fns';
+
 import zoomPlugin from 'chartjs-plugin-zoom';
 Chart.register(zoomPlugin);
 
@@ -59,19 +62,46 @@ var i = 0;
 Object.entries(data).forEach((entry) => {
     const [timestamp, stat] = entry;
 
-    timestamps.push(new Date(timestamp*1000).toLocaleTimeString());
+    let milliTS = timestamp;
+    //timestamps.push(new Date(milliTS).toLocaleTimeString());
+    timestamps.push(milliTS);
 
-    ramData.push(stat["memory"]["used"]);
-    cpuData.push(stat["cpu"]["usage_percent"]);
-    netTotalUpData.push(stat["net"]["up"]);
-    netTotalDownData.push(stat["net"]["down"]);
-    netDeltaUpData.push(stat["net"]["delta_up"]);
-    netDeltaDownData.push(stat["net"]["delta_down"]);
+    ramData.push({
+        x: milliTS,
+        y: stat["memory"]["used"]
+    });
+    cpuData.push({
+        x: milliTS,
+        y: stat["cpu"]["usage_percent"]
+    });
+    netTotalUpData.push({
+        x: milliTS,
+        y: stat["net"]["up"]
+    });
+    netTotalDownData.push({
+        x: milliTS,
+        y: stat["net"]["down"]
+    });
+    netDeltaUpData.push({
+        x: milliTS,
+        y: stat["net"]["delta_up"]
+    });
+    netDeltaDownData.push({
+        x: milliTS,
+        y: stat["net"]["delta_down"]
+    });
 
     i++;
 });
 
+/*
+1h  10 sec
+4h  10 sec
+1j  2mins
+all
+ */
 
+console.log(ramData)
 createChart(ramChart, timestamps, [{
     label: 'RAM',
     data: ramData,
@@ -79,6 +109,12 @@ createChart(ramChart, timestamps, [{
     borderWidth: 5
 }], {
     scales: {
+        x: {
+            type: 'time',
+            time: {
+                unit: 'millisecond'
+            }
+        },
         y: {
             suggestedMax: 0.06,
             beginAtZero: true
@@ -93,6 +129,12 @@ createChart(cpuChart, timestamps, [{
     borderWidth: 5
 }], {
     scales: {
+        x: {
+            type: 'time',
+            time: {
+                unit: 'second'
+            }
+        },
         y: {
             beginAtZero: true
         }
@@ -114,6 +156,12 @@ createChart(netChart, timestamps, [
     }
 ], {
     scales: {
+        x: {
+            type: 'time',
+            time: {
+                unit: 'second'
+            }
+        },
         y: {
             suggestedMax: 1000,
             beginAtZero: true
@@ -136,6 +184,12 @@ createChart(netDeltaChart, timestamps, [
     }
 ], {
     scales: {
+        x: {
+            type: 'time',
+            time: {
+                unit: 'second'
+            }
+        },
         y: {
             suggestedMax: 1000,
             beginAtZero: true

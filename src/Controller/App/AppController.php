@@ -40,10 +40,11 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        $overview = $this->appService->getContainer($container->getId());
+        $containerApi = $this->appService->getContainer($container->getId());
         return $this->render('app/view/container-overview.twig', [
             'container' => $container,
-            'overview' => $overview
+            'containerApi' => $containerApi,
+            'overview' => true
         ]);
     }
 
@@ -55,10 +56,13 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-stats.twig', [
             'container' => $container,
-            'stats' => $stats
+            'containerApi' => $containerApi,
+            'data' => $stats,
+            'stats' => true
         ]);
     }
 
@@ -70,9 +74,11 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-shell.twig', [
             'container' => $container,
+            'containerApi' => $containerApi,
             'shell' => "1"
         ]);
     }
@@ -85,9 +91,11 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
+        $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-actions.twig', [
             'container' => $container,
+            'containerApi' => $containerApi,
             'actions' => "1"
         ]);
     }
