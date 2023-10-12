@@ -8,6 +8,7 @@ use App\Services\AppService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,7 +27,7 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        $userContainers = $this->appService->getUserContainers($user, $entityManager);
+        $userContainers = $this->appService->getUserContainers($user);
         return $this->render('app/index.twig', [
             'containers' => $userContainers,
         ]);
@@ -98,5 +99,32 @@ class AppController extends AbstractController
             'containerApi' => $containerApi,
             'actions' => "1"
         ]);
+    }
+
+    /** AJAX Routes */
+    #[Route('/container/start/{container}', name: 'app_container_start')]
+    public function startContainer(Containers $container): Response {
+        dump("Start container");
+        return new JsonResponse($this->appService->startContainer($container));
+    }
+
+    #[Route('/container/stop/{container}', name: 'app_container_stop')]
+    public function stopContainer(Containers $container): Response {
+        return new JsonResponse($this->appService->stopContainer($container));
+    }
+
+    #[Route('/container/restart/{container}', name: 'app_container_restart')]
+    public function restartContainer(Containers $container): Response {
+        return new JsonResponse($this->appService->restartContainer($container));
+    }
+
+    #[Route('/container/ask-delete/{container}', name: 'app_container_ask_delete')]
+    public function askDeleteContainer(Containers $container): Response {
+        return new Response("OK", 200);
+    }
+
+    #[Route('/container/ask-config/{container}', name: 'app_container_ask_config')]
+    public function askConfigContainer(Containers $container): Response {
+        return new Response("OK", 200);
     }
 }

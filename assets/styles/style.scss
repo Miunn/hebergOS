@@ -221,14 +221,23 @@ button {
 
 .cta {
   background-color: var(--component-background);
+
+  &:hover {
+    background-color: var(--component-background-hover);
+  }
+
+  &:focus {
+    background-color: var(--component-background-selected);
+  }
 }
 
-.cta:hover {
-  background-color: var(--component-background-hover);
-}
+.solid-cta {
+  color: white;
+  background-color: var(--solid-background);
 
-.cta:focus {
-  background-color: var(--component-background-selected);
+  &:hover {
+    background-color: var(--solid-background-hover);
+  }
 }
 
 .card {
