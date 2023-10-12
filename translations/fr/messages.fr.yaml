@@ -36,6 +36,10 @@ container.actions.delete: Supprimer
 container.actions.askConfig: Demander un changement de configuration
 container.actions.config: Changer la configuration
 
+container.records.started: Projet démarré
+container.records.stopped: Projet arrêté
+container.records.restarted: Projet redémarré
+
 container.shell: Console
 container.shell.title: Connexion SSH
 container.shell.size.select: "Taille du terminal: "

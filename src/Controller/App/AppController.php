@@ -5,22 +5,28 @@ namespace App\Controller\App;
 use App\Entity\Containers;
 use App\Entity\User;
 use App\Services\AppService;
+use App\Services\ContainerActivityService;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/app')]
 class AppController extends AbstractController
 {
     public function __construct(
-        private readonly AppService $appService
+        private readonly AppService $appService,
+        private readonly ContainerActivityService $containerActivityService,
+        private readonly TranslatorInterface $translator,
+        private readonly EntityManagerInterface $entityManager
     ) {}
 
     #[Route('/', name: 'app_app_index')]
-    public function index(EntityManagerInterface $entityManager): Response {
+    public function index(): Response {
         $user = $this->getUser();
 
         if (!$user instanceof User) {
@@ -76,7 +82,6 @@ class AppController extends AbstractController
         }
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-shell.twig', [
             'container' => $container,
             'containerApi' => $containerApi,
@@ -93,7 +98,6 @@ class AppController extends AbstractController
         }
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-actions.twig', [
             'container' => $container,
             'containerApi' => $containerApi,
@@ -104,18 +108,36 @@ class AppController extends AbstractController
     /** AJAX Routes */
     #[Route('/container/start/{container}', name: 'app_container_start')]
     public function startContainer(Containers $container): Response {
-        dump("Start container");
-        return new JsonResponse($this->appService->startContainer($container));
+        $response = $this->appService->startContainer($container);
+
+        // Record in activities
+        if ($response['success']) {
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.started'), new DateTimeImmutable(), $this->entityManager);
+        }
+
+        return new JsonResponse($response);
     }
 
     #[Route('/container/stop/{container}', name: 'app_container_stop')]
     public function stopContainer(Containers $container): Response {
-        return new JsonResponse($this->appService->stopContainer($container));
+        $response = $this->appService->stopContainer($container);
+
+        if ($response['success']) {
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.stopped'), new DateTimeImmutable(), $this->entityManager);
+        }
+
+        return new JsonResponse($response);
     }
 
     #[Route('/container/restart/{container}', name: 'app_container_restart')]
     public function restartContainer(Containers $container): Response {
-        return new JsonResponse($this->appService->restartContainer($container));
+        $response = $this->appService->restartContainer($container);
+
+        if ($response['success']) {
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.restarted'), new DateTimeImmutable(), $this->entityManager);
+        }
+
+        return new JsonResponse($response);
     }
 
     #[Route('/container/ask-delete/{container}', name: 'app_container_ask_delete')]

@@ -168,4 +168,26 @@
     gap: 20px;
     flex-wrap: wrap;
   }
+
+  #container-activities {
+    padding: 0;
+    .title {
+      margin-bottom: 0;
+      padding: 20px;
+    }
+  }
+  .record {
+    border-top: 1px solid gray;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+
+    &:last-child {
+      border-bottom: 1px solid gray;
+    }
+
+    .record-datetime {
+      margin-right: 10px;
+    }
+  }
 }

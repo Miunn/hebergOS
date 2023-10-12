@@ -98,6 +98,7 @@ Object.entries(data).forEach((entry) => {
 1h  10 sec
 4h  10 sec
 1j  2mins
+7j  30mins
 all
  */
 

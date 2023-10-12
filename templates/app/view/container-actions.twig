@@ -34,9 +34,11 @@
                     <p class="italic text-center">{{ 'container.actions.records.empty'|trans }}</p>
                 {% endif %}
 
-                {% for activity in container.containerActivities %}
-                    <div class="activity">
+                {% for activity in container.containerActivities|sort((a,b)=>a.timestamp|date('U')<=b.timestamp|date('U')) %}
+                    <div class="record">
+                        <div class="record-datetime">{{ activity.timestamp|date('d/m H:i') }}</div>
 
+                        <div class="record-description">{{ activity.description }}</div>
                     </div>
                 {% endfor %}
             </section>
