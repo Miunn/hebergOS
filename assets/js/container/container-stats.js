@@ -36,6 +36,12 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
                         enabled: true
                     },
                     mode: 'x',
+                },
+                limits: {
+                    x: {
+                        min: labels[0],
+                        max: labels.slice(-1)
+                    }
                 }
             }
         },
@@ -44,7 +50,9 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
                 type: 'time',
                 time: {
                     unit: 'second'
-                }
+                },
+                min: labels[0],
+                max: labels.slice(-1)
             },
             y: {
                 suggestedMax: suggestedMax,
@@ -64,7 +72,7 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
     });
 }
 
-function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDeltaDown, offset) {
+function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDeltaDown, offset, timestamps) {
     if (ramChartReference !== undefined) {
         ramChartReference.destroy();
         cpuChartReference.destroy();
@@ -72,19 +80,21 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
         netDeltaChartReference.destroy();
     }
 
+    let labels = timestamps.slice(-offset);
+
     ramChartReference = createChart(ramChart, [{
         label: 'RAM',
         data: ram.slice(-offset),
         fill: true,
         borderWidth: 2
-    }], 0.06);
+    }], 0.06, labels);
 
     cpuChartReference = createChart(cpuChart, [{
         label: 'CPU',
         data: cpu.slice(-offset),
         fill: true,
         borderWidth: 2
-    }], 0);
+    }], 0, labels);
 
     netChartReference = createChart(netChart, [
         {
@@ -99,7 +109,7 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
             fill: true,
             borderWidth: 5
         }
-    ], 1000);
+    ], 1000, labels);
 
     netDeltaChartReference = createChart(netDeltaChart, [
         {
@@ -114,7 +124,7 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
             fill: true,
             borderWidth: 5
         }
-    ], 1000);
+    ], 1000, labels);
 }
 
 const data = JSON.parse(document.getElementById("data-stats").getAttribute("data-stats"));
@@ -165,7 +175,7 @@ Object.entries(data).forEach((entry) => {
 });
 
 // Create default last hour chart
-createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360);
+createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360, timestamps);
 
 /** Handle period selection **/
 
@@ -183,19 +193,19 @@ periodSelector.addEventListener("change", (event) => {
 
     switch (event.currentTarget.value) {
         case "1hour":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360);
+            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360, timestamps);
             break;
 
         case "4hours":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 1440);
+            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 1440, timestamps);
             break;
 
         case "1day":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 2040)
+            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 2040, timestamps);
             break;
 
         case "7days":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 6360)
+            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 6360, timestamps);
             break;
     }
 });
