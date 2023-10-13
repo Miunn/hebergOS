@@ -18,6 +18,7 @@ export function fireConfirmationSwal(title, confirmAction, icon=null, callback=(
         showCancelButton: true,
         cancelButtonText: "Annuler",
         confirmButtonText: confirmAction,
+        focusConfirm: false,
         reverseButtons: true
     }).then(callback);
 }
@@ -25,6 +26,19 @@ export function fireConfirmationSwal(title, confirmAction, icon=null, callback=(
 export function fireBasicSwal(title, icon, callback=(r)=>{}) {
     Swal.fire(title, '', icon)
         .then(callback);
+}
+
+export function fireHtmlSwal(title, html, icon, preConfirm=()=>{}, callback=(r)=>{}) {
+    Swal.fire({
+        title: title,
+        icon: icon,
+        html: html,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        reverseButtons: true,
+        preConfirm: preConfirm
+    }).then(callback);
 }
 
 /*(result) => {

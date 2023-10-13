@@ -92,7 +92,8 @@ class AdminController extends AbstractController
             'admin' => true,
             'container' => $container,
             'containerApi' => $containerApi,
-            'stats' => $stats
+            'data' => $stats,
+            'stats' => true
         ]);
     }
 
@@ -118,5 +119,15 @@ class AdminController extends AbstractController
             'containerApi' => $containerApi,
             'actions' => "1"
         ]);
+    }
+
+    /** AJAX Admin only routes */
+    /** Go to AppController for basic routes */
+    #[Route('/container/create', name: 'app_admin_container_create')]
+    public function containerCreate(Request $request): Response {
+        dump($request);
+
+        dump($request->get('container-name'));
+        return new Response("OK", Response::HTTP_NO_CONTENT);
     }
 }

@@ -11,18 +11,26 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('users') }}
+    {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 
 {% block main %}
-    <h1 class="section-title">{{ 'admin.users.title' | trans }} <a href="{{ path('app_register') }}" id="add-user"><img src="{{ asset('build/images/add.png') }}" alt="Addù"> {{ 'admin.users.action.add'|trans }}</a></h1>
+    <h1 class="section-title">{{ 'admin.users.title' | trans }} <a href="{{ path('app_register') }}" class="btn-add" id="add-user"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</a></h1>
     <section class="users">
         {% include 'app/admin/components/users.twig' with {'users': users} %}
     </section>
 
-    <h1 class="section-title">{{ 'admin.containers.title' | trans }}</h1>
+    <h1 class="section-title">{{ 'admin.containers.title' | trans }}  <button class="btn-add" id="add-container"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</button></h1>
     <section class="containers">
         {% for key, container in containers %}
             {% include 'app/components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_admin_container_overview', {'container': key}) } %}
         {% endfor %}
     </section>
+
+    <div class="dialog-html" id="dialog-container-create">
+        <form action="{{ path('app_admin_container_create') }}" method="post" id="container-create-form">
+            <label for="new-container-name">{{ 'admin.container.create.name'|trans }}</label>
+            <input name="container-name" id="new-container-name" type="text">
+        </form>
+    </div>
 {% endblock %}
