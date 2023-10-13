@@ -113,21 +113,21 @@ class AppService
         return [];
     }
 
-    public function getContainerStats(string $container_id, int $timestamp): string
+    public function getContainerStats(string $container_id, int $timestamp): array
     {
         $requestUri = "$this->apiUrl/v1/container/stats?id=$container_id&since=$timestamp";
         $response = $this->getApi($requestUri);
 
         if ($response == null) {
-            return "{}";
+            return [];
         }
 
         try {
-            return $response->getContent();
+            return $response->toArray();
         } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
         }
-        return "{}";
+        return [];
     }
 
     public function syncContainers(array $containers): void

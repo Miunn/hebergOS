@@ -100,7 +100,6 @@ class AdminController extends AbstractController
     public function containerShell(Containers $container): Response {
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-shell.twig', [
             'admin' => true,
             'container' => $container,
@@ -113,7 +112,6 @@ class AdminController extends AbstractController
     public function containerActions(Containers $container): Response {
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getContainerStats($container->getId(), 0);
         return $this->render('app/view/container-actions.twig', [
             'admin' => true,
             'container' => $container,

@@ -17,6 +17,13 @@ container.overview: Vue d'ensemble
 container.stats: Graphiques
 container.actions: Actions
 
+container.charts.title: Statistiques d'utilisation
+container.charts.period.title: Période des données
+container.charts.period.1hour: 1 heure
+container.charts.period.4hours: 4 heures
+container.charts.period.1day: 1 jour
+container.charts.period.7days: 7 jours
+
 container.actions.title: Gérer <span class="inline-container-name">{{ container.name }}</span>
 container.actions.current.running: 'Actuellement <span class="inline-container-name">{{ container.name }}</span> est en ligne depuis <span class="uptime">{{ date("now").diff(date(containerApi.started_at))|date("%ajours %Hh %Imins") }}</span> et accessible à votre adresse'
 container.actions.current.exited: Actuellement <span class="inline-container-name">{{ container.name }}</span> est arrêté. Vous pouvez le démarrer ci-dessous !
