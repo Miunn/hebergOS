@@ -26,7 +26,7 @@ class AdminService
         $entityManager->flush();
     }
 
-    public function createContainer(string $name, int $basePort, float $memory, float $cpu, ?array $ports, ?string $image, ?array $commands): array
+    public function createContainer(string $name, int $basePort, float $memory, float $cpu, ?array $ports, ?array $commands): array
     {
         $requestUri = "$this->apiUrl/v1/container";
 
@@ -41,10 +41,6 @@ class AdminService
 
         if ($ports != null) {
             $payload['json']['ports'] = $ports;
-        }
-
-        if ($image != null) {
-            $payload['json']['image'] = $image;
         }
 
         if ($commands != null) {

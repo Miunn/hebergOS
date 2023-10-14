@@ -141,7 +141,6 @@ class AdminController extends AbstractController
         $memory = $request->get('container-memory');
         $cpu = $request->get('container-cpu');
         $ports = $request->get('container-ports');
-        $image = $request->get('container-image');
         $commands = $request->get('container-image');
 
         if ($name == '' || $basePort == '' || $memory == '' || $cpu == '') {
@@ -149,10 +148,9 @@ class AdminController extends AbstractController
         }
 
         $ports = $ports == '' ? null: $ports;
-        $image = $image == '' ? null: $image;
         $commands = $commands == '' ? null: $commands;
 
-        $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $image, $commands);
+        $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $commands);
 
         return new JsonResponse($result, Response::HTTP_OK);
     }
