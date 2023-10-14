@@ -190,7 +190,7 @@ all
  */
 periodSelector.addEventListener("change", (event) => {
     event.preventDefault();
-
+    console.log("graph");
     switch (event.currentTarget.value) {
         case "1hour":
             createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360, timestamps);

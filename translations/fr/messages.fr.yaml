@@ -17,6 +17,9 @@ container.overview: Vue d'ensemble
 container.stats: Graphiques
 container.actions: Actions
 
+container.overview.title: Vue d'emsemble de
+container.overview.users: Utilisateurs
+
 container.charts.title: Statistiques d'utilisation
 container.charts.period.title: Période des données
 container.charts.period.1hour: 1 heure

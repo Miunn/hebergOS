@@ -6,36 +6,36 @@
 {% endblock %}
 
 {% block content %}
-<div id="data-stats" data-stats="{{ data|json_encode }}"></div>
+    <div id="data-stats" data-stats="{{ data|json_encode }}"></div>
 
-<div class="charts">
-    <div class="head">
-        <h1>{{ 'container.charts.title'|trans }}</h1>
+    <div class="charts">
+        <div class="head card">
+            <h1>{{ 'container.charts.title'|trans }}</h1>
 
-        <label for="charts-period">{{ 'container.charts.period.title'|trans }}</label>
-        <select name="charts-period" id="charts-period">
-            <option value="1hour" selected>{{ 'container.charts.period.1hour'|trans }}</option>
-            <option value="4hours">{{ 'container.charts.period.4hours'|trans }}</option>
-            <option value="1day">{{ 'container.charts.period.1day'|trans }}</option>
-            <option value="7days">{{ 'container.charts.period.7days'|trans }}</option>
-        </select>
+            <select name="charts-period" id="charts-period">
+                <option value="1hour" selected>{{ 'container.charts.period.1hour'|trans }}</option>
+                <option value="4hours">{{ 'container.charts.period.4hours'|trans }}</option>
+                <option value="1day">{{ 'container.charts.period.1day'|trans }}</option>
+                <option value="7days">{{ 'container.charts.period.7days'|trans }}</option>
+            </select>
+        </div>
+
+
+        <section class="card chart-wrapper">
+            <canvas class="chart" id="ram-chart" ></canvas>
+        </section>
+
+        <section class="card chart-wrapper">
+            <canvas class="chart" id="cpu-chart"></canvas>
+        </section>
+
+        <section class="card chart-wrapper">
+            <canvas class="chart" id="net-chart"></canvas>
+        </section>
+
+        <section class="card chart-wrapper">
+            <canvas class="chart" id="net-delta-chart"></canvas>
+        </section>
     </div>
 
-
-    <div class="chart-wrapper">
-        <canvas class="chart" id="ram-chart" ></canvas>
-    </div>
-
-    <div class="chart-wrapper">
-        <canvas class="chart" id="cpu-chart"></canvas>
-    </div>
-
-    <div class="chart-wrapper">
-        <canvas class="chart" id="net-chart"></canvas>
-    </div>
-
-    <div class="chart-wrapper">
-        <canvas class="chart" id="net-delta-chart"></canvas>
-    </div>
-</div>
 {% endblock %}

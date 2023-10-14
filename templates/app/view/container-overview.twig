@@ -1,5 +1,41 @@
 {% extends 'app/container-view.twig' %}
 
 {% block content %}
-<h1>Nothing there</h1>
+
+    <div id="overview-wrapper">
+        <section class="head card">
+            <h1>{{ 'container.overview.title'|trans }} {{ container.name }}</h1>
+        </section>
+
+        <div class="row">
+            <section class="card" id="container-activities">
+                <h2 class="title">{{ 'container.actions.records'|trans }}</h2>
+
+                {% if container.containerActivities|length == 0 %}
+                    <p class="italic text-center">{{ 'container.actions.records.empty'|trans }}</p>
+                {% endif %}
+
+                {% for activity in container.containerActivities|sort((a,b)=>a.timestamp|date('U')<=b.timestamp|date('U')) %}
+                    <div class="record">
+                        <div class="record-datetime">{{ activity.timestamp|date('d/m H:i') }}</div>
+
+                        <div class="record-description">{{ activity.description }}</div>
+                    </div>
+                {% endfor %}
+            </section>
+
+            <section class="card" id="container-users">
+                <h2 class="title">{{ 'container.overview.users'|trans }}</h2>
+
+                {% for usr in container.user %}
+                    <div class="user">
+                        <div class="user-firstname">{{ usr.email }}</div>
+
+
+                    </div>
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+
 {% endblock %}

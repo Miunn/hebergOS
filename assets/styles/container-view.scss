@@ -82,19 +82,69 @@
   }
 }
 
+#container-activities {
+  padding: 0 0 20px;
+  .title {
+    margin-bottom: 0;
+    padding: 20px;
+  }
+
+  .record {
+    border-top: 1px solid gray;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+
+    &:last-child {
+      border-bottom: 1px solid gray;
+    }
+
+    .record-datetime {
+      margin-right: 10px;
+    }
+  }
+}
+
+#overview-wrapper {
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+  }
+}
+
 .content {
   width: max(1000px, 90%);
   margin: auto;
 }
 
 .chart-wrapper {
-  margin: auto auto 20px;
-  max-width: 80%;
+  width: 100%;
+  margin: 20px auto;
 
 }
 
+.charts {
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #charts-period {
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--gray-6);
+  }
+}
+
 .chart {
+  margin: auto;
   max-height: 250px;
+  max-width: 80%;
 }
 
 #shell-wrapper {
@@ -167,27 +217,5 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-  }
-
-  #container-activities {
-    padding: 0;
-    .title {
-      margin-bottom: 0;
-      padding: 20px;
-    }
-  }
-  .record {
-    border-top: 1px solid gray;
-    width: 100%;
-    padding: 10px 20px;
-    display: flex;
-
-    &:last-child {
-      border-bottom: 1px solid gray;
-    }
-
-    .record-datetime {
-      margin-right: 10px;
-    }
   }
 }

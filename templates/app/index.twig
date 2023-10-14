@@ -16,7 +16,7 @@
     {% else %}
         <section class="containers">
             {% for key, container in containers %}
-                {% include 'app/components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_container_overview', {'container': key})} %}
+                {% include 'components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_container_overview', {'container': key})} %}
             {% endfor %}
         </section>
     {% endif %}
