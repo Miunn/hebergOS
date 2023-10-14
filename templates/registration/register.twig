@@ -17,10 +17,8 @@
         {{ form_row(registrationForm.firstname) }}
         {{ form_row(registrationForm.lastname) }}
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+        {{ form_row(registrationForm.plainPassword) }}
 
-        <button type="submit" class="btn">{{ 'auth.title.register'|trans }}</button>
+        <button type="submit" class="btn">{{ 'auth.confirm.register'|trans }}</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

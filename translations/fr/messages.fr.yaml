@@ -61,6 +61,7 @@ container.admin.delete: Supprimer le container
 auth.title.logout: Deconnexion
 auth.title.login: Connexion
 auth.title.register: Nouvel utilisateur
+auth.confirm.register: Confirmer
 auth.login: Email
 auth.password: Mot de passe
 
