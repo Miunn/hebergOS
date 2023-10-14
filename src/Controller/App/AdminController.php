@@ -7,6 +7,8 @@ use App\Entity\User;
 use App\Form\UserFormType;
 use App\Services\AdminService;
 use App\Services\AppService;
+use App\Services\ContainerActivityService;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -16,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use function Webmozart\Assert\Tests\StaticAnalysis\contains;
 
 #[Route('/app/admin')]
@@ -23,7 +26,10 @@ class AdminController extends AbstractController
 {
     public function __construct(
         private readonly AppService $appService,
-        private readonly AdminService $adminService
+        private readonly AdminService $adminService,
+        private readonly ContainerActivityService $containerActivityService,
+        private readonly TranslatorInterface $translator,
+        private readonly EntityManagerInterface $entityManager
     ) {}
 
     #[Route('/', name: 'app_admin_index')]
@@ -89,7 +95,7 @@ class AdminController extends AbstractController
     public function containerStats(Containers $container): Response {
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getInstantContainerStats($container->getId());
+        $stats = $this->appService->getStats($container, 'instant');
         return $this->render('admin/view/container-stats-admin.twig', [
             'admin' => true,
             'container' => $container,
@@ -134,7 +140,52 @@ class AdminController extends AbstractController
     }
 
     /** AJAX Admin only routes */
-    /** Go to AppController for basic routes */
+    #[Route('/container/stats-json/{container}', name: 'app_admin_request_stats')]
+    public function requestStats(Request $request, Containers $container): JsonResponse
+    {
+        $scale = $request->query->get('scale');
+
+        if ($scale != 'instant' && $scale != 'day' && $scale != 'week') {
+            return new JsonResponse(['error' => 'Bad scale'], 400);
+        }
+
+        return new JsonResponse($this->appService->getStats($container, $scale));
+    }
+
+    #[Route('/container/start/{container}', name: 'app_admin_container_start')]
+    public function startContainer(Containers $container): Response {
+        $response = $this->appService->startContainer($container);
+
+        // Record in activities
+        if ($response['success']) {
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.started'), new DateTimeImmutable(), $this->entityManager);
+        }
+
+        return new JsonResponse($response);
+    }
+
+    #[Route('/container/stop/{container}', name: 'app_admin_container_stop')]
+    public function stopContainer(Containers $container): Response {
+        $response = $this->appService->stopContainer($container);
+
+        if ($response['success']) {
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.stopped'), new DateTimeImmutable(), $this->entityManager);
+        }
+
+        return new JsonResponse($response);
+    }
+
+    #[Route('/container/restart/{container}', name: 'app_admin_container_restart')]
+    public function restartContainer(Containers $container): Response {
+        $response = $this->appService->restartContainer($container);
+
+        if ($response['success']) {
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.restarted'), new DateTimeImmutable(), $this->entityManager);
+        }
+
+        return new JsonResponse($response);
+    }
+
     #[Route('/container/create', name: 'app_admin_container_create')]
     public function containerCreate(Request $request): Response {
         $name = $request->get('container-name');

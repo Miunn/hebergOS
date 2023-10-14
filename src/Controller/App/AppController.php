@@ -109,9 +109,15 @@ class AppController extends AbstractController
 
     /** AJAX Routes */
 
-    #[Route('/container/stats-day/{container}', name: 'app_request_stats')]
+    #[Route('/container/stats-json/{container}', name: 'app_request_stats')]
     public function requestStats(Request $request, Containers $container): JsonResponse
     {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
         $scale = $request->query->get('scale');
 
         if ($scale != 'instant' && $scale != 'day' && $scale != 'week') {
@@ -123,6 +129,12 @@ class AppController extends AbstractController
 
     #[Route('/container/start/{container}', name: 'app_container_start')]
     public function startContainer(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
         $response = $this->appService->startContainer($container);
 
         // Record in activities
@@ -135,6 +147,12 @@ class AppController extends AbstractController
 
     #[Route('/container/stop/{container}', name: 'app_container_stop')]
     public function stopContainer(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
         $response = $this->appService->stopContainer($container);
 
         if ($response['success']) {
@@ -146,6 +164,12 @@ class AppController extends AbstractController
 
     #[Route('/container/restart/{container}', name: 'app_container_restart')]
     public function restartContainer(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
         $response = $this->appService->restartContainer($container);
 
         if ($response['success']) {
