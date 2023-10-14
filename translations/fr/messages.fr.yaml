@@ -19,6 +19,7 @@ container.actions: Actions
 
 container.overview.title: Vue d'emsemble de
 container.overview.users: Utilisateurs
+container.overview.users.empty: Aucun utilisateur n'a accès à ce container
 
 container.charts.title: Statistiques d'utilisation
 container.charts.period.title: Période des données
@@ -65,7 +66,7 @@ auth.password: Mot de passe
 
 app.titles.projects: Mes projets
 app.projects.new: Nouveau projet
-app.projects.new.first: Créer un premier projet
+app.projects.empty: Aucun projet ne vous est attribué pour le moment.<br>Contactez <a href="mailto:contact@saussesylva.in">Sausse Sylvain</a> ou <a href="contact@remicaulier.fr">Caulier Rémi</a> afin de discuter de vos envies!
 
 user.email: Adresse mail
 user.password: Mot de passe

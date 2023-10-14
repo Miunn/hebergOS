@@ -1,6 +1,11 @@
 .first-project {
   margin-top: 200px;
   align-self: center;
+
+  a {
+    color: var(--text-low-contrast) !important;
+    text-decoration: underline;
+  }
 }
 
 .containers {

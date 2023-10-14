@@ -12,7 +12,7 @@
     <h1>{{ 'app.titles.projects' | trans }}</h1>
 
     {% if containers|length == 0 %}
-        <button class="first-project" type="button">{{ 'app.projects.new.first'|trans }}</button>
+        <p class="first-project text-center">{{ 'app.projects.empty'|trans|raw }}</p>
     {% else %}
         <section class="containers">
             {% for key, container in containers %}

@@ -27,10 +27,13 @@
             <section class="card" id="container-users">
                 <h2 class="title">{{ 'container.overview.users'|trans }}</h2>
 
+                {% if container.user|length == 0 %}
+                    <p class="italic text-center">{{ 'container.overview.users.empty'|trans }}</p>
+                {% endif %}
+
                 {% for usr in container.user %}
                     <div class="user">
                         <div class="user-firstname">{{ usr.email }}</div>
-
 
                     </div>
                 {% endfor %}
