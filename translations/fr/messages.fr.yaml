@@ -79,3 +79,9 @@ admin.users.action.edit: Editer l'utilisateur
 admin.users.action.delete: Supprimer l'utilisateur
 
 admin.container.create.name: "Nom du container:"
+admin.container.create.basePort: "Port de base du container:"
+admin.container.create.memory: "Limite de mémoire RAM: "
+admin.container.create.cpu: "Limite de CPU:"
+admin.container.create.ports: "Ports nécessaires: "
+admin.container.create.image: "Image du container: "
+admin.container.create.commands: "Commandes à lancer au démarrage: "

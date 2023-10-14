@@ -72,6 +72,10 @@
                         <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
                     {% endif %}
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li aria-current="{{ actions|default != null }}">
+                    <a href=""
+                </li>
             </ul>
         </nav>
     </div>

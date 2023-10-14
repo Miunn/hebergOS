@@ -18,6 +18,8 @@ containerCreateBtn.addEventListener("click", (event) => {
             'body': data,
         });
 
+        console.log(response);
+
         if (response.ok) {
             fireBasicSwal("Container créé", "success", ()=>{location.reload()});
         } else {

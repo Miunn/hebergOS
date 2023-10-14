@@ -27,3 +27,7 @@ services:
     App\Services\AppService:
         arguments:
             $apiUrl: '%api_url%'
+
+    App\Services\AdminService:
+        arguments:
+            $apiUrl: '%api_url%'

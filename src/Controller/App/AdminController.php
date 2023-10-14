@@ -10,11 +10,13 @@ use App\Services\AppService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
+use function Webmozart\Assert\Tests\StaticAnalysis\contains;
 
 #[Route('/app/admin')]
 class AdminController extends AbstractController
@@ -121,13 +123,34 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/container/administration/{container}', name: 'app_admin_container_administration')]
+    public function containerAdministration(Containers $container): Response {
+        $containerApi = $this->appService->getContainer($container->getId());
+        return $this->render('app/view/container-administration.twig');
+    }
+
     /** AJAX Admin only routes */
     /** Go to AppController for basic routes */
     #[Route('/container/create', name: 'app_admin_container_create')]
     public function containerCreate(Request $request): Response {
-        dump($request);
+        $name = $request->get('container-name');
+        $basePort = $request->get('container-basePort');
+        $memory = $request->get('container-memory');
+        $cpu = $request->get('container-cpu');
+        $ports = $request->get('container-ports');
+        $image = $request->get('container-image');
+        $commands = $request->get('container-image');
 
-        dump($request->get('container-name'));
-        return new Response("OK", Response::HTTP_NO_CONTENT);
+        if ($name == '' || $basePort == '' || $memory == '' || $cpu == '') {
+            return new Response('Missing required fields', 400);
+        }
+
+        $ports = $ports == '' ? null: $ports;
+        $image = $image == '' ? null: $image;
+        $commands = $commands == '' ? null: $commands;
+
+        $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $image, $commands);
+
+        return new JsonResponse($result, Response::HTTP_OK);
     }
 }

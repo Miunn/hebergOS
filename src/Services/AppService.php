@@ -49,6 +49,20 @@ class AppService
         return null;
     }
 
+    public function putApi(string $uri, array $data): ?ResponseInterface
+    {
+        try {
+            return $this->httpClient->request(
+                'PUT',
+                $uri,
+                $data
+            );
+        } catch (TransportExceptionInterface $e) {
+            dump($e);
+        }
+        return null;
+    }
+
     public function getContainers(): array
     {
         $requestUri = $this->apiUrl . '/v1/container';

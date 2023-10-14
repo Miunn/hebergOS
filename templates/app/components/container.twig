@@ -19,5 +19,10 @@
         {% set dot_color = "blue" %}
     {% endif %}
 
-    <p class="state"><span class="dot {{ dot_color -}}-dot"></span> {{ container.state }}</p>
+    <p class="state">
+        <span class="dot {{ dot_color -}}-dot"></span> {{ container.state }}
+        {% if is_granted('ROLE_ADMIN') %}
+        {{ container.host_port_root }}
+        {% endif %}
+    </p>
 </a>
