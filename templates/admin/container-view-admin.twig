@@ -45,16 +45,21 @@
         <nav>
             <ul>
                 <li aria-current="{{ overview|default != null }}">
-                    <a href="{{ path('app_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+                        <a href="{{ path('app_admin_container_overview', {'container': container.id}) }}">{{ 'container.overview'|trans }}</a>
+
                 </li>
                 <li aria-current="{{ stats|default != null }}">
-                    <a href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+                        <a href="{{ path('app_admin_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
+
                 </li>
                 <li aria-current="{{ shell|default != null }}">
-                    <a href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
+                        <a href="{{ path('app_admin_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
                 </li>
                 <li aria-current="{{ actions|default != null }}">
-                    <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                        <a href="{{ path('app_admin_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                </li>
+                <li aria-current="{{ administration|default != null }}">
+                    <a href="{{ path('app_admin_container_administration', {'container': container.id}) }}">{{ 'container.admin'|trans }}</a>
                 </li>
             </ul>
         </nav>

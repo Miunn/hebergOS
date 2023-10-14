@@ -1,0 +1,24 @@
+{% extends 'admin/container-view-admin.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('containerShell') }}
+{% endblock %}
+
+{% block content %}
+    <div id="shell-wrapper">
+        <div id="shell-head">
+            <div id="shell-size">
+                <input type="number" id="shell-width" value="850">
+                X
+                <input type="number" id="shell-height" value="500">
+            </div>
+            <a href="http://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty" target="_blank"><img class="icon-little" src="{{ asset('build/images/terminal.png') }}" alt="Terminal"></a>
+        </div>
+        <iframe id="shell"
+                title="{{ 'container.shell'|trans }}"
+                width="850"
+                height="500"
+                src="http://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty"></iframe>
+    </div>
+{% endblock %}

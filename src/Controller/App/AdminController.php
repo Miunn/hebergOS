@@ -33,7 +33,7 @@ class AdminController extends AbstractController
         $users = $usersRepository->findAll();
         $containers = $this->appService->getContainers();
 
-        return $this->render('app/admin/index.twig', [
+        return $this->render('admin/index.twig', [
             'users' => $users,
             'containers' => $containers
         ]);
@@ -60,7 +60,7 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->render('app/admin/user-view.twig', [
+        return $this->render('admin/user-view.twig', [
             'userForm' => $form->createView(),
         ]);
     }
@@ -77,7 +77,7 @@ class AdminController extends AbstractController
 
         $containerApi = $this->appService->getContainer($container->getId());
         $overview = $this->appService->getContainer($container->getId());
-        return $this->render('app/view/container-overview.twig', [
+        return $this->render('admin/view/container-overview-admin.twig', [
             'admin' => true,
             'container' => $container,
             'containerApi' => $containerApi,
@@ -90,7 +90,7 @@ class AdminController extends AbstractController
 
         $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getContainerStats($container->getId(), 0);
-        return $this->render('app/view/container-stats.twig', [
+        return $this->render('admin/view/container-stats-admin.twig', [
             'admin' => true,
             'container' => $container,
             'containerApi' => $containerApi,
@@ -103,7 +103,7 @@ class AdminController extends AbstractController
     public function containerShell(Containers $container): Response {
 
         $containerApi = $this->appService->getContainer($container->getId());
-        return $this->render('app/view/container-shell.twig', [
+        return $this->render('admin/view/container-shell-admin.twig', [
             'admin' => true,
             'container' => $container,
             'containerApi' => $containerApi,
@@ -115,7 +115,7 @@ class AdminController extends AbstractController
     public function containerActions(Containers $container): Response {
 
         $containerApi = $this->appService->getContainer($container->getId());
-        return $this->render('app/view/container-actions.twig', [
+        return $this->render('admin/view/container-actions-admin.twig', [
             'admin' => true,
             'container' => $container,
             'containerApi' => $containerApi,
@@ -126,9 +126,10 @@ class AdminController extends AbstractController
     #[Route('/container/administration/{container}', name: 'app_admin_container_administration')]
     public function containerAdministration(Containers $container): Response {
         $containerApi = $this->appService->getContainer($container->getId());
-        return $this->render('app/view/container-administration.twig', [
+        return $this->render('admin/view/container-administration-admin.twig', [
             'container' => $container,
-            'containerApi' => $containerApi
+            'containerApi' => $containerApi,
+            "administration" => "1"
         ]);
     }
 
