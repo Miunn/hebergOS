@@ -28,7 +28,7 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
                     enabled: true,
                     mode: 'x',
                     speed: 0.9,
-                    threshold: 4
+                    threshold: 2
                 },
                 zoom: {
                     wheel: {
@@ -39,7 +39,7 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
                     },
                     mode: 'x',
                     speed: 0.9,
-                    threshold: 4
+                    threshold: 2
                 },
                 limits: {
                     x: {

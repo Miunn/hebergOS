@@ -34,6 +34,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Containers::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $containers;
 
+    #[ORM\Column(length: 25)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $lastname = null;
+
     public function __construct()
     {
         $this->containers = new ArrayCollection();
@@ -132,6 +138,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->containers->removeElement($container)) {
             $container->removeUser($this);
         }
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }

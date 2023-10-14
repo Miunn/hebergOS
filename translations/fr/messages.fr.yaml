@@ -66,8 +66,10 @@ auth.password: Mot de passe
 
 app.titles.projects: Mes projets
 app.projects.new: Nouveau projet
-app.projects.empty: Aucun projet ne vous est attribué pour le moment.<br>Contactez <a href="mailto:contact@saussesylva.in">Sausse Sylvain</a> ou <a href="contact@remicaulier.fr">Caulier Rémi</a> afin de discuter de vos envies!
+app.projects.empty: Aucun projet ne vous est attribué pour le moment.<br>Contactez un administrateur afin de discuter de vos envies!
 
+user.firstname: Prénom
+user.lastname: Nom
 user.email: Adresse mail
 user.password: Mot de passe
 user.containers: Conteneurs
