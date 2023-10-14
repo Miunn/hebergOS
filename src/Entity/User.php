@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\ManyToMany(targetEntity: Containers::class, mappedBy: 'user', orphanRemoval: true)]
+    #[ORM\ManyToMany(targetEntity: Containers::class, mappedBy: 'user')]
     private Collection $containers;
 
     #[ORM\Column(length: 25)]

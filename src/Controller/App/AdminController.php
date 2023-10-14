@@ -9,6 +9,7 @@ use App\Services\AdminService;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -48,7 +49,7 @@ class AdminController extends AbstractController
     #[Route('/user/view/{user}', name: 'app_admin_view_user')]
     public function viewUser(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, RoleHierarchyInterface $roleHierarchy): Response
     {
-        $form = $this->createForm(UserFormType::class, $user, ['roles' => $roleHierarchy->getReachableRoleNames(['ROLE_ADMIN'])]);
+        $form = $this->createForm(UserFormType::class, $user, ['roles' => $this->getParameter('security.role_hierarchy.roles')]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,6 +62,14 @@ class AdminController extends AbstractController
                     )
                 );
             }
+
+            // Check in the update containers list if there is some to be deleted
+            /*foreach ($originalContainers as $container) {
+                if ($user->getContainers()->contains($container) === false) {
+                    $container->getUsers()->removeUser($user);
+                    $entityManager->persist($container);
+                }
+            }*/
 
             $entityManager->persist($user);
             $entityManager->flush();

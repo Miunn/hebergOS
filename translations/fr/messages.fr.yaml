@@ -86,6 +86,7 @@ admin.users.action.add: Nouveau
 admin.users.action.addContainer: Ajouter un container
 admin.users.action.edit: Editer l'utilisateur
 admin.users.action.delete: Supprimer l'utilisateur
+admin.users.password.placeholder: Nouveau mot de passe (laisser vide si aucun)
 
 admin.container.create.name: "Nom du container:"
 admin.container.create.basePort: "Port de base du container:"
