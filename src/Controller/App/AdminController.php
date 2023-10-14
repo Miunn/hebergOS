@@ -126,7 +126,10 @@ class AdminController extends AbstractController
     #[Route('/container/administration/{container}', name: 'app_admin_container_administration')]
     public function containerAdministration(Containers $container): Response {
         $containerApi = $this->appService->getContainer($container->getId());
-        return $this->render('app/view/container-administration.twig');
+        return $this->render('app/view/container-administration.twig', [
+            'container' => $container,
+            'containerApi' => $containerApi
+        ]);
     }
 
     /** AJAX Admin only routes */
@@ -152,5 +155,10 @@ class AdminController extends AbstractController
         $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $image, $commands);
 
         return new JsonResponse($result, Response::HTTP_OK);
+    }
+
+    #[Route('/container/delete/{container}', name: 'app_admin_container_delete')]
+    public function containerDelete(Containers $container): Response {
+        return new JsonResponse($this->adminService->deleteContainer($container), Response::HTTP_OK);
     }
 }

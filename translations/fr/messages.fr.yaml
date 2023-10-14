@@ -50,7 +50,9 @@ container.records.restarted: Projet redémarré
 container.shell: Console
 container.shell.title: Connexion SSH
 container.shell.size.select: "Taille du terminal: "
+
 container.admin: Administration
+container.admin.delete: Supprimer le container
 
 auth.title.logout: Deconnexion
 auth.title.login: Connexion

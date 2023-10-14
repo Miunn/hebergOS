@@ -1,7 +1,13 @@
 {% extends 'app/container-view.twig' %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('containerAdmin') }}
+{% endblock %}
+
 {% block content %}
 <section class="card">
     <h1>{{ 'container.admin'|trans }}</h1>
+
+    <button class="solid-cta" id="delete-container" type="button" data-delete="{{ path('app_admin_container_delete', {'container': container.id}) }}" data-redirect="{{ path('app_admin_index') }}">{{ 'container.admin.delete'|trans }}</button>
 </section>
 {% endblock %}

@@ -63,6 +63,19 @@ class AppService
         return null;
     }
 
+    public function deleteApi(string $uri): ?ResponseInterface
+    {
+        try {
+            return $this->httpClient->request(
+                'DELETE',
+                $uri
+            );
+        } catch (TransportExceptionInterface $e) {
+            dump($e);
+        }
+        return null;
+    }
+
     public function getContainers(): array
     {
         $requestUri = $this->apiUrl . '/v1/container';

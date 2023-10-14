@@ -74,8 +74,9 @@
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
                 <li aria-current="{{ actions|default != null }}">
-                    <a href=""
+                    <a href="{{ path('app_admin_container_administration', {'container': container.id}) }}">{{ 'container.admin'|trans }}</a>
                 </li>
+                {% endif %}
             </ul>
         </nav>
     </div>

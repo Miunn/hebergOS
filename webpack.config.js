@@ -41,6 +41,7 @@ Encore
     .addEntry('containerStats', './assets/js/container/container-stats.js')
     .addEntry('containerShell', './assets/js/container/container-shell.js')
     .addEntry('containerActions', './assets/js/container/container-actions.js')
+    .addEntry('containerAdmin', './assets/js/container/container-admin.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

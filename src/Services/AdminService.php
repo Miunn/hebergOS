@@ -71,4 +71,21 @@ class AdminService
             return ['status' => 'error', 'message' => $e->getMessage()];
         }
     }
+
+    public function deleteContainer(Containers $container): array {
+        $requestUri = "$this->apiUrl/v1/container?id={$container->getId()}";
+
+        $response = $this->appService->deleteApi($requestUri);
+        dump($response);
+        try {
+            if ($response->getStatusCode() == 204) {
+                $this->entityManager->remove($container);
+                $this->entityManager->flush();
+                return ['status' => 'success'];
+            }
+            return ['status' => 'error', 'message' => $response->getContent()];
+        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
 }
