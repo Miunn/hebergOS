@@ -91,14 +91,14 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
     let labels = timestamps.slice(-offset);
 
     ramChartReference = createChart(ramChart, [{
-        label: 'Go RAM',
+        label: 'RAM (Go)',
         data: ram.slice(-offset),
         fill: true,
         borderWidth: 2
     }], 0.06, labels);
 
     cpuChartReference = createChart(cpuChart, [{
-        label: '% CPU',
+        label: 'CPU (%)',
         data: cpu.slice(-offset),
         fill: true,
         borderWidth: 2
@@ -106,13 +106,13 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
 
     netChartReference = createChart(netChart, [
         {
-            label: 'ko NET Down',
+            label: 'NET Down (ko)',
             data: netTotalDown.slice(-offset),
             fill: true,
             borderWidth: 2
         },
         {
-            label: 'ko NET Up',
+            label: 'NET Up (ko)',
             data: netTotalUp.slice(-offset),
             fill: true,
             borderWidth: 2
@@ -121,13 +121,13 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
 
     netDeltaChartReference = createChart(netDeltaChart, [
         {
-            label: 'ko NET Delta Down',
+            label: 'NET Delta Down (ko)',
             data: netDeltaDown.slice(-offset),
             fill: true,
             borderWidth: 2
         },
         {
-            label: 'ko NET Delta Up',
+            label: 'NET Delta Up (ko)',
             data: netDeltaUp.slice(-offset),
             fill: true,
             borderWidth: 2
