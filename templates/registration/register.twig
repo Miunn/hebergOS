@@ -1,21 +1,26 @@
 {% extends 'index.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('login') }}
+{% endblock %}
+
 {% block title %}Register{% endblock %}
 
 {% block main %}
-    <h1>Register</h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
+        <h1>{{ 'auth.title.register'|trans }}</h1>
+
         {{ form_row(registrationForm.firstname) }}
         {{ form_row(registrationForm.lastname) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">{{ 'auth.title.register'|trans }}</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

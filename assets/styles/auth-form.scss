@@ -6,6 +6,8 @@ form {
   gap: 25px;
   padding: 50px;
   margin-top: 5%;
+  border: 2px solid var(--border-not-interactive);
+  border-radius: 10px;
 
   .title {
     text-align: center;
