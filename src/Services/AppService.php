@@ -140,23 +140,6 @@ class AppService
         return [];
     }
 
-    public function getContainerStats(string $container_id, int $timestamp): array
-    {
-        $requestUri = "$this->apiUrl/v1/container/stats?id=$container_id&since=$timestamp";
-        $response = $this->getApi($requestUri);
-
-        if ($response == null) {
-            return [];
-        }
-
-        try {
-            return $response->toArray();
-        } catch (TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface $e) {
-            dump($e);
-        }
-        return [];
-    }
-
     public function syncContainers(array $containers): void
     {
         // Register new containers
@@ -191,6 +174,23 @@ class AppService
         if ($should_flush) {
             $this->entityManager->flush();
         }
+    }
+
+    public function getStats(Containers $container, string $scale): array
+    {
+        $requestUri = "$this->apiUrl/v1/container/stats?id={$container->getId()}&since=0&scale=$scale";
+        $response = $this->getApi($requestUri);
+
+        if ($response == null) {
+            return [];
+        }
+
+        try {
+            return $response->toArray();
+        } catch (ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
+            dump($e);
+        }
+        return [];
     }
 
     public function startContainer(Containers $container): array

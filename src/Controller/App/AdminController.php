@@ -89,7 +89,7 @@ class AdminController extends AbstractController
     public function containerStats(Containers $container): Response {
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        $stats = $this->appService->getInstantContainerStats($container->getId());
         return $this->render('admin/view/container-stats-admin.twig', [
             'admin' => true,
             'container' => $container,

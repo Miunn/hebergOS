@@ -26,7 +26,9 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
             zoom: {
                 pan: {
                     enabled: true,
-                    mode: 'x'
+                    mode: 'x',
+                    speed: 0.9,
+                    threshold: 4
                 },
                 zoom: {
                     wheel: {
@@ -36,11 +38,16 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
                         enabled: true
                     },
                     mode: 'x',
+                    speed: 0.9,
+                    threshold: 4
                 },
                 limits: {
                     x: {
                         min: labels[0],
                         max: labels.slice(-1)
+                    },
+                    y: {
+                        min: 0
                     }
                 }
             }
@@ -56,7 +63,8 @@ function createChart(chartCanvas, datasets, suggestedMax, labels) {
             },
             y: {
                 suggestedMax: suggestedMax,
-                beginAtZero: true
+                beginAtZero: true,
+                min: 0
             }
         }
     };
@@ -105,7 +113,7 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
         },
         {
             label: 'NET Up',
-            data: netTotalUpData.slice(-offset),
+            data: netTotalUp.slice(-offset),
             fill: true,
             borderWidth: 5
         }
@@ -127,55 +135,62 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
     ], 1000, labels);
 }
 
-const data = JSON.parse(document.getElementById("data-stats").getAttribute("data-stats"));
+const dataElement = document.getElementById("data-stats");
+const statsDayUrl = dataElement.getAttribute("data-url-day");
+const statsWeekUrl = dataElement.getAttribute("data-url-week");
+const data = JSON.parse(dataElement.getAttribute("data-stats"));
 
 /** Populate data arrays **/
+function parseData(jsonData) {
+    let timestamps = [];
+    let ramData = [];
+    let cpuData = [];
+    let netTotalUpData = [];
+    let netTotalDownData = [];
+    let netDeltaUpData = [];
+    let netDeltaDownData = [];
 
-let timestamps = [];
-let ramData = [];
-let cpuData = [];
-let netTotalUpData = [];
-let netTotalDownData = [];
-let netDeltaUpData = [];
-let netDeltaDownData = [];
+    let i = 0;
+    Object.entries(jsonData).forEach((entry) => {
+        const [timestamp, stat] = entry;
 
-var i = 0;
-Object.entries(data).forEach((entry) => {
-    const [timestamp, stat] = entry;
+        let milliTS = parseInt(timestamp) * 1000;
+        timestamps.push(milliTS);
 
-    let milliTS = parseInt(timestamp) * 1000;
-    timestamps.push(milliTS);
+        ramData.push({
+            x: milliTS,
+            y: stat["memory"]["used"]
+        });
+        cpuData.push({
+            x: milliTS,
+            y: stat["cpu"]["usage_percent"]
+        });
+        netTotalUpData.push({
+            x: milliTS,
+            y: stat["net"]["up"]
+        });
+        netTotalDownData.push({
+            x: milliTS,
+            y: stat["net"]["down"]
+        });
+        netDeltaUpData.push({
+            x: milliTS,
+            y: stat["net"]["delta_up"]
+        });
+        netDeltaDownData.push({
+            x: milliTS,
+            y: stat["net"]["delta_down"]
+        });
 
-    ramData.push({
-        x: milliTS,
-        y: stat["memory"]["used"]
+        i++;
     });
-    cpuData.push({
-        x: milliTS,
-        y: stat["cpu"]["usage_percent"]
-    });
-    netTotalUpData.push({
-        x: milliTS,
-        y: stat["net"]["up"]
-    });
-    netTotalDownData.push({
-        x: milliTS,
-        y: stat["net"]["down"]
-    });
-    netDeltaUpData.push({
-        x: milliTS,
-        y: stat["net"]["delta_up"]
-    });
-    netDeltaDownData.push({
-        x: milliTS,
-        y: stat["net"]["delta_down"]
-    });
+    return [timestamps, ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData];
+}
 
-    i++;
-});
+const [instantTimestamps, instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown] = parseData(data);
 
 // Create default last hour chart
-createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360, timestamps);
+createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 360, instantTimestamps);
 
 /** Handle period selection **/
 
@@ -190,22 +205,38 @@ all
  */
 periodSelector.addEventListener("change", (event) => {
     event.preventDefault();
-    console.log("graph");
     switch (event.currentTarget.value) {
         case "1hour":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 360, timestamps);
+            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 360, instantTimestamps);
             break;
 
         case "4hours":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 1440, timestamps);
+            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 1440, instantTimestamps);
             break;
 
         case "1day":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 2040, timestamps);
+            (async () => {
+                const response = await fetch(statsDayUrl);
+                if (!response.ok) {
+                    return;
+                }
+                const statsDay = await response.json();
+                let [dayTimestamps, dayRam, dayCpu, dayNetTotalUp, dayNetTotalDown, dayNetDeltaUp, dayNetDeltaDown] = parseData(statsDay);
+                createOffsetChart(dayRam, dayCpu, dayNetTotalUp, dayNetTotalDown, dayNetDeltaUp, dayNetDeltaDown, 0, dayTimestamps);
+            })();
             break;
 
         case "7days":
-            createOffsetChart(ramData, cpuData, netTotalUpData, netTotalDownData, netDeltaUpData, netDeltaDownData, 6360, timestamps);
+            (async () => {
+                const response = await fetch(statsWeekUrl);
+                if (!response.ok) {
+                    return;
+                }
+                const statsWeek = await response.json();
+                let [weeKTimestamps, weeKRam, weeKCpu, weeKNetTotalUp, weeKNetTotalDown, weeKNetDeltaUp, weeKNetDeltaDown] = parseData(statsWeek);
+                console.log(statsWeek);
+                createOffsetChart(weeKRam, weeKCpu, weeKNetTotalUp, weeKNetTotalDown, weeKNetDeltaUp, weeKNetDeltaDown, 0, weeKTimestamps);
+            })();
             break;
     }
 });

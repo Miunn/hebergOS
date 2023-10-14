@@ -6,7 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<div id="data-stats" data-stats="{{ data|json_encode }}"></div>
+<div id="data-stats"
+     data-url-day="{{ path('app_request_stats', {'container': container.id, 'scale': 'day'}) }}"
+     data-url-week="{{ path('app_request_stats', {'container': container.id, 'scale': 'week'}) }}"
+     data-stats="{{ data|json_encode }}"></div>
 
 <div class="charts">
     <div class="head card">

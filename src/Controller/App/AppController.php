@@ -11,9 +11,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use function Webmozart\Assert\Tests\StaticAnalysis\length;
 
 #[Route('/app')]
 class AppController extends AbstractController
@@ -64,7 +66,7 @@ class AppController extends AbstractController
         }
 
         $containerApi = $this->appService->getContainer($container->getId());
-        $stats = $this->appService->getContainerStats($container->getId(), 0);
+        $stats = $this->appService->getStats($container, 'instant');
         return $this->render('app/view/container-stats.twig', [
             'container' => $container,
             'containerApi' => $containerApi,
@@ -106,6 +108,19 @@ class AppController extends AbstractController
     }
 
     /** AJAX Routes */
+
+    #[Route('/container/stats-day/{container}', name: 'app_request_stats')]
+    public function requestStats(Request $request, Containers $container): JsonResponse
+    {
+        $scale = $request->query->get('scale');
+
+        if ($scale != 'instant' && $scale != 'day' && $scale != 'week') {
+            return new JsonResponse(['error' => 'Bad scale'], 400);
+        }
+
+        return new JsonResponse($this->appService->getStats($container, $scale));
+    }
+
     #[Route('/container/start/{container}', name: 'app_container_start')]
     public function startContainer(Containers $container): Response {
         $response = $this->appService->startContainer($container);
