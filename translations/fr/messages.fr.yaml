@@ -54,6 +54,7 @@ container.records.restarted: Projet redémarré
 container.shell: Console
 container.shell.title: Connexion SSH
 container.shell.size.select: "Taille du terminal: "
+container.shell.unavailable: "  >_ Pour avoir accès à la console veuillez démarrer votre projet"
 
 container.admin: Administration
 container.admin.delete: Supprimer le container

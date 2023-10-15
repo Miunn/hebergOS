@@ -191,6 +191,17 @@
       }
     }
   }
+
+  #shell-unavailable-wrapper {
+    background-color: black;
+    width: 850px;
+    height: 500px;
+
+    p {
+      padding-top: 130px;
+      color: white;
+    }
+  }
 }
 
 #actions-wrapper {

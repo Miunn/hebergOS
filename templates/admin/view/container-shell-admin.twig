@@ -15,10 +15,17 @@
             </div>
             <a href="http://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty" target="_blank"><img class="icon-little" src="{{ asset('build/images/terminal.png') }}" alt="Terminal"></a>
         </div>
-        <iframe id="shell"
-                title="{{ 'container.shell'|trans }}"
-                width="850"
-                height="500"
-                src="http://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty"></iframe>
+
+        {% if containerApi.state == 'running' %}
+            <iframe id="shell"
+                    title="{{ 'container.shell'|trans }}"
+                    width="850"
+                    height="500"
+                    src="http://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty"></iframe>
+        {% else %}
+            <div id="shell-unavailable-wrapper">
+                <p class="text-center">{{ 'container.shell.unavailable'|trans }}</p>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
