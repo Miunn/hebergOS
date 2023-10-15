@@ -57,6 +57,7 @@ container.shell.size.select: "Taille du terminal: "
 
 container.admin: Administration
 container.admin.delete: Supprimer le container
+container.admin.runningPort: "Le container se base sur le port interne: "
 
 auth.title.logout: Deconnexion
 auth.title.login: Connexion
