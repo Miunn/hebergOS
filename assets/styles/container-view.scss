@@ -216,3 +216,23 @@
     flex-wrap: wrap;
   }
 }
+
+#container-users {
+  padding: 0 0 20px;
+
+  .title {
+    margin-bottom: 0;
+    padding: 20px;
+  }
+
+
+  .user {
+    padding: 10px 20px;
+    border-top: 1px solid black;
+    line-height: 1.4rem;
+
+    &:last-child {
+      border-bottom: 1px solid black;
+    }
+  }
+}

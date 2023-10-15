@@ -29,9 +29,9 @@
 
                 {% for usr in container.user %}
                     <div class="user">
-                        <div class="user-firstname">{{ usr.email }}</div>
+                        <div class="user-identifier">{{ usr.username }} - {{ usr.lastname }} {{ usr.firstname }}</div>
 
-
+                        <div class="user-mail italic">{{ usr.email }}</div>
                     </div>
                 {% endfor %}
             </section>
