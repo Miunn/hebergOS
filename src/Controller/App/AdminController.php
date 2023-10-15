@@ -153,6 +153,17 @@ class AdminController extends AbstractController
     }
 
     /** AJAX Admin only routes */
+
+    #[Route('/container/change-domain/{container}', name: 'app_admin_change_domain')]
+    public function changeDomain(Request $request, Containers $container): JsonResponse
+    {
+        $container->setDomain($request->request->get('domain'));
+        $this->entityManager->persist($container);
+        $this->entityManager->flush();
+
+        return new JsonResponse(['status' => 'success']);
+    }
+
     #[Route('/container/stats-json/{container}', name: 'app_admin_request_stats')]
     public function requestStats(Request $request, Containers $container): JsonResponse
     {

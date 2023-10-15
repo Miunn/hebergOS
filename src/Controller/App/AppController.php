@@ -110,6 +110,22 @@ class AppController extends AbstractController
 
     /** AJAX Routes */
 
+    #[Route('/container/change-domain/{container}', name: 'app_change_domain')]
+    public function changeDomain(Request $request, Containers $container): JsonResponse
+    {
+        //Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $container->setDomain($request->request->get('domain'));
+        $this->entityManager->persist($container);
+        $this->entityManager->flush();
+
+        return new JsonResponse(['status' => 'success']);
+    }
+
     #[Route('/container/stats-json/{container}', name: 'app_request_stats')]
     public function requestStats(Request $request, Containers $container): JsonResponse
     {

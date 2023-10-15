@@ -7,6 +7,10 @@
 
 #container-head {
 
+  #container-name {
+    color: var(--text-low-contrast) !important;
+  }
+
   #domain-wrapper {
     width: fit-content;
     display: flex;
@@ -14,16 +18,24 @@
     gap: 10px;
     vertical-align: middle;
 
+    &:hover {
+      #edit-domain {
+        visibility: visible;
+      }
+    }
+
     #edit-domain {
+      visibility: hidden;
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 5px;
       border-radius: 50%;
       transition: background-color 200ms;
       vertical-align: middle;
 
       &:hover {
         background-color: var(--component-background-hover);
+
       }
 
       img {
@@ -245,5 +257,20 @@
     &:last-child {
       border-bottom: 1px solid black;
     }
+  }
+}
+
+#edit-domain-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    text-align: left;
+  }
+
+  input {
+    padding: 10px;
+    border: 1px solid var(--border-not-interactive);
   }
 }

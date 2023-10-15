@@ -30,15 +30,23 @@
             {% set dot_color = "blue" %}
         {% endif %}
 
-        {% if container.club_project|default(true) %}
-            <div id="domain-wrapper">
+        <h1 id="container-name">{{ container.name}}</h1>
+        {% if container.domain %}
+            <!--<div id="domain-wrapper">
                 <h1 id="container-name"><a href="https://{{- container.name|slice(1) -}}.insash.fr" target="_blank"><span
                                 class="expanded-domain">https://</span>{{- container.name|slice(1) -}}<span
                                 class="expanded-domain">.insash.fr</span></a></h1>
                 <button id="edit-domain"><img src="{{ asset('build/images/edit.png') }}" alt="Edit"></button>
+            </div>-->
+            <div id="domain-wrapper">
+                <h2 id="container-domain"><a href="{{ container.domain }}" target="_blank">{{ container.domain }}</a></h2>
+                <button id="edit-domain"><img src="{{ asset('build/images/edit.png') }}" alt="Edit"></button>
             </div>
         {% else %}
-            <h1 id="container-name">{{ container.name}}</h1>
+            <div id="domain-wrapper">
+                <h2 class="italic">{{ 'container.domain.none'|trans }}</h2>
+                <button id="edit-domain"><img src="{{ asset('build/images/edit.png') }}" alt="Edit"></button>
+            </div>
         {% endif %}
         <h2 class="container-state"><span class="dot {{ dot_color -}}-dot"></span> {{ containerApi.state }}</h2>
 
@@ -69,5 +77,12 @@
         {% block content %}
 
         {% endblock %}
+    </div>
+
+    <div class="dialog-html" id="edit-domain-dialog" data-project="{{ container.name }}" data-change-route="{{ path('app_change_domain', {'container': container.id}) }}">
+        <form id="edit-domain-form">
+            <label for="new-domain">{{ 'container.domain.new'|trans }}</label>
+            <input type="url" name="domain" id="new-domain" value="{{ container.domain }}">
+        </form>
     </div>
 {% endblock %}

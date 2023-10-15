@@ -1,1 +1,1 @@
-import '../styles/container.scss'
+import '../styles/container.scss';

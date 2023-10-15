@@ -16,6 +16,8 @@ title.admin: Administration
 container.overview: Vue d'ensemble
 container.stats: Graphiques
 container.actions: Actions
+container.domain.none: Aucun nom de domaine
+container.domain.new: Nouveau nom de domaine
 
 container.overview.title: Vue d'emsemble de
 container.overview.users: Utilisateurs
