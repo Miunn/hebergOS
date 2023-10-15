@@ -137,12 +137,15 @@
     padding: 10px;
     border-radius: 8px;
     outline: none;
+    border: 1px solid rgb(118, 118, 118);
     background-color: var(--gray-6);
   }
 }
 
 .chart {
   margin: auto;
+  height: 250px;
+  width: 80%;
   max-height: 250px;
   max-width: 80%;
 }
