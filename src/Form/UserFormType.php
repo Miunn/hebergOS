@@ -29,7 +29,6 @@ class UserFormType extends AbstractType
                 $rolesFlat[$herit] = $herit;
             }
         }
-        dump($rolesFlat);
 
         $builder
             ->add('firstname', TextType::class, [
