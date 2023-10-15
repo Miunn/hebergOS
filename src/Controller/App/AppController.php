@@ -141,7 +141,7 @@ class AppController extends AbstractController
 
         // Record in activities
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.started'), new DateTimeImmutable(), $this->entityManager);
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.started'));
         }
 
         return new JsonResponse($response);
@@ -159,7 +159,7 @@ class AppController extends AbstractController
         $response = $this->appService->stopContainer($container);
 
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.stopped'), new DateTimeImmutable(), $this->entityManager);
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.stopped'));
         }
 
         return new JsonResponse($response);
@@ -177,7 +177,7 @@ class AppController extends AbstractController
         $response = $this->appService->restartContainer($container);
 
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.restarted'), new DateTimeImmutable(), $this->entityManager);
+            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.restarted'));
         }
 
         return new JsonResponse($response);
