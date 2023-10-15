@@ -72,6 +72,7 @@ app.projects.empty: Aucun projet ne vous est attribué pour le moment.<br>Contac
 
 user.firstname: Prénom
 user.lastname: Nom
+user.username: Nom d'utilisateur
 user.email: Adresse mail
 user.password: Mot de passe
 user.containers: Conteneurs
@@ -84,7 +85,7 @@ admin.users.containers.empty: Aucun
 admin.users.roles: Roles
 admin.users.action.title: Actions
 admin.users.action.add: Nouveau
-admin.users.action.addContainer: Ajouter un container
+admin.users.action.addContainer: Ajouter un conteneur
 admin.users.action.edit: Editer l'utilisateur
 admin.users.action.delete: Supprimer l'utilisateur
 admin.users.password.placeholder: Nouveau mot de passe (laisser vide si aucun)

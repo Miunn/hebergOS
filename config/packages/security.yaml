@@ -8,7 +8,7 @@ security:
         users:
             entity:
                 class: 'App\Entity\User'
-                property: 'email'
+                property: 'username'
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

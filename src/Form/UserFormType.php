@@ -38,6 +38,9 @@ class UserFormType extends AbstractType
             ->add('lastname', TextType::class, [
                 'label' => 'user.lastname'
             ])
+            ->add('username', TextType::class, [
+                'label' => 'user.username'
+            ])
             ->add('email', EmailType::class, [
                 'label' => 'user.email'
             ])->add('plainPassword', PasswordType::class, [
@@ -53,6 +56,7 @@ class UserFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => true
             ])->add('containers', CollectionType::class, [
+                'label' => 'user.containers',
                 'entry_type' => EntityType::class,
                 'entry_options' => [
                     'class' => Containers::class,
