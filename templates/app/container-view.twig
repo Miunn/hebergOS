@@ -50,9 +50,11 @@
                 <li aria-current="{{ stats|default != null }}">
                     <a href="{{ path('app_container_stats', {'container': container.id}) }}">{{ 'container.stats'|trans }}</a>
                 </li>
+                {% if is_granted('ROLE_INFO') %}
                 <li aria-current="{{ shell|default != null }}">
                     <a href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
                 </li>
+                    {% endif %}
                 <li aria-current="{{ actions|default != null }}">
                     <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
                 </li>

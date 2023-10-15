@@ -43,6 +43,7 @@
                 {% endfor %}
             </section>
 
+            {% if is_granted('ROLE_INFO') %}
             <section class="card">
                 <h2 class="title">{{ 'container.actions.basic.title'|trans }}</h2>
 
@@ -52,6 +53,7 @@
                     <button class="solid-cta" id="restart-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_restart', {'container': container.id}) }}">{{ 'container.actions.restart'|trans }}</button>
                 </div>
             </section>
+            {% endif %}
 
             <section class="card">
                 <h2 class="title">{{ 'container.actions.extra.title'|trans }}</h2>

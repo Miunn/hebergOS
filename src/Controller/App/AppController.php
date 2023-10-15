@@ -77,6 +77,7 @@ class AppController extends AbstractController
 
     #[Route('/container/shell/{container}', name: 'app_container_shell')]
     public function containerShell(Containers $container): Response {
+        $this->denyAccessUnlessGranted('ROLE_INFO');
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
@@ -129,6 +130,7 @@ class AppController extends AbstractController
 
     #[Route('/container/start/{container}', name: 'app_container_start')]
     public function startContainer(Containers $container): Response {
+        $this->denyAccessUnlessGranted('ROLE_INFO');
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
@@ -147,6 +149,7 @@ class AppController extends AbstractController
 
     #[Route('/container/stop/{container}', name: 'app_container_stop')]
     public function stopContainer(Containers $container): Response {
+        $this->denyAccessUnlessGranted('ROLE_INFO');
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
@@ -164,6 +167,7 @@ class AppController extends AbstractController
 
     #[Route('/container/restart/{container}', name: 'app_container_restart')]
     public function restartContainer(Containers $container): Response {
+        $this->denyAccessUnlessGranted('ROLE_INFO');
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
