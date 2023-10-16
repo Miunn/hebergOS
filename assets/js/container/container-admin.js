@@ -6,14 +6,10 @@ deleteContainerBtn.addEventListener("click", (event) => {
     event.preventDefault();
 
     let element = event.currentTarget;
-    console.log(element);
     fireConfirmationSwal('Êtes-sûr de vouloir supprimer ce container ?', 'Supprimer', 'warning', async (r) => {
         if (!r.isConfirmed) {
             return;
         }
-
-        console.log("Perform delete");
-        console.log(element);
 
         const response = await fetch(element.getAttribute("data-delete"));
 

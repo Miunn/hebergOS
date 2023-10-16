@@ -67,7 +67,6 @@ class AdminService
         $requestUri = "$this->apiUrl/v1/container?id={$container->getId()}";
 
         $response = $this->appService->deleteApi($requestUri);
-        dump($response);
         try {
             if ($response->getStatusCode() == 204) {
                 $this->entityManager->remove($container);

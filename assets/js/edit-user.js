@@ -14,12 +14,10 @@ const addContainerFormDeleteLink = (item) => {
 }
 
 const addFormToCollection = (e) => {
-    console.log(e.currentTarget.dataset)
     const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
     const item = document.createElement('div');
 
-    console.log(collectionHolder);
     item.innerHTML = collectionHolder
         .dataset
         .prototype

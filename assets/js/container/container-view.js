@@ -30,8 +30,6 @@ changeDomain.addEventListener("click", (event) => {
                 'body': data
             });
 
-            console.log(response);
-
             if (response.ok) {
                 fireBasicSwal("Changement effectué", "success", ()=>{location.reload()});
             } else {

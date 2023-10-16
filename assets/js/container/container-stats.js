@@ -234,7 +234,6 @@ periodSelector.addEventListener("change", (event) => {
                 }
                 const statsWeek = await response.json();
                 let [weeKTimestamps, weeKRam, weeKCpu, weeKNetTotalUp, weeKNetTotalDown, weeKNetDeltaUp, weeKNetDeltaDown] = parseData(statsWeek);
-                console.log(statsWeek);
                 createOffsetChart(weeKRam, weeKCpu, weeKNetTotalUp, weeKNetTotalDown, weeKNetDeltaUp, weeKNetDeltaDown, 0, weeKTimestamps);
             })();
             break;

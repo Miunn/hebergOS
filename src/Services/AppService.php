@@ -88,7 +88,6 @@ class AppService
 
         try {
             $containers = $response->toArray();
-            dump($containers);
             $this->syncContainers($containers);
             return $containers['success'];
         } catch (ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
@@ -205,7 +204,6 @@ class AppService
         if ($response == null) {
             return ["success" => false, "data" => "Null Response"];
         }
-        dump($response);
         try {
             if ($response->getStatusCode() == Response::HTTP_NO_CONTENT) {
                 return ["success" => true];

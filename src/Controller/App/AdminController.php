@@ -64,7 +64,6 @@ class AdminController extends AbstractController
                 return new JsonResponse(['errors' => $result['message']], 400);
             }
 
-            dump($result);
             $newContainer->setId($result['data']['Id']);
             $newContainer->setName('/'.$newContainer->getName());
             $entityManager->persist($newContainer);

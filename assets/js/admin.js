@@ -39,9 +39,6 @@ containerCreateBtn.addEventListener("click", (event) => {
         } else {
             fireBasicSwal("Impossible de créer le container", "error");
         }
-    }, (i, v) => {
-        console.log(i);
-        console.log(v);
     });
 });
 
