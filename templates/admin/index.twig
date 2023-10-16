@@ -28,8 +28,36 @@
     </section>
 
     <div class="dialog-html" id="dialog-container-create">
-        <form action="{{ path('app_admin_container_create') }}" method="post" id="container-create-form">
-            <label for="new-container-name"><img src="{{ asset('build/images/required.png') }}" alt="Required"> {{ 'admin.container.create.name'|trans }}</label>
+        {{ form_start(newContainerForm, {'attr': {'id': 'container-create-form'}}) }}
+
+        <div class="required-field">
+            <img src="{{ asset('build/images/required.png') }}" alt="Required">
+            {{ form_label(newContainerForm.name) }}
+            {{ form_widget(newContainerForm.name) }}
+        </div>
+
+        <div class="required-field">
+            <img src="{{ asset('build/images/required.png') }}" alt="Required">
+            {{ form_label(newContainerForm.hostPortRoot) }}
+            {{ form_widget(newContainerForm.hostPortRoot) }}
+        </div>
+
+        <div class="required-field">
+            <img src="{{ asset('build/images/required.png') }}" alt="Required">
+            {{ form_label(newContainerForm.memoryLimit) }}
+            {{ form_widget(newContainerForm.memoryLimit) }}
+        </div>
+
+        <div class="required-field">
+            <img src="{{ asset('build/images/required.png') }}" alt="Required">
+            {{ form_label(newContainerForm.cpuLimit) }}
+            {{ form_widget(newContainerForm.cpuLimit) }}
+        </div>
+
+        {{ form_end(newContainerForm) }}
+
+        <!--<form action="{{ path('app_admin_container_create') }}" method="post" id="container-create-form">
+            <label for="new-container-name"> {{ 'admin.container.create.name'|trans }}</label>
             <input name="container-name" id="new-container-name" type="text">
             <label for="new-container-basePort"><img src="{{ asset('build/images/required.png') }}" alt="Required"> {{ 'admin.container.create.basePort'|trans }}</label>
             <input name="container-basePort" id="new-container-basePort" type="text">
@@ -41,6 +69,6 @@
             <input name="container-ports" id="new-container-ports" type="text">
             <label for="new-container-commands">{{ 'admin.container.create.commands'|trans }}</label>
             <input name="container-commands" id="new-container-commands" type="text">
-        </form>
+        </form>-->
     </div>
 {% endblock %}

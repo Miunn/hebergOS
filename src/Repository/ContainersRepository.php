@@ -21,6 +21,13 @@ class ContainersRepository extends ServiceEntityRepository
         parent::__construct($registry, Containers::class);
     }
 
+    public function getUsedPortsRoot() {
+        return $this->createQueryBuilder('C')
+            ->select('C.hostPortRoot')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Containers[] Returns an array of Containers objects
 //     */

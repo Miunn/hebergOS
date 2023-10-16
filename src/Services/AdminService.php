@@ -26,7 +26,7 @@ class AdminService
         $entityManager->flush();
     }
 
-    public function createContainer(string $name, int $basePort, float $memory, float $cpu, ?array $ports, ?array $commands): array
+    public function createContainer(string $name, int $basePort, float $memory, float $cpu, ?array $ports=null, ?array $commands=null): array
     {
         $requestUri = "$this->apiUrl/v1/container";
 
@@ -56,12 +56,7 @@ class AdminService
 
             // Create the container locally
             $responseData = $response->toArray();
-            dump($responseData);
-            $container = new Containers($responseData['Id']);
-            $container->setName($name);
-            $this->entityManager->persist($container);
-            $this->entityManager->flush();
-            return ['status' => 'success'];
+            return ['status' => 'success', 'data' => $responseData];
 
         } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             return ['status' => 'error', 'message' => $e->getMessage()];

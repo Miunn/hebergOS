@@ -4,6 +4,7 @@ namespace App\Controller\App;
 
 use App\Entity\Containers;
 use App\Entity\User;
+use App\Form\ContainerFormType;
 use App\Form\UserFormType;
 use App\Services\AdminService;
 use App\Services\AppService;
@@ -35,15 +36,48 @@ class AdminController extends AbstractController
     ) {}
 
     #[Route('/', name: 'app_admin_index')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $usersRepository = $entityManager->getRepository(User::class);
         $users = $usersRepository->findAll();
         $containers = $this->appService->getContainers();
+        // Get all used root ports just after synchronization
+        $containerRepository = $entityManager->getRepository(Containers::class);
+        $usedPorts = $containerRepository->getUsedPortsRoot();
+
+        $newContainer = new Containers();
+
+        $newContainerForm = $this->createForm(ContainerFormType::class, $newContainer, ['usedPorts' => $usedPorts]);
+        $newContainerForm->handleRequest($request);
+
+
+        if ($newContainerForm->isSubmitted() && $newContainerForm->isValid()) {
+            // API Call
+            $result = $this->adminService->createContainer(
+                $newContainerForm->get('name')->getData(),
+                $newContainerForm->get('hostPortRoot')->getData(),
+                $newContainerForm->get('memoryLimit')->getData(),
+                $newContainerForm->get('cpuLimit')->getData()
+            );
+
+            if ($result['status'] !== 'success') {
+                return new JsonResponse(['errors' => $result['message']], 400);
+            }
+
+            dump($result);
+            $newContainer->setId($result['data']['Id']);
+            $newContainer->setName('/'.$newContainer->getName());
+            $entityManager->persist($newContainer);
+            $entityManager->flush();
+            return new JsonResponse(['errors' => []], 201);
+        } else if ($newContainerForm->isSubmitted() && !$newContainerForm->isValid()) {
+            return new JsonResponse(['errors' => $newContainerForm->getErrors()], 400);
+        }
 
         return $this->render('admin/index.twig', [
             'users' => $users,
-            'containers' => $containers
+            'containers' => $containers,
+            'newContainerForm' => $newContainerForm->createView()
         ]);
     }
 
@@ -212,7 +246,7 @@ class AdminController extends AbstractController
 
     #[Route('/container/create', name: 'app_admin_container_create')]
     public function containerCreate(Request $request): Response {
-        $name = $request->get('container-name');
+        /*$name = $request->get('container-name');
         $basePort = $request->get('container-basePort');
         $memory = $request->get('container-memory');
         $cpu = $request->get('container-cpu');
@@ -226,9 +260,9 @@ class AdminController extends AbstractController
         $ports = $ports == '' ? null: $ports;
         $commands = $commands == '' ? null: $commands;
 
-        $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $commands);
+        $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $commands);*/
 
-        return new JsonResponse($result, Response::HTTP_OK);
+        return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
     }
 
     #[Route('/container/delete/{container}', name: 'app_admin_container_delete')]

@@ -27,9 +27,17 @@ class Containers
     #[ORM\OneToMany(mappedBy: 'container', targetEntity: ContainerActivity::class, orphanRemoval: true)]
     private Collection $containerActivities;
 
-    public function __construct(string $id)
+    #[ORM\Column(nullable: true)]
+    private ?int $hostPortRoot = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $memoryLimit = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $cpuLimit = null;
+
+    public function __construct()
     {
-        $this->setId($id);
         $this->user = new ArrayCollection();
         $this->containerActivities = new ArrayCollection();
     }
@@ -129,6 +137,42 @@ class Containers
                 $containerActivity->setContainer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHostPortRoot(): ?int
+    {
+        return $this->hostPortRoot;
+    }
+
+    public function setHostPortRoot(?int $hostPortRoot): static
+    {
+        $this->hostPortRoot = $hostPortRoot;
+
+        return $this;
+    }
+
+    public function getMemoryLimit(): ?float
+    {
+        return $this->memoryLimit;
+    }
+
+    public function setMemoryLimit(?float $memoryLimit): static
+    {
+        $this->memoryLimit = $memoryLimit;
+
+        return $this;
+    }
+
+    public function getCpuLimit(): ?float
+    {
+        return $this->cpuLimit;
+    }
+
+    public function setCpuLimit(?float $cpuLimit): static
+    {
+        $this->cpuLimit = $cpuLimit;
 
         return $this;
     }

@@ -1,5 +1,7 @@
-@import "@radix-ui/colors/crimson.css";
+@import "@radix-ui/colors/purple.css";
+@import "@radix-ui/colors/orange.css";
 @import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/sand.css";
 @import "@radix-ui/colors/indigo.css";
 @import "@radix-ui/colors/amber.css";
 @import "@radix-ui/colors/jade.css";
@@ -23,39 +25,55 @@
 
   --logo-color: #FD769F;
 
-  --background-1: var(--mauve-1);
-  --background-2: var(--mauve-2);
-  --component-background: var(--crimson-3);
-  --component-background-hover: var(--crimson-4);
-  --component-background-selected: var(--crimson-5);
-  --border-not-interactive: var(--crimson-6);
-  --border-interactive: var(--crimson-7);
-  --border-strong: var(--crimson-8);
-  --solid-background: var(--crimson-9);
-  --solid-background-hover: var(--crimson-10);
+  --background-1: var(--purple-1);
+  --background-2: var(--purple-2);
+  --component-background: var(--purple-3);
+  --component-background-hover: var(--purple-4);
+  --component-background-selected: var(--purple-5);
+  --border-not-interactive: var(--purple-6);
+  --border-interactive: var(--purple-7);
+  --border-strong: var(--purple-8);
+  --solid-background: var(--purple-9);
+  --solid-background-hover: var(--purple-10);
   --text-low-contrast-gray: var(--mauve-11);
   --text-high-contrast-gray: var(--mauve-12);
 
-  --text-low-contrast: var(--crimson-11);
-  --text-high-contrast: var(--crimson-12);
+  --text-low-contrast: var(--purple-11);
+  --text-high-contrast: var(--purple-12);
+
+  --accent-background-1: var(--orange-1);
+  --accent-background-2: var(--orange-2);
+  --accent-component-background: var(--orange-3);
+  --accent-component-background-hover: var(--orange-4);
+  --accent-component-background-selected: var(--orange-5);
+  --accent-border-not-interactive: var(--orange-6);
+  --accent-border-interactive: var(--orange-7);
+  --accent-border-strong: var(--orange-8);
+  --accent-solid-background: var(--orange-9);
+  --accent-solid-background-hover: var(--orange-10);
+  --accent-text-low-contrast-gray: var(--orang-11);
+  --accent-text-high-contrast-gray: var(--orang-12);
+
+  --accent-text-low-contrast: var(--orange-11);
+  --accent-text-high-contrast: var(--orange-12);
 }
 
 .dark {
-  --background-1: var(--mauve-1);
-  --background-2: var(--mauve-2);
-  --component-background: var(--crimson-3);
-  --component-background-hover: var(--crimson-4);
-  --component-background-selected: var(--crimson-5);
-  --border-not-interactive: var(--crimson-6);
-  --border-interactive: var(--crimson-7);
-  --border-strong: var(--crimson-8);
-  --solid-background: var(--crimson-9);
-  --solid-background-hover: var(--crimson-10);
+  --background-1: var(--purple-1);
+  --background-2: var(--purple-2);
+  --component-background: var(--purple-3);
+  --component-background-hover: var(--purple-4);
+  --component-background-selected: var(--purple-5);
+  --border-not-interactive: var(--purple-6);
+  --border-interactive: var(--purple-7);
+  --border-strong: var(--purple-8);
+  --solid-background: var(--purple-9);
+  --solid-background-hover: var(--purple-10);
   --text-low-contrast-gray: var(--mauve-11);
   --text-high-contrast-gray: var(--mauve-12);
 
-  --text-low-contrast: var(--crimson-11);
-  --text-high-contrast: var(--crimson-12);
+  --text-low-contrast: var(--purple-11);
+  --text-high-contrast: var(--purple-12);
 }
 
 /**

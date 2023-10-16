@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Entity\Containers;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -87,6 +88,7 @@ class AppService
 
         try {
             $containers = $response->toArray();
+            dump($containers);
             $this->syncContainers($containers);
             return $containers['success'];
         } catch (ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
@@ -147,8 +149,10 @@ class AppService
         $should_flush = false;
         foreach ($containers['success'] as $key=>$container) {
             if ($containersRepository->findOneBy(['id' => $key]) == null) {
-                $newContainer = new Containers($key);
+                $newContainer = new Containers();
+                $newContainer->setId($key);
                 $newContainer->setName($container['name']);
+                $newContainer->setHostPortRoot(intval($container['host_port_root']));
                 $this->entityManager->persist($newContainer);
                 $should_flush = true;
             }

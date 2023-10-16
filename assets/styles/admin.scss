@@ -45,23 +45,28 @@ section {
 }
 
 #container-create-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  text-align: left;
-  align-items: center;
-
-  label {
+  .required-field {
     img {
       width: 15px;
       height: 15px;
     }
   }
 
+  &>div {
+      display: grid;
+      grid-template-columns: 15px 1fr 1fr;
+      gap: 10px;
+      text-align: left;
+      align-items: center;
+  }
 
-  input {
+  input, select {
     padding: 10px;
     border: 1px solid var(--border-interactive);
     border-radius: 5px;
+    outline: none;
   }
 }
