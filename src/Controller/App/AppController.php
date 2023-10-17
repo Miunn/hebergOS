@@ -251,4 +251,17 @@ class AppController extends AbstractController
 
         return new Response("OK", 200);
     }
+
+    #[Route('/notifications/delete/{notification}', name: 'app_delete_notification')]
+    public function deleteNotification(Notifications $notification): Response {
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($notification->getContainer())) {
+            throw new AccessDeniedException();
+        }
+
+        $this->entityManager->remove($notification);
+        $this->entityManager->flush();
+
+        return new Response("No Content", 204);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller\App;
 
 use App\Entity\Containers;
+use App\Entity\Notifications;
 use App\Entity\User;
 use App\Form\ContainerFormType;
 use App\Form\UserFormType;
@@ -273,5 +274,13 @@ class AdminController extends AbstractController
     #[Route('/container/delete/{container}', name: 'app_admin_container_delete')]
     public function containerDelete(Containers $container): Response {
         return new JsonResponse($this->adminService->deleteContainer($container), Response::HTTP_OK);
+    }
+
+    #[Route('/notifications/delete/{notification}', name: 'app_admin_delete_notification')]
+    public function deleteNotification(Notifications $notification): Response {
+        $this->entityManager->remove($notification);
+        $this->entityManager->flush();
+
+        return new Response("No Content", 204);
     }
 }

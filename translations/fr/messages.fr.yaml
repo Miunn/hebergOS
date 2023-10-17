@@ -108,3 +108,5 @@ notifications.request.by: "Initiée par:"
 notifications.request.delete: Demande de suppression du container
 notifications.request.memory: Demande d'augmentation de la mémoire
 notifications.request.cpu: Demande d'augmentation du cpu
+notifications.date: "Le:"
+notifications.delete: Supprimer la demande
