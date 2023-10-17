@@ -36,10 +36,14 @@ class Containers
     #[ORM\Column(nullable: true)]
     private ?float $cpuLimit = null;
 
+    #[ORM\OneToMany(mappedBy: 'container', targetEntity: Notifications::class, orphanRemoval: true)]
+    private Collection $notifications;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
         $this->containerActivities = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -173,6 +177,36 @@ class Containers
     public function setCpuLimit(?float $cpuLimit): static
     {
         $this->cpuLimit = $cpuLimit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notifications>
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notifications $notification): static
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setContainer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notifications $notification): static
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getContainer() === $this) {
+                $notification->setContainer(null);
+            }
+        }
 
         return $this;
     }

@@ -51,51 +51,6 @@ startContainerCta.addEventListener("click", (event) => {
     );
 });
 
-startContainerCta.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    let element = event.currentTarget;
-    let name = element.getAttribute("data-project");
-
-    fireConfirmationSwal(
-        `Démarrer ${name} ?`,
-        'Démarrer',
-        'question',
-        async (r) => {
-            if (!r.isConfirmed) {
-                return;
-            }
-
-            const response = await fetch(element.getAttribute('data-route'));
-
-            if (response.ok) {
-                // App answered but request may not have been successfully
-                const json = await response.json();
-
-                if (json['success']) {
-                    fireBasicSwal(
-                        `${name} démarré !`,
-                        'success',
-                        (r) => {
-                            location.reload();
-                        }
-                    );
-                } else {
-                    fireBasicSwal(
-                        `Impossible de démarrer ${name}`,
-                        'error'
-                    );
-                }
-            } else {
-                fireBasicSwal(
-                    "Impossible de joindre l'application",
-                    'error'
-                );
-            }
-        }
-    );
-});
-
 stopContainerCta.addEventListener("click", (event) => {
     event.preventDefault();
 
@@ -185,3 +140,37 @@ restartContainerCta.addEventListener("click", (event) => {
         }
     );
 });
+
+askDeleteContainerCta.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    let element = event.currentTarget;
+    let name = element.getAttribute("data-project");
+
+    fireConfirmationSwal(
+        `Demander la suppression de ${name} ?`,
+        'Confirmer',
+        'warning',
+        async (r) => {
+            if (!r.isConfirmed) {
+                return;
+            }
+
+            const response = await fetch(element.getAttribute("data-route"));
+
+            if (response.ok) {
+                fireBasicSwal(
+                    `Demande effectuée`,
+                    'success',
+                    (r) => {
+                        location.reload();
+                    }
+                );
+            } else {
+                fireBasicSwal(
+                    `Impossible de joindre l'application`,
+                    'error'
+                );
+            }
+        })
+})

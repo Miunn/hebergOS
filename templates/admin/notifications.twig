@@ -1,0 +1,29 @@
+{% extends 'index.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('notifications') }}
+{% endblock %}
+
+{% block main %}
+    <div class="card">
+        <h1>{{ 'notifications.title'|trans }}</h1>
+    </div>
+
+    {% if notifications|length == 0 %}
+        <div class="card">
+            <p class="text-center">{{ 'notifications.empty'|trans }}</p>
+        </div>
+    {% endif %}
+
+    <div>
+        {% for notif in notifications %}
+            <div class="notif">
+                <h3>{{ notif.title }}</h3>
+                <h3>{{ notif.container.name }}</h3>
+                <h4>{{ 'notifications.request.by'|trans }} {{ notif.user.firstname }} {{ notif.user.lastname }} ({{ notif.user.username }})</h4>
+                <h4>{{ notif.user.email }}</h4>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

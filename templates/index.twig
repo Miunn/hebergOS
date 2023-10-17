@@ -23,6 +23,9 @@
             <ul>
                 {% if is_granted('IS_AUTHENTICATED') and is_granted('ROLE_ADMIN') %}
                     <li>
+                        <a class="hover-underline" href="{{ path('app_notifications_index') }}">{{ 'title.notifications'|trans }}</a>
+                    </li>
+                    <li>
                         <a class="hover-underline" href="{{ path('app_admin_index') }}">{{ 'title.admin' | trans }}</a>
                     </li>
                 {% elseif not is_granted('IS_AUTHENTICATED') %}

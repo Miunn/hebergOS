@@ -12,6 +12,7 @@ title.technologies: Technologies
 title.catchLine.first: Pour le club,
 title.catchLine.second: par le club
 title.admin: Administration
+title.notifications: Notifications
 
 container.overview: Vue d'ensemble
 container.stats: Graphiques
@@ -99,3 +100,10 @@ admin.container.create.memory: "Limite de mémoire RAM: "
 admin.container.create.cpu: "Limite de CPU:"
 admin.container.create.ports: "Ports nécessaires: "
 admin.container.create.commands: "Commandes à lancer au démarrage: "
+
+notifications.title: Demandes utilisateurs
+notifications.empty: Aucune notification
+notifications.request.by: "Initiée par:"
+notifications.request.delete: Suppression du container
+notifications.request.memory: Augmentation de la mémoire
+notifications.request.cpu: Augmentation du cpu

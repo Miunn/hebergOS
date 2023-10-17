@@ -9,12 +9,8 @@ use App\Form\UserFormType;
 use App\Services\AdminService;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
-use DateTimeImmutable;
-use DateTimeZone;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +18,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use function Webmozart\Assert\Tests\StaticAnalysis\contains;
 
 #[Route('/app/admin')]
 class AdminController extends AbstractController

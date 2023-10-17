@@ -3,6 +3,7 @@
 namespace App\Controller\App;
 
 use App\Entity\Containers;
+use App\Entity\Notifications;
 use App\Entity\User;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
@@ -201,11 +202,37 @@ class AppController extends AbstractController
 
     #[Route('/container/ask-delete/{container}', name: 'app_container_ask_delete')]
     public function askDeleteContainer(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $notification = new Notifications();
+        $notification->setUser($user);
+        $notification->setContainer($container);
+        $notification->setTitle($this->translator->trans('notifications.request.delete'));
+        $this->entityManager->persist($notification);
+        $this->entityManager->flush();
+
         return new Response("OK", 200);
     }
 
     #[Route('/container/ask-config/{container}', name: 'app_container_ask_config')]
     public function askConfigContainer(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $notification = new Notifications();
+        $notification->setUser($user);
+        $notification->setContainer($container);
+        $notification->setTitle($this->translator->trans('notifications.request.memory'));
+        $this->entityManager->persist($notification);
+        $this->entityManager->flush();
+
         return new Response("OK", 200);
     }
 }
