@@ -62,9 +62,12 @@
                 <li aria-current="{{ shell|default != null }}">
                     <a href="{{ path('app_container_shell', {'container': container.id}) }}">{{ 'container.shell'|trans }}</a>
                 </li>
-                    {% endif %}
+                {% endif %}
                 <li aria-current="{{ actions|default != null }}">
                     <a href="{{ path('app_container_actions', {'container': container.id}) }}">{{ 'container.actions'|trans }}</a>
+                </li>
+                <li aria-current="{{ notifications|default != null }}">
+                    <a href="{{ path('app_container_notifications', {'container': container.id}) }}">{{ 'container.notifications'|trans }}</a>
                 </li>
             </ul>
         </nav>

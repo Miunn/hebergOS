@@ -11,6 +11,7 @@ use App\Services\AppService;
 use App\Services\ContainerActivityService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -177,6 +178,16 @@ class AdminController extends AbstractController
             'container' => $container,
             'containerApi' => $containerApi,
             "administration" => "1"
+        ]);
+    }
+
+    #[Route('/container/notifications/{container}', name: 'app_admin_container_notifications')]
+    public function containerNotifications(Containers $container): Response {
+        $containerApi = $this->appService->getContainer($container->getId());
+        return $this->render('admin/view/container-notifications-admin.twig', [
+            'container' => $container,
+            'containerApi' => $containerApi,
+            'notifications' => '1'
         ]);
     }
 

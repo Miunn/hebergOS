@@ -17,6 +17,7 @@ title.notifications: Notifications
 container.overview: Vue d'ensemble
 container.stats: Graphiques
 container.actions: Actions
+container.notifications: Demandes
 container.domain.none: Aucun nom de domaine
 container.domain.new: Nouveau nom de domaine
 
@@ -104,6 +105,6 @@ admin.container.create.commands: "Commandes à lancer au démarrage: "
 notifications.title: Demandes utilisateurs
 notifications.empty: Aucune notification
 notifications.request.by: "Initiée par:"
-notifications.request.delete: Suppression du container
-notifications.request.memory: Augmentation de la mémoire
-notifications.request.cpu: Augmentation du cpu
+notifications.request.delete: Demande de suppression du container
+notifications.request.memory: Demande d'augmentation de la mémoire
+notifications.request.cpu: Demande d'augmentation du cpu

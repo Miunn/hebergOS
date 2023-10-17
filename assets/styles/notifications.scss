@@ -1,5 +1,12 @@
-.wrapper {
+#notifs-content {
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.notif {
+  h3:nth-child(1) {
+    color: var(--text-low-contrast);
+  }
 }

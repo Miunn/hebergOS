@@ -69,6 +69,9 @@
                 <li aria-current="{{ administration|default != null }}">
                     <a href="{{ path('app_admin_container_administration', {'container': container.id}) }}">{{ 'container.admin'|trans }}</a>
                 </li>
+                <li aria-current="{{ notifications|default != null }}">
+                    <a href="{{ path('app_admin_container_notifications', {'container': container.id}) }}">{{ 'container.notifications'|trans }}</a>
+                </li>
             </ul>
         </nav>
     </div>

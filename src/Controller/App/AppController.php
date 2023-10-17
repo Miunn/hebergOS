@@ -109,6 +109,22 @@ class AppController extends AbstractController
         ]);
     }
 
+    #[Route('/container/notifications/{container}', name: 'app_container_notifications')]
+    public function containerNotifications(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $containerApi = $this->appService->getContainer($container->getId());
+        return $this->render('app/view/container-notifications.twig', [
+            'container' => $container,
+            'containerApi' => $containerApi,
+            'notifications' => '1'
+        ]);
+    }
+
     /** AJAX Routes */
 
     #[Route('/container/change-domain/{container}', name: 'app_change_domain')]
