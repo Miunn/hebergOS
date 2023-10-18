@@ -4,7 +4,8 @@ const startContainerCta = document.getElementById("start-container-cta");
 const stopContainerCta = document.getElementById("stop-container-cta");
 const restartContainerCta = document.getElementById("restart-container-cta");
 const askDeleteContainerCta = document.getElementById("ask-delete-container-cta");
-const askConfigContainerCta = document.getElementById("ask-config-container-cta");
+const askConfigMemoryContainerCta = document.getElementById("ask-config-memory-container-cta");
+const askConfigCpuContainerCta = document.getElementById("ask-config-cpu-container-cta");
 
 startContainerCta.addEventListener("click", (event) => {
     event.preventDefault();
@@ -172,5 +173,72 @@ askDeleteContainerCta.addEventListener("click", (event) => {
                     'error'
                 );
             }
-        })
-})
+        });
+});
+
+askConfigMemoryContainerCta.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    let element = event.currentTarget;
+
+    fireConfirmationSwal(
+        `Demander un changement de la limite ram ?`,
+        'Confirmer',
+        'question',
+        async (r) => {
+            if (!r.isConfirmed) {
+                return;
+            }
+
+            const response = await fetch(element.getAttribute("data-route"));
+
+            if (response.ok) {
+                fireBasicSwal(
+                    `Demande effectuée`,
+                    'success',
+                    (r) => {
+                        location.reload();
+                    }
+                );
+            } else {
+                fireBasicSwal(
+                    `Impossible de joindre l'application`,
+                    'error'
+                );
+            }
+        });
+});
+
+askConfigCpuContainerCta.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    let element = event.currentTarget;
+    let name = element.getAttribute("data-project");
+
+    fireConfirmationSwal(
+        `Demander un changement de la limite cpu`,
+        'Confirmer',
+        'question',
+        async (r) => {
+            if (!r.isConfirmed) {
+                return;
+            }
+
+            const response = await fetch(element.getAttribute("data-route"));
+
+            if (response.ok) {
+                fireBasicSwal(
+                    `Demande effectuée`,
+                    'success',
+                    (r) => {
+                        location.reload();
+                    }
+                );
+            } else {
+                fireBasicSwal(
+                    `Impossible de joindre l'application`,
+                    'error'
+                );
+            }
+        });
+});

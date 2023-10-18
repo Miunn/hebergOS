@@ -48,7 +48,8 @@ container.actions.restart: Redémarrer
 container.actions.restart.hint: A privilégier dans la plupart des cas
 container.actions.askDelete: Demander une suppression
 container.actions.delete: Supprimer
-container.actions.askConfig: Demander un changement de configuration
+container.actions.askConfig.memory: Demander un changement de la limite mémoire
+container.actions.askConfig.cpu: Demander un changement de la limite cpu
 container.actions.config: Changer la configuration
 
 container.records.started: Projet démarré
@@ -106,7 +107,7 @@ notifications.title: Demandes utilisateurs
 notifications.empty: Aucune notification
 notifications.request.by: "Initiée par:"
 notifications.request.delete: Demande de suppression du container
-notifications.request.memory: Demande d'augmentation de la mémoire
-notifications.request.cpu: Demande d'augmentation du cpu
+notifications.request.memory: Demande de changement de la mémoire
+notifications.request.cpu: Demande de changement du cpu
 notifications.date: "Le:"
 notifications.delete: Supprimer la demande

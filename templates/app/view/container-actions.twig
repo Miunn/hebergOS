@@ -60,7 +60,8 @@
 
                 <div class="flex-actions">
                     <button class="solid-cta" id="ask-delete-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_delete', {'container': container.id}) }}">{{ 'container.actions.askDelete'|trans }}</button>
-                    <button class="solid-cta" id="ask-config-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_config', {'container': container.id}) }}">{{ 'container.actions.askConfig'|trans }}</button>
+                    <button class="solid-cta" id="ask-config-memory-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_config_memory', {'container': container.id}) }}">{{ 'container.actions.askConfig.memory'|trans }}</button>
+                    <button class="solid-cta" id="ask-config-cpu-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_config_cpu', {'container': container.id}) }}">{{ 'container.actions.askConfig.cpu'|trans }}</button>
                 </div>
             </section>
         </div>

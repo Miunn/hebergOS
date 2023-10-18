@@ -234,8 +234,8 @@ class AppController extends AbstractController
         return new Response("OK", 200);
     }
 
-    #[Route('/container/ask-config/{container}', name: 'app_container_ask_config')]
-    public function askConfigContainer(Containers $container): Response {
+    #[Route('/container/ask-config/{container}', name: 'app_container_ask_config_memory')]
+    public function askConfigMemoryContainer(Containers $container): Response {
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
@@ -246,6 +246,24 @@ class AppController extends AbstractController
         $notification->setUser($user);
         $notification->setContainer($container);
         $notification->setTitle($this->translator->trans('notifications.request.memory'));
+        $this->entityManager->persist($notification);
+        $this->entityManager->flush();
+
+        return new Response("OK", 200);
+    }
+
+    #[Route('/container/ask-config/{container}', name: 'app_container_ask_config_cpu')]
+    public function askConfigCpuContainer(Containers $container): Response {
+        // Ensure user is associated with it
+        $user = $this->getUser();
+        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
+            throw new AccessDeniedException();
+        }
+
+        $notification = new Notifications();
+        $notification->setUser($user);
+        $notification->setContainer($container);
+        $notification->setTitle($this->translator->trans('notifications.request.cpu'));
         $this->entityManager->persist($notification);
         $this->entityManager->flush();
 
