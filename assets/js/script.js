@@ -23,9 +23,12 @@ export function fireConfirmationSwal(title, confirmAction, icon=null, callback=(
     }).then(callback);
 }
 
-export function fireBasicSwal(title, icon, callback=(r)=>{}) {
-    Swal.fire(title, '', icon)
-        .then(callback);
+export function fireBasicSwal(title, icon, callback=(r)=>{}, text=null) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: icon
+    }).then(callback);
 }
 
 export function fireHtmlSwal(title, html, icon, preConfirm=()=>{}, callback=(r)=>{}, inputValidator=(v, m)=>{}) {

@@ -12,11 +12,18 @@ deleteContainerBtn.addEventListener("click", (event) => {
         }
 
         const response = await fetch(element.getAttribute("data-delete"));
+        console.log(response);
+        console.log(response.ok);
 
         if (response.ok) {
-            fireBasicSwal("Container supprimé", "success", (r) => {location.href=element.getAttribute('data-redirect')});
+            const json = await response.json();
+            if (json["status"] === "success") {
+                fireBasicSwal("Container supprimé", "success", (r) => {location.href=element.getAttribute('data-redirect')});
+            } else {
+                fireBasicSwal("Impossible de supprimer le container", "error", ()=>{}, "Vérfiez que le container est éteint");
+            }
         } else {
-            fireBasicSwal("Impossible de supprimer le container", "error")
+            fireBasicSwal("Impossible de joindre l'application", "error");
         }
     });
 });
