@@ -189,7 +189,15 @@ class AppService
         }
 
         try {
-            return $response->toArray();
+            $arrayResponse = $response->toArray();
+            $lastRecord = end($arrayResponse);
+            // Sync limits
+            $container->setMemoryLimit($lastRecord['memory']['limit']);
+            $container->setCpuLimit($lastRecord['cpu']['limit']);
+            $this->entityManager->persist($container);
+            $this->entityManager->flush();
+
+            return $arrayResponse;
         } catch (ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
             dump($e);
         }

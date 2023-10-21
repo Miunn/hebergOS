@@ -94,14 +94,6 @@ class AdminController extends AbstractController
                 );
             }
 
-            // Check in the update containers list if there is some to be deleted
-            /*foreach ($originalContainers as $container) {
-                if ($user->getContainers()->contains($container) === false) {
-                    $container->getUsers()->removeUser($user);
-                    $entityManager->persist($container);
-                }
-            }*/
-
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -248,27 +240,6 @@ class AdminController extends AbstractController
         }
 
         return new JsonResponse($response);
-    }
-
-    #[Route('/container/create', name: 'app_admin_container_create')]
-    public function containerCreate(Request $request): Response {
-        /*$name = $request->get('container-name');
-        $basePort = $request->get('container-basePort');
-        $memory = $request->get('container-memory');
-        $cpu = $request->get('container-cpu');
-        $ports = $request->get('container-ports');
-        $commands = $request->get('container-image');
-
-        if ($name == '' || $basePort == '' || $memory == '' || $cpu == '') {
-            return new Response('Missing required fields', 400);
-        }
-
-        $ports = $ports == '' ? null: $ports;
-        $commands = $commands == '' ? null: $commands;
-
-        $result = $this->adminService->createContainer($name, $basePort, $memory, $cpu, $ports, $commands);*/
-
-        return new JsonResponse(['status' => 'success'], Response::HTTP_OK);
     }
 
     #[Route('/container/delete/{container}', name: 'app_admin_container_delete')]
