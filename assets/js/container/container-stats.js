@@ -190,15 +190,15 @@ function parseData(jsonData) {
 const [instantTimestamps, instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown] = parseData(data);
 
 // Create default last hour chart
-createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 360, instantTimestamps);
+createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 240, instantTimestamps);
 
 /** Handle period selection **/
 
 const periodSelector = document.getElementById("charts-period");
 
 /*
-1h  10 sec
-4h  10 sec
+1h  15 sec
+4h  15 sec
 1j  2mins
 7j  30mins
 all
@@ -207,11 +207,11 @@ periodSelector.addEventListener("change", (event) => {
     event.preventDefault();
     switch (event.currentTarget.value) {
         case "1hour":
-            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 360, instantTimestamps);
+            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 240, instantTimestamps);
             break;
 
         case "4hours":
-            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 1440, instantTimestamps);
+            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 960, instantTimestamps);
             break;
 
         case "1day":
