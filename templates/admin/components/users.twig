@@ -12,7 +12,10 @@
         {% for user in users %}
             {% set user_containers = user.containers.toArray %}
             <tr>
-                <td>{{ user.email }}</td>
+                <td>
+                    <p>{{ user.username }} - {{ user.firstname }} {{ user.lastname }}</p>
+                    <p>{{ user.email }}</p>
+                </td>
                 {% if user_containers|length == 0 %}
                     <td class="italic">{{ 'admin.users.containers.empty'|trans }}</td>
                 {% else %}
