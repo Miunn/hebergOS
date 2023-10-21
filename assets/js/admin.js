@@ -27,6 +27,10 @@ containerCreateBtn.addEventListener("click", (event) => {
     }, async (r) => {
         // Submit form (request it because we want to raise a submit event
         //r.value.requestSubmit();
+        if (!r.isConfirmed) {
+            return
+        }
+
         const data = new FormData(r.value);
 
         const response = await fetch(window.location, {
