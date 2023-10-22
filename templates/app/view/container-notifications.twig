@@ -26,7 +26,7 @@
                             ({{ notif.user.username }})</h4>
                         <h4>{{ notif.user.email }}</h4>
 
-                        <button class="delete-notification" type="button" data-route="{{ path('app_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.delete'|trans }}</button>
+                        <button class="delete-notification accent-cta" type="button" data-route="{{ path('app_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.delete'|trans }}</button>
                     </div>
                 {% endfor %}
             </div>

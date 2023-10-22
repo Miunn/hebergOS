@@ -10,6 +10,6 @@
 
     <p>{{ 'container.admin.runningPort'|trans }} {{ containerApi.host_port_root }}</p>
 
-    <button class="solid-cta" id="delete-container" type="button" data-delete="{{ path('app_admin_container_delete', {'container': container.id}) }}" data-redirect="{{ path('app_admin_index') }}">{{ 'container.admin.delete'|trans }}</button>
+    <button class="accent-solid-cta" id="delete-container" type="button" data-delete="{{ path('app_admin_container_delete', {'container': container.id}) }}" data-redirect="{{ path('app_admin_index') }}">{{ 'container.admin.delete'|trans }}</button>
 </section>
 {% endblock %}
