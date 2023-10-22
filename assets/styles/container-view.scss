@@ -66,7 +66,7 @@
   nav {
     width: fit-content;
     margin: 20px auto;
-    border: 1px solid var(--border-interactive);
+    border: 1px solid var(--accent-border-interactive);
     border-radius: 20px;
     overflow: hidden;
 
@@ -76,12 +76,20 @@
       li {
 
         &:not(:last-child) {
-          border-right: 1px solid var(--border-interactive);
+          border-right: 1px solid var(--accent-border-interactive);
         }
 
         &[aria-current="1"] {
           font-weight: bold;
-          background-color: var(--component-background);
+          background-color: var(--accent-component-background);
+        }
+
+        &:hover {
+          background-color: var(--accent-component-background-hover);
+        }
+
+        &:active {
+          background-color: var(--accent-component-background-selected);
         }
 
         a {

@@ -5,6 +5,13 @@ import zoomPlugin from 'chartjs-plugin-zoom';
 
 Chart.register(zoomPlugin);
 
+let root = document.querySelector(":root");
+let rootStyles = getComputedStyle(root);
+let chartBorderColor = rootStyles.getPropertyValue('--border-strong');
+let chartBackgroundColor = rootStyles.getPropertyValue('--border-interactive')+"55";
+let chartBorderColorAccent = rootStyles.getPropertyValue('--accent-border-strong');
+let chartBackgroundColorAccent = rootStyles.getPropertyValue('--accent-border-interactive')+"55";
+
 const ramChart = document.getElementById("ram-chart");
 const cpuChart = document.getElementById("cpu-chart");
 const netChart = document.getElementById("net-chart");
@@ -94,14 +101,18 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
         label: 'RAM (Go) - limite: '+memoryLimit+'Go',
         data: ram.slice(-offset),
         fill: true,
-        borderWidth: 2
+        borderWidth: 2,
+        borderColor: chartBorderColor,
+        backgroundColor: chartBackgroundColor
     }], 0.06, labels, timeUnit);
 
     cpuChartReference = createChart(cpuChart, [{
         label: 'CPU (%) - limite: '+cpuLimit+'%',
         data: cpu.slice(-offset),
         fill: true,
-        borderWidth: 2
+        borderWidth: 2,
+        borderColor: chartBorderColorAccent,
+        backgroundColor: chartBackgroundColorAccent
     }], 0, labels, timeUnit);
 
     netChartReference = createChart(netChart, [
@@ -109,13 +120,17 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
             label: 'NET Down (ko)',
             data: netTotalDown.slice(-offset),
             fill: true,
-            borderWidth: 2
+            borderWidth: 2,
+            borderColor: chartBorderColor,
+            backgroundColor: chartBackgroundColor
         },
         {
             label: 'NET Up (ko)',
             data: netTotalUp.slice(-offset),
             fill: true,
-            borderWidth: 2
+            borderWidth: 2,
+            borderColor: chartBorderColorAccent,
+            backgroundColor: chartBackgroundColorAccent
         }
     ], 1000, labels, timeUnit);
 
@@ -124,13 +139,17 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
             label: 'NET Delta Down (ko)',
             data: netDeltaDown.slice(-offset),
             fill: true,
-            borderWidth: 2
+            borderWidth: 2,
+            borderColor: chartBorderColor,
+            backgroundColor: chartBackgroundColor
         },
         {
             label: 'NET Delta Up (ko)',
             data: netDeltaUp.slice(-offset),
             fill: true,
-            borderWidth: 2
+            borderWidth: 2,
+            borderColor: chartBorderColorAccent,
+            backgroundColor: chartBackgroundColorAccent
         }
     ], 1000, labels, timeUnit);
 }

@@ -262,6 +262,27 @@ button {
   }
 }
 
+.accent-cta {
+  background-color: var(--accent-component-background);
+
+  &:hover {
+    background-color: var(--accent-component-background-hover);
+  }
+
+  &:active {
+    background-color: var(--accent-component-background-selected);
+  }
+}
+
+.accent-solid-cta {
+  color: white;
+  background-color: var(--accent-solid-background);
+
+  &:hover {
+    background-color: var(--accent-solid-background-hover);
+  }
+}
+
 .card {
   padding: 20px;
   border-radius: 20px;

@@ -11,8 +11,8 @@ section {
   font-size: 1.3rem;
   font-weight: 400;
   padding: 10px;
-  background-color: var(--component-background);
-  border: 2px solid var(--border-strong);
+  background-color: var(--accent-component-background);
+  border: 2px solid var(--accent-border-strong);
   border-radius: 10px;
 
   display: flex;
@@ -24,11 +24,11 @@ section {
   }
 
   &:hover {
-    background-color: var(--component-background-hover);
+    background-color: var(--accent-component-background-hover);
   }
 
   &:active {
-    background-color: var(--component-background-selected);
+    background-color: var(--accent-component-background-selected);
   }
 }
 
