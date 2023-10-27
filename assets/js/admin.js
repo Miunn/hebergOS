@@ -46,3 +46,8 @@ containerCreateBtn.addEventListener("click", (event) => {
     });
 });
 
+/** Sort container **/
+const sortButton = document.getElementById("sort-container");
+const containers = document.getElementsByClassName("containers")[0].children;
+
+console.log(containers);

@@ -20,7 +20,7 @@
         {% include 'admin/components/users.twig' with {'users': users} %}
     </section>
 
-    <h1 class="section-title">{{ 'admin.containers.title' | trans }}  <button class="btn-add" id="add-container"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</button></h1>
+    <h1 class="section-title">{{ 'admin.containers.title' | trans }}  <button class="btn-add" id="add-container"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</button> <button id="sort-container"><img src="{{ asset('build/images/sort.png') }}" alt="Sort"> {{ 'admin.container.sort'|trans }}</button></h1>
     <section class="containers">
         {% for key, container in containers %}
             {% include 'components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_admin_container_overview', {'container': key}) } %}
