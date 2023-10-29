@@ -102,6 +102,7 @@ admin.container.create.memory: "Limite de mémoire RAM: "
 admin.container.create.cpu: "Limite de CPU:"
 admin.container.create.ports: "Ports nécessaires: "
 admin.container.create.commands: "Commandes à lancer au démarrage: "
+admin.container.sort: "Trier"
 
 notifications.title: Demandes utilisateurs
 notifications.empty: Aucune notification

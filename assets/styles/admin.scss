@@ -32,6 +32,30 @@ section {
   }
 }
 
+#sort-container {
+  background-color: transparent;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 16px;
+
+  float: right;
+  img {
+    width: 30px;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+}
+
 .role-pad {
   padding: 3px 8px;
   border-radius: 20px;
