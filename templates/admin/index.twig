@@ -12,6 +12,7 @@
     {{ parent() }}
     {{ encore_entry_script_tags('users') }}
     {{ encore_entry_script_tags('admin') }}
+    {{ encore_entry_script_tags('sortContainer') }}
 {% endblock %}
 
 {% block main %}
@@ -20,8 +21,12 @@
         {% include 'admin/components/users.twig' with {'users': users} %}
     </section>
 
-    <h1 class="section-title">{{ 'admin.containers.title' | trans }}  <button class="btn-add" id="add-container"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</button> <button id="sort-container"><img src="{{ asset('build/images/sort.png') }}" alt="Sort"> {{ 'admin.container.sort'|trans }}</button></h1>
-    <section class="containers">
+    <h1 class="section-title">{{ 'admin.containers.title' | trans }}
+        <button class="btn-add" id="add-container"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</button>
+        <button class="sort-container" id="sort-state" data-wrapper="containers-wrapper" data-reverse="false">{{ 'admin.container.sort.state'|trans }}</button>
+        <button class="sort-container" id="sort-name" data-wrapper="containers-wrapper" data-reverse="false"> {{ 'admin.container.sort.name'|trans }}</button>
+    </h1>
+    <section class="containers" id="containers-wrapper">
         {% for key, container in containers %}
             {% include 'components/container.twig' with {'id': key, 'container': container, 'container_view_uri': path('app_admin_container_overview', {'container': key}) } %}
         {% endfor %}
