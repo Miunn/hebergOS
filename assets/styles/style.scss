@@ -119,6 +119,21 @@ input {
   Default rules
  */
 
+/* Dynamic font */
+.material-symbols-outlined {
+  display: inline-block;
+  text-decoration: none !important;
+  font-variation-settings:
+          'FILL' 0,
+          'wght' 300,
+          'GRAD' 0,
+          'opsz' 24;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
 header {
   background-color: var(--solid-background);
 
@@ -181,6 +196,10 @@ header {
 
 .hover-underline:hover {
   text-decoration: underline;
+
+  & .material-symbols-outlined {
+    text-decoration: none !important;
+  }
 }
 
 button {

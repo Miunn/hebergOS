@@ -3,7 +3,7 @@ application.descriptionHTML: Destiné au club ./insa.sh pour permettre aux membr
   HebergOS se décompose en deux grandes parties.<br>
   L'application Web (ici)<br>
   La partie sombre
-application.getApp: Accéder à l'application
+application.getApp: Connexion
 application.github: GitHub
 
 title.club: ./insa.sh

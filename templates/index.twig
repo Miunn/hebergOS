@@ -30,7 +30,7 @@
                     </li>
                 {% elseif not is_granted('IS_AUTHENTICATED') %}
                     <li>
-                        <a class="hover-underline" href="{{ path('app_login') }}">{{ 'application.getApp' | trans }}</a>
+                        <a href="{{ path('app_login') }}"><span class="material-symbols-outlined">login</span> <span class="hover-underline">{{ 'application.getApp' | trans }}</span></a>
                     </li>
                 {% endif %}
 
