@@ -32,11 +32,18 @@ section {
   div {
     position: relative;
 
-    h1 {
+    svg {
       margin-bottom: 10px;
-      font-family: 'Qwigley', cursive;
+      /*font-family: 'Qwigley', cursive;
       font-weight: 400;
-      font-size: 10rem;
+      font-size: 10rem;*/
+      text {
+        font-family: 'Qwigley', cursive;
+        font-size: 10rem;
+        stroke: var(--text-low-contrast);
+
+        animation: app-name-stroke 1.5s ease-out 200ms forwards, app-fill 500ms ease-out 1800ms forwards;
+      }
     }
 
     .catch-line-wrapper {
@@ -67,5 +74,26 @@ section {
 
   100% {
     bottom: 0;
+  }
+}
+
+@keyframes app-name-stroke {
+  0% {
+    stroke-dasharray: 0 500;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dasharray: 500 0;
+    stroke-dashoffset: 700;
+  }
+}
+
+@keyframes app-fill {
+  0% {
+    fill: transparent;
+  }
+  100% {
+    fill: var(--text-low-contrast);
   }
 }
