@@ -30,9 +30,13 @@ section {
   align-items: center;
 
   div {
+    position: relative;
+
     h1 {
       margin-bottom: 10px;
-      font-size: 3rem;
+      font-family: 'Qwigley', cursive;
+      font-weight: 400;
+      font-size: 10rem;
     }
 
     h2 {
