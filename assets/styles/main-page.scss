@@ -39,8 +39,33 @@ section {
       font-size: 10rem;
     }
 
+    .catch-line-wrapper {
+      overflow: hidden;
+
+      &.catch-first h2 {
+        animation: app-catch-line-in 250ms cubic-bezier(0, 0, 0, 1) 600ms forwards;
+      }
+
+      &.catch-second h2 {
+        animation: app-catch-line-in 250ms cubic-bezier(0, 0, 0, 1) 750ms forwards;
+      }
+    }
+
     h2 {
       font-size: 2.4rem;
+
+      position: relative;
+      bottom: -2.5rem;
     }
+  }
+}
+
+@keyframes app-catch-line-in {
+  0% {
+    bottom: -2.4rem;
+  }
+
+  100% {
+    bottom: 0;
   }
 }
