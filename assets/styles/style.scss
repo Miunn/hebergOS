@@ -14,6 +14,7 @@
 @import "@radix-ui/colors/red-dark.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root {
   --dark-background: #0D1117;
@@ -310,4 +311,12 @@ button {
   .title {
     padding-bottom: 20px;
   }
+}
+
+.accent-text {
+  color: var(--accent-text-low-contrast);
+}
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
 }

@@ -51,7 +51,7 @@
 <main>
     <div class="wrapper">
         {% block main %}
-            <div id="main-head">
+            <section id="main-head">
                 <div>
                     <h1 class="app-name">{{ 'application.name' | trans }}</h1>
 
@@ -59,7 +59,29 @@
                     <h2>{{ 'title.catchLine.second' | trans }}</h2>
                 </div>
                 {% include 'extra/logo-ascii-rounded.twig' %}
-            </div>
+            </section>
+
+            <section id="hebergos-what">
+                <h3>{{ 'hebergos.what.title'|trans }}</h3>
+                <p class="font-roboto">{{ 'hebergos.what.description'|trans|raw }}</p>
+            </section>
+
+            <section id="hebergos-who">
+                <h3>{{ 'hebergos.who.title'|trans }}</h3>
+                <p class="font-roboto">{{ 'hebergos.who.description'|trans|raw }}</p>
+            </section>
+
+            <section id="hebergos-member">
+                <h3>{{ 'hebergos.member.title'|trans }}</h3>
+                <p class="font-roboto">{{ 'hebergos.member.description'|trans|raw }}</p>
+            </section>
+
+            <section id="hebergos-contact">
+                <h3>{{ 'hebergos.contact.title'|trans }}</h3>
+                <p class="font-roboto">{{ 'hebergos.contact.description'|trans|raw }}</p>
+
+                <button type="button" class="solid-cta" id="contact-us">{{ 'hebergos.contact.title'|trans }}</button>
+            </section>
         {% endblock %}
     </div>
 </main>
