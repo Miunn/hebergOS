@@ -2,6 +2,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-bottom: 160px;
 }
 
 .wrapper {
@@ -20,11 +22,14 @@ section {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 40px;
   }
 }
 
 #main-head {
   margin-top: 80px;
+  margin-bottom: 240px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,6 +68,28 @@ section {
 
       position: relative;
       bottom: -2.5rem;
+    }
+  }
+}
+
+.main-text {
+  * {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+
+  button#contact-us {
+    z-index: 100;
+    opacity: 1 !important;
+
+    position: fixed;
+    bottom: 15%;  // Same as intersection observer
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  &.opacity-1 {
+    * {
+      opacity: 1;
     }
   }
 }

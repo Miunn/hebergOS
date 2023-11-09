@@ -67,27 +67,29 @@
                 {% include 'extra/logo-ascii-rounded.twig' %}
             </section>
 
-            <section id="hebergos-what">
-                <h3>{{ 'hebergos.what.title'|trans }}</h3>
-                <p class="font-roboto">{{ 'hebergos.what.description'|trans|raw }}</p>
-            </section>
+            <div class="text-description">
+                <section class="main-text" id="hebergos-what">
+                    <h3>{{ 'hebergos.what.title'|trans }}</h3>
+                    <p class="font-roboto">{{ 'hebergos.what.description'|trans|raw }}</p>
+                </section>
 
-            <section id="hebergos-who">
-                <h3>{{ 'hebergos.who.title'|trans }}</h3>
-                <p class="font-roboto">{{ 'hebergos.who.description'|trans|raw }}</p>
-            </section>
+                <section class="main-text" id="hebergos-who">
+                    <h3>{{ 'hebergos.who.title'|trans }}</h3>
+                    <p class="font-roboto">{{ 'hebergos.who.description'|trans|raw }}</p>
+                </section>
 
-            <section id="hebergos-member">
-                <h3>{{ 'hebergos.member.title'|trans }}</h3>
-                <p class="font-roboto">{{ 'hebergos.member.description'|trans|raw }}</p>
-            </section>
+                <section class="main-text" id="hebergos-member">
+                    <h3>{{ 'hebergos.member.title'|trans }}</h3>
+                    <p class="font-roboto">{{ 'hebergos.member.description'|trans|raw }}</p>
+                </section>
 
-            <section id="hebergos-contact">
-                <h3>{{ 'hebergos.contact.title'|trans }}</h3>
-                <p class="font-roboto">{{ 'hebergos.contact.description'|trans|raw }}</p>
+                <section class="main-text" id="hebergos-contact">
+                    <h3>{{ 'hebergos.contact.title'|trans }}</h3>
+                    <p class="font-roboto">{{ 'hebergos.contact.description'|trans|raw }}</p>
 
-                <button type="button" class="solid-cta" id="contact-us">{{ 'hebergos.contact.title'|trans }}</button>
-            </section>
+                    <button type="button" class="solid-cta" id="contact-us">{{ 'hebergos.contact.title'|trans }}</button>
+                </section>
+            </div>
         {% endblock %}
     </div>
 </main>
