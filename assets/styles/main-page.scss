@@ -24,6 +24,12 @@ section {
     transform: translateX(-50%);
     padding: 15px;
     border-radius: 40px;
+    transition: border-radius 500ms, box-shadow 5gi00ms;
+
+    &.in-place {
+      border-radius: 5px;
+      box-shadow: none !important;
+    }
   }
 }
 

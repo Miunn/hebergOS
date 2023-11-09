@@ -44,6 +44,15 @@ document.querySelectorAll('main>div.wrapper section.main-text')
         observer.observe(e)
     });
 
+let contactUs = document.querySelector('#contact-us');
+window.onscroll = function(ev) {
+    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+        contactUs.classList.toggle('in-place', true);
+    } else {
+        contactUs.classList.toggle('in-place', false);
+    }
+};
+
 // Anim
 (async () => {
     let iteration = toDisplayChars.length
