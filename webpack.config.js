@@ -31,6 +31,7 @@ Encore
     .addEntry('default', './assets/js/script.js')
     .addEntry('admin', './assets/js/admin.js')
     .addEntry('mainPage', './assets/js/main-page.js')
+    .addEntry('contactUs', './assets/js/contact-us.js')
     .addEntry('login', './assets/js/login.js')
     .addEntry('register', './assets/js/register.js')
     .addEntry('app', './assets/js/app.js')

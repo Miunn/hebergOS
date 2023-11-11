@@ -5,6 +5,7 @@ namespace App\Controller\App;
 use App\Entity\Containers;
 use App\Entity\Notifications;
 use App\Entity\User;
+use App\Enum\NotificationType;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
 use DateTimeImmutable;
@@ -224,7 +225,7 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        $notification = new Notifications();
+        $notification = new Notifications(NotificationType::CONTAINER_DELETE);
         $notification->setUser($user);
         $notification->setContainer($container);
         $notification->setTitle($this->translator->trans('notifications.request.delete'));
@@ -234,7 +235,7 @@ class AppController extends AbstractController
         return new Response("OK", 200);
     }
 
-    #[Route('/container/ask-config/{container}', name: 'app_container_ask_config_memory')]
+    #[Route('/container/ask-memory/{container}', name: 'app_container_ask_config_memory')]
     public function askConfigMemoryContainer(Containers $container): Response {
         // Ensure user is associated with it
         $user = $this->getUser();
@@ -242,7 +243,7 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        $notification = new Notifications();
+        $notification = new Notifications(NotificationType::CONTAINER_MEMORY);
         $notification->setUser($user);
         $notification->setContainer($container);
         $notification->setTitle($this->translator->trans('notifications.request.memory'));
@@ -252,7 +253,7 @@ class AppController extends AbstractController
         return new Response("OK", 200);
     }
 
-    #[Route('/container/ask-config/{container}', name: 'app_container_ask_config_cpu')]
+    #[Route('/container/ask-cpu/{container}', name: 'app_container_ask_config_cpu')]
     public function askConfigCpuContainer(Containers $container): Response {
         // Ensure user is associated with it
         $user = $this->getUser();
@@ -260,7 +261,7 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        $notification = new Notifications();
+        $notification = new Notifications(NotificationType::CONTAINER_CPU);
         $notification->setUser($user);
         $notification->setContainer($container);
         $notification->setTitle($this->translator->trans('notifications.request.cpu'));

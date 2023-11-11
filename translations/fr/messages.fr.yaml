@@ -131,3 +131,10 @@ notifications.request.memory: Demande de changement de la mémoire
 notifications.request.cpu: Demande de changement du cpu
 notifications.date: "Le:"
 notifications.delete: Supprimer la demande
+
+notifications.form.headline: Contactez nous
+notifications.form.title: A propos de
+notifications.form.title.placeholder: J'ai un projet à faire valoir
+notifications.form.description: Dîtes-nous en plus
+notifications.form.description.placeholder: Mon projet est complètement incroyable regardez ça
+notifications.form.submit: Envoyer

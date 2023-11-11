@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use App\Enum\NotificationType;
 use App\Repository\NotificationsRepository;
+use Doctrine\Common\Annotations\Annotation\Enum;
+use Doctrine\DBAL\Types\StringType;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NotificationsRepository::class)]
 class Notifications
 {
-    public function __construct() {
+    public function __construct(NotificationType $type) {
         $this->date = date_create_immutable();
+        $this->type = $type;
     }
 
     #[ORM\Id]
@@ -18,11 +22,11 @@ class Notifications
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'notifications')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'notifications')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Containers $container = null;
 
     #[ORM\Column(length: 80)]
@@ -33,6 +37,9 @@ class Notifications
 
     #[ORM\Column]
     private ?\DateTimeImmutable $date = null;
+
+    #[ORM\Column(length: 30, enumType: NotificationType::class)]
+    private ?NotificationType $type = null;
 
     public function getId(): ?int
     {
@@ -95,6 +102,18 @@ class Notifications
     public function setDate(\DateTimeImmutable $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getType(): ?NotificationType
+    {
+        return $this->type;
+    }
+
+    public function setType(NotificationType $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

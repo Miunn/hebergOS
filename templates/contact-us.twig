@@ -1,0 +1,19 @@
+{% extends 'index.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('contactUs') }}
+{% endblock %}
+
+{% block main %}
+    {{ form_start(notificationForm) }}
+
+    <h1>{{ 'notifications.form.headline'|trans }}</h1>
+
+    {{ form_row(notificationForm.title) }}
+    {{ form_row(notificationForm.description) }}
+
+    <button type="submit" class="solid-cta">{{ 'notifications.form.submit'|trans }}</button>
+
+    {{ form_end(notificationForm) }}
+{% endblock %}

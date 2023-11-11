@@ -2,12 +2,16 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    {% if activeMain ?? false %}
     {{ encore_entry_link_tags('mainPage') }}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    {% if activeMain ?? false %}
     {{ encore_entry_script_tags('mainPage') }}
+    {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -92,7 +96,7 @@
             </div>
 
             <div class="sticky-detector"></div>
-            <button type="button" class="solid-cta" id="contact-us">{{ 'hebergos.contact.title'|trans }}</button>
+            <a href="{{ path('app_app_contact_form') }}" class="solid-cta" id="contact-us">{{ 'hebergos.contact.title'|trans }}</a>
         {% endblock %}
     </div>
 </main>
