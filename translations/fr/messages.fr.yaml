@@ -123,14 +123,19 @@ admin.container.create.commands: "Commandes à lancer au démarrage: "
 admin.container.sort.name: "Nom"
 admin.container.sort.state: "Etat"
 
+notifications.type.contact: Demande de contact
+notifications.type.create: Demande de création
+notifications.type.container_memory: Demande de changement mémoire
+notifications.type.container_cpu: Demande de changement cpu
+notifications.type.copntainer_delete: Demande de suppression
 notifications.title: Demandes utilisateurs
 notifications.empty: Aucune notification
 notifications.request.by: "Initiée par:"
-notifications.request.delete: Demande de suppression du container
-notifications.request.memory: Demande de changement de la mémoire
-notifications.request.cpu: Demande de changement du cpu
 notifications.date: "Le:"
-notifications.delete: Supprimer la demande
+notifications.description.empty: Aucune description
+notifications.action.delete: Supprimer la demande
+notifications.action.user: Voir l'utilisateur
+notifications.action.container: Voir le container
 
 notifications.form.headline: Contactez nous
 notifications.form.title: A propos de

@@ -21,20 +21,34 @@
                 <p class="text-center">{{ 'notifications.empty'|trans }}</p>
             </div>
         {% else %}
-            <div class="card">
                 {% for notif in notifications %}
-                    <div class="notif">
-                        <h3>{{ notif.container.name }}
-                            <span>{{ 'notifications.date'|trans }}{{ notif.date|date('d/m/y H:i') }}</span></h3>
-                        <h3>{{ notif.title }}</h3>
-                        <h4>{{ 'notifications.request.by'|trans }} {{ notif.user.firstname }} {{ notif.user.lastname }}
-                            ({{ notif.user.username }})</h4>
-                        <h4>{{ notif.user.email }}</h4>
+                    <div class="card notif">
+                        <h3>{{ ('notifications.type.'~notif.type.value)|trans }}</h3>
+                        <h4>{{ 'notifications.date'|trans }} {{ notif.date|date('d/m/y H:i') }}</h4>
+                        {% if notif.container %}
+                            <p>{{ notif.container.name }}<br>
+                                {{ 'notifications.request.by'|trans }} {{ notif.user.firstname }} {{ notif.user.lastname }} ({{ notif.user.username }})<br>
+                                {{ notif.user.email }}</p>
+                        {% else %}
+                            <h5>{{ notif.title }}</h5>
+                        {% endif %}
+                        {% if notif.description != '' %}
+                            <p>{{ notif.description }}</p>
+                        {% else %}
+                            <p class="italic">{{ 'notifications.description.empty'|trans }}</p>
+                        {% endif %}
 
-                        <button class="delete-notification accent-cta" type="button" data-route="{{ path('app_admin_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.delete'|trans }}</button>
+                        <div class="form-validation">
+                        {% if notif.container %}
+                            <button class="get-container-notification accent-cta" type="button" data-route="{{ path('app_admin_container_overview', {'container': notif.container.id}) }}">{{ 'notifications.action.container'|trans }}</button>
+                        {% endif %}
+                        {% if notif.user %}
+                            <button class="get-user-notification accent-cta" type="button" data-route="{{ path('app_admin_view_user', {'user': notif.user.id}) }}">{{ 'notifications.action.user'|trans }}</button>
+                        {% endif %}
+                        <button class="delete-notification accent-cta" type="button" data-route="{{ path('app_admin_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.action.delete'|trans }}</button>
+                        </div>
                     </div>
                 {% endfor %}
-            </div>
         {% endif %}
     </div>
 {% endblock %}

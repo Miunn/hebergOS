@@ -27,6 +27,7 @@ class CoreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($notification);
             $entityManager->flush();
+            return $this->redirectToRoute('app_app_contact_form');
         }
 
         return $this->render('contact-us.twig', [

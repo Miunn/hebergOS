@@ -39,6 +39,9 @@
                     </li>
                 {% elseif not is_granted('IS_AUTHENTICATED') %}
                     <li>
+                        <a href="{{ path('app_app_contact_form') }}"><span class="material-symbols-outlined">rate_review</span> <span class="hover-underline">{{ 'hebergos.contact.title' | trans }}</span></a>
+                    </li>
+                    <li>
                         <a href="{{ path('app_login') }}"><span class="material-symbols-outlined">login</span> <span class="hover-underline">{{ 'application.getApp' | trans }}</span></a>
                     </li>
                 {% endif %}
