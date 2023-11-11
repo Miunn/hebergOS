@@ -140,8 +140,8 @@ header {
   background-color: var(--solid-background);
 
   nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 33% 1fr 33%;
     align-items: center;
 
     padding: 20px;
@@ -150,9 +150,14 @@ header {
       color: white;
     }
 
+    .club-name {
+      text-align: center;
+    }
+
     ul {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 30px;
 
       a {
