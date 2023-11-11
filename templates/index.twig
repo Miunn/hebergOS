@@ -32,10 +32,10 @@
             <ul>
                 {% if is_granted('IS_AUTHENTICATED') and is_granted('ROLE_ADMIN') %}
                     <li>
-                        <a class="hover-underline" href="{{ path('app_notifications_index') }}">{{ 'title.notifications'|trans }}</a>
+                        <a href="{{ path('app_notifications_index') }}"><span class="material-symbols-outlined">notifications</span> <span class="hover-underline">{{ 'title.notifications'|trans }}</span></a>
                     </li>
                     <li>
-                        <a class="hover-underline" href="{{ path('app_admin_index') }}">{{ 'title.admin' | trans }}</a>
+                        <a href="{{ path('app_admin_index') }}"><span class="material-symbols-outlined">admin_panel_settings</span> <span class="hover-underline">{{ 'title.admin' | trans }}</span></a>
                     </li>
                 {% elseif not is_granted('IS_AUTHENTICATED') %}
                     <li>
@@ -48,12 +48,12 @@
 
                 {% if is_granted('IS_AUTHENTICATED') %}
                     <li>
-                        <a class="hover-underline" href="{{ path('app_logout') }}">{{ 'auth.title.logout' | trans }}</a>
+                        <a href="{{ path('app_logout') }}"><span class="material-symbols-outlined">logout</span> <span class="hover-underline">{{ 'auth.title.logout' | trans }}</span></a>
                     </li>
                 {% endif %}
 
                 <li>
-                    <a href="https://github.com/Miunn/herbergOS" target="_blank"><img class="little-img" src="{{ asset('build/images/github-white.png') }}" alt="{{ 'application.github' | trans }}"> {{ 'application.github' | trans }}</a>
+                    <a href="https://github.com/Miunn/herbergOS" target="_blank"><img class="little-img github-logo" src="{{ asset('build/images/github-white.png') }}" alt="{{ 'application.github' | trans }}"> {{ 'application.github' | trans }}</a>
                 </li>
             </ul>
         </nav>
