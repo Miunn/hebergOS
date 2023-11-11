@@ -135,7 +135,7 @@ notifications.date: "Le:"
 notifications.description.empty: Aucune description
 notifications.action.delete: Supprimer la demande
 notifications.action.user: Voir l'utilisateur
-notifications.action.container: Voir le container
+notifications.action.container: Voir le conteneur
 
 notifications.form.headline: Contactez nous
 notifications.form.title: A propos de
