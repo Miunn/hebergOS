@@ -29,8 +29,8 @@ hebergos.member.description: L'application a été développé dans le cadre du 
 hebergos.member.member1: Rémi Caulier
 hebergos.member.member2: Sylvain Sausse
 
-hebergos.contact.title: Contactez nous
-hebergos.contact.description: Si vous êtes intéressé pour héberger votre projet, découvrir, ou si vous avez la moindre interrogation, n'hésitez pas à nous contacter en cliquant sur le bouton ci-dessous. Vous pouvez également venir quelques minutes lors de l'ouverture du club le jeudi de 14 à 18h en salle E12 en Lottman.
+hebergos.contact.title: Contactez-nous
+hebergos.contact.description: Si vous êtes intéressé pour héberger et faire valoir votre projet, découvrir, ou si vous avez la moindre interrogation, n'hésitez pas à nous contacter en cliquant sur le bouton ci-dessous. Vous pouvez également venir quelques minutes lors de l'ouverture du club le jeudi de 14 à 18h en salle E12 au bâtiment Lottman.
 
 container.overview: Vue d'ensemble
 container.stats: Graphiques
@@ -137,7 +137,7 @@ notifications.action.delete: Supprimer la demande
 notifications.action.user: Voir l'utilisateur
 notifications.action.container: Voir le conteneur
 
-notifications.form.headline: Contactez nous
+notifications.form.headline: Contactez-nous
 notifications.form.title: A propos de
 notifications.form.title.placeholder: J'ai un projet à faire valoir
 notifications.form.description: Dîtes-nous en plus
