@@ -40,10 +40,10 @@
 
                         <div class="form-validation">
                         {% if notif.container %}
-                            <button class="get-container-notification accent-cta" type="button" data-route="{{ path('app_admin_container_overview', {'container': notif.container.id}) }}">{{ 'notifications.action.container'|trans }}</button>
+                            <a class="get-container-notification accent-cta" href="{{ path('app_admin_container_overview', {'container': notif.container.id}) }}">{{ 'notifications.action.container'|trans }}</a>
                         {% endif %}
                         {% if notif.user %}
-                            <button class="get-user-notification accent-cta" type="button" data-route="{{ path('app_admin_view_user', {'user': notif.user.id}) }}">{{ 'notifications.action.user'|trans }}</button>
+                            <a class="get-user-notification accent-cta" href="{{ path('app_admin_view_user', {'user': notif.user.id}) }}">{{ 'notifications.action.user'|trans }}</a>
                         {% endif %}
                         <button class="delete-notification accent-cta" type="button" data-route="{{ path('app_admin_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.action.delete'|trans }}</button>
                         </div>

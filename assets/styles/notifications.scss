@@ -27,5 +27,10 @@
   .form-validation {
     align-self: flex-end;
     margin-top: 5px;
+
+    a, button {
+      padding: 10px;
+      border-radius: 5px;
+    }
   }
 }
