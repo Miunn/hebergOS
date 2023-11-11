@@ -24,8 +24,7 @@ for (let i = 0; i < finalArt.length; i++) {
 art.textContent = emptyArt;
 
 // Text appearing
-const observer = new IntersectionObserver((entries, observer) => {
-    console.log(entries);
+const opacityObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(e => {
         if (e.isIntersecting) {
             e.target.classList.add('opacity-1');
@@ -34,24 +33,29 @@ const observer = new IntersectionObserver((entries, observer) => {
         }
     });
 }, {
-    rootMargin: "0px 0px -15% 0px",
+    rootMargin: "0px 0px -16% 0px",
     threshold: 1
+});
+
+const contactUs = document.querySelector('#contact-us');
+
+const stickyObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            contactUs.classList.add('in-place');
+        } else {
+            contactUs.classList.remove('in-place');
+        }
+    })
 });
 
 document.querySelectorAll('main>div.wrapper section.main-text')
     .forEach(e => {
-        console.log(e);
-        observer.observe(e)
+        opacityObserver.observe(e)
     });
 
-let contactUs = document.querySelector('#contact-us');
-window.onscroll = function(ev) {
-    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
-        contactUs.classList.toggle('in-place', true);
-    } else {
-        contactUs.classList.toggle('in-place', false);
-    }
-};
+const stickyDetector = document.querySelector('.sticky-detector');
+stickyObserver.observe(stickyDetector);
 
 // Anim
 (async () => {
