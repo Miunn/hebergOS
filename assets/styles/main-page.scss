@@ -35,11 +35,13 @@ section {
       font-weight: 400;
       font-size: 10rem;*/
       text {
-        font-family: 'Qwigley', cursive;
-        font-size: 10rem;
+        /*font-family: 'Qwigley', cursive;*/
+        font-family: Roboto, sans-serif;
+        font-size: 5rem;
         stroke: var(--text-low-contrast);
+        stroke-dashoffset: 200;
 
-        animation: app-name-stroke 1.5s ease-out 200ms forwards, app-fill 500ms ease-out 1800ms forwards;
+        animation: app-name-stroke 3s ease-out 200ms forwards, app-fill 500ms ease-out 3000ms forwards;
       }
     }
 
@@ -118,13 +120,11 @@ section {
 
 @keyframes app-name-stroke {
   0% {
-    stroke-dasharray: 0 500;
-    stroke-dashoffset: 0;
+    stroke-dasharray: 1 550;
   }
 
   100% {
-    stroke-dasharray: 500 0;
-    stroke-dashoffset: 700;
+    stroke-dasharray: 550 0;
   }
 }
 
