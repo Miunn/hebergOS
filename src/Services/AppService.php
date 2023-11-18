@@ -88,7 +88,6 @@ class AppService
 
         try {
             $containers = $response->toArray();
-            dump($containers);
             $this->syncContainers($containers);
             return $containers['success'];
         } catch (ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {

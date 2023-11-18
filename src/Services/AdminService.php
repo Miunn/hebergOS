@@ -49,7 +49,6 @@ class AdminService
 
         $response = $this->appService->putApi($requestUri, $payload);
 
-        dump($response);
         try {
             if ($response->getStatusCode() !== 200) {
                 return ['status' => 'error', 'message' => $response->getContent()];
@@ -70,11 +69,8 @@ class AdminService
         $response = $this->appService->deleteApi($requestUri);
         try {
             if ($response->getStatusCode() == 204) {
-                dump("Remove container");
-                dump($container->getUser());
                 $this->entityManager->remove($container);
                 $this->entityManager->flush();
-                dump($container->getUser());
                 return ['status' => 'success'];
             }
             return ['status' => 'error', 'message' => $response->getContent()];
