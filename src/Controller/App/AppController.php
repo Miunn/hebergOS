@@ -251,7 +251,7 @@ class AppController extends AbstractController
         $notification = new Notifications(NotificationType::CONTAINER_MEMORY);
         $notification->setUser($user);
         $notification->setContainer($container);
-        $notification->setTitle($this->translator->trans('notifications.request.memory'));
+        $notification->setTitle($this->translator->trans('notifications.type.container_memory'));
         $this->entityManager->persist($notification);
         $this->entityManager->flush();
 
@@ -269,7 +269,7 @@ class AppController extends AbstractController
         $notification = new Notifications(NotificationType::CONTAINER_CPU);
         $notification->setUser($user);
         $notification->setContainer($container);
-        $notification->setTitle($this->translator->trans('notifications.request.cpu'));
+        $notification->setTitle($this->translator->trans('notifications.type.container_cpu'));
         $this->entityManager->persist($notification);
         $this->entityManager->flush();
 
