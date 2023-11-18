@@ -6,6 +6,19 @@ application.descriptionHTML: Destiné au club ./insa.sh pour permettre aux membr
 application.getApp: Connexion
 application.github: GitHub
 
+pages.titles.home: HebergOS
+pages.titles.dashboard: Projets
+pages.titles.container.overview: '%s'
+pages.titles.container.stats: '%s - Graphiques'
+pages.titles.container.shell: '%s - Console'
+pages.titles.container.actions: '%s - Actions'
+pages.titles.container.notifications: '%s - Demandes'
+pages.titles.container.administration: '%s - Administration'
+pages.titles.administration: 'Administration'
+pages.titles.administration.user: 'Utilisateur'
+pages.titles.notifications: 'Demandes'
+pages.titles.contactus: 'Contactez-nous'
+
 title.club: ./insa.sh
 title.readme: README
 title.technologies: Technologies

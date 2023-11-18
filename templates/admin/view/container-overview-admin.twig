@@ -1,5 +1,7 @@
 {% extends 'admin/container-view-admin.twig' %}
 
+{% block title %}{{ 'pages.titles.container.overview'|trans|format(container.name) }}{% endblock %}
+
 {% block content %}
 
     <div id="overview-wrapper">

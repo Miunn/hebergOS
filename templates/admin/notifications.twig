@@ -1,5 +1,7 @@
 {% extends 'index.twig' %}
 
+{% block title %}{{ 'pages.titles.notifications'|trans }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('notifications') }}

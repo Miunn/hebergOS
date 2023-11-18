@@ -1,5 +1,7 @@
 {% extends 'app/container-view.twig' %}
 
+{% block title %}{{ 'pages.titles.container.overview'|trans|format(container.name) }}{% endblock %}
+
 {% block content %}
 
     <div id="overview-wrapper">

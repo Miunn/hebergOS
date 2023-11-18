@@ -1,5 +1,7 @@
 {% extends 'admin/container-view-admin.twig' %}
 
+{% block title %}{{ 'pages.titles.container.actions'|trans|format(container.name) }}{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('containerActions') }}

@@ -1,5 +1,7 @@
 {% extends 'app/container-view.twig' %}
 
+{% block title %}{{ 'pages.titles.container.notifications'|trans|format(container.name) }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('notifications') }}

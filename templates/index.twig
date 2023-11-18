@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'pages.titles.home'|trans }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     {% if activeMain ?? false %}
