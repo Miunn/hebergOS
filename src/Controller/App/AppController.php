@@ -5,6 +5,7 @@ namespace App\Controller\App;
 use App\Entity\Containers;
 use App\Entity\Notifications;
 use App\Entity\User;
+use App\Enum\ContainerActivityType;
 use App\Enum\NotificationType;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
@@ -69,8 +70,12 @@ class AppController extends AbstractController
 
         $containerApi = $this->appService->getContainer($container->getId());
         $stats = $this->appService->getStats($container, 'instant');
+
+        $jsonActivity = $this->containerActivityService->extractJsonContainerActivity($container);
+
         return $this->render('app/view/container-stats.twig', [
             'container' => $container,
+            'containerActivities' => $jsonActivity,
             'containerApi' => $containerApi,
             'data' => $stats,
             'stats' => true
@@ -175,7 +180,7 @@ class AppController extends AbstractController
 
         // Record in activities
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.started'));
+            $this->containerActivityService->recordActivity($container, ContainerActivityType::STARTED, $this->translator->trans('container.records.started'));
         }
 
         return new JsonResponse($response);
@@ -193,7 +198,7 @@ class AppController extends AbstractController
         $response = $this->appService->stopContainer($container);
 
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.stopped'));
+            $this->containerActivityService->recordActivity($container, ContainerActivityType::STOPPED, $this->translator->trans('container.records.stopped'));
         }
 
         return new JsonResponse($response);
@@ -211,7 +216,7 @@ class AppController extends AbstractController
         $response = $this->appService->restartContainer($container);
 
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.restarted'));
+            $this->containerActivityService->recordActivity($container, ContainerActivityType::RESTARTED, $this->translator->trans('container.records.restarted'));
         }
 
         return new JsonResponse($response);

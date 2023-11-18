@@ -6,10 +6,11 @@ use App\Repository\ContainersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use phpDocumentor\Reflection\Types\This;
 
 #[ORM\Entity(repositoryClass: ContainersRepository::class)]
-class Containers
+class Containers implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\Column(length: 64)]
@@ -209,5 +210,15 @@ class Containers
         }
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'memory' => $this->memoryLimit,
+            'cpu' => $this->cpuLimit,
+            'port' => $this->hostPortRoot
+        ];
     }
 }

@@ -1,9 +1,12 @@
 import {Chart} from 'chart.js/auto';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
 //import 'chartjs-adapter-moment';
 import 'chartjs-adapter-date-fns';
 import zoomPlugin from 'chartjs-plugin-zoom';
 
 Chart.register(zoomPlugin);
+Chart.register(annotationPlugin);
 
 let root = document.querySelector(":root");
 let rootStyles = getComputedStyle(root);
@@ -22,7 +25,7 @@ let cpuChartReference;
 let netChartReference;
 let netDeltaChartReference;
 
-function createChart(chartCanvas, datasets, suggestedMax, labels, timeUnit) {
+function createChart(chartCanvas, datasets, suggestedMax, labels, timeUnit, restartsOptions) {
     const options = {
         elements: {
             point: {
@@ -57,6 +60,9 @@ function createChart(chartCanvas, datasets, suggestedMax, labels, timeUnit) {
                         min: 0
                     }
                 }
+            },
+            annotation: {
+                annotations: restartsOptions
             }
         },
         scales: {
@@ -87,7 +93,7 @@ function createChart(chartCanvas, datasets, suggestedMax, labels, timeUnit) {
     });
 }
 
-function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDeltaDown, offset, timestamps, memoryLimit, cpuLimit, timeUnit) {
+function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDeltaDown, offset, timestamps, memoryLimit, cpuLimit, timeUnit, restarts) {
     if (ramChartReference !== undefined) {
         ramChartReference.destroy();
         cpuChartReference.destroy();
@@ -97,67 +103,109 @@ function createOffsetChart(ram, cpu, netTotalUp, netTotalDown, netDeltaUp, netDe
 
     let labels = timestamps.slice(-offset);
 
-    ramChartReference = createChart(ramChart, [{
-        label: 'RAM (Go) - limite: '+memoryLimit+'Go',
-        data: ram.slice(-offset),
-        fill: true,
-        borderWidth: 2,
-        borderColor: chartBorderColor,
-        backgroundColor: chartBackgroundColor
-    }], 0.06, labels, timeUnit);
-
-    cpuChartReference = createChart(cpuChart, [{
-        label: 'CPU (%) - limite: '+cpuLimit+'%',
-        data: cpu.slice(-offset),
-        fill: true,
-        borderWidth: 2,
-        borderColor: chartBorderColorAccent,
-        backgroundColor: chartBackgroundColorAccent
-    }], 0, labels, timeUnit);
-
-    netChartReference = createChart(netChart, [
-        {
-            label: 'NET Down (ko)',
-            data: netTotalDown.slice(-offset),
-            fill: true,
+    let restartsOptions = {};
+    for (let i = 0; i < restarts.length; i++) {
+        restartsOptions['line'+i] = {
+            type: 'line',
+            xMin: (parseInt(restarts[i].timestamp) - 3600)*1000,
+            xMax: (parseInt(restarts[i].timestamp) - 3600)*1000,
+            borderColor: 'rgb(255, 99, 132)',
             borderWidth: 2,
-            borderColor: chartBorderColor,
-            backgroundColor: chartBackgroundColor
-        },
-        {
-            label: 'NET Up (ko)',
-            data: netTotalUp.slice(-offset),
+        }
+    }
+
+    ramChartReference = createChart(
+        ramChart,
+        [
+            {
+                label: 'RAM (Go) - limite: '+memoryLimit+'Go',
+                data: ram.slice(-offset),
+                fill: true,
+                borderWidth: 2,
+                borderColor: chartBorderColor,
+                backgroundColor: chartBackgroundColor
+            },
+        ],
+        0.06,
+        labels,
+        timeUnit,
+        restartsOptions
+    );
+
+    cpuChartReference = createChart(
+        cpuChart,
+        [{
+            label: 'CPU (%) - limite: '+cpuLimit+'%',
+            data: cpu.slice(-offset),
             fill: true,
             borderWidth: 2,
             borderColor: chartBorderColorAccent,
             backgroundColor: chartBackgroundColorAccent
-        }
-    ], 1000, labels, timeUnit);
+        }],
+        0,
+        labels,
+        timeUnit,
+        restartsOptions
+    );
 
-    netDeltaChartReference = createChart(netDeltaChart, [
-        {
-            label: 'NET Delta Down (ko)',
-            data: netDeltaDown.slice(-offset),
-            fill: true,
-            borderWidth: 2,
-            borderColor: chartBorderColor,
-            backgroundColor: chartBackgroundColor
-        },
-        {
-            label: 'NET Delta Up (ko)',
-            data: netDeltaUp.slice(-offset),
-            fill: true,
-            borderWidth: 2,
-            borderColor: chartBorderColorAccent,
-            backgroundColor: chartBackgroundColorAccent
-        }
-    ], 1000, labels, timeUnit);
+    netChartReference = createChart(
+        netChart,
+        [
+            {
+                label: 'NET Down (ko)',
+                data: netTotalDown.slice(-offset),
+                fill: true,
+                borderWidth: 2,
+                borderColor: chartBorderColor,
+                backgroundColor: chartBackgroundColor
+            },
+            {
+                label: 'NET Up (ko)',
+                data: netTotalUp.slice(-offset),
+                fill: true,
+                borderWidth: 2,
+                borderColor: chartBorderColorAccent,
+                backgroundColor: chartBackgroundColorAccent
+            }
+            ],
+        1000,
+        labels,
+        timeUnit,
+        restartsOptions
+    );
+
+    netDeltaChartReference = createChart(
+        netDeltaChart,
+        [
+            {
+                label: 'NET Delta Down (ko)',
+                data: netDeltaDown.slice(-offset),
+                fill: true,
+                borderWidth: 2,
+                borderColor: chartBorderColor,
+                backgroundColor: chartBackgroundColor
+            },
+            {
+                label: 'NET Delta Up (ko)',
+                data: netDeltaUp.slice(-offset),
+                fill: true,
+                borderWidth: 2,
+                borderColor: chartBorderColorAccent,
+                backgroundColor: chartBackgroundColorAccent
+            }
+        ],
+        1000,
+        labels,
+        timeUnit,
+        restartsOptions
+    );
 }
 
 const dataElement = document.getElementById("data-stats");
 const statsDayUrl = dataElement.getAttribute("data-url-day");
 const statsWeekUrl = dataElement.getAttribute("data-url-week");
 const data = JSON.parse(dataElement.getAttribute("data-stats"));
+const restarts = JSON.parse(dataElement.dataset.restarts);
 
 let memoryLimit = Object.entries(data).slice(-1)[0][1]["memory"]["limit"];
 let cpuLimit = Object.entries(data).slice(-1)[0][1]["cpu"]["limit"];
@@ -212,7 +260,7 @@ function parseData(jsonData) {
 const [instantTimestamps, instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown] = parseData(data);
 
 // Create default last hour chart
-createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 240, instantTimestamps, memoryLimit, cpuLimit, 'second');
+createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 240, instantTimestamps, memoryLimit, cpuLimit, 'second', restarts);
 
 /** Handle period selection **/
 
@@ -229,11 +277,11 @@ periodSelector.addEventListener("change", (event) => {
     event.preventDefault();
     switch (event.currentTarget.value) {
         case "1hour":
-            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 240, instantTimestamps, memoryLimit, cpuLimit, 'second');
+            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 240, instantTimestamps, memoryLimit, cpuLimit, 'second', restarts);
             break;
 
         case "4hours":
-            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 960, instantTimestamps, memoryLimit, cpuLimit, 'second');
+            createOffsetChart(instantRam, instantCpu, instantNetTotalUp, instantNetTotalDown, instantNetDeltaUp, instantNetDeltaDown, 960, instantTimestamps, memoryLimit, cpuLimit, 'second', restarts);
             break;
 
         case "1day":
@@ -244,7 +292,7 @@ periodSelector.addEventListener("change", (event) => {
                 }
                 const statsDay = await response.json();
                 let [dayTimestamps, dayRam, dayCpu, dayNetTotalUp, dayNetTotalDown, dayNetDeltaUp, dayNetDeltaDown] = parseData(statsDay);
-                createOffsetChart(dayRam, dayCpu, dayNetTotalUp, dayNetTotalDown, dayNetDeltaUp, dayNetDeltaDown, 0, dayTimestamps, memoryLimit, cpuLimit, 'minute');
+                createOffsetChart(dayRam, dayCpu, dayNetTotalUp, dayNetTotalDown, dayNetDeltaUp, dayNetDeltaDown, 0, dayTimestamps, memoryLimit, cpuLimit, 'minute', restarts);
             })();
             break;
 
@@ -255,10 +303,8 @@ periodSelector.addEventListener("change", (event) => {
                     return;
                 }
                 const statsWeek = await response.json();
-                console.log(statsWeek);
                 let [weekTimestamps, weekRam, weekCpu, weekNetTotalUp, weekNetTotalDown, weekNetDeltaUp, weekNetDeltaDown] = parseData(statsWeek);
-                console.log(weekTimestamps);
-                createOffsetChart(weekRam, weekCpu, weekNetTotalUp, weekNetTotalDown, weekNetDeltaUp, weekNetDeltaDown, 0, weekTimestamps, memoryLimit, cpuLimit, 'minute');
+                createOffsetChart(weekRam, weekCpu, weekNetTotalUp, weekNetTotalDown, weekNetDeltaUp, weekNetDeltaDown, 0, weekTimestamps, memoryLimit, cpuLimit, 'minute', restarts);
             })();
             break;
     }

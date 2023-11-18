@@ -5,6 +5,7 @@ namespace App\Controller\App;
 use App\Entity\Containers;
 use App\Entity\Notifications;
 use App\Entity\User;
+use App\Enum\ContainerActivityType;
 use App\Form\ContainerFormType;
 use App\Form\UserFormType;
 use App\Services\AdminService;
@@ -214,7 +215,7 @@ class AdminController extends AbstractController
 
         // Record in activities
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.started'));
+            $this->containerActivityService->recordActivity($container, ContainerActivityType::STARTED, $this->translator->trans('container.records.started'));
         }
 
         return new JsonResponse($response);
@@ -225,7 +226,7 @@ class AdminController extends AbstractController
         $response = $this->appService->stopContainer($container);
 
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.stopped'));
+            $this->containerActivityService->recordActivity($container, ContainerActivityType::STOPPED, $this->translator->trans('container.records.stopped'));
         }
 
         return new JsonResponse($response);
@@ -236,7 +237,7 @@ class AdminController extends AbstractController
         $response = $this->appService->restartContainer($container);
 
         if ($response['success']) {
-            $this->containerActivityService->recordActivity($container, $this->translator->trans('container.records.restarted'));
+            $this->containerActivityService->recordActivity($container, ContainerActivityType::RESTARTED, $this->translator->trans('container.records.restarted'));
         }
 
         return new JsonResponse($response);

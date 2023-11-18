@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use App\Enum\ContainerActivityType;
 use App\Repository\ContainerActivityRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: ContainerActivityRepository::class)]
-class ContainerActivity
+class ContainerActivity implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,6 +25,9 @@ class ContainerActivity
     #[ORM\ManyToOne(inversedBy: 'containerActivities')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Containers $container = null;
+
+    #[ORM\Column(type: Types::STRING, length: 30, enumType: ContainerActivityType::class)]
+    private ?ContainerActivityType $type = null;
 
     public function getId(): ?int
     {
@@ -62,5 +68,26 @@ class ContainerActivity
         $this->container = $container;
 
         return $this;
+    }
+
+    public function getType(): ?ContainerActivityType
+    {
+        return $this->type;
+    }
+
+    public function setType(ContainerActivityType $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'container' => $this->container,
+            'timestamp' => $this->timestamp->getTimestamp(),
+            'type' => $this->type,
+        ];
     }
 }
