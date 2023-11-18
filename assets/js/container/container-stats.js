@@ -3,6 +3,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 
 //import 'chartjs-adapter-moment';
 import 'chartjs-adapter-date-fns';
+import {fr} from 'date-fns/locale';
 import zoomPlugin from 'chartjs-plugin-zoom';
 
 Chart.register(zoomPlugin);
@@ -69,16 +70,26 @@ function createChart(chartCanvas, datasets, suggestedMax, labels, timeUnit, rest
             x: {
                 type: 'time',
                 time: {
-                    unit: timeUnit
+                    unit: timeUnit,
+                    isoWeekday: true,
+                    displayFormats: {
+                        'second': 'HH:mm:ss',
+                        'minute': 'HH:mm',
+                    }
                 },
                 min: labels[0],
-                max: labels.slice(-1)
+                max: labels.slice(-1),
+                adapters: {
+                    date: {
+                        locale: fr
+                    }
+                }
             },
             y: {
                 suggestedMax: suggestedMax,
                 beginAtZero: true,
                 min: 0
-            }
+            },
         }
     };
 
