@@ -37,7 +37,7 @@ class Containers implements JsonSerializable
     #[ORM\Column(nullable: true)]
     private ?float $cpuLimit = null;
 
-    #[ORM\OneToMany(mappedBy: 'container', targetEntity: Notifications::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'container', targetEntity: Notifications::class, cascade: ['remove'], orphanRemoval: true)]
     private Collection $notifications;
 
     public function __construct()

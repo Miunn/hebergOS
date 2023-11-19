@@ -25,8 +25,8 @@
 
     <h1 class="section-title">{{ 'admin.containers.title' | trans }}
         <button class="btn-add" id="add-container"><img src="{{ asset('build/images/add.png') }}" alt="Add"> {{ 'admin.users.action.add'|trans }}</button>
-        <button class="sort-container" id="sort-state" data-wrapper="containers-wrapper" data-reverse="false">{{ 'admin.container.sort.state'|trans }}</button>
-        <button class="sort-container" id="sort-name" data-wrapper="containers-wrapper" data-reverse="false"> {{ 'admin.container.sort.name'|trans }}</button>
+        <button class="sort-container" id="sort-state" data-wrapper="containers-wrapper" data-reverse="false"><span class="material-symbols-outlined">category</span> {{ 'admin.container.sort.state'|trans }}</button>
+        <button class="sort-container" id="sort-name" data-wrapper="containers-wrapper" data-reverse="false"><span class="material-symbols-outlined">sort_by_alpha</span> {{ 'admin.container.sort.name'|trans }}</button>
     </h1>
     <section class="containers" id="containers-wrapper">
         {% for key, container in containers %}
