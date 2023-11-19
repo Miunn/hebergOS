@@ -41,7 +41,7 @@ section {
         stroke: var(--text-low-contrast);
         stroke-dashoffset: 200;
 
-        animation: app-name-stroke 3s ease-out 200ms forwards, app-fill 500ms ease-out 2500ms forwards;
+        animation: app-name-stroke 3s ease-out 0ms forwards, app-fill 500ms ease-out 2500ms forwards;
       }
     }
 

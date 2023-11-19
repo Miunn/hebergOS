@@ -70,11 +70,13 @@ function createChart(chartCanvas, datasets, suggestedMax, labels, timeUnit, rest
             x: {
                 type: 'time',
                 time: {
-                    unit: timeUnit,
+                    /*unit: timeUnit,*/     // If not specified it will be automatically determined
                     isoWeekday: true,
                     displayFormats: {
                         'second': 'HH:mm:ss',
                         'minute': 'HH:mm',
+                        'hour': 'HH:mm',
+                        'day': 'EEEE dd HH:mm'
                     }
                 },
                 min: labels[0],
@@ -315,7 +317,7 @@ periodSelector.addEventListener("change", (event) => {
                 }
                 const statsWeek = await response.json();
                 let [weekTimestamps, weekRam, weekCpu, weekNetTotalUp, weekNetTotalDown, weekNetDeltaUp, weekNetDeltaDown] = parseData(statsWeek);
-                createOffsetChart(weekRam, weekCpu, weekNetTotalUp, weekNetTotalDown, weekNetDeltaUp, weekNetDeltaDown, 0, weekTimestamps, memoryLimit, cpuLimit, 'minute', restarts);
+                createOffsetChart(weekRam, weekCpu, weekNetTotalUp, weekNetTotalDown, weekNetDeltaUp, weekNetDeltaDown, 0, weekTimestamps, memoryLimit, cpuLimit, 'day', restarts);
             })();
             break;
     }
