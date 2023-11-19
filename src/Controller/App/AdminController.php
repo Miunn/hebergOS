@@ -248,6 +248,30 @@ class AdminController extends AbstractController
         return new JsonResponse($this->adminService->deleteContainer($container), Response::HTTP_OK);
     }
 
+    #[Route('/container/config/{container}/memory', name: 'app_admin_container_config_memory')]
+    public function containerConfigMemory(Containers $container, Request $request): Response
+    {
+        $value = $request->query->get('value');
+
+        if ($value == null) {
+            return new JsonResponse(['status' => 'error', 'message' => 'Missing value param'], Response::HTTP_BAD_REQUEST);
+        }
+
+        return new JsonResponse($this->adminService->configMemoryContainer($container, $value), Response::HTTP_OK);
+    }
+
+    #[Route('/container/config/{container}/cpu', name: 'app_admin_container_config_cpu')]
+    public function containerConfigCpu(Containers $container, Request $request): Response
+    {
+        $value = $request->query->get('value');
+
+        if ($value == null) {
+            return new JsonResponse(['status' => 'error', 'message' => 'Missing value param'], Response::HTTP_BAD_REQUEST);
+        }
+
+        return new JsonResponse($this->adminService->configCpuContainer($container, $value), Response::HTTP_OK);
+    }
+
     #[Route('/notifications/delete/{notification}', name: 'app_admin_delete_notification')]
     public function deleteNotification(Notifications $notification): Response {
         $this->entityManager->remove($notification);

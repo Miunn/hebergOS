@@ -95,6 +95,8 @@ container.shell.unavailable: "  >_ Pour avoir accès à la console veuillez dém
 container.admin: Administration
 container.admin.delete: Supprimer le container
 container.admin.runningPort: "Le container se base sur le port interne: "
+container.admin.edit.memory: "Changer la limite mémoire"
+container.admin.edit.cpu: "Changer la limite cpu"
 
 auth.title.logout: Deconnexion
 auth.title.login: Connexion

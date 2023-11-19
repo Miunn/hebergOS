@@ -77,6 +77,20 @@ class AppService
         return null;
     }
 
+    public function patchApi(string $uri, array $data=null): ?ResponseInterface
+    {
+        try {
+            return $this->httpClient->request(
+                'PATCH',
+                $uri,
+                $data
+            );
+        } catch (TransportExceptionInterface $e) {
+            dump($e);
+        }
+        return null;
+    }
+
     public function getContainers(): array
     {
         $requestUri = $this->apiUrl . '/v1/container';

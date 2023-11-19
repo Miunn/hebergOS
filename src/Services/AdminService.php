@@ -78,4 +78,50 @@ class AdminService
             return ['status' => 'error', 'message' => $e->getMessage()];
         }
     }
+
+    public function configMemoryContainer(Containers $container, float $value): array {
+        $requestUri = "$this->apiUrl/v1/container?id={$container->getId()}";
+
+        $response = $this->appService->patchApi($requestUri, data: [
+            'json' => [
+                "memory" => $value
+            ]
+        ]);
+
+        try {
+            if ($response->getStatusCode() != 200) {
+                return ['status' => 'error', 'message' => $response->getContent()];
+            }
+
+            $container->setMemoryLimit($value);
+            $this->entityManager->persist($container);
+            $this->entityManager->flush();
+            return ['status' => 'success'];
+        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+
+    public function configCpuContainer(Containers $container, float $value): array {
+        $requestUri = "$this->apiUrl/v1/container?id={$container->getId()}";
+
+        $response = $this->appService->patchApi($requestUri, data: [
+            'json' => [
+                "cpulimit" => $value
+            ]
+        ]);
+
+        try {
+            if ($response->getStatusCode() != 200) {
+                return ['status' => 'error', 'message' => $response->getContent()];
+            }
+
+            $container->setCpuLimit($value);
+            $this->entityManager->persist($container);
+            $this->entityManager->flush();
+            return ['status' => 'success'];
+        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
 }

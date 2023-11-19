@@ -218,7 +218,11 @@ const dataElement = document.getElementById("data-stats");
 const statsDayUrl = dataElement.getAttribute("data-url-day");
 const statsWeekUrl = dataElement.getAttribute("data-url-week");
 const data = JSON.parse(dataElement.getAttribute("data-stats"));
-const restarts = JSON.parse(dataElement.dataset.restarts);
+
+let restarts = '';
+if (dataElement.dataset.restarts) {
+    restarts = JSON.parse(dataElement.dataset.restarts);
+}
 
 let memoryLimit = Object.entries(data).slice(-1)[0][1]["memory"]["limit"];
 let cpuLimit = Object.entries(data).slice(-1)[0][1]["cpu"]["limit"];

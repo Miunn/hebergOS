@@ -13,5 +13,9 @@
     <p>{{ 'container.admin.runningPort'|trans }} {{ containerApi.host_port_root }}</p>
 
     <button class="accent-solid-cta" id="delete-container" type="button" data-delete="{{ path('app_admin_container_delete', {'container': container.id}) }}" data-redirect="{{ path('app_admin_index') }}">{{ 'container.admin.delete'|trans }}</button>
+
+    <button class="accent-solid-cta" id="config-memory" type="button" data-config-memory="{{ path('app_admin_container_config_memory', {'container': container.id}) }}" data-redirect="{{ path('app_admin_index') }}">{{ 'container.admin.edit.memory'|trans }}</button>
+
+    <button class="accent-solid-cta" id="config-cpu" type="button" data-config-cpu="{{ path('app_admin_container_config_cpu', {'container': container.id}) }}" data-redirect="{{ path('app_admin_index') }}">{{ 'container.admin.edit.cpu'|trans }}</button>
 </section>
 {% endblock %}
