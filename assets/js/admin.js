@@ -33,13 +33,14 @@ containerCreateBtn.addEventListener("click", (event) => {
 
         const data = new FormData(r.value);
 
+        fireBasicSwal("Conteneur en cours de création...", "info");
         const response = await fetch(window.location, {
             'method': 'POST',
             'body': data,
         });
 
         if (response.ok) {
-            fireBasicSwal("Container créé", "success", ()=>{location.reload()});
+            fireBasicSwal("Conteneur créé", "success", ()=>{location.reload()});
         } else {
             fireBasicSwal("Impossible de créer le container", "error");
         }
