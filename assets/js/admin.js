@@ -8,7 +8,7 @@ const containerCreateHTML = document.getElementById("dialog-container-create").i
 containerCreateBtn.addEventListener("click", (event) => {
     event.preventDefault();
 
-    fireHtmlSwal("Créer un nouveau container", containerCreateHTML, null, (r) => {
+    fireHtmlSwal("Créer un nouveau container", containerCreateHTML, null, true, async (r) => {
         let form = Swal.getHtmlContainer().querySelector("form#container-create-form")
 
         let name = form.querySelector("input[name='container_form[name]']").value;
@@ -17,24 +17,17 @@ containerCreateBtn.addEventListener("click", (event) => {
 
         if (name === '') {
             Swal.showValidationMessage('Le nom est requis');
+            return;
         } else if (memoryLimit === '') {
             Swal.showValidationMessage('La limite mémoire est requise');
+            return;
         } else if (cpuLimit === '') {
             Swal.showValidationMessage('La limite cpu est requise');
+            return;
         }
 
-        return form;
-    }, async (r) => {
-        // Submit form (request it because we want to raise a submit event
-        //r.value.requestSubmit();
-        if (!r.isConfirmed) {
-            return
-        }
-
-        const data = new FormData(r.value);
-
-        fireBasicSwal("Conteneur en cours de création...", "info");
-        const response = await fetch(window.location, {
+        const data = new FormData(form);
+        const response = await fetch(window.location.href, {
             'method': 'POST',
             'body': data,
         });
@@ -44,5 +37,6 @@ containerCreateBtn.addEventListener("click", (event) => {
         } else {
             fireBasicSwal("Impossible de créer le container", "error");
         }
+        return form;
     });
 });

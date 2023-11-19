@@ -13,16 +13,11 @@ changeDomain.addEventListener("click", (event) => {
         `Changer le nom de domaine de ${editDomainDialogHTML.getAttribute("data-project")}`,
         editDomainDialogHTML.innerHTML,
         null,
-        (r) => {
-            return Swal.getHtmlContainer().querySelector("input[name='domain']").value;
-        },
+        true,
         async (r) => {
-            if (!r.isConfirmed) {
-                return;
-            }
-
+            let domain =  Swal.getHtmlContainer().querySelector("input[name='domain']").value;
             let data = new FormData();
-            data.append('domain', r.value);
+            data.append('domain', domain);
 
 
             const response = await fetch(changeDomainRoute, {
@@ -35,6 +30,6 @@ changeDomain.addEventListener("click", (event) => {
             } else {
                 fireBasicSwal("Impossible d'effectuer le changement", "error");
             }
-        }
+        },
     )
 });

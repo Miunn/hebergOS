@@ -42,7 +42,7 @@ export function fireInputSwal(title, inputType, showLoaderOnConfirm, preConfirm=
     }).then(callback);
 }
 
-export function fireHtmlSwal(title, html, icon, preConfirm=()=>{}, callback=(r)=>{}, inputValidator=(v, m)=>{}) {
+export function fireHtmlSwal(title, html, icon, showLoaderOnConfirm, preConfirm=()=>{}, callback=(r)=>{}, inputValidator=(v, m)=>{}) {
     Swal.fire({
         title: title,
         icon: icon,
@@ -51,6 +51,7 @@ export function fireHtmlSwal(title, html, icon, preConfirm=()=>{}, callback=(r)=
         showCancelButton: true,
         focusConfirm: false,
         reverseButtons: true,
+        showLoaderOnConfirm: showLoaderOnConfirm,
         inputValidator: inputValidator,
         preConfirm: preConfirm,
     }).then(callback);
