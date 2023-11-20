@@ -24,6 +24,10 @@
     justify-content: space-between;
   }
 
+  .notif-description {
+    overflow-wrap: anywhere;
+  }
+
   .form-validation {
     align-self: flex-end;
     margin-top: 5px;

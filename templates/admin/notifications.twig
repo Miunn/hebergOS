@@ -35,7 +35,7 @@
                             <h5>{{ notif.title }}</h5>
                         {% endif %}
                         {% if notif.description != '' %}
-                            <p>{{ notif.description }}</p>
+                            <p class="notif-description">{{ notif.description }}</p>
                         {% else %}
                             <p class="italic">{{ 'notifications.description.empty'|trans }}</p>
                         {% endif %}
