@@ -125,6 +125,17 @@
   }
 }
 
+#container-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  div {
+    display: flex;
+    gap: 16px;
+  }
+}
+
 #overview-wrapper {
 
   .row {
