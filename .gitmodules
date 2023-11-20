@@ -1,0 +1,3 @@
+[submodule "HebergOS-dockerlink"]
+	path = HebergOS-dockerlink
+	url = https://github.com/f7ed0/HebergOS-dockerlink.git
