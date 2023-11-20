@@ -6,6 +6,7 @@ use App\Enum\NotificationType;
 use App\Repository\NotificationsRepository;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\DBAL\Types\StringType;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NotificationsRepository::class)]
@@ -32,7 +33,7 @@ class Notifications
     #[ORM\Column(length: 80)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 120, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]

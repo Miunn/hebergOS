@@ -24,3 +24,4 @@
 
 - Fix shells with https
 - Fix container deletion
+- Fix too long description on contact us form
