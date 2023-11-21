@@ -26,4 +26,4 @@
 
 ## Reporting a Vulnerability
 
-In order to report a Vulnerability related to an old supported version or a code realted vulnerability, please open an issue
+In order to report a Vulnerability related to an old supported version or a code related vulnerability, please open an issue
