@@ -204,7 +204,17 @@ class AppService
 
         try {
             $arrayResponse = $response->toArray();
+            // Need to sort to have latest's limits
+            uksort($arrayResponse, function (int $a, int $b) {
+                if ($a == $b) {
+                    return 0;
+                }
+
+                return $a < $b ? -1 : 1;
+            });
+
             $lastRecord = end($arrayResponse);
+
             // Sync limits
             if ($lastRecord) {
                 $container->setMemoryLimit($lastRecord['memory']['limit']);
