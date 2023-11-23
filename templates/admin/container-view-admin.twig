@@ -82,7 +82,7 @@
         {% endblock %}
     </div>
 
-    <div class="dialog-html" id="edit-domain-dialog" data-project="{{ container.name }}" data-change-route="{{ path('app_change_domain', {'container': container.id}) }}">
+    <div class="dialog-html" id="edit-domain-dialog" data-project="{{ container.name }}" data-change-route="{{ path('app_admin_change_domain', {'container': container.id}) }}">
         <form id="edit-domain-form">
             <label for="new-domain">{{ 'container.domain.new'|trans }}</label>
             <input type="url" name="domain" id="new-domain" value="{{ container.domain }}">
