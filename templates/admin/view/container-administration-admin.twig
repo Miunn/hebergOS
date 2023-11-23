@@ -3,6 +3,7 @@
 {% block title %}{{ 'pages.titles.container.administration'|trans|format(container.name) }}{% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {{ encore_entry_script_tags('containerAdmin') }}
 {% endblock %}
 
