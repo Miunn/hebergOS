@@ -42,6 +42,12 @@ class Notifications
     #[ORM\Column(length: 30, enumType: NotificationType::class)]
     private ?NotificationType $type = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
+    private ?string $askMemoryValue = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
+    private ?string $askCpuValue = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -115,6 +121,30 @@ class Notifications
     public function setType(NotificationType $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getAskMemoryValue(): ?string
+    {
+        return $this->askMemoryValue;
+    }
+
+    public function setAskMemoryValue(?string $askMemoryValue): static
+    {
+        $this->askMemoryValue = $askMemoryValue;
+
+        return $this;
+    }
+
+    public function getAskCpuValue(): ?string
+    {
+        return $this->askCpuValue;
+    }
+
+    public function setAskCpuValue(?string $askCpuValue): static
+    {
+        $this->askCpuValue = $askCpuValue;
 
         return $this;
     }
