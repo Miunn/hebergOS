@@ -19,19 +19,20 @@
                 <p class="text-center">{{ 'notifications.empty'|trans }}</p>
             </div>
         {% else %}
-            <div class="card">
-                {% for notif in container.notifications %}
-                    <div class="notif">
-                        <h3>{{ notif.title }}
-                            <span>{{ 'notifications.date'|trans }}{{ notif.date|date('d/m/y H:i') }}</span></h3>
-                        <h4>{{ 'notifications.request.by'|trans }} {{ notif.user.firstname }} {{ notif.user.lastname }}
-                            ({{ notif.user.username }})</h4>
-                        <h4>{{ notif.user.email }}</h4>
+            {% for notif in container.notifications %}
+                <div class="card notif">
+                    <h3>{{ notif.title }}
+                        <span>{{ 'notifications.date'|trans }}{{ notif.date|date('d/m/y H:i') }}</span></h3>
+                    <h4>{{ 'notifications.request.by'|trans }} {{ notif.user.firstname }} {{ notif.user.lastname }}
+                        ({{ notif.user.username }})</h4>
+                    <h4>{{ notif.user.email }}</h4>
 
-                        <button class="delete-notification accent-cta" type="button" data-route="{{ path('app_admin_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.action.delete'|trans }}</button>
-                    </div>
-                {% endfor %}
-            </div>
+                    <p>{{ notif.description }}</p>
+
+                    <button class="delete-notification accent-cta" type="button"
+                            data-route="{{ path('app_admin_delete_notification', {'notification': notif.id}) }}">{{ 'notifications.action.delete'|trans }}</button>
+                </div>
+            {% endfor %}
         {% endif %}
     </div>
 {% endblock %}
