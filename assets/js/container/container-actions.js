@@ -143,98 +143,110 @@ restartContainerCta.addEventListener("click", (event) => {
     );
 });
 
-askDeleteContainerCta.addEventListener("click", (event) => {
-    event.preventDefault();
-    let element = event.currentTarget;
-    let name = element.getAttribute("data-project");
+if (askDeleteContainerCta) {
 
-    fireConfirmationSwal(
-        `Demander la suppression de ${name} ?`,
-        'Confirmer',
-        'warning',
-        async (r) => {
-            if (!r.isConfirmed) {
-                return;
-            }
 
-            const response = await fetch(element.getAttribute("data-route"));
+    askDeleteContainerCta.addEventListener("click", (event) => {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let name = element.getAttribute("data-project");
 
-            if (response.ok) {
-                fireBasicSwal(
-                    `Demande effectuée`,
-                    'success',
-                    (r) => {
-                        location.reload();
-                    }
-                );
-            } else {
-                fireBasicSwal(
-                    `Impossible de joindre l'application`,
-                    'error'
-                );
+        fireConfirmationSwal(
+            `Demander la suppression de ${name} ?`,
+            'Confirmer',
+            'warning',
+            async (r) => {
+                if (!r.isConfirmed) {
+                    return;
+                }
+
+                const response = await fetch(element.getAttribute("data-route"));
+
+                if (response.ok) {
+                    fireBasicSwal(
+                        `Demande effectuée`,
+                        'success',
+                        (r) => {
+                            location.reload();
+                        }
+                    );
+                } else {
+                    fireBasicSwal(
+                        `Impossible de joindre l'application`,
+                        'error'
+                    );
+                }
+            });
+    });
+}
+
+if (askConfigMemoryContainerCta) {
+
+
+    askConfigMemoryContainerCta.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const dialog = document.getElementById("notification-dialog");
+
+        Swal.fire({
+            title: `Demander un changement de la limite ram`,
+            html: dialog.innerHTML,
+            confirmButtonText: 'Confirmer',
+            showCancelButton: true,
+            cancelButtonText: 'Annuler',
+            icon: 'question',
+            showLoaderOnConfirm: true,
+            reverseButtons: true,
+            preConfirm: () => {
+                const form = Swal.getHtmlContainer().querySelector('form');
+                console.log(form);
+
+                let value = form.querySelector('input[name="notification_form[value]"]').value;
+                if (value === '' || isNaN(value)) {
+                    Swal.showValidationMessage('Une valeur est requise');
+                    return;
+                }
+
+                form.querySelector('input[name="notification_form[title]"]').value = "Demande de changement mémoire";
+                form.querySelector('select[name="notification_form[type]"]').value = "0";
+
+                form.submit();
             }
         });
-});
-
-askConfigMemoryContainerCta.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    const dialog = document.getElementById("notification-dialog");
-
-    Swal.fire({
-        title:`Demander un changement de la limite ram`,
-        html: dialog.innerHTML,
-        confirmButtonText: 'Confirmer',
-        showCancelButton: true,
-        cancelButtonText: 'Annuler',
-        icon: 'question',
-        showLoaderOnConfirm: true,
-        reverseButtons: true,
-        preConfirm: () => {
-            const form = Swal.getHtmlContainer().querySelector('form');
-            console.log(form);
-
-            let value = form.querySelector('input[name="notification_form[value]"]').value;
-            if (value === '' || isNaN(value)) {
-                Swal.showValidationMessage('Une valeur est requise');
-                return;
-            }
-
-            form.querySelector('input[name="notification_form[title]"]').value = "Demande de changement mémoire";
-            form.querySelector('select[name="notification_form[type]"]').value = "0";
-
-            form.submit();
-        }
     });
-});
+}
 
-askConfigCpuContainerCta.addEventListener("click", (event) => {
-    event.preventDefault();
+if (askConfigCpuContainerCta) {
 
-    const dialog = document.getElementById("notification-dialog");
 
-    Swal.fire({
-        title:`Demander un changement de la limite cpu`,
-        html: dialog.innerHTML,
-        confirmButtonText: 'Confirmer',
-        showCancelButton: true,
-        cancelButtonText: 'Annuler',
-        icon: 'question',
-        showLoaderOnConfirm: true,
-        reverseButtons: true,
-        preConfirm: () => {
-            const form = Swal.getHtmlContainer().querySelector('form');
+    askConfigCpuContainerCta.addEventListener("click", (event) => {
+        event.preventDefault();
 
-            let value = form.querySelector('input[name="notification_form[value]"]').value;
-            if (value === '' || isNaN(value)) {
-                Swal.showValidationMessage('Une valeur est requise');
-                return;
+        const dialog = document.getElementById("notification-dialog");
+
+        Swal.fire({
+            title: `Demander un changement de la limite cpu`,
+            html: dialog.innerHTML,
+            confirmButtonText: 'Confirmer',
+            showCancelButton: true,
+            cancelButtonText: 'Annuler',
+            icon: 'question',
+            showLoaderOnConfirm: true,
+            reverseButtons: true,
+            preConfirm: () => {
+                const form = Swal.getHtmlContainer().querySelector('form');
+
+                let value = form.querySelector('input[name="notification_form[value]"]').value;
+                if (value === '' || isNaN(value)) {
+                    Swal.showValidationMessage('Une valeur est requise');
+                    return;
+                }
+
+                form.querySelector('input[name="notification_form[title]"]').value = "Demande de changement cpu";
+                form.querySelector('select[name="notification_form[type]"]').value = "1";
+
+                form.submit();
             }
-
-            form.querySelector('input[name="notification_form[title]"]').value = "Demande de changement cpu";
-            form.querySelector('select[name="notification_form[type]"]').value = "1";
-
-            form.submit();
-        }
+        });
     });
-});
+}

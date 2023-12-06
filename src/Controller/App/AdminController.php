@@ -7,6 +7,7 @@ use App\Entity\Notifications;
 use App\Entity\User;
 use App\Enum\ContainerActivityType;
 use App\Form\ContainerFormType;
+use App\Form\NotificationFormType;
 use App\Form\UserFormType;
 use App\Services\AdminService;
 use App\Services\AppService;
@@ -154,15 +155,32 @@ class AdminController extends AbstractController
     }
 
     #[Route('/container/actions/{container}', name: 'app_admin_container_actions')]
-    public function containerActions(Containers $container): Response {
+    public function containerActions(Containers $container, Request $request): Response {
+        $user = $this->getUser();
+        if (!$user instanceof User) {
+            throw new AccessDeniedException();
+        }
 
         $containerApi = $this->appService->getContainer($container->getId());
+
+        $newNotification = new Notifications();
+        $newNotification->setUser($user);
+        $newNotification->setContainer($container);
+        $notificationForm = $this->createForm(NotificationFormType::class, $newNotification);
+        $notificationForm->handleRequest($request);
+
+        if ($notificationForm->isSubmitted() && $notificationForm->isValid()) {
+            $this->entityManager->persist($newNotification);
+            $this->entityManager->flush();
+        }
+
         return $this->render('admin/view/container-actions-admin.twig', [
             'admin' => true,
             'container' => $container,
             'containerApi' => $containerApi,
-            'actions' => "1"
-        ]);
+            'actions' => "1",
+            'notificationForm' => $notificationForm->createView(),
+    ]);
     }
 
     #[Route('/container/administration/{container}', name: 'app_admin_container_administration')]
@@ -178,11 +196,12 @@ class AdminController extends AbstractController
     #[Route('/container/notifications/{container}', name: 'app_admin_container_notifications')]
     public function containerNotifications(Containers $container): Response {
         $containerApi = $this->appService->getContainer($container->getId());
+
         return $this->render('admin/view/container-notifications-admin.twig', [
             'container' => $container,
             'containerApi' => $containerApi,
-            'notifications' => '1'
-        ]);
+            'notifications' => '1',
+     ]);
     }
 
     /** AJAX Admin only routes */

@@ -66,4 +66,14 @@
         </div>
     </div>
 
+    <dialog id="notification-dialog">
+        {{ form_start(notificationForm) }}
+
+        {{ form_row(notificationForm.title, {'row_attr': {'class': 'hide'}}) }}
+        {{ form_row(notificationForm.value) }}
+        {{ form_row(notificationForm.description) }}
+        {{ form_row(notificationForm.type, {'row_attr': {'class': 'hide'}}) }}
+
+        {{ form_end(notificationForm) }}
+    </dialog>
 {% endblock %}
