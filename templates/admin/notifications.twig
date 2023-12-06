@@ -33,6 +33,9 @@
                                 {{ notif.user.email }}</p>
                         {% else %}
                             <h5>{{ notif.title }}</h5>
+                            {% if notif.type.value == 'contact' %}
+                                {{ notif.contact }}
+                            {% endif %}
                         {% endif %}
                         {% if notif.description != '' %}
                             <p class="notif-description">{{ notif.description }}</p>
