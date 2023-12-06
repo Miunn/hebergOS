@@ -144,7 +144,7 @@ notifications.type.contact: Demande de contact
 notifications.type.create: Demande de création
 notifications.type.container_memory: Demande de changement mémoire
 notifications.type.container_cpu: Demande de changement cpu
-notifications.type.copntainer_delete: Demande de suppression
+notifications.type.container_delete: Demande de suppression
 notifications.title: Demandes utilisateurs
 notifications.empty: Aucune notification
 notifications.request.by: "Initiée par:"
