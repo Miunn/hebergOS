@@ -77,6 +77,7 @@
         {{ form_row(notificationForm.description) }}
         {{ form_row(notificationForm.type, {'row_attr': {'class': 'hide'}}) }}
 
-        {{ form_end(notificationForm) }}
+        {{ form_widget(notificationForm._token) }}
+        {{ form_end(notificationForm, {'render_rest': false}) }}
     </dialog>
 {% endblock %}

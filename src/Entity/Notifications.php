@@ -44,6 +44,9 @@ class Notifications
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
     private ?string $value = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $contact = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -141,6 +144,18 @@ class Notifications
     public function setReason(?string $reason): static
     {
         $this->reason = $reason;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): static
+    {
+        $this->contact = $contact;
 
         return $this;
     }

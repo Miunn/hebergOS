@@ -150,6 +150,8 @@ notifications.empty: Aucune notification
 notifications.request.by: "Initiée par:"
 notifications.date: "Le:"
 notifications.description.empty: Aucune description
+notifications.contact.label: Laissez nous un moyen de vous contacter !
+notifications.contact.placeholder: Adresse mail, Réseau social, ...
 notifications.action.delete: Supprimer la demande
 notifications.action.user: Voir l'utilisateur
 notifications.action.container: Voir le conteneur

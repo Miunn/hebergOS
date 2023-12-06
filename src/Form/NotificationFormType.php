@@ -36,8 +36,11 @@ class NotificationFormType extends AbstractType
                 'scale' => 2,
                 'rounding_mode' => NumberFormatter::ROUND_UP
             ])
-            ->add('description', TextareaType::class, [
-                'label' => 'notifications.reason.label',
+            ->add('contact', TextType::class, [
+                'label' => 'notifications.contact.label',
+                'attr' => [
+                    'placeholder' => 'notifications.contact.placeholder'
+                ]
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [

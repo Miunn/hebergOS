@@ -20,7 +20,8 @@ class CoreController extends AbstractController
 
     #[Route('/contact-us', name: 'app_app_contact_form')]
     public function contactForm(Request $request, EntityManagerInterface $entityManager): Response {
-        $notification = new Notifications(NotificationType::CONTACT);
+        $notification = new Notifications();
+        $notification->setType(NotificationType::CONTACT);
         $form = $this->createForm(NotificationFormType::class, $notification);
         $form->handleRequest($request);
 

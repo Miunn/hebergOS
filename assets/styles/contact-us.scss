@@ -23,7 +23,7 @@ form {
   }
 
   label {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   input, textarea {
@@ -33,6 +33,7 @@ form {
     border-bottom: 2px solid var(--accent-border-interactive);
 
     background-color: inherit;
+    font-size: 1rem;
   }
 
   textarea {
@@ -40,8 +41,7 @@ form {
     min-height: 80px;
   }
 
-  #notification_form_title {
-    font-size: 1rem;
+  input {
     line-height: 2rem;
   }
 
