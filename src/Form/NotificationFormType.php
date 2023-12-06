@@ -18,7 +18,6 @@ class NotificationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        dump($builder->getData()->getType());
         $builder
             ->add('title', TextType::class, [
                 'label' => 'notifications.form.title',
