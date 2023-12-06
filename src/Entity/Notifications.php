@@ -12,9 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: NotificationsRepository::class)]
 class Notifications
 {
-    public function __construct(NotificationType $type) {
+    public function __construct() {
         $this->date = date_create_immutable();
-        $this->type = $type;
     }
 
     #[ORM\Id]
@@ -43,10 +42,7 @@ class Notifications
     private ?NotificationType $type = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
-    private ?string $askMemoryValue = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
-    private ?string $askCpuValue = null;
+    private ?string $value = null;
 
     public function getId(): ?int
     {
@@ -125,26 +121,26 @@ class Notifications
         return $this;
     }
 
-    public function getAskMemoryValue(): ?string
+    public function getValue(): ?string
     {
-        return $this->askMemoryValue;
+        return $this->value;
     }
 
-    public function setAskMemoryValue(?string $askMemoryValue): static
+    public function setValue(?string $value): static
     {
-        $this->askMemoryValue = $askMemoryValue;
+        $this->value = $value;
 
         return $this;
     }
 
-    public function getAskCpuValue(): ?string
+    public function getReason(): ?string
     {
-        return $this->askCpuValue;
+        return $this->reason;
     }
 
-    public function setAskCpuValue(?string $askCpuValue): static
+    public function setReason(?string $reason): static
     {
-        $this->askCpuValue = $askCpuValue;
+        $this->reason = $reason;
 
         return $this;
     }

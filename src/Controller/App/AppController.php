@@ -7,6 +7,7 @@ use App\Entity\Notifications;
 use App\Entity\User;
 use App\Enum\ContainerActivityType;
 use App\Enum\NotificationType;
+use App\Form\NotificationFormType;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
 use DateTimeImmutable;
@@ -100,18 +101,30 @@ class AppController extends AbstractController
     }
 
     #[Route('/container/actions/{container}', name: 'app_container_actions')]
-    public function containerActions(Containers $container): Response {
+    public function containerActions(Containers $container, Request $request): Response {
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
             throw new AccessDeniedException();
         }
 
+        $newNotification = new Notifications();
+        $newNotification->setUser($user);
+        $newNotification->setContainer($container);
+        $notificationForm = $this->createForm(NotificationFormType::class, $newNotification);
+        $notificationForm->handleRequest($request);
+
+        if ($notificationForm->isSubmitted() && $notificationForm->isValid()) {
+            $this->entityManager->persist($newNotification);
+            $this->entityManager->flush();
+        }
+
         $containerApi = $this->appService->getContainer($container->getId());
         return $this->render('app/view/container-actions.twig', [
             'container' => $container,
             'containerApi' => $containerApi,
-            'actions' => "1"
+            'actions' => "1",
+            'notificationForm' => $notificationForm->createView(),
         ]);
     }
 

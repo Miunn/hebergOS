@@ -160,3 +160,5 @@ notifications.form.title.placeholder: J'ai un projet à faire valoir
 notifications.form.description: Dîtes-nous en plus
 notifications.form.description.placeholder: Mon projet est complètement incroyable regardez ça
 notifications.form.submit: Envoyer
+notifications.value.label: "Valeur demandée:"
+notifications.reason.label: "Dîtes-en plus sur votre demande:"
