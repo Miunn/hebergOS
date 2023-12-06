@@ -144,12 +144,14 @@ notifications.type.contact: Demande de contact
 notifications.type.create: Demande de création
 notifications.type.container_memory: Demande de changement mémoire
 notifications.type.container_cpu: Demande de changement cpu
-notifications.type.copntainer_delete: Demande de suppression
+notifications.type.container_delete: Demande de suppression
 notifications.title: Demandes utilisateurs
 notifications.empty: Aucune notification
 notifications.request.by: "Initiée par:"
 notifications.date: "Le:"
 notifications.description.empty: Aucune description
+notifications.contact.label: Laissez nous un moyen de vous contacter !
+notifications.contact.placeholder: Adresse mail, Réseau social, ...
 notifications.action.delete: Supprimer la demande
 notifications.action.user: Voir l'utilisateur
 notifications.action.container: Voir le conteneur
@@ -160,3 +162,5 @@ notifications.form.title.placeholder: J'ai un projet à faire valoir
 notifications.form.description: Dîtes-nous en plus
 notifications.form.description.placeholder: Mon projet est complètement incroyable regardez ça
 notifications.form.submit: Envoyer
+notifications.value.label: "Valeur désirée:"
+notifications.reason.label: "Dîtes-en plus sur votre demande:"

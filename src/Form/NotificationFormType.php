@@ -3,7 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Notifications;
+use App\Enum\NotificationType;
+use NumberFormatter;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +30,27 @@ class NotificationFormType extends AbstractType
                 'attr' => [
                     'placeholder' => 'notifications.form.description.placeholder'
                 ]
+            ])
+            ->add('value', NumberType::class, [
+                'label' => 'notifications.value.label',
+                'scale' => 2,
+                'rounding_mode' => NumberFormatter::ROUND_UP
+            ])
+            ->add('contact', TextType::class, [
+                'label' => 'notifications.contact.label',
+                'attr' => [
+                    'placeholder' => 'notifications.contact.placeholder'
+                ]
+            ])
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'memory' => NotificationType::CONTAINER_MEMORY,
+                    'cpu' => NotificationType::CONTAINER_CPU,
+                    'delete' => NotificationType::CONTAINER_DELETE,
+                    'contact' => NotificationType::CONTACT
+                ],
+                'required' => false,
+                'empty_data' => '3'
             ])
         ;
     }

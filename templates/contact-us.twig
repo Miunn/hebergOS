@@ -14,8 +14,10 @@
 
     {{ form_row(notificationForm.title) }}
     {{ form_row(notificationForm.description) }}
+    {{ form_row(notificationForm.contact) }}
 
     <button type="submit" class="solid-cta">{{ 'notifications.form.submit'|trans }}</button>
 
-    {{ form_end(notificationForm) }}
+    {{ form_widget(notificationForm._token) }}
+    {{ form_end(notificationForm, {'render_rest': false}) }}
 {% endblock %}

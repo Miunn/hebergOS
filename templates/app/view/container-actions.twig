@@ -61,12 +61,23 @@
                 <h2 class="title">{{ 'container.actions.extra.title'|trans }}</h2>
 
                 <div class="flex-actions">
-                    <button class="accent-solid-cta" id="ask-delete-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_delete', {'container': container.id}) }}">{{ 'container.actions.askDelete'|trans }}</button>
-                    <button class="accent-solid-cta" id="ask-config-memory-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_config_memory', {'container': container.id}) }}">{{ 'container.actions.askConfig.memory'|trans }}</button>
-                    <button class="accent-solid-cta" id="ask-config-cpu-container-cta" data-project="{{ container.name }}" data-route="{{ path('app_container_ask_config_cpu', {'container': container.id}) }}">{{ 'container.actions.askConfig.cpu'|trans }}</button>
+                    <button class="accent-solid-cta" id="ask-delete-container-cta">{{ 'container.actions.askDelete'|trans }}</button>
+                    <button class="accent-solid-cta" id="ask-config-memory-container-cta">{{ 'container.actions.askConfig.memory'|trans }}</button>
+                    <button class="accent-solid-cta" id="ask-config-cpu-container-cta">{{ 'container.actions.askConfig.cpu'|trans }}</button>
                 </div>
             </section>
         </div>
     </div>
 
+    <dialog id="notification-dialog">
+        {{ form_start(notificationForm) }}
+
+        {{ form_row(notificationForm.title, {'row_attr': {'class': 'hide'}}) }}
+        {{ form_row(notificationForm.value) }}
+        {{ form_row(notificationForm.description, {'attr': {'placeholder': ''}}) }}
+        {{ form_row(notificationForm.type, {'row_attr': {'class': 'hide'}}) }}
+
+        {{ form_widget(notificationForm._token) }}
+        {{ form_end(notificationForm, {'render_rest': false}) }}
+    </dialog>
 {% endblock %}

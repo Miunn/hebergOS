@@ -12,9 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: NotificationsRepository::class)]
 class Notifications
 {
-    public function __construct(NotificationType $type) {
+    public function __construct() {
         $this->date = date_create_immutable();
-        $this->type = $type;
     }
 
     #[ORM\Id]
@@ -41,6 +40,12 @@ class Notifications
 
     #[ORM\Column(length: 30, enumType: NotificationType::class)]
     private ?NotificationType $type = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
+    private ?string $value = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $contact = null;
 
     public function getId(): ?int
     {
@@ -115,6 +120,42 @@ class Notifications
     public function setType(NotificationType $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function setValue(?string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    public function getReason(): ?string
+    {
+        return $this->reason;
+    }
+
+    public function setReason(?string $reason): static
+    {
+        $this->reason = $reason;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): static
+    {
+        $this->contact = $contact;
 
         return $this;
     }

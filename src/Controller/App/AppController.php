@@ -7,6 +7,7 @@ use App\Entity\Notifications;
 use App\Entity\User;
 use App\Enum\ContainerActivityType;
 use App\Enum\NotificationType;
+use App\Form\NotificationFormType;
 use App\Services\AppService;
 use App\Services\ContainerActivityService;
 use DateTimeImmutable;
@@ -100,18 +101,30 @@ class AppController extends AbstractController
     }
 
     #[Route('/container/actions/{container}', name: 'app_container_actions')]
-    public function containerActions(Containers $container): Response {
+    public function containerActions(Containers $container, Request $request): Response {
         // Ensure user is associated with it
         $user = $this->getUser();
         if (!$user instanceof User || !$user->getContainers()->contains($container)) {
             throw new AccessDeniedException();
         }
 
+        $newNotification = new Notifications();
+        $newNotification->setUser($user);
+        $newNotification->setContainer($container);
+        $notificationForm = $this->createForm(NotificationFormType::class, $newNotification);
+        $notificationForm->handleRequest($request);
+
+        if ($notificationForm->isSubmitted() && $notificationForm->isValid()) {
+            $this->entityManager->persist($newNotification);
+            $this->entityManager->flush();
+        }
+
         $containerApi = $this->appService->getContainer($container->getId());
         return $this->render('app/view/container-actions.twig', [
             'container' => $container,
             'containerApi' => $containerApi,
-            'actions' => "1"
+            'actions' => "1",
+            'notificationForm' => $notificationForm->createView(),
         ]);
     }
 
@@ -230,46 +243,11 @@ class AppController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        $notification = new Notifications(NotificationType::CONTAINER_DELETE);
+        $notification = new Notifications();
+        $notification->setType(NotificationType::CONTAINER_DELETE);
         $notification->setUser($user);
         $notification->setContainer($container);
-        $notification->setTitle($this->translator->trans('notifications.request.delete'));
-        $this->entityManager->persist($notification);
-        $this->entityManager->flush();
-
-        return new Response("OK", 200);
-    }
-
-    #[Route('/container/ask-memory/{container}', name: 'app_container_ask_config_memory')]
-    public function askConfigMemoryContainer(Containers $container): Response {
-        // Ensure user is associated with it
-        $user = $this->getUser();
-        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
-            throw new AccessDeniedException();
-        }
-
-        $notification = new Notifications(NotificationType::CONTAINER_MEMORY);
-        $notification->setUser($user);
-        $notification->setContainer($container);
-        $notification->setTitle($this->translator->trans('notifications.type.container_memory'));
-        $this->entityManager->persist($notification);
-        $this->entityManager->flush();
-
-        return new Response("OK", 200);
-    }
-
-    #[Route('/container/ask-cpu/{container}', name: 'app_container_ask_config_cpu')]
-    public function askConfigCpuContainer(Containers $container): Response {
-        // Ensure user is associated with it
-        $user = $this->getUser();
-        if (!$user instanceof User || !$user->getContainers()->contains($container)) {
-            throw new AccessDeniedException();
-        }
-
-        $notification = new Notifications(NotificationType::CONTAINER_CPU);
-        $notification->setUser($user);
-        $notification->setContainer($container);
-        $notification->setTitle($this->translator->trans('notifications.type.container_cpu'));
+        $notification->setTitle($this->translator->trans('notifications.type.container_delete'));
         $this->entityManager->persist($notification);
         $this->entityManager->flush();
 
