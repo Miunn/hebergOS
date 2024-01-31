@@ -30,8 +30,18 @@
                         <span class="role-pad pad-{{- role|lower -}}">{{ role }}</span>
                     {% endfor %}
                 </td>
-                <td><a class="hover-underline" href="{{ path('app_admin_view_user', {'user': user.id}) }}"><img class="icon-little" src="{{ asset('build/images/config.png') }}" alt="Config">{{ 'admin.users.action.edit'|trans }}</a></td>
-                <td><a class="hover-underline delete-user" href="{{ path('app_admin_delete_user', {'user': user.id}) }}"><img class="icon-little" src="{{ asset('build/images/remove.png') }}" alt="Remove">{{ 'admin.users.action.delete'|trans }}</a></td>
+                <td>
+                    <a href="{{ path('app_admin_view_user', {'user': user.id}) }}">
+                        <span class="material-symbols-outlined">tune</span>
+                        <span class="hover-underline">{{ 'admin.users.action.edit'|trans }}</span>
+                    </a>
+                </td>
+                <td>
+                    <a class="delete-user" href="{{ path('app_admin_delete_user', {'user': user.id}) }}">
+                        <span class="material-symbols-outlined">delete_forever</span>
+                        <span class="hover-underline">{{ 'admin.users.action.delete'|trans }}</span>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
