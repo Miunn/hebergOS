@@ -25,17 +25,16 @@
   }
 
   tbody {
+    tr, td {
+      height: 82px;
+    }
+
     td {
-      padding: 20px 0;
+      vertical-align: middle;
 
       a {
         display: flex;
         align-items: center;
-        gap: 10px;
-      }
-
-      &#roles-cell {
-        display: flex;
         gap: 10px;
       }
 
