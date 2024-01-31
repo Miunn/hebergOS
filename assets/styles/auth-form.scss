@@ -48,7 +48,7 @@ form {
     font-weight: 500;
     font-size: 1em;
 
-    &:focus {
+    &:focus, &:hover {
       border: 1px solid var(--border-interactive);
     }
   }
