@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="f506ff62-bcd2-407b-849c-3980d52c6ead" name="hebergOS" url="https://hebergos.insash.fr">
+        <fileTransfer rootFolder="/var/www/hebergOS" accessType="SFTP" host="hebergos.insash.fr" port="22" sshConfigId="c7c6527b-4a36-4502-b9c0-833e662279b9" sshConfig="admin@hebergos.insash.fr:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" isUseSudo="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
