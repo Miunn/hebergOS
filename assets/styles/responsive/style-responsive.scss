@@ -5,6 +5,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .mobile-view-hide {
+    opacity: 0;
+  }
+
   header {
     nav {
       .hamburger-container {
