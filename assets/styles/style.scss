@@ -160,6 +160,10 @@ header {
       text-align: center;
     }
 
+    .hamburger-container {
+      display: none;
+    }
+
     ul {
       display: flex;
       align-items: center;
@@ -173,7 +177,11 @@ header {
       }
 
       .github-logo {
-        width: 24px;
+        max-width: 24px;
+        max-height: 24px;
+        path {
+          fill: white;
+        }
       }
     }
   }
