@@ -34,28 +34,28 @@
             <ul>
                 {% if is_granted('IS_AUTHENTICATED') and is_granted('ROLE_ADMIN') %}
                     <li>
-                        <a href="{{ path('app_notifications_index') }}"><span class="material-symbols-outlined">notifications</span> <span class="hover-underline">{{ 'title.notifications'|trans }}</span></a>
+                        <a href="{{ path('app_notifications_index') }}"><span class="material-symbols-outlined">notifications</span> <span class="hover-underline large-view">{{ 'title.notifications'|trans }}</span></a>
                     </li>
                     <li>
-                        <a href="{{ path('app_admin_index') }}"><span class="material-symbols-outlined">admin_panel_settings</span> <span class="hover-underline">{{ 'title.admin' | trans }}</span></a>
+                        <a href="{{ path('app_admin_index') }}"><span class="material-symbols-outlined">admin_panel_settings</span> <span class="hover-underline large-view">{{ 'title.admin' | trans }}</span></a>
                     </li>
                 {% elseif not is_granted('IS_AUTHENTICATED') %}
                     <li>
-                        <a href="{{ path('app_app_contact_form') }}"><span class="material-symbols-outlined">rate_review</span> <span class="hover-underline">{{ 'hebergos.contact.title' | trans }}</span></a>
+                        <a href="{{ path('app_app_contact_form') }}"><span class="material-symbols-outlined">rate_review</span> <span class="hover-underline large-view">{{ 'hebergos.contact.title' | trans }}</span></a>
                     </li>
                     <li>
-                        <a href="{{ path('app_login') }}"><span class="material-symbols-outlined">login</span> <span class="hover-underline">{{ 'application.getApp' | trans }}</span></a>
+                        <a href="{{ path('app_login') }}"><span class="material-symbols-outlined">login</span> <span class="hover-underline large-view">{{ 'application.getApp' | trans }}</span></a>
                     </li>
                 {% endif %}
 
                 {% if is_granted('IS_AUTHENTICATED') %}
                     <li>
-                        <a href="{{ path('app_logout') }}"><span class="material-symbols-outlined">logout</span> <span class="hover-underline">{{ 'auth.title.logout' | trans }}</span></a>
+                        <a href="{{ path('app_logout') }}"><span class="material-symbols-outlined">logout</span> <span class="hover-underline large-view">{{ 'auth.title.logout' | trans }}</span></a>
                     </li>
                 {% endif %}
 
                 <li>
-                    <a href="https://github.com/Miunn/herbergOS" target="_blank"><img class="little-img github-logo" src="{{ asset('build/images/github-white.png') }}" alt="{{ 'application.github' | trans }}"> <span class="hover-underline">{{ 'application.github' | trans }}</span></a>
+                    <a href="https://github.com/Miunn/herbergOS" target="_blank"><img class="little-img github-logo" src="{{ asset('build/images/github-white.png') }}" alt="{{ 'application.github' | trans }}"> <span class="hover-underline large-view">{{ 'application.github' | trans }}</span></a>
                 </li>
             </ul>
         </nav>
@@ -67,11 +67,12 @@
         {% block main %}
             <section id="main-head">
                 <div>
-                    <svg class="app-name-svg" width="423.6" height="160" viewBox="0 0 430 160" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="app-name-svg" width="320" height="160" viewBox="0 0 430 160" xmlns="http://www.w3.org/2000/svg">
                         <text y="100" stroke-width="2" fill="none">HebergOS</text>
                     </svg>
                     <div class="catch-line-wrapper catch-first"><h2>{{ 'title.catchLine.first' | trans }}</h2></div>
                     <div class="catch-line-wrapper catch-second"><h2>{{ 'title.catchLine.second' | trans }}</h2></div>
+                    <div class="catch-line-full"><h2>{{ 'title.catchLine.full'|trans }}</h2></div>
                 </div>
                 {% include 'extra/logo-ascii-rounded.twig' %}
             </section>
