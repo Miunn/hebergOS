@@ -98,7 +98,6 @@ class Containers implements JsonSerializable
     public function removeUsers(): static
     {
         foreach ($this->user->toArray() as $user) {
-            $this->removeUser($user);
             $user->removeContainer($this);
         }
 
