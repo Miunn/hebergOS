@@ -1,13 +1,70 @@
-form {
-  align-self: center;
-  width: 500px;
+main {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-direction: column;
-  gap: 25px;
+  align-items: center;
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+
+  .left-side pre {
+    font-size: 1rem;
+    color: var(--text-high-contrast);
+  }
+}
+
+form {
+  width: 500px;
   padding: 50px;
-  margin-top: 5%;
   border: 2px solid var(--border-not-interactive);
   border-radius: 10px;
+  position: relative;
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  /* Spotlight hover effect */
+  &:hover {
+    background: radial-gradient(
+                    100rem circle at var(--mouse-x) var(--mouse-y),
+                    rgba(#f2e2fc, 0.4),
+                    transparent 15%
+    );
+
+    &::before {
+      opacity: 1 !important;
+    }
+  }
+
+  &::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+                    60rem circle at var(--mouse-x) var(--mouse-y),
+                    rgba(#f2e2fc, 0.1),
+                    transparent 35%
+    );
+
+    z-index: -1;
+
+    transition: all 0.15s ease-in-out;
+  }
+
+  /* ***** */
 
   .title {
     text-align: center;
@@ -21,13 +78,16 @@ form {
     position: relative;
     width: 100%;
     background-color: var(--component-background);
-    border: none;
-    border-bottom: var(--border-interactive);
+    border: 1px solid transparent;
     outline: none;
     padding: 15px 10px;
     border-radius: 4px;
     font-weight: 500;
     font-size: 1em;
+
+    &:focus, &:hover {
+      border: 1px solid var(--border-interactive);
+    }
   }
 
   input:-webkit-autofill,

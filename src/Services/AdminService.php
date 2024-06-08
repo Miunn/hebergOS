@@ -69,6 +69,7 @@ class AdminService
         $response = $this->appService->deleteApi($requestUri);
         try {
             if ($response->getStatusCode() == 204) {
+                $container->removeUsers();
                 $this->entityManager->remove($container);
                 $this->entityManager->flush();
                 return ['status' => 'success'];

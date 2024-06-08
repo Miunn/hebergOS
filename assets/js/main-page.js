@@ -1,4 +1,5 @@
 import '../styles/main-page.scss';
+import '../styles/responsive/main-page-responsive.scss';
 
 function replaceAt(string, index, replacement) {
     return string.substring(0, index) + replacement + string.substring(index+replacement.length);

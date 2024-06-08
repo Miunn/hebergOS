@@ -5,20 +5,36 @@
     {{ encore_entry_link_tags('login') }}
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}
+
 {% block main %}
-    <form action="{{ path('app_login') }}" method="post">
-        <h1 class="title text-center">{{ 'auth.title.login' | trans }}</h1>
 
-        <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'user.username' | trans }}">
+    <div class="left-side">
+        <pre id="computer">                                                       </pre>
+    </div>
 
-        <input type="password" id="password" name="_password" placeholder="{{ 'auth.password' | trans }}">
+    <form action="{{ path('app_login') }}" method="post" class="card-spotlight">
 
-        {% if error %}
-            <div class="error"><span class="dot red-dot"></span> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+        <div class="form-content">
+            <h1 class="title text-center">{{ 'auth.title.login' | trans }}</h1>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="text" id="username" name="_username" value="{{ last_username }}"
+                   placeholder="{{ 'user.username' | trans }}">
 
-        <button class="cta" type="submit">login</button>
+            <input type="password" id="password" name="_password" placeholder="{{ 'auth.password' | trans }}">
+
+            {% if error %}
+                <div class="error"><span
+                            class="dot red-dot"></span> {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button class="cta" type="submit">login</button>
+        </div>
     </form>
 {% endblock %}

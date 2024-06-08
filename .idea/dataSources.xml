@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:mysql://remicaulier.fr:3306/hebergOS</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="hebergOS@hebergos.insash.fr" uuid="c135a68b-3f4f-4b6e-a5d6-4991fde60905">
+    <data-source source="LOCAL" name="hebergOS@hebergos.insash.org" uuid="c135a68b-3f4f-4b6e-a5d6-4991fde60905">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://hebergos.insash.fr:3307/hebergOS</jdbc-url>
+      <jdbc-url>jdbc:mysql://hebergos.insash.org:3307/hebergOS</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

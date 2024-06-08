@@ -8,6 +8,7 @@
 // any CSS you import will output into a single css file (style.scss in this case)
 
 import '../styles/style.scss';
+import '../styles/responsive/style-responsive.scss';
 import '../styles/logo-ascii.scss';
 import Swal from "sweetalert2";
 
