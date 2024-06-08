@@ -99,6 +99,7 @@ class Containers implements JsonSerializable
     {
         foreach ($this->user->toArray() as $user) {
             $this->removeUser($user);
+            $user->removeContainer($this);
         }
 
         return $this;
