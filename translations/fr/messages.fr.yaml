@@ -32,14 +32,14 @@ hebergos.what.title: Qu'est-ce qu'HebergOS ?
 hebergos.what.description: HebergOS est une <span class="accent-text font-roboto bold">initiative du club d'informatique</span> de l'INSA Hauts-de-France.
   Le club met à disposition ses serveurs aux membres du club ainsi qu'aux autres associations de l'école
   pour leur permettre d'héberger de manière permanente et accessible leurs projets.
-  HebergOS a pour but de <span class="accent-text font-roboto bold">fournir un interface entre les projets hébergés et leurs membres</span> afin qu'ils puissent surveiller et intervenir sur ces derniers.
+  HebergOS a pour but de <span class="accent-text font-roboto bold">fournir une interface entre les projets hébergés et leurs membres</span> afin qu'ils puissent surveiller et intervenir sur ces derniers.
 hebergos.who.title: Pour qui ?
 hebergos.who.description: HebergOS a été pensé pour être le plus <span class="accent-text font-roboto bold">simple d'utilisation</span> afin de correspondre aux personnes possédant un <span class="accent-text font-roboto bold">bagage informatique tout comme aux personnes non initiées</span>.
-  De cette manière, même si vous n'êtes pas membre du club mais que vous voulez, par exemple, mettre en place un site web pour votre association, <span class="accent-text font-roboto bold">le club informatique peut fournir les compétences techinques</span>.
+  De cette manière, même si vous n'êtes pas membre du club mais que vous voulez, par exemple, mettre en place un site web pour votre association, <span class="accent-text font-roboto bold">le club informatique peut fournir les compétences techniques</span>.
   De votre côté, vous gardez la main sur l'état de votre projet, ses statistiques, et pouvez à tout moment effectuer différentes actions.
 
 hebergos.member.title: Par qui ?
-hebergos.member.description: L'application a été développé dans le cadre du club informatique par <span class="accent-text font-roboto bold">Rémi Caulier</span> et <span class="accent-text font-roboto bold">Sylvain Sausse</span>
+hebergos.member.description: L'application a été développée dans le cadre du club informatique par <span class="accent-text font-roboto bold">Rémi Caulier</span> et <span class="accent-text font-roboto bold">Sylvain Sausse</span>
 hebergos.member.member1: Rémi Caulier
 hebergos.member.member2: Sylvain Sausse
 
