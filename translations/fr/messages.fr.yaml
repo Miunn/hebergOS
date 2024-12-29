@@ -53,7 +53,7 @@ container.notifications: Demandes
 container.domain.none: Aucun nom de domaine
 container.domain.new: Nouveau nom de domaine
 
-container.overview.title: Vue d'emsemble de
+container.overview.title: Vue d'ensemble de
 container.overview.users: Utilisateurs
 container.overview.users.empty: Aucun utilisateur n'a accès à ce container
 
