@@ -181,10 +181,11 @@ class AppService
         // Remove errors containers
         foreach ($containers['error'] as $key=>$container) {
             $container = $containersRepository->findOneBy(['id' => $key]);
-            dump($container);
             // Security but in theory it shouldn't be null
             if ($container != null) {
                 $container->removeUsers();
+                dump($container);
+                $this->entityManager->persist($container);
                 $this->entityManager->remove($container);
                 $should_flush = true;
             }
