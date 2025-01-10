@@ -25,7 +25,7 @@ class Containers implements JsonSerializable
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $domain = null;
 
-    #[ORM\OneToMany(mappedBy: 'container', targetEntity: ContainerActivity::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'container', targetEntity: ContainerActivity::class, cascade: ['remove'], orphanRemoval: true)]
     private Collection $containerActivities;
 
     #[ORM\Column(nullable: true)]
@@ -144,6 +144,15 @@ class Containers implements JsonSerializable
             if ($containerActivity->getContainer() === $this) {
                 $containerActivity->setContainer(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function removeContainerActivities(): static
+    {
+        foreach ($this->containerActivities->toArray() as $containerActivity) {
+            $this->removeContainerActivity($containerActivity);
         }
 
         return $this;
