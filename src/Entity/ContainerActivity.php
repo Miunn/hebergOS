@@ -22,7 +22,7 @@ class ContainerActivity implements JsonSerializable
     #[ORM\Column(length: 80)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'containerActivities', orphanRemoval: true)]
+    #[ORM\ManyToOne(inversedBy: 'containerActivities')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Containers $container = null;
 

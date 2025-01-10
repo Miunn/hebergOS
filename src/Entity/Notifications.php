@@ -21,11 +21,11 @@ class Notifications
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'notifications', orphanRemoval: true)]
+    #[ORM\ManyToOne(inversedBy: 'notifications')]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'notifications', orphanRemoval: true)]
+    #[ORM\ManyToOne(inversedBy: 'notifications')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Containers $container = null;
 

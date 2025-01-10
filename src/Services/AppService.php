@@ -184,6 +184,7 @@ class AppService
             $container = $containersRepository->findOneBy(['id' => $key]);
             // Security but in theory it shouldn't be null
             if ($container != null) {
+                $container->removeUsers();
                 $this->entityManager->remove($container);
                 $should_flush = true;
             }
