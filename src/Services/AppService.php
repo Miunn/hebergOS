@@ -179,6 +179,7 @@ class AppService
         }
 
         // Remove errors containers
+        dump($containers['error']);
         foreach ($containers['error'] as $key=>$container) {
             $container = $containersRepository->findOneBy(['id' => $key]);
             // Security but in theory it shouldn't be null
