@@ -186,6 +186,7 @@ class AppService
                 $container->removeUsers();
                 dump($container);
                 $this->entityManager->persist($container);
+                $this->entityManager->flush();
                 $this->entityManager->remove($container);
                 $should_flush = true;
             }
