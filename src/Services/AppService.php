@@ -130,7 +130,7 @@ class AppService
 
         try {
             $userContainers = $response->toArray();
-            //$this->syncContainers($userContainers);
+            $this->syncContainers($userContainers);
             return $userContainers['success'];
         } catch (ClientExceptionInterface|TransportExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|DecodingExceptionInterface $e) {
             dump($e);
@@ -181,6 +181,7 @@ class AppService
         // Remove errors containers
         foreach ($containers['error'] as $key=>$container) {
             $container = $containersRepository->findOneBy(['id' => $key]);
+            dump($container);
             // Security but in theory it shouldn't be null
             if ($container != null) {
                 $container->removeUsers();
