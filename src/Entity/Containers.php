@@ -16,7 +16,7 @@ class Containers implements JsonSerializable
     #[ORM\Column(length: 64)]
     private ?string $id = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers', cascade: ['persist'])]
     private Collection $user;
 
     #[ORM\Column(length: 50)]
