@@ -184,9 +184,9 @@ class AppService
             // Security but in theory it shouldn't be null
             if ($container != null) {
                 $container->removeUsers();
-                dump($container);
                 $this->entityManager->persist($container);
                 $this->entityManager->flush();
+                $container = $containersRepository->findOneBy(['id' => $key]);
                 $this->entityManager->remove($container);
                 $should_flush = true;
             }
