@@ -16,7 +16,7 @@ class Containers implements JsonSerializable
     #[ORM\Column(length: 64)]
     private ?string $id = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'containers', onDelete: 'cascade', cascade: ['persist'], orphanRemoval: false)]
     private Collection $user;
 
     #[ORM\Column(length: 50)]
@@ -25,7 +25,7 @@ class Containers implements JsonSerializable
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $domain = null;
 
-    #[ORM\OneToMany(mappedBy: 'container', targetEntity: ContainerActivity::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'container', targetEntity: ContainerActivity::class, cascade: ['remove'], orphanRemoval: true)]
     private Collection $containerActivities;
 
     #[ORM\Column(nullable: true)]
@@ -78,7 +78,10 @@ class Containers implements JsonSerializable
 
     public function removeUser(User $user): static
     {
-        $this->user->removeElement($user);
+        if ($this->user->contains($user)) {
+            $this->user->removeElement($user);
+            $user->removeContainer($this);
+        }
 
         return $this;
     }
@@ -141,6 +144,15 @@ class Containers implements JsonSerializable
             if ($containerActivity->getContainer() === $this) {
                 $containerActivity->setContainer(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function removeContainerActivities(): static
+    {
+        foreach ($this->containerActivities->toArray() as $containerActivity) {
+            $this->removeContainerActivity($containerActivity);
         }
 
         return $this;

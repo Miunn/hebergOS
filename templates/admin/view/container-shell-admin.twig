@@ -15,7 +15,7 @@
                 X
                 <input type="number" id="shell-height" value="500">
             </div>
-            <a href="https://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty" target="_blank"><img class="icon-little" src="{{ asset('build/images/terminal.png') }}" alt="Terminal"></a>
+            <a href="https://ssh.{{- containerApi.name|slice(1) -}}.insash.org/wetty" target="_blank"><img class="icon-little" src="{{ asset('build/images/terminal.png') }}" alt="Terminal"></a>
         </div>
 
         {% if containerApi.state == 'running' %}
@@ -23,7 +23,7 @@
                     title="{{ 'container.shell'|trans }}"
                     width="850"
                     height="500"
-                    src="https://ssh.{{- containerApi.name|slice(1) -}}.insash.fr/wetty"></iframe>
+                    src="https://ssh.{{- containerApi.name|slice(1) -}}.insash.org/wetty"></iframe>
         {% else %}
             <div id="shell-unavailable-wrapper">
                 <p class="text-center">{{ 'container.shell.unavailable'|trans }}</p>
