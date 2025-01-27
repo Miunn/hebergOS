@@ -21,7 +21,10 @@
                 "overview": {
                     "title": "{name} Overview",
                     "activity": {
-                        "title": "Container's activity"
+                        "title": "Container's activity",
+                        "started": "Container started",
+                        "stopped": "Container stopped",
+                        "restarted": "Container restarted"
                     },
                     "users": {
                         "title": "Users"

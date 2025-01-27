@@ -21,7 +21,10 @@
                 "overview": {
                     "title": "Vue d'ensemble de {name}",
                     "activity": {
-                        "title": "Activité du conteneur"
+                        "title": "Activité du conteneur",
+                        "started": "Projet démarré",
+                        "stopped": "Projet arrêté",
+                        "restarted": "Projet redémarré"
                     },
                     "users": {
                         "title": "Utilisateurs"
