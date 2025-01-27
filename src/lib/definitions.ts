@@ -21,3 +21,21 @@ const userWithContainers = Prisma.validator<Prisma.UserDefaultArgs>()({
 })
 
 export type UserWithContainers = Prisma.UserGetPayload<typeof userWithContainers>
+
+const containerWithActivity = Prisma.validator<Prisma.ContainerDefaultArgs>()({
+    include: { containerActivities: true }
+})
+
+export type ContainerWithActivity = Prisma.ContainerGetPayload<typeof containerWithActivity>
+
+const containerWithUsers = Prisma.validator<Prisma.ContainerDefaultArgs>()({
+    include: { users: { omit: { password: true }} },
+})
+
+export type ContainerWithUsers = Prisma.ContainerGetPayload<typeof containerWithUsers>
+
+const containerWithNotifications = Prisma.validator<Prisma.ContainerDefaultArgs>()({
+    include: { containerNotifications: true }
+})
+
+export type ContainerWithNotifications = Prisma.ContainerGetPayload<typeof containerWithNotifications>

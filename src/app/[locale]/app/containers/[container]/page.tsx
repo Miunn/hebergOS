@@ -1,10 +1,10 @@
-import { getContainer } from "@/actions/containers"
+import { getContainerFull } from "@/actions/containers"
 import ContainerTabs from "@/components/containers/ContainerTabs";
 import { robotoMono } from "@/ui/fonts";
 
 export default async function Container({ params }: { params: Promise<{ locale: string, container: string }> }) {
 
-    const container = (await getContainer((await params).container))!;
+    const container = (await getContainerFull((await params).container))!;
 
     return (
         <>

@@ -2,8 +2,9 @@ import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Container } from "@prisma/client";
 import { robotoMono } from "@/ui/fonts";
+import { ContainerWithActivity, ContainerWithUsers } from "@/lib/definitions";
 
-export default function ContainerOverview({ container }: { container: Container }) {
+export default function ContainerOverview({ container }: { container: ContainerWithActivity & ContainerWithUsers }) {
 
     const t = useTranslations("pages.app.container.overview");
 
