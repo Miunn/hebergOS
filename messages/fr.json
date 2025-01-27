@@ -8,6 +8,25 @@
             "dashboard": {
                 "title": "Mes projets",
                 "empty": "Aucun projet ne vous est attribué pour le moment.<br />Contactez un administrateur afin de discuter de vos envies !"
+            },
+            "container": {
+                "tabs": {
+                    "overview": "Vue d'ensemble",
+                    "graphs": "Graphiques",
+                    "shell": "Console",
+                    "actions": "Actions",
+                    "admin": "Administration",
+                    "asks": "Demandes"
+                },
+                "overview": {
+                    "title": "Vue d'ensemble de {name}",
+                    "activity": {
+                        "title": "Activité du conteneur"
+                    },
+                    "users": {
+                        "title": "Utilisateurs"
+                    }
+                }
             }
         }
     },

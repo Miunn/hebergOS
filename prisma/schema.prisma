@@ -52,7 +52,6 @@ model User {
 
 model Container {
   id        String   @id @default(cuid())
-  userId    String
   name      String
   domain    String
   hostPort  Int
@@ -61,7 +60,7 @@ model Container {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user                   User                @relation(fields: [userId], references: [id])
+  users                  User[]
   containerActivities    ContainerActivity[]
   containerNotifications Notification[]
 }

@@ -8,6 +8,25 @@
             "dashboard": {
                 "title": "Dashboard",
                 "empty": "No project assigned to you for now.</br>Contact an administrator to discuss your desires !"
+            },
+            "container": {
+                "tabs": {
+                    "overview": "Overview",
+                    "graphs": "Graphs",
+                    "shell": "Shell",
+                    "actions": "Actions",
+                    "admin": "Administration",
+                    "asks": "Asks"
+                },
+                "overview": {
+                    "title": "{name} Overview",
+                    "activity": {
+                        "title": "Container's activity"
+                    },
+                    "users": {
+                        "title": "Users"
+                    }
+                }
             }
         }
     },

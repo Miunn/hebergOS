@@ -33,10 +33,9 @@ export default async function RootLayout(
 
   const messages = await getMessages();
   const session = await getServerSession(authConfig);
-  console.log("Session", session);
 
   return (
-    (<html lang={(await props.params).locale}>
+    <html lang={(await props.params).locale}>
       <body
         className={`${roboto.className} antialiased`}
       >
@@ -64,6 +63,6 @@ export default async function RootLayout(
           </Providers>
         </NextIntlClientProvider>
       </body>
-    </html>)
+    </html>
   );
 }
