@@ -33,6 +33,14 @@ enum NotificationType {
   CONTAINER_DELETE
 }
 
+enum ContainerState {
+  RUNNING
+  STOPPED
+  RESTARTING
+  CREATED
+  PAUSED
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -51,14 +59,16 @@ model User {
 }
 
 model Container {
-  id        String   @id @default(cuid())
+  id        String         @id @default(cuid())
   name      String
   domain    String
+  state     ContainerState @default(CREATED)
   hostPort  Int
   memory    Float
   cpu       Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime       @default(now())
+  startedAt DateTime?
+  updatedAt DateTime       @updatedAt
 
   users                  User[]
   containerActivities    ContainerActivity[]

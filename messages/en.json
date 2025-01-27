@@ -29,6 +29,26 @@
                     "users": {
                         "title": "Users"
                     }
+                },
+                "actions": {
+                    "title": "Manage {name}",
+                    "descriptionRunning": "Currently {name} has been running for {time}.",
+                    "descriptionStopped": "Currently {name} is stopped. You can start it below.",
+                    "descriptionRestarting": "Currently {name} is restarting.",
+                    "descriptionCreated": "{name} has just been created. You can now start it below.",
+                    "descriptionPaused": "{name} is paused.",
+                    "activity": {
+                        "title": "Container's activity",
+                        "started": "Container started",
+                        "stopped": "Container stopped",
+                        "restarted": "Container restarted"
+                    },
+                    "actions": {
+                        "title": "Actions",
+                        "start": "Start",
+                        "stop": "Stop",
+                        "restart": "Restart"
+                    }
                 }
             }
         }

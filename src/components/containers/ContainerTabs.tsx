@@ -25,7 +25,7 @@ export default function ContainerTabs({ container }: { container: ContainerWithA
             <TabsContent value="overview"><ContainerOverview container={container} /></TabsContent>
             <TabsContent value="graphs"><ContainerGraphs /></TabsContent>
             <TabsContent value="shell"><ContainerShell container={container} /></TabsContent>
-            <TabsContent value="actions"><ContainerActions /></TabsContent>
+            <TabsContent value="actions"><ContainerActions container={container} /></TabsContent>
             <TabsContent value="admin"><ContainerAdministration /></TabsContent>
             <TabsContent value="asks"><ContainerAsks /></TabsContent>
         </Tabs>

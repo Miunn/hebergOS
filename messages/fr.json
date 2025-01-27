@@ -29,6 +29,26 @@
                     "users": {
                         "title": "Utilisateurs"
                     }
+                },
+                "actions": {
+                    "title": "Gérer {name}",
+                    "descriptionRunning": "Actuellement {name} est en cours d'exécution depuis {time}.",
+                    "descriptionStopped": "Actuellement {name} est arrêté. Vous pouvez le démarrer ci-dessous.",
+                    "descriptionRestarting": "Actuellement {name} est en cours de redémarrage.",
+                    "descriptionCreated": "{name} vient d'être créé. Vous pouvez maintenant le démarrer ci-dessous.",
+                    "descriptionPaused": "{name} est en pause.",
+                    "activity": {
+                        "title": "Activité du conteneur",
+                        "started": "Projet démarré",
+                        "stopped": "Projet arrêté",
+                        "restarted": "Projet redémarré"
+                    },
+                    "actions": {
+                        "title": "Actions",
+                        "start": "Démarrer",
+                        "stop": "Arrêter",
+                        "restart": "Redémarrer"
+                    }
                 }
             }
         }
