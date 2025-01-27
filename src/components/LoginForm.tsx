@@ -13,8 +13,10 @@ import { Input } from "./ui/input";
 import { SignInFormSchema } from "@/lib/definitions";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "@/hooks/use-toast";
+import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
+    const t = useTranslations("components.auth.login");
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
     const [loading, setLoading] = useState<boolean>(false);
@@ -30,7 +32,7 @@ export default function LoginForm() {
 
     const onSubmit = async (data: { email: string; password: string; }) => {
         setLoading(true);
-        const r = await signIn('credentials', { email: data.email, password: data.password, redirectUrl: '/dashboard', redirectTo: '/dashboard', redirect: true });
+        const r = await signIn('credentials', { email: data.email, password: data.password, redirectUrl: '/app', redirectTo: '/app', redirect: true });
         if (r && r.error) {
             toast({
                 title: "form.error.title",
@@ -45,8 +47,8 @@ export default function LoginForm() {
     return (
         <Card className={"w-96"}>
             <CardHeader>
-                <CardTitle>{'title'}</CardTitle>
-                <CardDescription>{'description'}</CardDescription>
+                <CardTitle>{t('title')}</CardTitle>
+                <CardDescription>{t('description')}</CardDescription>
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -56,9 +58,9 @@ export default function LoginForm() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{'form.email'}</FormLabel>
+                                    <FormLabel>{t('form.fields.nickname.label')}</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="exemple@mail.com" {...field} />
+                                        <Input placeholder={t('form.fields.nickname.placeholder')} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -71,13 +73,13 @@ export default function LoginForm() {
                             render={({ field }) => (
                                 <FormItem>
                                     <div className="flex justify-between">
-                                        <FormLabel>{'form.password'}</FormLabel>
+                                        <FormLabel>{t('form.fields.password.label')}</FormLabel>
                                         <Button variant={"link"} className="ml-auto p-0 h-fit focus-visible:ring-offset-2" asChild>
-                                            <Link href={`/forgot-password`} className="">{'form.forgotPassword'}</Link>
+                                            <Link href={`/forgot-password`} className="">{t('form.actions.forgotPassword')}</Link>
                                         </Button>
                                     </div>
                                     <FormControl>
-                                        <Input placeholder={"••••••••••"} type={"password"} {...field} />
+                                        <Input placeholder={t('form.fields.password.placeholder')} type={"password"} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -85,8 +87,8 @@ export default function LoginForm() {
                         />
 
                         {loading
-                            ? <Button className={"ml-auto mr-0 flex"} type="submit" disabled><Loader2 className="animate-spin mr-2" /> {'form.submitting'}</Button>
-                            : <Button className={"block ml-auto mr-0"} type="submit"> {'form.submit'}</Button>
+                            ? <Button className={"ml-auto mr-0 flex"} type="submit" disabled><Loader2 className="animate-spin mr-2" /> {t('form.actions.submitting')}</Button>
+                            : <Button className={"block ml-auto mr-0"} type="submit"> {t('form.actions.submit')}</Button>
                         }
                     </form>
                 </Form>

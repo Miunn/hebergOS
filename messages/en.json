@@ -1,7 +1,33 @@
 {
+    "title": "HebergOS",
     "pages": {
         "home": {
             "title": "HebergOS"
+        }
+    },
+    "components": {
+        "auth": {
+            "login": {
+                "title": "Login",
+                "description": "Login to your HebergOS account",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Username",
+                            "placeholder": "Enter your username"
+                        },
+                        "password": {
+                            "label": "Password",
+                            "placeholder": "Enter your password"
+                        }
+                    },
+                    "actions": {
+                        "submit": "Login",
+                        "submitting": "Logging in...",
+                        "forgotPassword": "Forgot password"
+                    }
+                }
+            }
         }
     }
 }
