@@ -3,6 +3,12 @@
     "pages": {
         "home": {
             "title": "HebergOS"
+        },
+        "app": {
+            "dashboard": {
+                "title": "Mes projets",
+                "empty": "Aucun projet ne vous est attribué pour le moment.<br />Contactez un administrateur afin de discuter de vos envies !"
+            }
         }
     },
     "components": {

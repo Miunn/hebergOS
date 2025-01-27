@@ -13,3 +13,11 @@ const userLight = Prisma.validator<Prisma.UserDefaultArgs>()({
 })
 
 export type UserLight = Prisma.UserGetPayload<typeof userLight>
+
+const userWithContainers = Prisma.validator<Prisma.UserDefaultArgs>()({
+    select: { id: true, name: true, email: true, roles: true, createdAt: true, updatedAt: true },
+    include: { containers: true },
+    omit: { password: true }
+})
+
+export type UserWithContainers = Prisma.UserGetPayload<typeof userWithContainers>

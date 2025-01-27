@@ -3,6 +3,12 @@
     "pages": {
         "home": {
             "title": "HebergOS"
+        },
+        "app": {
+            "dashboard": {
+                "title": "Dashboard",
+                "empty": "No project assigned to you for now.</br>Contact an administrator to discuss your desires !"
+            }
         }
     },
     "components": {
