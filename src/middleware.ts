@@ -11,13 +11,11 @@ function customMiddleware(request: NextRequest) {
 export default withAuth(customMiddleware, {
     callbacks: {
         async authorized({ token, req }) {
-            const isLoggedIn = !!token?.user;
-            const isOnApp = req.nextUrl.pathname.startsWith('/app');
+            const isLoggedIn = !!token;
+            const isOnApp = new RegExp(`(${routing.locales.join('|')})/app`).test(req.nextUrl.pathname);
             if (isOnApp) {
                 if (isLoggedIn) return true;
                 return false; // Redirect unauthenticated users to login page
-            } else if (isLoggedIn) {
-                return true;
             }
             return true;
         },

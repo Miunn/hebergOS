@@ -13,6 +13,86 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  INFO
+  USER
+}
+
+enum ContainerActivityType {
+  STARTED
+  RESTARTED
+  STOPPED
+}
+
+enum NotificationType {
+  CONTACT
+  CREATE
+  CONTAINER_MEMORY
+  CONTAINER_CPU
+  CONTAINER_DELETE
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  password      String
+  roles         Role[]
+
+  containers             Container[]
+  accounts               Account[]
+  sessions               Session[]
+  ContainerNotifications Notification[]
+}
+
+model Container {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  domain    String
+  hostPort  Int
+  memory    Float
+  cpu       Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user                   User                @relation(fields: [userId], references: [id])
+  containerActivities    ContainerActivity[]
+  containerNotifications Notification[]
+}
+
+model ContainerActivity {
+  id          String   @id @default(cuid())
+  containerId String
+  message     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  type      ContainerActivityType
+  container Container             @relation(fields: [containerId], references: [id])
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String?
+  containerId String?
+  title       String
+  message     String
+  value       Float?
+  contact     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  type      NotificationType
+  user      User?            @relation(fields: [userId], references: [id])
+  container Container?       @relation(fields: [containerId], references: [id])
+}
+
 model Account {
   id                 String    @id @default(cuid())
   userId             String
@@ -38,20 +118,6 @@ model Session {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   user         User     @relation(fields: [userId], references: [id])
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  password      String
-  roles         String[]
-  accounts      Account[]
-  sessions      Session[]
 }
 
 model VerificationRequest {
