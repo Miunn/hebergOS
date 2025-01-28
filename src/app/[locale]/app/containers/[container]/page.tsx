@@ -9,7 +9,7 @@ export default async function Container({ params }: { params: Promise<{ locale: 
     return (
         <>
             <div className="mb-8">
-                <h1 className={`${robotoMono.className} antialiased text-xl mb-4`}>/{container?.name}</h1>
+                <h1 className={`${robotoMono.className} antialiased text-xl mb-4`}>{container?.name}</h1>
                 <p className={`${robotoMono.className} antialiased`}>{container?.domain}</p>
                 <p>Exited</p>
             </div>

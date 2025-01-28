@@ -73,7 +73,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
         <div className="grid grid-cols-2 gap-8">
             <Card className="col-span-2">
                 <CardHeader>
-                    <CardTitle className={`${robotoMono.className}`}>{t('title', { name: `/${container.name}` })}</CardTitle>
+                    <CardTitle className={`${robotoMono.className}`}>{t('title', { name: container.name })}</CardTitle>
                     <CardDescription>{renderDescription()}</CardDescription>
                 </CardHeader>
             </Card>

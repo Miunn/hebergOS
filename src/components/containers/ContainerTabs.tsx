@@ -34,7 +34,7 @@ export default function ContainerTabs({ container }: { container: ContainerWithA
                 <TabsTrigger className="w-32 p-2 rounded-r-full" value="asks">{ t('asks') }</TabsTrigger>
             </TabsList>
             <TabsContent value="overview"><ContainerOverview container={container} /></TabsContent>
-            <TabsContent value="graphs"><ContainerGraphs /></TabsContent>
+            <TabsContent value="graphs"><ContainerGraphs container={container} /></TabsContent>
             <TabsContent value="shell"><ContainerShell container={container} /></TabsContent>
             <TabsContent value="actions"><ContainerActions container={container} /></TabsContent>
             <TabsContent value="administration"><ContainerAdministration container={container} /></TabsContent>

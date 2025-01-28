@@ -30,6 +30,18 @@
                         "title": "Users"
                     }
                 },
+                "graphs": {
+                    "title": "{name} Statistics",
+                    "period": {
+                        "label": "Select a period",
+                        "options": {
+                            "hour": "Last hour",
+                            "4hours": "Last 4 hours",
+                            "day": "Last 24 hours",
+                            "week": "Last week"
+                        }
+                    }
+                },
                 "actions": {
                     "title": "Manage {name}",
                     "descriptionRunning": "Currently {name} has been running for {time}.",

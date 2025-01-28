@@ -61,11 +61,11 @@ model User {
 model Container {
   id        String         @id @default(cuid())
   name      String
-  domain    String
+  domain    String?
   state     ContainerState @default(CREATED)
   hostPort  Int
-  memory    Float
-  cpu       Float
+  memory    Float          @default(0.5)
+  cpu       Float          @default(0.5)
   createdAt DateTime       @default(now())
   startedAt DateTime?
   updatedAt DateTime       @updatedAt

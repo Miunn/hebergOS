@@ -11,11 +11,13 @@ export default async function Dashboard() {
     return (
         <>
             <h1 className="font-semibold text-3xl mb-7">{t('title')}</h1>
-            {me?.containers.map((container) => (
-                <Fragment key={container.id}>
-                    <Container id={container.id} name={container.name} state={"exited"} />
-                </Fragment>
-            ))}
+            <div className="flex flex-wrap gap-6">
+                {me?.containers.map((container) => (
+                    <Fragment key={container.id}>
+                        <Container id={container.id} name={container.name} state={"exited"} />
+                    </Fragment>
+                ))}
+            </div>
 
             {me?.containers.length === 0
                 ? <p className="text-center mt-32" dangerouslySetInnerHTML={{ __html: t('empty') }} />

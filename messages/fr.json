@@ -30,6 +30,18 @@
                         "title": "Utilisateurs"
                     }
                 },
+                "graphs": {
+                    "title": "Statistiques d'utilisation de {name}",
+                    "period": {
+                        "label": "Sélectionnez une période",
+                        "options": {
+                            "hour": "Dernière heure",
+                            "4hours": "Dernières 4 heures",
+                            "day": "Dernières 24 heures",
+                            "week": "Dernière semaine"
+                        }
+                    }
+                },
                 "actions": {
                     "title": "Gérer {name}",
                     "descriptionRunning": "Actuellement {name} est en cours d'exécution depuis {time}.",

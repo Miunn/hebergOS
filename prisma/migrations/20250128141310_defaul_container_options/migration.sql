@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Container" ALTER COLUMN "domain" DROP NOT NULL,
+ALTER COLUMN "memory" SET DEFAULT 0.5,
+ALTER COLUMN "cpu" SET DEFAULT 0.5;
