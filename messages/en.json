@@ -77,5 +77,45 @@
                 }
             }
         }
+    },
+    "dialogs": {
+        "containers": {
+            "start": {
+                "trigger": "Start",
+                "title": "Start {name}",
+                "description": "Are you sure you want to start {name} ?",
+                "actions": {
+                    "cancel": "Cancel",
+                    "start": "Start"
+                }
+            },
+            "stop": {
+                "trigger": "Stop",
+                "title": "Stop {name}",
+                "description": "Are you sure you want to stop {name} ?",
+                "actions": {
+                    "cancel": "Cancel",
+                    "stop": "Stop"
+                }
+            },
+            "restart": {
+                "trigger": "Restart",
+                "title": "Restart {name}",
+                "description": "Are you sure you want to restart {name} ?",
+                "actions": {
+                    "cancel": "Cancel",
+                    "restart": "Restart"
+                }
+            },
+            "delete": {
+                "trigger": "Delete",
+                "title": "Delete {name}",
+                "description": "Are you sure you want to delete {name} ? This action is irreversible.",
+                "actions": {
+                    "cancel": "Cancel",
+                    "delete": "Delete"
+                }
+            }
+        }
     }
 }

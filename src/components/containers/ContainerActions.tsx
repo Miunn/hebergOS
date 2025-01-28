@@ -6,6 +6,10 @@ import { ContainerWithActivity } from "@/lib/definitions";
 import { ContainerActivity } from "@prisma/client";
 import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
+import StartContainer from "@/dialogs/containers/StartContainer";
+import StopContainer from "@/dialogs/containers/StopContainer";
+import RestartContainer from "@/dialogs/containers/RestartContainer";
+import { DialogTrigger } from "../ui/dialog";
 
 export default function ContainerActions({ container }: { container: ContainerWithActivity }) {
 
@@ -69,7 +73,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
         <div className="grid grid-cols-2 gap-8">
             <Card className="col-span-2">
                 <CardHeader>
-                    <CardTitle className={`${robotoMono.className}`}>{t('title', { name:  `/${container.name}`})}</CardTitle>
+                    <CardTitle className={`${robotoMono.className}`}>{t('title', { name: `/${container.name}` })}</CardTitle>
                     <CardDescription>{renderDescription()}</CardDescription>
                 </CardHeader>
             </Card>
@@ -90,9 +94,21 @@ export default function ContainerActions({ container }: { container: ContainerWi
                     <CardTitle>{t('actions.title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex gap-6">
-                    <Button>{t('actions.start')}</Button>
-                    <Button>{t('actions.stop')}</Button>
-                    <Button>{t('actions.restart')}</Button>
+                    <StartContainer container={container}>
+                        <DialogTrigger asChild>
+                            <Button>{t('actions.start')}</Button>
+                        </DialogTrigger>
+                    </StartContainer>
+                    <StopContainer container={container}>
+                        <DialogTrigger asChild>
+                            <Button>{t('actions.stop')}</Button>
+                        </DialogTrigger>
+                    </StopContainer>
+                    <RestartContainer container={container}>
+                        <DialogTrigger asChild>
+                            <Button>{t('actions.restart')}</Button>
+                        </DialogTrigger>
+                    </RestartContainer>
                 </CardContent>
             </Card>
         </div>

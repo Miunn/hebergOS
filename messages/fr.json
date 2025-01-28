@@ -77,5 +77,45 @@
                 }
             }
         }
+    },
+    "dialogs": {
+        "containers": {
+            "start": {
+                "trigger": "Démarrer",
+                "title": "Démarrer {name}",
+                "description": "Êtes-vous sûr de vouloir démarrer {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "start": "Démarrer"
+                }
+            },
+            "stop": {
+                "trigger": "Arrêter",
+                "title": "Arrêter {name}",
+                "description": "Êtes-vous sûr de vouloir arrêter {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "stop": "Arrêter"
+                }
+            },
+            "restart": {
+                "trigger": "Redémarrer",
+                "title": "Redémarrer {name}",
+                "description": "Êtes-vous sûr de vouloir redémarrer {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "restart": "Redémarrer"
+                }
+            },
+            "delete": {
+                "trigger": "Supprimer",
+                "title": "Supprimer {name}",
+                "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+                "actions": {
+                    "cancel": "Annuler",
+                    "delete": "Supprimer"
+                }
+            }
+        }
     }
 }
