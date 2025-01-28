@@ -49,6 +49,18 @@
                         "stop": "Stop",
                         "restart": "Restart"
                     }
+                },
+                "administration": {
+                    "title": "Administration",
+                    "description": "You can manage the container below.",
+                    "hostPort": "Container is running based on the {port} docker port",
+                    "memory": "Current memory limit is {memory} Go",
+                    "cpu": "Current CPU limit is {cpu} %",
+                    "actions": {
+                        "changeMemory": "Change memory limit",
+                        "changeCpu": "Change CPU limit",
+                        "deleteContainer": "Delete container"
+                    }
                 }
             }
         }

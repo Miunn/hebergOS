@@ -49,6 +49,18 @@
                         "stop": "Arrêter",
                         "restart": "Redémarrer"
                     }
+                },
+                "administration": {
+                    "title": "Administration",
+                    "description": "Vous pouvez gérer le conteneur ci-dessous.",
+                    "hostPort": "Le conteneur est en cours d'exécution sur le port {port} de docker",
+                    "memory": "La limite de mémoire actuelle est de {memory} Go",
+                    "cpu": "La limite de CPU actuelle est de {cpu} %",
+                    "actions": {
+                        "changeMemory": "Changer la limite de mémoire",
+                        "changeCpu": "Changer la limite de CPU",
+                        "deleteContainer": "Supprimer le conteneur"
+                    }
                 }
             }
         }
