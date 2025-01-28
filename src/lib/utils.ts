@@ -32,9 +32,7 @@ export async function syncContainers() {
     return false;
   }
 
-  console.log("Containers", containers)
-
-  for (const [id, value] of Object.entries(containers) as [string, any]) {
+  for (const [id, value] of Object.entries(containers) as [string, any][]) {
     let state;
 
     switch (value.state) {

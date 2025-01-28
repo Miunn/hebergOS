@@ -1,6 +1,16 @@
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
+export type ClientContainerStat = {
+    timestamp: number;
+    memory: number;
+    cpu: number;
+    netUp: number;
+    netDown: number;
+    netDeltaUp: number;
+    netDeltaDown: number;
+}
+
 export const SignInFormSchema = z.object({
     email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
     password: z
