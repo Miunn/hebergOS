@@ -28,10 +28,10 @@ export default function ContainerShell({ container }: { container: Container }) 
                 <X />
                 <Input ref={heightRef} type="number" defaultValue={height} onKeyDown={handleSizeChange} className="w-28" />
                 <Button variant={"outline"} size={"icon"} asChild>
-                    <Link href={`https://ssh.${container.name}.insash.org/wetty`} target="_blank"><Terminal /></Link>
+                    <Link href={`https://ssh.${container.name.replace('/', '')}.insash.org/wetty`} target="_blank"><Terminal /></Link>
                 </Button>
             </div>
-            <iframe className="mx-auto" src={`https://ssh.${container.name}.insash.org/wetty`} width={width} height={height} />
+            <iframe className="mx-auto" src={`https://ssh.${container.name.replace('/', '')}.insash.org/wetty`} width={width} height={height} />
         </div>
     )
 }
