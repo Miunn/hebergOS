@@ -44,6 +44,7 @@ enum ContainerState {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  nickname      String    @unique
   email         String?   @unique
   emailVerified DateTime?
   image         String?
