@@ -1,8 +1,12 @@
+'use server'
+
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
-import { UserWithContainers } from "@/lib/definitions";
+import { RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
+import { Role } from "@prisma/client";
 import { getServerSession } from "next-auth";
+import { z } from "zod";
 
 export async function getMe(): Promise<UserWithContainers | null> {
     const session = await getServerSession(authConfig);
@@ -39,4 +43,35 @@ export async function getUsers(): Promise<UserWithContainers[]> {
     })
 
     return users;
+}
+
+export async function createUser(data: { name: string, email: string, nickname: string, password: string, passwordConfirmation: string, roles: Role[] }): Promise<Boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsedData = RegisterFormSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        return false;
+    }
+
+    const { name, email, nickname, password, roles } = parsedData.data;
+
+    try {
+        const newUser = await prisma.user.create({
+            data: {
+                name: name,
+                email: email,
+                nickname: nickname,
+                password: password,
+                roles
+            }
+        });
+
+        return !!newUser;
+    } catch (error) {
+        console.log("Prisma error while creating user : ", error);
+        return false;
+    }
 }

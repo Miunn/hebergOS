@@ -147,6 +147,58 @@
                     "delete": "Delete"
                 }
             }
+        },
+        "users": {
+            "create": {
+                "title": "Create a user",
+                "description": "Create a new user for HebergOS application.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Name",
+                            "placeholder": "Enter name"
+                        },
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Enter email"
+                        },
+                        "nickname": {
+                            "label": "Username", 
+                            "placeholder": "Enter username"
+                        },
+                        "password": {
+                            "label": "Password",
+                            "placeholder": "Enter password"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Password confirmation",
+                            "placeholder": "Confirm password"
+                        },
+                        "roles": {
+                            "label": "Roles",
+                            "description": "Select the roles of the user",
+                            "options": {
+                                "admin": "Admin",
+                                "info": "Informatics",
+                                "user": "User"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Create",
+                    "submitting": "Creating...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while creating the user. Please try again later."
+                },
+                "success": {
+                    "title": "User created",
+                    "description": "The user has been created successfully."
+                }
+            }
         }
     },
     "tables": {

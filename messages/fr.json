@@ -147,6 +147,58 @@
                     "delete": "Supprimer"
                 }
             }
+        },
+        "users": {
+            "create": {
+                "title": "Créer un utilisateur",
+                "description": "Créez un nouvel utilisateur pour l'application HebergOS.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Nom",
+                            "placeholder": "Entrez le nom"
+                        },
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Entrez l'email"
+                        },
+                        "nickname": {
+                            "label": "Nom d'utilisateur",
+                            "placeholder": "Entrez le nom d'utilisateur"
+                        },
+                        "password": {
+                            "label": "Mot de passe",
+                            "placeholder": "Entrez le mot de passe"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Confirmation du mot de passe",
+                            "placeholder": "Confirmez le mot de passe"
+                        },
+                        "roles": {
+                            "label": "Rôles",
+                            "description": "Sélectionnez les rôles de l'utilisateur",
+                            "options": {
+                                "admin": "Administrateur",
+                                "info": "Informatique",
+                                "user": "Utilisateur"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la création de l'utilisateur",
+                    "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Utilisateur créé",
+                    "description": "L'utilisateur a été créé avec succès."
+                }
+            }
         }
     },
     "tables": {

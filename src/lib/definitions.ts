@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, Role } from "@prisma/client";
 import { z } from "zod";
 
 export type ClientContainerStat = {
@@ -16,6 +16,24 @@ export const SignInFormSchema = z.object({
     password: z
         .string()
         .trim(),
+});
+
+export const RegisterFormSchema = z.object({
+    name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
+    email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
+    nickname: z.string().min(3, { message: 'Nickname must be at least 3 characters long.' }).trim(),
+    password: z
+        .string()
+        .min(8, { message: 'Password must be at least 8 characters long.' })
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, { message: 'Password must contain at least one special character.' })
+        .regex(/[A-Z]/, { message: 'Password must contain at least one uppercase character.' })
+        .regex(/[a-z]/, { message: 'Password must contain at least one lowercase character.' })
+        .trim(),
+    passwordConfirmation: z.string().trim(),
+    roles: z.array(z.nativeEnum(Role)).default([Role.USER]),
+}).refine((data) => data.password === data.passwordConfirmation, {
+    message: "Passwords don't match",
+    path: ["passwordConfirmation"],
 });
 
 const userLight = Prisma.validator<Prisma.UserDefaultArgs>()({
