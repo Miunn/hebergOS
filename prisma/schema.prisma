@@ -50,7 +50,7 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   password      String
-  roles         Role[]
+  roles         Role[]    @default([USER])
 
   containers             Container[]
   accounts               Account[]

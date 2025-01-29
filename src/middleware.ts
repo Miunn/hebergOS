@@ -13,6 +13,13 @@ export default withAuth(customMiddleware, {
         async authorized({ token, req }) {
             const isLoggedIn = !!token;
             const isOnApp = new RegExp(`(${routing.locales.join('|')})/app`).test(req.nextUrl.pathname);
+            const isOnAdminPage = new RegExp(`(${routing.locales.join('|')})/app/administration`).test(req.nextUrl.pathname);
+
+            if (isOnAdminPage) {
+                if (isLoggedIn && token.roles.includes('ADMIN')) return true;
+                return false; // Redirect unauthorized users to home page
+            }
+
             if (isOnApp) {
                 if (isLoggedIn) return true;
                 return false; // Redirect unauthenticated users to login page

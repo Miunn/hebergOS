@@ -74,6 +74,13 @@
                         "deleteContainer": "Supprimer le conteneur"
                     }
                 }
+            },
+            "administration": {
+                "title": "Administration",
+                "users": "Utilisateurs de l'application",
+                "createUser": "Créer un utilisateur",
+                "containers": "Conteneurs hébergés",
+                "otherContainers": "Autres conteneurs"
             }
         }
     },
@@ -139,6 +146,22 @@
                     "cancel": "Annuler",
                     "delete": "Supprimer"
                 }
+            }
+        }
+    },
+    "tables": {
+        "users": {
+            "columns": {
+                "nickname": "Nom d'utilisateur",
+                "email": "Email",
+                "roles": "Rôles",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "editRoles": "Modifier les rôles",
+                "editContainers": "Modifier les conteneurs",
+                "delete": "Supprimer"
             }
         }
     }

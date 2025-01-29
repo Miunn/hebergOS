@@ -6,9 +6,9 @@ import { ContainerWithActivity } from "@/lib/definitions";
 import { ContainerActivity } from "@prisma/client";
 import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
-import StartContainer from "@/dialogs/containers/StartContainer";
-import StopContainer from "@/dialogs/containers/StopContainer";
-import RestartContainer from "@/dialogs/containers/RestartContainer";
+import StartContainer from "@/components/dialogs/containers/StartContainer";
+import StopContainer from "@/components/dialogs/containers/StopContainer";
+import RestartContainer from "@/components/dialogs/containers/RestartContainer";
 import { DialogTrigger } from "../ui/dialog";
 
 export default function ContainerActions({ container }: { container: ContainerWithActivity }) {

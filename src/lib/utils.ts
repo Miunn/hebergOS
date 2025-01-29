@@ -26,7 +26,13 @@ export async function syncContainers() {
     return false;
   }
 
-  const containers = (await (await fetch(process.env.API_URL + "/container")).json())["success"];
+  const r = await fetch(process.env.API_URL + "/container");
+
+  if (!r.ok) {
+    return false;
+  }
+
+  const containers = (await r.json())["success"];
 
   if (!containers) {
     return false;

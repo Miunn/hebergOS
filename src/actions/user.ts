@@ -1,9 +1,10 @@
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
+import { isAdmin } from "@/lib/utils";
 import { getServerSession } from "next-auth";
 
-export default async function getMe(): Promise<UserWithContainers | null> {
+export async function getMe(): Promise<UserWithContainers | null> {
     const session = await getServerSession(authConfig);
 
     if (!session) {
@@ -24,4 +25,18 @@ export default async function getMe(): Promise<UserWithContainers | null> {
     }
 
     return user;
+}
+
+export async function getUsers(): Promise<UserWithContainers[]> {
+    if (!(await isAdmin())) {
+        return [];
+    }
+
+    const users = await prisma.user.findMany({
+        include: {
+            containers: true
+        }
+    })
+
+    return users;
 }

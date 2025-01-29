@@ -74,6 +74,13 @@
                         "deleteContainer": "Delete container"
                     }
                 }
+            },
+            "administration": {
+                "title": "Administration",
+                "users": "Users",
+                "createUser": "Create a user",
+                "containers": "Hosted containers",
+                "otherContainers": "Other containers"
             }
         }
     },
@@ -139,6 +146,22 @@
                     "cancel": "Cancel",
                     "delete": "Delete"
                 }
+            }
+        }
+    },
+    "tables": {
+        "users": {
+            "columns": {
+                "nickname": "Username",
+                "email": "Email",
+                "roles": "Roles",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "editRoles": "Edit roles",
+                "editContainers": "Edit containers",
+                "delete": "Delete"
             }
         }
     }
