@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Role } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 

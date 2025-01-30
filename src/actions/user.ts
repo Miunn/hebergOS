@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
 import { getServerSession } from "next-auth";
-import { z } from "zod";
+import bcrypt from 'bcryptjs';
 
 export async function getMe(): Promise<UserWithContainers | null> {
     const session = await getServerSession(authConfig);
@@ -59,12 +59,13 @@ export async function createUser(data: { name: string, email: string, nickname: 
     const { name, email, nickname, password, roles } = parsedData.data;
 
     try {
+        const hashedPassword = await bcrypt.hash(password, 13);
         const newUser = await prisma.user.create({
             data: {
                 name: name,
                 email: email,
                 nickname: nickname,
-                password: password,
+                password: hashedPassword,
                 roles
             }
         });

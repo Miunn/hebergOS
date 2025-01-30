@@ -46,7 +46,7 @@ export default async function RootLayout(
               <h1 className={`${robotoMono.className} antialiased text-center text-xl`}>./insa.sh</h1>
               <div className="flex justify-end items-center gap-4 text-xl">
                 {session?.user.roles.includes("ADMIN")
-                  ? <Button variant={"link"} asChild><Link href={"/app/admin"} className="text-white text-lg"><MessageSquareMore className="w-6 h-6" /> Administration</Link></Button>
+                  ? <Button variant={"link"} asChild><Link href={"/app/administration"} className="text-white text-lg"><MessageSquareMore className="w-6 h-6" /> Administration</Link></Button>
                   : null
                 }
                 {session?.user

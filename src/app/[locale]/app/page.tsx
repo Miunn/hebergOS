@@ -1,4 +1,4 @@
-import getMe from "@/actions/user"
+import { getMe } from "@/actions/user"
 import Container from "@/components/containers/ContainerCard";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
