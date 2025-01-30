@@ -71,21 +71,23 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
             const t = useTranslations("pages.app.administration");
             const containers = row.original.containers;
 
+            const sliceLength = 2;
+
             return (
                 <div className="flex flex-wrap gap-2">
-                    {containers.slice(0, 3).map((container) => (
+                    {containers.slice(0, sliceLength).map((container) => (
                         <Badge key={container.id} className={`${robotoMono.className} p-1`}>{container.name}</Badge>
                     ))}
-                    {containers.length > 3
+                    {containers.length > sliceLength
                         ? <HoverCard>
                             <HoverCardTrigger>
-                                <Badge className={`${robotoMono.className} p-1 cursor-pointer`}>+ {containers.slice(3).length}</Badge>
+                                <Badge className={`${robotoMono.className} p-1 cursor-pointer`}>+ {containers.slice(sliceLength).length}</Badge>
                             </HoverCardTrigger>
                             <HoverCardContent>
                                 <div className="">
                                     <h3>{t('otherContainers')}</h3>
                                     <ul className="list-disc px-4">
-                                        {containers.slice(3).map((container) => (
+                                        {containers.slice(sliceLength).map((container) => (
                                             <li key={container.id} className={`${robotoMono.className}`}>{container.name}</li>
                                         ))}
                                     </ul>
