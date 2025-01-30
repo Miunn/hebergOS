@@ -129,3 +129,21 @@ export async function getContainersAdmin(): Promise<Container[]> {
         return []
     }
 }
+
+export async function getAvailableHostPorts(): Promise<number[]> {
+    if (!(await isAdmin())) {
+        return [];
+    }
+
+    const basePorts = [0, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000]
+
+    try {
+        return await prisma.container.findMany({
+            select: {
+                hostPort: true
+            }
+        }).then(containers => basePorts.filter(port => !containers.some(container => container.hostPort === port)));
+    } catch (e) {
+        return []
+    }
+}

@@ -1,4 +1,4 @@
-import { getContainersAdmin } from "@/actions/containers";
+import { getAvailableHostPorts, getContainersAdmin } from "@/actions/containers";
 import { getUsers } from "@/actions/user";
 import CreateContainerDialog from "@/components/dialogs/containers/CreateContainer";
 import CreateUserDialog from "@/components/dialogs/users/CreateUser";
@@ -13,6 +13,7 @@ export default async function AdministrationPage() {
     const t = await getTranslations('pages.app.administration');
     const users = await getUsers();
     const containers = await getContainersAdmin();
+    const availableHostPorts = await getAvailableHostPorts();
 
     return (
         <>
@@ -32,8 +33,8 @@ export default async function AdministrationPage() {
             <div className="mt-10">
             <div className="flex justify-between items-center mb-2">
                 <h1 className={`${robotoMono.className} text-xl`}>{t('containers')}</h1>
-             
-                <CreateContainerDialog>
+            
+                <CreateContainerDialog availableHostPorts={availableHostPorts}>
                         <Button variant={"secondary"}>
                             {t('createContainer')}
                         </Button>

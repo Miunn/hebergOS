@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-export default function CreateContainerDialog({ children }: { children: React.ReactNode }) {
+export default function CreateContainerDialog({ children, availableHostPorts }: { children: React.ReactNode, availableHostPorts: number[] }) {
 
     const t = useTranslations("dialogs.containers.create");
 
@@ -23,7 +23,7 @@ export default function CreateContainerDialog({ children }: { children: React.Re
         resolver: zodResolver(CreateContainerFormSchema),
         defaultValues: {
             name: '',
-            hostPort: 10000,
+            hostPort: availableHostPorts[0] || 0,
             memory: 0.5,
             cpu: 0.5,
         }
@@ -72,7 +72,9 @@ export default function CreateContainerDialog({ children }: { children: React.Re
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
-                                            <SelectItem value="10000">10000</SelectItem>
+                                            {availableHostPorts.map((port) => (
+                                                <SelectItem key={port} value={port.toString()}>{port}</SelectItem>
+                                            ))}
                                         </SelectContent>
                                     </Select>
                                 </FormItem>
