@@ -80,6 +80,7 @@
                 "users": "Utilisateurs de l'application",
                 "createUser": "Créer un utilisateur",
                 "containers": "Conteneurs hébergés",
+                "createContainer": "Créer un conteneur",
                 "otherContainers": "Autres conteneurs"
             }
         }
@@ -111,6 +112,46 @@
     },
     "dialogs": {
         "containers": {
+            "create": {
+                "trigger": "Créer un conteneur",
+                "title": "Créer un conteneur",
+                "description": "Créez un nouveau conteneur",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Nom",
+                            "placeholder": "Entrez le nom du conteneur"
+                        },
+                        "hostPort": {
+                            "label": "Port hôte",
+                            "placeholder": "Sélectionnez le port hôte"
+                        },
+                        "memory": {
+                            "label": "Limite mémoire",
+                            "placeholder": "Entrez la limite de mémoire",
+                            "description": "La mémoire limite est exprimé en Go."
+                        },
+                        "cpu": {
+                            "label": "Limite CPU",
+                            "placeholder": "Entrez la limite de CPU",
+                            "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la création du conteneur",
+                    "description": "Une erreur est survenue lors de la création du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur créé",
+                    "description": "Le conteneur a été créé avec succès."
+                }
+            },
             "start": {
                 "trigger": "Démarrer",
                 "title": "Démarrer {name}",

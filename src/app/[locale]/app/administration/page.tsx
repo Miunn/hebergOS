@@ -1,5 +1,6 @@
 import { getContainersAdmin } from "@/actions/containers";
 import { getUsers } from "@/actions/user";
+import CreateContainerDialog from "@/components/dialogs/containers/CreateContainer";
 import CreateUserDialog from "@/components/dialogs/users/CreateUser";
 import ContainersTable from "@/components/tables/ContainersTable";
 import UsersTable from "@/components/tables/UsersTable";
@@ -16,7 +17,7 @@ export default async function AdministrationPage() {
     return (
         <>
             <div>
-                <div className="flex justify-between items-center mb-5">
+                <div className="flex justify-between items-center mb-2">
                     <h1 className={`${robotoMono.className} text-xl`}>{t('users')}</h1>
 
                     <CreateUserDialog>
@@ -28,8 +29,16 @@ export default async function AdministrationPage() {
                 <UsersTable users={users} />
             </div>
 
-            <div>
-                <h1 className={`${robotoMono.className} text-xl mt-10`}>{t('containers')}</h1>
+            <div className="mt-10">
+            <div className="flex justify-between items-center mb-2">
+                <h1 className={`${robotoMono.className} text-xl`}>{t('containers')}</h1>
+             
+                <CreateContainerDialog>
+                        <Button variant={"secondary"}>
+                            {t('createContainer')}
+                        </Button>
+                    </CreateContainerDialog>
+                </div>
                 
                 <ContainersTable containers={containers} />
             </div>

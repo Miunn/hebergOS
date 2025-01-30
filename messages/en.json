@@ -80,6 +80,7 @@
                 "users": "Users",
                 "createUser": "Create a user",
                 "containers": "Hosted containers",
+                "createContainer": "Create a container",
                 "otherContainers": "Other containers"
             }
         }
@@ -111,6 +112,46 @@
     },
     "dialogs": {
         "containers": {
+            "create": {
+                "trigger": "Create a container",
+                "title": "Create a container",
+                "description": "Create a new container inside HebergOS.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Name",
+                            "placeholder": "Enter container name"
+                        },
+                        "hostPort": {
+                            "label": "Host port",
+                            "placeholder": "Select an available host port"
+                        },
+                        "memory": {
+                            "label": "Memory",
+                            "placeholder": "Enter memory limit",
+                            "description": "Memory limit is in Go."
+                        },
+                        "cpu": {
+                            "label": "CPU",
+                            "placeholder": "Enter CPU limit",
+                            "description": "CPU limit is a percentage of the total CPU power of the host machine. 100% is equivalent to one core."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Create",
+                    "submitting": "Creating...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while creating the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container created",
+                    "description": "The container has been created successfully."
+                }
+            },
             "start": {
                 "trigger": "Start",
                 "title": "Start {name}",

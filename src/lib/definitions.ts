@@ -38,6 +38,13 @@ export const RegisterFormSchema = z.object({
     path: ["passwordConfirmation"],
 });
 
+export const CreateContainerFormSchema = z.object({
+    name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
+    hostPort: z.number().int().min(1024, { message: 'Host port must be at least 1024.' }),
+    memory: z.number().int().min(0, { message: 'Memory must be at least 0 Go.' }),
+    cpu: z.number().int().min(0, { message: 'CPU must be at least 0.' }),
+})
+
 const userLight = Prisma.validator<Prisma.UserDefaultArgs>()({
     select: { id: true, name: true, email: true, roles: true, createdAt: true, updatedAt: true }
 })
