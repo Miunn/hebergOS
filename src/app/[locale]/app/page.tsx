@@ -14,7 +14,7 @@ export default async function Dashboard() {
             <div className="flex flex-wrap gap-6">
                 {me?.containers.map((container) => (
                     <Fragment key={container.id}>
-                        <Container id={container.id} name={container.name} state={"exited"} />
+                        <Container id={container.id} name={container.name} state={container.state} />
                     </Fragment>
                 ))}
             </div>

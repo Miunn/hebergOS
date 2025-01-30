@@ -183,6 +183,7 @@ export default function CreateUserDialog({ children }: { children: React.ReactNo
                                                                             )
                                                                         )
                                                                 }}
+                                                                disabled={role.id === Role.USER}
                                                             />
                                                         </FormControl>
                                                         <FormLabel className="text-sm font-normal">{role.label}</FormLabel>
