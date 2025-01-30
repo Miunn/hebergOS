@@ -90,7 +90,9 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
         clientStats.push({
             timestamp: parseInt(timestamp),
             memory: stat.memory.used,
+            memoryLimit: stat.memory.limit,
             cpu: stat.cpu.usage_percent,
+            cpuLimit: stat.cpu.limit,
             netUp: stat.net.up,
             netDown: stat.net.down,
             netDeltaUp: stat.net.delta_up,
@@ -101,6 +103,18 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
 
     console.log("First", clientStats[0]);
     console.log("Last", clientStats[clientStats.length - 1]);
+
+    // Sync limits according to last stat
+    await prisma.container.update({
+        where: {
+            id: containerId
+        },
+        data: {
+            memory: clientStats[clientStats.length - 1].memoryLimit,
+            cpu: clientStats[clientStats.length - 1].cpuLimit
+        }
+    })
+
     return clientStats;
 }
 

@@ -4,7 +4,9 @@ import { z } from "zod";
 export type ClientContainerStat = {
     timestamp: number;
     memory: number;
+    memoryLimit: number;
     cpu: number;
+    cpuLimit: number;
     netUp: number;
     netDown: number;
     netDeltaUp: number;
