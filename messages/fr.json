@@ -254,6 +254,7 @@
         },
         "users": {
             "columns": {
+                "name": "Nom",
                 "nickname": "Nom d'utilisateur",
                 "email": "Email",
                 "roles": "Rôles",

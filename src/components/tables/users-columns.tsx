@@ -9,7 +9,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card"
 import { useTranslations } from "next-intl"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
-import { MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 
 export const usersColumns: ColumnDef<UserWithContainers>[] = [
     {
@@ -36,11 +36,33 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
     },
     {
         accessorKey: "name",
-        header: "Name",
+        header: ({ column }) => {
+            const t = useTranslations("tables.users.columns");
+
+            return <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                {t('name')}
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        }
+    },
+    {
+        accessorKey: "nickname",
+        header: ({ column }) => {
+            const t = useTranslations(("tables.users.columns"));
+
+            return <span>{ t('nickname') }</span>
+        }
     },
     {
         accessorKey: "email",
-        header: "Email",
+        header: ({ column }) => {
+            const t = useTranslations("tables.users.columns");
+
+            return <span>{ t('email') }</span>
+        }
     },
     {
         accessorKey: "containers",
