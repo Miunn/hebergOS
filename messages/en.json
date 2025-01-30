@@ -78,8 +78,10 @@
             "administration": {
                 "title": "Administration",
                 "users": "Users",
+                "searchUsers": "Filter users",
                 "createUser": "Create a user",
                 "containers": "Hosted containers",
+                "searchContainers": "Filter containers",
                 "createContainer": "Create a container",
                 "otherContainers": "Other containers"
             }

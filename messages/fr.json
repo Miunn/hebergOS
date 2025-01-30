@@ -78,8 +78,10 @@
             "administration": {
                 "title": "Administration",
                 "users": "Utilisateurs de l'application",
+                "searchUsers": "Filtrer les utilisateurs",
                 "createUser": "Créer un utilisateur",
                 "containers": "Conteneurs hébergés",
+                "searchContainers": "Filtrer les conteneurs",
                 "createContainer": "Créer un conteneur",
                 "otherContainers": "Autres conteneurs"
             }
