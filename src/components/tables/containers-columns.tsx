@@ -55,6 +55,10 @@ export const containersColumns: ColumnDef<Container>[] = [
         header: () => {
             const t = useTranslations("tables.containers.columns");
             return t('memory');
+        },
+        cell: ({ row }) => {
+            const memory = row.original.memory;
+            return <span>{memory} Go</span>
         }
     },
     {
@@ -62,6 +66,10 @@ export const containersColumns: ColumnDef<Container>[] = [
         header: () => {
             const t = useTranslations("tables.containers.columns");
             return t('cpu');
+        },
+        cell: ({ row }) => {
+            const cpu = row.original.cpu;
+            return <span>{cpu} %</span>
         }
     }
 ]

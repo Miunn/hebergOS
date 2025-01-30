@@ -248,8 +248,8 @@
                 "name": "Name",
                 "state": "State",
                 "hostPort": "Host port",
-                "memory": "Memory",
-                "cpu": "CPU"
+                "memory": "Memory limit",
+                "cpu": "CPU limit"
             }
         },
         "users": {
