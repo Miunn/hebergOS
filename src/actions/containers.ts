@@ -4,6 +4,7 @@ import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
+import { Container } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
 export async function getContainer(id: string) {
@@ -101,4 +102,16 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
     console.log("First", clientStats[0]);
     console.log("Last", clientStats[clientStats.length - 1]);
     return clientStats;
+}
+
+export async function getContainersAdmin(): Promise<Container[]> {
+    if (!(await isAdmin())) {
+        return [];
+    }
+
+    try {
+        return await prisma.container.findMany();
+    } catch (e) {
+        return []
+    }
 }

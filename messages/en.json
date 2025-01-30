@@ -202,6 +202,15 @@
         }
     },
     "tables": {
+        "containers": {
+            "columns": {
+                "name": "Name",
+                "state": "State",
+                "hostPort": "Host port",
+                "memory": "Memory",
+                "cpu": "CPU"
+            }
+        },
         "users": {
             "columns": {
                 "nickname": "Username",
