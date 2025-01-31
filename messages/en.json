@@ -252,6 +252,15 @@
                 "hostPort": "Host port",
                 "memory": "Memory limit",
                 "cpu": "CPU limit"
+            },
+            "actions": {
+                "label": "Actions",
+                "start": "Start",
+                "stop": "Stop",
+                "restart": "Restart",
+                "editMemory": "Edit memory limit",
+                "editCpu": "Edit CPU limit",
+                "delete": "Delete"
             }
         },
         "users": {

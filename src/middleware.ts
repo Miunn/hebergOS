@@ -15,6 +15,10 @@ export default withAuth(customMiddleware, {
             const isOnApp = new RegExp(`(${routing.locales.join('|')})/app`).test(req.nextUrl.pathname);
             const isOnAdminPage = new RegExp(`(${routing.locales.join('|')})/app/administration`).test(req.nextUrl.pathname);
 
+            /**
+             * TODO: Restrict access to containers pages based on user association
+             */
+
             if (isOnAdminPage) {
                 if (isLoggedIn && token.roles.includes('ADMIN')) return true;
                 return false; // Redirect unauthorized users to home page

@@ -4,8 +4,9 @@ import { Container } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
 import { useTranslations } from "next-intl";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 export const containersColumns: ColumnDef<Container>[] = [
     {
@@ -106,6 +107,36 @@ export const containersColumns: ColumnDef<Container>[] = [
         cell: ({ row }) => {
             const cpu = row.original.cpu;
             return <span>{cpu} %</span>
+        }
+    },
+    {
+        id: "actions",
+        cell: ({ row }) => {
+            const t = useTranslations("tables.containers.actions");
+
+            const state = row.original.state;
+
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                            <span className="sr-only">Open menu</span>
+                            <MoreHorizontal />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
+                        {state === "RUNNING"
+                            ? <DropdownMenuItem>{t('stop')}</DropdownMenuItem>
+                            : <DropdownMenuItem>{t('start')}</DropdownMenuItem>
+                        }
+                        <DropdownMenuItem>{t('editMemory')}</DropdownMenuItem>
+                        <DropdownMenuItem>{t('editCpu')}</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
         }
     }
 ]
