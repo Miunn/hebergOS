@@ -57,6 +57,20 @@ export default function CreateUserDialog({ children }: { children: React.ReactNo
                     variant: 'destructive'
                 })
             }
+
+            if (result.error === 'invalid-data') {
+                toast({
+                    title: t('errors.invalidData.title'),
+                    description: t('errors.invalidData.description'),
+                    variant: 'destructive'
+                })
+            }
+
+            toast({
+                title: t('errors.unknown.title'),
+                description: t('errors.unknown.description'),
+                variant: 'destructive'
+            })
             return;
         }
 

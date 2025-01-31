@@ -305,6 +305,10 @@
             "title": "Email already exists",
             "description": "The email you entered already exists. Please choose another one."
           },
+          "invalidData": {
+            "title": "Invalid data",
+            "description": "The data you entered is invalid. Please check the form."
+          },
           "unknown": {
             "title": "Erreur lors de la création de l'utilisateur",
             "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
