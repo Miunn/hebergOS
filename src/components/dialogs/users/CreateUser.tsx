@@ -39,21 +39,37 @@ export default function CreateUserDialog({ children }: { children: React.ReactNo
 
         const result = await createUser(data);
 
-        if (result) {
-            form.reset();
+        setLoading(false);
+
+        if (result.error) {
+            if (result.error === 'nickname-already-exists') {
+                toast({
+                    title: t('errors.nicknameAlreadyExists.title'),
+                    description: t('errors.nicknameAlreadyExists.description'),
+                    variant: 'destructive'
+                })
+            }
+
+            if (result.error === 'email-already-exists') {
+                toast({
+                    title: t('errors.emailAlreadyExists.title'),
+                    description: t('errors.emailAlreadyExists.description'),
+                    variant: 'destructive'
+                })
+            }
+            return;
         }
 
+        form.reset();
+
         toast({
-            title: t(result ? 'success.title' : 'error.title'),
-            description: t(result ? 'success.description' : 'error.description'),
-            variant: result ? 'default' : 'destructive'
-        })
+            title: t('success.title'),
+            description: t('success.description'),
+        });
 
         if (result) {
             setOpen(false);
         }
-
-        setLoading(false);
     }
 
     const roles = [

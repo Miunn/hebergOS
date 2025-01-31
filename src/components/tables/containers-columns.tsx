@@ -74,12 +74,10 @@ export const containersColumns: ColumnDef<Container>[] = [
             const state = row.original.state;
 
             const getStateColor = (state: ContainerState, darkness = 400) => {
-                console.log("Get color for state", state);
                 switch (state) {
                     case "CREATED":
                         return `bg-blue-${darkness}`;
                     case "RUNNING":
-                        console.log("Running");
                         return `bg-green-${darkness}`;
                     case "PAUSED":
                         return `bg-yellow-${darkness}`;

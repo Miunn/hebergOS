@@ -7,6 +7,7 @@ import { isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import bcrypt from 'bcryptjs';
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function getMe(): Promise<UserWithContainers | null> {
     const session = await getServerSession(authConfig);
@@ -45,22 +46,24 @@ export async function getUsers(): Promise<UserWithContainers[]> {
     return users;
 }
 
-export async function createUser(data: { name: string, email: string, nickname: string, password: string, passwordConfirmation: string, roles: Role[] }): Promise<Boolean> {
+export async function createUser(data: { name: string, email: string, nickname: string, password: string, passwordConfirmation: string, roles: Role[] }): Promise<{ error?: string }> {
     if (!(await isAdmin())) {
-        return false;
+        return { error: 'not-authorized' };
     }
 
+    console.log("Creating user with data : ", data);
     const parsedData = RegisterFormSchema.safeParse(data);
 
     if (!parsedData.success) {
-        return false;
+        return { error: 'invalid-data' };
     }
 
     const { name, email, nickname, password, roles } = parsedData.data;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 13);
-        const newUser = await prisma.user.create({
+
+        await prisma.user.create({
             data: {
                 name: name,
                 email: email,
@@ -70,9 +73,15 @@ export async function createUser(data: { name: string, email: string, nickname: 
             }
         });
 
-        return !!newUser;
+        return { error: undefined };
     } catch (error) {
-        console.log("Prisma error while creating user : ", error);
-        return false;
+
+        if (error instanceof PrismaClientKnownRequestError) {
+            if (error.code === 'P2002') {
+                return { error: 'nickname-already-exists' };
+            }
+        }
+
+        return { error: 'unknown-error' };
     }
 }

@@ -297,8 +297,18 @@
                     "cancel": "Annuler"
                 },
                 "errors": {
-                    "title": "Erreur lors de la création de l'utilisateur",
-                    "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
+                    "nicknameAlreadyExists": {
+                        "title": "Nom d'utilisateur déjà utilisé",
+                        "description": "Le nom d'utilisateur est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
+                    },
+                    "emailAlreadyExists": {
+                        "title": "Email déjà utilisé",
+                        "description": "L'email est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
+                    },
+                    "unknown": {
+                        "title": "Erreur lors de la création de l'utilisateur",
+                        "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
+                    }
                 },
                 "success": {
                     "title": "Utilisateur créé",
