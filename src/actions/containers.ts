@@ -1,11 +1,13 @@
 'use server'
 
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
-import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers } from "@/lib/definitions";
+import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
+import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
 import { Container } from "@prisma/client";
 import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 export async function getContainer(id: string) {
     const session = await getServerSession(authConfig);
@@ -148,6 +150,74 @@ export async function getAvailableHostPorts(): Promise<number[]> {
     }
 }
 
+export async function editAdminMemoryLimit(containerId: string, data: { memory: number }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsed =  EditMemoryLimitContainerFormSchema.safeParse(data);
+
+    if (!parsed.success) {
+        return false;
+    }
+
+    const parsedData = parsed.data;
+
+    try {
+        const apiR = await apiEditMemoryLimit(containerId, parsedData.memory);
+
+        if (!apiR) {
+            return false;
+        }
+
+        await prisma.container.update({
+            where: { id: containerId },
+            data: {
+                memory: parsedData.memory
+            }
+        });
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error updating container memory limit: ${e}`);
+        return false;
+    }
+}
+
+export async function editAdminCpuLimit(containerId: string, data: { cpu: number }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsed = EditCpuLimitContainerFormSchema.safeParse(data);
+
+    if (!parsed.success) {
+        return false;
+    }
+
+    const parsedData = parsed.data;
+
+    try {
+        const apiR = await apiEditCpuLimit(containerId, parsedData.cpu);
+
+        if (!apiR) {
+            return false;
+        }
+
+        await prisma.container.update({
+            where: { id: containerId },
+            data: {
+                cpu: parsedData.cpu
+            }
+        });
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error updating container CPU limit: ${e}`);
+        return false;
+    }
+}
+
 export async function deleteContainer(id: string): Promise<boolean> {
     if (!(await isAdmin())) {
         return false;
@@ -166,6 +236,8 @@ export async function deleteContainer(id: string): Promise<boolean> {
             where: { id: id },
             
         });
+
+        revalidatePath("/app/administration");
         return true;
     } catch (e) {
         console.log(`Error deleting container: ${e}`);

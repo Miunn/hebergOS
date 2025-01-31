@@ -181,6 +181,60 @@
                     "restart": "Redémarrer"
                 }
             },
+            "editMemoryLimit": {
+                "trigger": "Modifier la limite mémoire",
+                "title": "Modifier la limite mémoire de {name}",
+                "description": "Entrez la nouvelle limite de mémoire pour {name}.",
+                "form": {
+                    "fields": {
+                        "memory": {
+                            "label": "Limite mémoire",
+                            "placeholder": "Entrez la nouvelle limite de mémoire",
+                            "description": "La mémoire limite est exprimée en Go."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la modification de la limite mémoire",
+                    "description": "Une erreur est survenue lors de la modification de la limite mémoire. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Limite mémoire modifiée",
+                    "description": "La limite mémoire a été modifiée avec succès."
+                }
+            },
+            "editCpuLimit": {
+                "trigger": "Modifier la limite CPU",
+                "title": "Modifier la limite CPU de {name}",
+                "description": "Entrez la nouvelle limite de CPU pour {name}.",
+                "form": {
+                    "fields": {
+                        "cpu": {
+                            "label": "Limite CPU",
+                            "placeholder": "Entrez la nouvelle limite de CPU",
+                            "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la modification de la limite CPU",
+                    "description": "Une erreur est survenue lors de la modification de la limite CPU. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Limite CPU modifiée",
+                    "description": "La limite CPU a été modifiée avec succès."
+                }
+            },
             "delete": {
                 "trigger": "Supprimer",
                 "title": "Supprimer {name} ?",

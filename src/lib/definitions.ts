@@ -1,5 +1,5 @@
 import { Prisma, Role } from "@prisma/client";
-import { z } from "zod";
+import { coerce, z } from "zod";
 
 export type ClientContainerStat = {
     timestamp: number;
@@ -40,9 +40,17 @@ export const RegisterFormSchema = z.object({
 
 export const CreateContainerFormSchema = z.object({
     name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
-    hostPort: z.number().int().min(1024, { message: 'Host port must be at least 1024.' }),
-    memory: z.number().int().min(0, { message: 'Memory must be at least 0 Go.' }),
-    cpu: z.number().int().min(0, { message: 'CPU must be at least 0.' }),
+    hostPort: z.number({ coerce: true }).int().min(1024, { message: 'Host port must be at least 1024.' }),
+    memory: z.number({ coerce: true }).min(0, { message: 'Memory must be at least 0 Go.' }),
+    cpu: z.number({ coerce: true }).min(0, { message: 'CPU must be at least 0.' }),
+})
+
+export const EditMemoryLimitContainerFormSchema = z.object({
+    memory: z.number({ coerce: true }).min(0, { message: 'Memory limit must be at least 0 Go.' }),
+})
+
+export const EditCpuLimitContainerFormSchema = z.object({
+    cpu: z.number({ coerce: true }).min(0, { message: 'CPU limit must be at least 0%.' }),
 })
 
 const userLight = Prisma.validator<Prisma.UserDefaultArgs>()({

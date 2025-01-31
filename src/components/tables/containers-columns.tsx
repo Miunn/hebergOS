@@ -1,6 +1,6 @@
 'use client'
 
-import { Container } from "@prisma/client";
+import { Container, ContainerState } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
 import { useTranslations } from "next-intl";
@@ -9,6 +9,10 @@ import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import DeleteContainer from "../dialogs/containers/DeleteContainer";
 import { useState } from "react";
+import EditMemoryLimitContainer from "../dialogs/containers/EditMemoryLimitContainer";
+import EditCpuLimitContainer from "../dialogs/containers/EditCpuLimitContainer";
+import Link from "next/link";
+import { Badge } from "../ui/badge";
 
 export const containersColumns: ColumnDef<Container>[] = [
     {
@@ -45,6 +49,12 @@ export const containersColumns: ColumnDef<Container>[] = [
                 {t('name')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
+        },
+        cell: ({ row }) => {
+            const name = row.original.name;
+            return <Button variant={"link"} asChild>
+                <Link href={`/app/containers/${row.original.id}`}>{name}</Link>
+            </Button>
         }
     },
     {
@@ -59,6 +69,30 @@ export const containersColumns: ColumnDef<Container>[] = [
                 {t('state')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
+        },
+        cell: ({ row }) => {
+            const state = row.original.state;
+
+            const getStateColor = (state: ContainerState, darkness = 400) => {
+                console.log("Get color for state", state);
+                switch (state) {
+                    case "CREATED":
+                        return `bg-blue-${darkness}`;
+                    case "RUNNING":
+                        console.log("Running");
+                        return `bg-green-${darkness}`;
+                    case "PAUSED":
+                        return `bg-yellow-${darkness}`;
+                    case "RESTARTING":
+                        return `bg-purple-${darkness}`;
+                    case "STOPPED":
+                        return `bg-red-${darkness}`;
+                    default:
+                        return `bg-gray-${darkness}`;
+                }
+            }
+
+            return <Badge className={`${getStateColor(state, 600)} hover:${getStateColor(state, 700)} capitalize`}>{state.toLowerCase()}</Badge>
         }
     },
     {
@@ -118,7 +152,9 @@ export const containersColumns: ColumnDef<Container>[] = [
 
             const state = row.original.state;
 
-            const [open, setOpen] = useState(false);
+            const [openEditMemory, setOpenEditMemory] = useState(false);
+            const [openEditCpu, setOpenEditCpu] = useState(false);
+            const [openDelete, setOpenDelete] = useState(false);
 
             return (
                 <>
@@ -135,13 +171,15 @@ export const containersColumns: ColumnDef<Container>[] = [
                                 ? <DropdownMenuItem>{t('stop')}</DropdownMenuItem>
                                 : <DropdownMenuItem>{t('start')}</DropdownMenuItem>
                             }
-                            <DropdownMenuItem>{t('editMemory')}</DropdownMenuItem>
-                            <DropdownMenuItem>{t('editCpu')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenEditMemory(true)}>{t('editMemory')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenEditCpu(true)}>{t('editCpu')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => setOpen(!open)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenDelete(true)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
-                    <DeleteContainer container={row.original} open={open} setOpen={setOpen} />
+                    <EditMemoryLimitContainer container={row.original} open={openEditMemory} setOpen={setOpenEditMemory} />
+                    <EditCpuLimitContainer container={row.original} open={openEditCpu} setOpen={setOpenEditCpu} />
+                    <DeleteContainer container={row.original} open={openDelete} setOpen={setOpenDelete} />
                 </>
             )
         }
