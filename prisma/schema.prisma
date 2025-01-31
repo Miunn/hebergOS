@@ -84,7 +84,7 @@ model ContainerActivity {
   updatedAt   DateTime @updatedAt
 
   type      ContainerActivityType
-  container Container             @relation(fields: [containerId], references: [id])
+  container Container             @relation(fields: [containerId], references: [id], onDelete: Cascade)
 }
 
 model Notification {
@@ -99,8 +99,8 @@ model Notification {
   updatedAt   DateTime @updatedAt
 
   type      NotificationType
-  user      User?            @relation(fields: [userId], references: [id])
-  container Container?       @relation(fields: [containerId], references: [id])
+  user      User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  container Container?       @relation(fields: [containerId], references: [id], onDelete: Cascade)
 }
 
 model Account {

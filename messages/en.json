@@ -183,11 +183,20 @@
             },
             "delete": {
                 "trigger": "Delete",
-                "title": "Delete {name}",
+                "title": "Delete {name} ?",
                 "description": "Are you sure you want to delete {name} ? This action is irreversible.",
                 "actions": {
                     "cancel": "Cancel",
-                    "delete": "Delete"
+                    "delete": "Delete",
+                    "deleting": "Deleting..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while deleting the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container deleted",
+                    "description": "The container has been deleted successfully."
                 }
             }
         },

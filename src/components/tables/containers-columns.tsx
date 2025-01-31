@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import DeleteContainer from "../dialogs/containers/DeleteContainer";
+import { useState } from "react";
 
 export const containersColumns: ColumnDef<Container>[] = [
     {
@@ -116,26 +118,31 @@ export const containersColumns: ColumnDef<Container>[] = [
 
             const state = row.original.state;
 
+            const [open, setOpen] = useState(false);
+
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
-                        {state === "RUNNING"
-                            ? <DropdownMenuItem>{t('stop')}</DropdownMenuItem>
-                            : <DropdownMenuItem>{t('start')}</DropdownMenuItem>
-                        }
-                        <DropdownMenuItem>{t('editMemory')}</DropdownMenuItem>
-                        <DropdownMenuItem>{t('editCpu')}</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
+                            {state === "RUNNING"
+                                ? <DropdownMenuItem>{t('stop')}</DropdownMenuItem>
+                                : <DropdownMenuItem>{t('start')}</DropdownMenuItem>
+                            }
+                            <DropdownMenuItem>{t('editMemory')}</DropdownMenuItem>
+                            <DropdownMenuItem>{t('editCpu')}</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={() => setOpen(!open)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <DeleteContainer container={row.original} open={open} setOpen={setOpen} />
+                </>
             )
         }
     }

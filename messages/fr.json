@@ -183,11 +183,20 @@
             },
             "delete": {
                 "trigger": "Supprimer",
-                "title": "Supprimer {name}",
+                "title": "Supprimer {name} ?",
                 "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
                 "actions": {
                     "cancel": "Annuler",
-                    "delete": "Supprimer"
+                    "delete": "Supprimer",
+                    "deleting": "Suppression..."
+                },
+                "error": {
+                    "title": "Erreur lors de la suppression du conteneur",
+                    "description": "Une erreur est survenue lors de la suppression du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur supprimé",
+                    "description": "Le conteneur a été supprimé avec succès."
                 }
             }
         },

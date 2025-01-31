@@ -147,3 +147,28 @@ export async function getAvailableHostPorts(): Promise<number[]> {
         return []
     }
 }
+
+export async function deleteContainer(id: string): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    try {
+        await prisma.container.update({
+            where: { id: id },
+            data: {
+                users: {
+                    set: []
+                }
+            }
+        })
+        await prisma.container.delete({
+            where: { id: id },
+            
+        });
+        return true;
+    } catch (e) {
+        console.log(`Error deleting container: ${e}`);
+        return false;
+    }
+}
