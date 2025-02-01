@@ -58,7 +58,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
 
             <ActivitiesCard container={container} />
 
-            <Card>
+            <Card className="h-fit">
                 <CardHeader>
                     <CardTitle>{t('actions.title')}</CardTitle>
                 </CardHeader>
