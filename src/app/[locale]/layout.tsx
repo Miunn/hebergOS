@@ -1,18 +1,13 @@
 import { NextIntlClientProvider } from 'next-intl';
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
-import { roboto, robotoMono } from "../../ui/fonts";
+import { roboto } from "../../ui/fonts";
 import { Providers } from "./providers";
 import { getMessages } from "next-intl/server";
-import { Link, routing } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
-import { Button } from '@/components/ui/button';
-import { Github, LogIn, MessageSquareMore } from 'lucide-react';
-import { getServerSession } from 'next-auth';
-import { authConfig } from '../api/auth/[...nextauth]/route';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "HebergOS",
@@ -40,7 +35,6 @@ export default async function RootLayout(
   }
 
   const messages = await getMessages();
-  const session = await getServerSession(authConfig);
 
   return (
     <html lang={(await props.params).locale}>
