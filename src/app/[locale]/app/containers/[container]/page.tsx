@@ -29,7 +29,7 @@ export default async function Container({ params }: { params: Promise<{ locale: 
             <div className="mb-8">
                 <h1 className={`${robotoMono.className} antialiased text-xl mb-4`}>{container?.name}</h1>
                 <p className={`${robotoMono.className} antialiased`}>{container?.domain}</p>
-                <p className="flex items-center gap-2 text-lg"><span className={`${getStateColor(container.state)} inline-block w-3 h-3 rounded-full`} /> Exited</p>
+                <p className="flex items-center gap-2 text-lg capitalize"><span className={`${getStateColor(container.state)} inline-block w-3 h-3 rounded-full`} /> { container.state.toLowerCase() }</p>
             </div>
 
             <ContainerTabs container={container} />
