@@ -30,7 +30,7 @@ import { useTranslations } from "next-intl"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-  tableTitle?: string
+  tableTitle?: React.ReactNode
   rightContent?: React.ReactNode
   filteredColumn?: string
   filterPlaceholder?: string
@@ -67,7 +67,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
-        <h1 className={`${robotoMono.className} text-xl`}>{tableTitle}</h1>
+        {tableTitle}
 
         <div className="flex gap-2">
           {filteredColumn

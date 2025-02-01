@@ -77,10 +77,10 @@
       },
       "administration": {
         "title": "Administration",
-        "users": "Users",
+        "users": "{count, plural, zero {Users} one {User} other {Users}}",
         "searchUsers": "Filter users",
         "createUser": "Create a user",
-        "containers": "Hosted containers",
+        "containers": "{count, plural, zero {Hosted containers} one {Hosted container} other {Hosted containers}}",
         "searchContainers": "Filter containers",
         "createContainer": "Create a container",
         "otherContainers": "Other containers"
@@ -325,7 +325,7 @@
     "generic": {
       "page": "Page {current} of {total}",
       "actions": {
-        "selection": "{selected} of {count} {selected, plural, =0 {rows} one {row} other {rows}} selected",
+        "selection": "{selected} of {count, plural, =0 {rows} one {row} other {rows}} selected",
         "next": "Next",
         "previous": "Previous"
       }

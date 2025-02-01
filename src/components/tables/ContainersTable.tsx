@@ -5,6 +5,8 @@ import { getTranslations } from "next-intl/server";
 import CreateContainerDialog from "../dialogs/containers/CreateContainer";
 import { Button } from "../ui/button";
 import { getAvailableHostPorts } from "@/actions/containers";
+import { NumberTicker } from "../ui/number-ticker";
+import { robotoMono } from "@/ui/fonts";
 
 export default async function ContainersTable({ containers }: { containers: Container[] }) {
 
@@ -15,7 +17,9 @@ export default async function ContainersTable({ containers }: { containers: Cont
         <DataTable
             columns={containersColumns}
             data={containers}
-            tableTitle={t('containers')}
+            tableTitle={(
+                <h1 className={`${robotoMono.className} text-xl`}><NumberTicker value={containers.length} /> {t('containers', { count: containers.length })}</h1>
+            )}
             rightContent={(
                 <CreateContainerDialog availableHostPorts={availableHostPorts}>
                     <Button variant={"secondary"}>
@@ -23,7 +27,7 @@ export default async function ContainersTable({ containers }: { containers: Cont
                     </Button>
                 </CreateContainerDialog>
             )}
-            filterPlaceholder={ t('searchContainers') }
+            filterPlaceholder={t('searchContainers')}
             filteredColumn="name"
         />
     )
