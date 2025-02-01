@@ -115,3 +115,33 @@ export async function linkContainers(userId: string, containers: { containers: s
         return false;
     }
 }
+
+export async function editRoles(userId: string, roles: { roles: Role[] }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    try {
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                roles: {
+                    set: roles.roles
+                }
+            }
+        });
+
+        // Invalidate current user session
+        await prisma.session.deleteMany({
+            where: {
+                userId: userId
+            }
+        });
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error editing roles of user: ${e}`);
+        return false;
+    }
+}

@@ -375,6 +375,36 @@
                     "title": "Conteneurs liés",
                     "description": "Les conteneurs ont été liés avec succès."
                 }
+            },
+            "editRoles": {
+                "title": "Modifier les rôles de {name}",
+                "description": "Sélectionnez les rôles de l'utilisateur {name}.",
+                "form": {
+                    "fields": {
+                        "roles": {
+                            "label": "Rôles",
+                            "description": "Sélectionnez les rôles de l'utilisateur",
+                            "options": {
+                                "admin": "Administrateur",
+                                "info": "Informatique",
+                                "user": "Utilisateur"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la modification des rôles",
+                    "description": "Une erreur est survenue lors de la modification des rôles. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Rôles modifiés",
+                    "description": "Les rôles ont été modifiés avec succès."
+                }
             }
         }
     },

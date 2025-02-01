@@ -12,6 +12,7 @@ import { Button } from "../ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import LinkContainers from "../dialogs/users/LinkContainers"
 import React from "react"
+import EditRoles from "../dialogs/users/EditRoles"
 
 export const usersColumns: ColumnDef<UserWithContainers>[] = [
     {
@@ -122,6 +123,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
             const t = useTranslations("tables.users.actions");
 
             const [openEditContainers, setOpenEditContainers] = React.useState(false);
+            const [openEditRoles, setOpenEditRoles] = React.useState(false);
 
             return (
                 <>
@@ -135,12 +137,13 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
                             <DropdownMenuItem onClick={() => setOpenEditContainers(true)}>{t('editContainers')}</DropdownMenuItem>
-                            <DropdownMenuItem>{t('editRoles')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenEditRoles(true)}>{t('editRoles')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <LinkContainers user={row.original} open={openEditContainers} setOpen={setOpenEditContainers} />
+                    <EditRoles user={row.original} open={openEditRoles} setOpen={setOpenEditRoles} />
                 </>
             )
         }

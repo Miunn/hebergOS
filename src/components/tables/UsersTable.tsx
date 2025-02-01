@@ -14,18 +14,18 @@ export default async function UsersTable({ users }: { users: UserWithContainers[
     return (
         <DataTable
             columns={usersColumns}
-            data={users}
+            data={users.sort((a, b) => a.name.localeCompare(b.name))}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl`}><NumberTicker value={users.length} /> {t('users', { count: users.length })}</h1>
-    )}
+            )}
             rightContent={(
                 <CreateUserDialog>
                     <Button variant={"secondary"}>
-                        { t('createUser') }
+                        {t('createUser')}
                     </Button>
                 </CreateUserDialog>
             )}
-            filterPlaceholder={ t('searchUsers') }
+            filterPlaceholder={t('searchUsers')}
             filteredColumn="nickname"
         />
     )

@@ -42,6 +42,10 @@ export const LinkContainersFormSchema = z.object({
     containers: z.array(z.string())
 });
 
+export const EditRolesFormSchema = z.object({
+    roles: z.array(z.nativeEnum(Role)).default([Role.USER]),
+});
+
 export const CreateContainerFormSchema = z.object({
     name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
     hostPort: z.number({ coerce: true }).int().min(1024, { message: 'Host port must be at least 1024.' }),

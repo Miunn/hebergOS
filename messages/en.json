@@ -375,6 +375,36 @@
           "title": "Containers linked",
           "description": "The containers have been linked successfully."
         }
+      },
+      "editRoles": {
+        "title": "Edit roles of {name}",
+        "description": "Edit the roles of {name}.",
+        "form": {
+          "fields": {
+            "roles": {
+              "label": "Roles",
+              "description": "Select the roles of the user",
+              "options": {
+                "admin": "Admin",
+                "info": "Informatics",
+                "user": "User"
+              }
+            }
+          }
+        },
+        "actions": {
+          "submit": "Edit",
+          "submitting": "Editing...",
+          "cancel": "Cancel"
+        },
+        "error": {
+          "title": "Error",
+          "description": "An error occurred while editing the roles. Please try again later."
+        },
+        "success": {
+          "title": "Roles edited",
+          "description": "The roles have been edited successfully."
+        }
       }
     }
   },
