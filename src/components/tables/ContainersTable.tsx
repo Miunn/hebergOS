@@ -13,10 +13,21 @@ export default async function ContainersTable({ containers }: { containers: Cont
     const t = await getTranslations('pages.app.administration');
     const availableHostPorts = await getAvailableHostPorts();
 
+    const sortedContainers = [...containers].sort((a, b) => {
+        if (a.hostPort === 0 && b.hostPort === 0) {
+            return a.name.localeCompare(b.name);
+        }
+
+        if (a.hostPort === 0) return 1;
+        if (b.hostPort === 0) return -1;
+
+        return a.name.localeCompare(b.name);
+    });
+
     return (
         <DataTable
             columns={containersColumns}
-            data={containers.sort((a, b) => a.name.localeCompare(b.name))}
+            data={sortedContainers}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl`}><NumberTicker value={containers.length} /> {t('containers', { count: containers.length })}</h1>
             )}
