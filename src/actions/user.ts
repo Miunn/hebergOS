@@ -145,3 +145,27 @@ export async function editRoles(userId: string, roles: { roles: Role[] }): Promi
         return false;
     }
 }
+
+export async function deleteUser(userId: string): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    try {
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                containers: { set: [] }
+            }
+        })
+        await prisma.user.delete({
+            where: { id: userId }
+        });
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error deleting user: ${e}`);
+        return false;
+    }
+}

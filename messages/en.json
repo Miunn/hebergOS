@@ -1,455 +1,476 @@
 {
-  "title": "HebergOS",
-  "pages": {
-    "home": {
-      "title": "HebergOS"
+    "title": "HebergOS",
+    "pages": {
+        "home": {
+            "title": "HebergOS"
+        },
+        "app": {
+            "dashboard": {
+                "title": "Dashboard",
+                "empty": "No project assigned to you for now.</br>Contact an administrator to discuss your desires !",
+                "administration": "Go to administration"
+            },
+            "container": {
+                "noDomain": "No domain associated",
+                "tabs": {
+                    "overview": "Overview",
+                    "graphs": "Graphs",
+                    "shell": "Shell",
+                    "actions": "Actions",
+                    "admin": "Administration",
+                    "asks": "Asks"
+                },
+                "overview": {
+                    "title": "{name} Overview",
+                    "activity": {
+                        "empty": "No activity for now",
+                        "title": "Container's activity",
+                        "started": "Container started",
+                        "stopped": "Container stopped",
+                        "restarted": "Container restarted"
+                    },
+                    "users": {
+                        "title": "Users"
+                    }
+                },
+                "graphs": {
+                    "title": "{name} Statistics",
+                    "period": {
+                        "label": "Select a period",
+                        "options": {
+                            "hour": "Last hour",
+                            "4hours": "Last 4 hours",
+                            "day": "Last 24 hours",
+                            "week": "Last week"
+                        }
+                    }
+                },
+                "actions": {
+                    "title": "Manage {name}",
+                    "descriptionRunning": "{name} has been started {time}.",
+                    "descriptionStopped": "Currently {name} is stopped. You can start it below.",
+                    "descriptionRestarting": "Currently {name} is restarting.",
+                    "descriptionCreated": "{name} has just been created. You can now start it below.",
+                    "descriptionPaused": "{name} is paused.",
+                    "activity": {
+                        "empty": "No activity for now",
+                        "title": "Container's activity",
+                        "started": "Container started",
+                        "stopped": "Container stopped",
+                        "restarted": "Container restarted"
+                    },
+                    "actions": {
+                        "title": "Actions",
+                        "start": "Start",
+                        "stop": "Stop",
+                        "restart": "Restart"
+                    }
+                },
+                "administration": {
+                    "title": "Administration",
+                    "description": "You can manage the container below.",
+                    "hostPort": "Container is running based on the {port} docker port",
+                    "memory": "Current memory limit is {memory} Go",
+                    "cpu": "Current CPU limit is {cpu} %",
+                    "actions": {
+                        "changeMemory": "Change memory limit",
+                        "changeCpu": "Change CPU limit",
+                        "deleteContainer": "Delete container"
+                    }
+                }
+            },
+            "administration": {
+                "title": "Administration",
+                "users": "{count, plural, zero {Users} one {User} other {Users}}",
+                "searchUsers": "Filter users",
+                "createUser": "Create a user",
+                "containers": "{count, plural, zero {Hosted containers} one {Hosted container} other {Hosted containers}}",
+                "searchContainers": "Filter containers",
+                "createContainer": "Create a container",
+                "otherContainers": "Other containers"
+            }
+        }
     },
-    "app": {
-      "dashboard": {
-        "title": "Dashboard",
-        "empty": "No project assigned to you for now.</br>Contact an administrator to discuss your desires !",
-        "administration": "Go to administration"
-      },
-      "container": {
-        "noDomain": "No domain associated",
-        "tabs": {
-          "overview": "Overview",
-          "graphs": "Graphs",
-          "shell": "Shell",
-          "actions": "Actions",
-          "admin": "Administration",
-          "asks": "Asks"
-        },
-        "overview": {
-          "title": "{name} Overview",
-          "activity": {
-            "empty": "No activity for now",
-            "title": "Container's activity",
-            "started": "Container started",
-            "stopped": "Container stopped",
-            "restarted": "Container restarted"
-          },
-          "users": {
-            "title": "Users"
-          }
-        },
-        "graphs": {
-          "title": "{name} Statistics",
-          "period": {
-            "label": "Select a period",
-            "options": {
-              "hour": "Last hour",
-              "4hours": "Last 4 hours",
-              "day": "Last 24 hours",
-              "week": "Last week"
+    "components": {
+        "auth": {
+            "login": {
+                "title": "Login",
+                "description": "Login to your HebergOS account",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Username",
+                            "placeholder": "Enter your username"
+                        },
+                        "password": {
+                            "label": "Password",
+                            "placeholder": "Enter your password"
+                        }
+                    },
+                    "actions": {
+                        "submit": "Login",
+                        "submitting": "Logging in...",
+                        "forgotPassword": "Forgot password"
+                    }
+                }
             }
-          }
-        },
-        "actions": {
-          "title": "Manage {name}",
-          "descriptionRunning": "{name} has been started {time}.",
-          "descriptionStopped": "Currently {name} is stopped. You can start it below.",
-          "descriptionRestarting": "Currently {name} is restarting.",
-          "descriptionCreated": "{name} has just been created. You can now start it below.",
-          "descriptionPaused": "{name} is paused.",
-          "activity": {
-            "empty": "No activity for now",
-            "title": "Container's activity",
-            "started": "Container started",
-            "stopped": "Container stopped",
-            "restarted": "Container restarted"
-          },
-          "actions": {
-            "title": "Actions",
-            "start": "Start",
-            "stop": "Stop",
-            "restart": "Restart"
-          }
-        },
-        "administration": {
-          "title": "Administration",
-          "description": "You can manage the container below.",
-          "hostPort": "Container is running based on the {port} docker port",
-          "memory": "Current memory limit is {memory} Go",
-          "cpu": "Current CPU limit is {cpu} %",
-          "actions": {
-            "changeMemory": "Change memory limit",
-            "changeCpu": "Change CPU limit",
-            "deleteContainer": "Delete container"
-          }
         }
-      },
-      "administration": {
-        "title": "Administration",
-        "users": "{count, plural, zero {Users} one {User} other {Users}}",
-        "searchUsers": "Filter users",
-        "createUser": "Create a user",
-        "containers": "{count, plural, zero {Hosted containers} one {Hosted container} other {Hosted containers}}",
-        "searchContainers": "Filter containers",
-        "createContainer": "Create a container",
-        "otherContainers": "Other containers"
-      }
-    }
-  },
-  "components": {
-    "auth": {
-      "login": {
-        "title": "Login",
-        "description": "Login to your HebergOS account",
-        "form": {
-          "fields": {
-            "nickname": {
-              "label": "Username",
-              "placeholder": "Enter your username"
-            },
-            "password": {
-              "label": "Password",
-              "placeholder": "Enter your password"
-            }
-          },
-          "actions": {
-            "submit": "Login",
-            "submitting": "Logging in...",
-            "forgotPassword": "Forgot password"
-          }
-        }
-      }
-    }
-  },
-  "dialogs": {
-    "containers": {
-      "create": {
-        "trigger": "Create a container",
-        "title": "Create a container",
-        "description": "Create a new container inside HebergOS.",
-        "form": {
-          "fields": {
-            "name": {
-              "label": "Name",
-              "placeholder": "Enter container name"
-            },
-            "hostPort": {
-              "label": "Host port",
-              "placeholder": "Select an available host port"
-            },
-            "memory": {
-              "label": "Memory",
-              "placeholder": "Enter memory limit",
-              "description": "Memory limit is in Go."
-            },
-            "cpu": {
-              "label": "CPU",
-              "placeholder": "Enter CPU limit",
-              "description": "CPU limit is a percentage of the total CPU power of the host machine. 100% is equivalent to one core."
-            }
-          }
-        },
-        "actions": {
-          "submit": "Create",
-          "submitting": "Creating...",
-          "cancel": "Cancel"
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while creating the container. Please try again later."
-        },
-        "success": {
-          "title": "Container created",
-          "description": "The container has been created successfully."
-        }
-      },
-      "start": {
-        "trigger": "Start",
-        "title": "Start {name}",
-        "description": "Are you sure you want to start {name} ?",
-        "actions": {
-          "cancel": "Cancel",
-          "start": "Start",
-          "starting": "Starting..."
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while starting the container. Please try again later."
-        },
-        "success": {
-          "title": "Container started",
-          "description": "The container has been started successfully."
-        }
-      },
-      "stop": {
-        "trigger": "Stop",
-        "title": "Stop {name}",
-        "description": "Are you sure you want to stop {name} ?",
-        "actions": {
-          "cancel": "Cancel",
-          "stop": "Stop",
-          "stopping": "Stopping..."
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while stopping the container. Please try again later."
-        },
-        "success": {
-          "title": "Container stopped",
-          "description": "The container has been stopped successfully."
-        }
-      },
-      "restart": {
-        "trigger": "Restart",
-        "title": "Restart {name}",
-        "description": "Are you sure you want to restart {name} ?",
-        "actions": {
-          "cancel": "Cancel",
-          "restart": "Restart",
-          "restarting": "Restarting..."
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while restarting the container. Please try again later."
-        },
-        "success": {
-          "title": "Container restarted",
-          "description": "The container has been restarted successfully."
-        }
-      },
-      "editMemoryLimit": {
-        "trigger": "Edit memory limit",
-        "title": "Edit memory limit of {name}",
-        "description": "Edit the memory limit of {name}.",
-        "form": {
-          "fields": {
-            "memory": {
-              "label": "Memory",
-              "placeholder": "Enter memory limit",
-              "description": "Memory limit is in Go."
-            }
-          }
-        },
-        "actions": {
-          "submit": "Edit",
-          "submitting": "Editing...",
-          "cancel": "Cancel"
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while editing the memory limit. Please try again later."
-        },
-        "success": {
-          "title": "Memory limit edited",
-          "description": "The memory limit has been edited successfully."
-        }
-      },
-      "editCpuLimit": {
-        "trigger": "Edit CPU limit",
-        "title": "Edit CPU limit of {name}",
-        "description": "Edit the CPU limit of {name}.",
-        "form": {
-          "fields": {
-            "cpu": {
-              "label": "CPU",
-              "placeholder": "Enter new CPU limit",
-              "description": "CPU limit is a percentage of the total CPU power of the host machine. 100% is equivalent to one core."
-            }
-          }
-        },
-        "actions": {
-          "submit": "Edit",
-          "submitting": "Editing...",
-          "cancel": "Cancel"
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while editing the CPU limit. Please try again later."
-        },
-        "success": {
-          "title": "CPU limit edited",
-          "description": "The CPU limit has been edited successfully."
-        }
-      },
-      "delete": {
-        "trigger": "Delete",
-        "title": "Delete {name} ?",
-        "description": "Are you sure you want to delete {name} ? This action is irreversible.",
-        "actions": {
-          "cancel": "Cancel",
-          "delete": "Delete",
-          "deleting": "Deleting..."
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while deleting the container. Please try again later."
-        },
-        "success": {
-          "title": "Container deleted",
-          "description": "The container has been deleted successfully."
-        }
-      }
     },
-    "users": {
-      "create": {
-        "title": "Create a user",
-        "description": "Create a new user for HebergOS application.",
-        "form": {
-          "fields": {
-            "name": {
-              "label": "Name",
-              "placeholder": "Enter name"
+    "dialogs": {
+        "containers": {
+            "create": {
+                "trigger": "Create a container",
+                "title": "Create a container",
+                "description": "Create a new container inside HebergOS.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Name",
+                            "placeholder": "Enter container name"
+                        },
+                        "hostPort": {
+                            "label": "Host port",
+                            "placeholder": "Select an available host port"
+                        },
+                        "memory": {
+                            "label": "Memory",
+                            "placeholder": "Enter memory limit",
+                            "description": "Memory limit is in Go."
+                        },
+                        "cpu": {
+                            "label": "CPU",
+                            "placeholder": "Enter CPU limit",
+                            "description": "CPU limit is a percentage of the total CPU power of the host machine. 100% is equivalent to one core."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Create",
+                    "submitting": "Creating...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while creating the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container created",
+                    "description": "The container has been created successfully."
+                }
             },
-            "email": {
-              "label": "Email",
-              "placeholder": "Enter email"
+            "start": {
+                "trigger": "Start",
+                "title": "Start {name}",
+                "description": "Are you sure you want to start {name} ?",
+                "actions": {
+                    "cancel": "Cancel",
+                    "start": "Start",
+                    "starting": "Starting..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while starting the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container started",
+                    "description": "The container has been started successfully."
+                }
             },
-            "nickname": {
-              "label": "Username",
-              "placeholder": "Enter username"
+            "stop": {
+                "trigger": "Stop",
+                "title": "Stop {name}",
+                "description": "Are you sure you want to stop {name} ?",
+                "actions": {
+                    "cancel": "Cancel",
+                    "stop": "Stop",
+                    "stopping": "Stopping..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while stopping the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container stopped",
+                    "description": "The container has been stopped successfully."
+                }
             },
-            "password": {
-              "label": "Password",
-              "placeholder": "Enter password"
+            "restart": {
+                "trigger": "Restart",
+                "title": "Restart {name}",
+                "description": "Are you sure you want to restart {name} ?",
+                "actions": {
+                    "cancel": "Cancel",
+                    "restart": "Restart",
+                    "restarting": "Restarting..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while restarting the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container restarted",
+                    "description": "The container has been restarted successfully."
+                }
             },
-            "passwordConfirmation": {
-              "label": "Password confirmation",
-              "placeholder": "Confirm password"
+            "editMemoryLimit": {
+                "trigger": "Edit memory limit",
+                "title": "Edit memory limit of {name}",
+                "description": "Edit the memory limit of {name}.",
+                "form": {
+                    "fields": {
+                        "memory": {
+                            "label": "Memory",
+                            "placeholder": "Enter memory limit",
+                            "description": "Memory limit is in Go."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Edit",
+                    "submitting": "Editing...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while editing the memory limit. Please try again later."
+                },
+                "success": {
+                    "title": "Memory limit edited",
+                    "description": "The memory limit has been edited successfully."
+                }
             },
-            "roles": {
-              "label": "Roles",
-              "description": "Select the roles of the user",
-              "options": {
-                "admin": "Admin",
-                "info": "Informatics",
-                "user": "User"
-              }
+            "editCpuLimit": {
+                "trigger": "Edit CPU limit",
+                "title": "Edit CPU limit of {name}",
+                "description": "Edit the CPU limit of {name}.",
+                "form": {
+                    "fields": {
+                        "cpu": {
+                            "label": "CPU",
+                            "placeholder": "Enter new CPU limit",
+                            "description": "CPU limit is a percentage of the total CPU power of the host machine. 100% is equivalent to one core."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Edit",
+                    "submitting": "Editing...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while editing the CPU limit. Please try again later."
+                },
+                "success": {
+                    "title": "CPU limit edited",
+                    "description": "The CPU limit has been edited successfully."
+                }
+            },
+            "delete": {
+                "trigger": "Delete",
+                "title": "Delete {name} ?",
+                "description": "Are you sure you want to delete {name} ? This action is irreversible.",
+                "actions": {
+                    "cancel": "Cancel",
+                    "delete": "Delete",
+                    "deleting": "Deleting..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while deleting the container. Please try again later."
+                },
+                "success": {
+                    "title": "Container deleted",
+                    "description": "The container has been deleted successfully."
+                }
             }
-          }
         },
-        "actions": {
-          "submit": "Create",
-          "submitting": "Creating...",
-          "cancel": "Cancel"
-        },
-        "errors": {
-          "nicknameAlreadyExists": {
-            "title": "Username already exists",
-            "description": "The username you entered already exists. Please choose another one."
-          },
-          "emailAlreadyExists": {
-            "title": "Email already exists",
-            "description": "The email you entered already exists. Please choose another one."
-          },
-          "invalidData": {
-            "title": "Invalid data",
-            "description": "The data you entered is invalid. Please check the form."
-          },
-          "unknown": {
-            "title": "Erreur lors de la création de l'utilisateur",
-            "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
-          }
-        },
-        "success": {
-          "title": "User created",
-          "description": "The user has been created successfully."
-        }
-      },
-      "linkContainers": {
-        "title": "Link containers to {name}",
-        "description": "Link containers to {name}.",
-        "form": {
-          "fields": {
-            "containers": {
-              "label": "Containers",
-              "description": "Select the containers to link to the user",
-              "placeholder": "Select containers"
+        "users": {
+            "create": {
+                "title": "Create a user",
+                "description": "Create a new user for HebergOS application.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Name",
+                            "placeholder": "Enter name"
+                        },
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Enter email"
+                        },
+                        "nickname": {
+                            "label": "Username",
+                            "placeholder": "Enter username"
+                        },
+                        "password": {
+                            "label": "Password",
+                            "placeholder": "Enter password"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Password confirmation",
+                            "placeholder": "Confirm password"
+                        },
+                        "roles": {
+                            "label": "Roles",
+                            "description": "Select the roles of the user",
+                            "options": {
+                                "admin": "Admin",
+                                "info": "Informatics",
+                                "user": "User"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Create",
+                    "submitting": "Creating...",
+                    "cancel": "Cancel"
+                },
+                "errors": {
+                    "nicknameAlreadyExists": {
+                        "title": "Username already exists",
+                        "description": "The username you entered already exists. Please choose another one."
+                    },
+                    "emailAlreadyExists": {
+                        "title": "Email already exists",
+                        "description": "The email you entered already exists. Please choose another one."
+                    },
+                    "invalidData": {
+                        "title": "Invalid data",
+                        "description": "The data you entered is invalid. Please check the form."
+                    },
+                    "unknown": {
+                        "title": "Erreur lors de la création de l'utilisateur",
+                        "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
+                    }
+                },
+                "success": {
+                    "title": "User created",
+                    "description": "The user has been created successfully."
+                }
+            },
+            "linkContainers": {
+                "title": "Link containers to {name}",
+                "description": "Link containers to {name}.",
+                "form": {
+                    "fields": {
+                        "containers": {
+                            "label": "Containers",
+                            "description": "Select the containers to link to the user",
+                            "placeholder": "Select containers"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Link",
+                    "submitting": "Linking...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while linking the containers. Please try again later."
+                },
+                "success": {
+                    "title": "Containers linked",
+                    "description": "The containers have been linked successfully."
+                }
+            },
+            "editRoles": {
+                "title": "Edit roles of {name}",
+                "description": "Edit the roles of {name}.",
+                "form": {
+                    "fields": {
+                        "roles": {
+                            "label": "Roles",
+                            "description": "Select the roles of the user",
+                            "options": {
+                                "admin": "Admin",
+                                "info": "Informatics",
+                                "user": "User"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Edit",
+                    "submitting": "Editing...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while editing the roles. Please try again later."
+                },
+                "success": {
+                    "title": "Roles edited",
+                    "description": "The roles have been edited successfully."
+                }
+            },
+            "delete": {
+                "title": "Delete {name} ?",
+                "description": "Are you sure you want to delete {name} ? This action is irreversible.",
+                "confirmationInput": {
+                    "label": "Type user's name to confirm deletion",
+                    "placeholder": "Enter {name}"
+                },
+                "actions": {
+                    "cancel": "Cancel",
+                    "submit": "Delete",
+                    "submitting": "Deleting..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while deleting the user. Please try again later."
+                },
+                "success": {
+                    "title": "User deleted",
+                    "description": "The user has been deleted successfully."
+                }
             }
-          }
-        },
-        "actions": {
-          "submit": "Link",
-          "submitting": "Linking...",
-          "cancel": "Cancel"
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while linking the containers. Please try again later."
-        },
-        "success": {
-          "title": "Containers linked",
-          "description": "The containers have been linked successfully."
         }
-      },
-      "editRoles": {
-        "title": "Edit roles of {name}",
-        "description": "Edit the roles of {name}.",
-        "form": {
-          "fields": {
-            "roles": {
-              "label": "Roles",
-              "description": "Select the roles of the user",
-              "options": {
-                "admin": "Admin",
-                "info": "Informatics",
-                "user": "User"
-              }
-            }
-          }
-        },
-        "actions": {
-          "submit": "Edit",
-          "submitting": "Editing...",
-          "cancel": "Cancel"
-        },
-        "error": {
-          "title": "Error",
-          "description": "An error occurred while editing the roles. Please try again later."
-        },
-        "success": {
-          "title": "Roles edited",
-          "description": "The roles have been edited successfully."
-        }
-      }
-    }
-  },
-  "tables": {
-    "generic": {
-      "page": "Page {current} of {total}",
-      "actions": {
-        "selection": "{selected} of {count, plural, =0 {rows} one {row} other {rows}} selected",
-        "next": "Next",
-        "previous": "Previous"
-      }
     },
-    "containers": {
-      "columns": {
-        "name": "Name",
-        "state": "State",
-        "hostPort": "Host port",
-        "memory": "Memory limit",
-        "cpu": "CPU limit"
-      },
-      "actions": {
-        "label": "Actions",
-        "open": "Open container",
-        "start": "Start",
-        "stop": "Stop",
-        "restart": "Restart",
-        "editMemory": "Edit memory limit",
-        "editCpu": "Edit CPU limit",
-        "delete": "Delete"
-      }
-    },
-    "users": {
-      "columns": {
-        "name": "Name",
-        "nickname": "Username",
-        "email": "Email",
-        "roles": "Roles",
-        "actions": "Actions"
-      },
-      "actions": {
-        "label": "Actions",
-        "editContainers": "Edit containers",
-        "editRoles": "Edit roles",
-        "delete": "Delete"
-      }
+    "tables": {
+        "generic": {
+            "page": "Page {current} of {total}",
+            "actions": {
+                "selection": "{selected} of {count, plural, =0 {rows} one {row} other {rows}} selected",
+                "next": "Next",
+                "previous": "Previous"
+            }
+        },
+        "containers": {
+            "columns": {
+                "name": "Name",
+                "state": "State",
+                "hostPort": "Host port",
+                "memory": "Memory limit",
+                "cpu": "CPU limit"
+            },
+            "actions": {
+                "label": "Actions",
+                "open": "Open container",
+                "start": "Start",
+                "stop": "Stop",
+                "restart": "Restart",
+                "editMemory": "Edit memory limit",
+                "editCpu": "Edit CPU limit",
+                "delete": "Delete"
+            }
+        },
+        "users": {
+            "columns": {
+                "name": "Name",
+                "nickname": "Username",
+                "email": "Email",
+                "roles": "Roles",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "editContainers": "Edit containers",
+                "editRoles": "Edit roles",
+                "delete": "Delete"
+            }
+        }
     }
-  }
 }

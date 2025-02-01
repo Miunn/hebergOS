@@ -405,6 +405,27 @@
                     "title": "Rôles modifiés",
                     "description": "Les rôles ont été modifiés avec succès."
                 }
+            },
+            "delete": {
+                "title": "Supprimer {name} ?",
+                "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+                "confirmationInput": {
+                    "label": "Entrez le nom de l'utilisateur pour confirmer la suppresion",
+                    "placeholder": "Entrez {name}"
+                },
+                "actions": {
+                    "cancel": "Annuler",
+                    "submit": "Supprimer",
+                    "submitting": "Suppression..."
+                },
+                "error": {
+                    "title": "Erreur lors de la suppression de l'utilisateur",
+                    "description": "Une erreur est survenue lors de la suppression de l'utilisateur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Utilisateur supprimé",
+                    "description": "L'utilisateur a été supprimé avec succès."
+                }
             }
         }
     },

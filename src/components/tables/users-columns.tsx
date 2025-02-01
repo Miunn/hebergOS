@@ -13,6 +13,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import LinkContainers from "../dialogs/users/LinkContainers"
 import React from "react"
 import EditRoles from "../dialogs/users/EditRoles"
+import DeleteUser from "../dialogs/users/DeleteUser"
 
 export const usersColumns: ColumnDef<UserWithContainers>[] = [
     {
@@ -124,6 +125,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
 
             const [openEditContainers, setOpenEditContainers] = React.useState(false);
             const [openEditRoles, setOpenEditRoles] = React.useState(false);
+            const [openDeleteUser, setOpenDeleteUser] = React.useState(false);
 
             return (
                 <>
@@ -139,11 +141,12 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                             <DropdownMenuItem onClick={() => setOpenEditContainers(true)}>{t('editContainers')}</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setOpenEditRoles(true)}>{t('editRoles')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenDeleteUser(true)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <LinkContainers user={row.original} open={openEditContainers} setOpen={setOpenEditContainers} />
                     <EditRoles user={row.original} open={openEditRoles} setOpen={setOpenEditRoles} />
+                    <DeleteUser user={row.original} open={openDeleteUser} setOpen={setOpenDeleteUser} />
                 </>
             )
         }
