@@ -11,6 +11,7 @@
                 "administration": "Administration"
             },
             "container": {
+                "noDomain": "Aucun domaine associé",
                 "tabs": {
                     "overview": "Vue d'ensemble",
                     "graphs": "Graphiques",

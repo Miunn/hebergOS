@@ -72,7 +72,7 @@ export async function syncContainers() {
       update: {
         name: value.name,
         hostPort: parseInt(value.host_port_root) || 0,
-        startedAt: state == "RUNNING" ? new Date(value.started_at) : undefined,
+        startedAt: state == "RUNNING" ? new Date(value.started_at*1000) : undefined,
         state: state,
       },
       create: {

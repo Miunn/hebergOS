@@ -20,7 +20,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
         let text;
         switch (container.state) {
             case "RUNNING":
-                text = t('descriptionRunning', { name: container.name, time: formatter.relativeTime((container.startedAt || new Date()).getTime()*1000) });
+                text = t('descriptionRunning', { name: container.name, time: formatter.relativeTime((container.startedAt || new Date()).getTime()) });
                 break;
 
             case "STOPPED":

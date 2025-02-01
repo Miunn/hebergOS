@@ -11,6 +11,7 @@
         "administration": "Go to administration"
       },
       "container": {
+        "noDomain": "No domain associated",
         "tabs": {
           "overview": "Overview",
           "graphs": "Graphs",
