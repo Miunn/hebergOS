@@ -73,24 +73,24 @@ export const containersColumns: ColumnDef<Container>[] = [
         cell: ({ row }) => {
             const state = row.original.state;
 
-            const getStateColor = (state: ContainerState, darkness = 400) => {
+            const getStateColor = (state: ContainerState) => {
                 switch (state) {
                     case "CREATED":
-                        return `bg-blue-${darkness}`;
+                        return `bg-blue-600 hover:bg-blue-700`;
                     case "RUNNING":
-                        return `bg-green-${darkness}`;
+                        return `bg-green-600 hover:bg-green-700`;
                     case "PAUSED":
-                        return `bg-yellow-${darkness}`;
+                        return `bg-yellow-600 hover:bg-yellow-700`;
                     case "RESTARTING":
-                        return `bg-purple-${darkness}`;
+                        return `bg-purple-600 hover:bg-purple-700`;
                     case "STOPPED":
-                        return `bg-red-${darkness}`;
+                        return `bg-red-600 hover:bg-red-700`;
                     default:
-                        return `bg-gray-${darkness}`;
+                        return `bg-gray-600 hover:bg-gray-700`;
                 }
             }
 
-            return <Badge className={`${getStateColor(state, 600)} hover:${getStateColor(state, 700)} capitalize`}>{state.toLowerCase()}</Badge>
+            return <Badge className={`${getStateColor(state)} capitalize`}>{state.toLowerCase()}</Badge>
         }
     },
     {

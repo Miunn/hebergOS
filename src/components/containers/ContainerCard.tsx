@@ -4,20 +4,20 @@ import Link from "next/link";
 
 export default function Container({ id, name, state }: { id: string, name: string, state: ContainerState }) {
     
-    const getStateColor = (state: ContainerState, darkness = 400) => {
+    const getStateColor = (state: ContainerState) => {
         switch (state) {
             case "CREATED":
-                return `bg-blue-${darkness}`;
+                return "bg-blue-400";
             case "RUNNING":
-                return `bg-green-${darkness}`;
+                return "bg-green-400";
             case "PAUSED":
-                return `bg-yellow-${darkness}`;
+                return "bg-yellow-400";
             case "RESTARTING":
-                return `bg-purple-${darkness}`;
+                return "bg-purple-400";
             case "STOPPED":
-                return `bg-red-${darkness}`;
+                return "bg-red-400";
             default:
-                return `bg-gray-${darkness}`;
+                return "bg-gray-400";
         }
       }
     
