@@ -23,6 +23,8 @@ enum ContainerActivityType {
   STARTED
   RESTARTED
   STOPPED
+  MEMORY_UPDATE
+  CPU_UPDATE
 }
 
 enum NotificationType {

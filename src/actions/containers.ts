@@ -5,7 +5,7 @@ import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
 import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
-import { Container } from "@prisma/client";
+import { Container, ContainerActivityType } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 
@@ -145,6 +145,17 @@ export async function startContainer(containerId: string): Promise<boolean> {
     });
 
     if (r.ok) {
+
+        await prisma.containerActivity.create({
+            data: {
+                container: {
+                    connect: { id: containerId }
+                },
+                type: ContainerActivityType.STARTED,
+                message: ""
+            }
+        })
+        
         return true;
     }
 
@@ -176,6 +187,17 @@ export async function stopContainer(containerId: string): Promise<boolean> {
     });
 
     if (r.ok) {
+
+        await prisma.containerActivity.create({
+            data: {
+                container: {
+                    connect: { id: containerId }
+                },
+                type: ContainerActivityType.STOPPED,
+                message: ""
+            }
+        })
+
         return true;
     }
 
@@ -207,6 +229,17 @@ export async function restartContainer(containerId: string): Promise<boolean> {
     });
 
     if (r.ok) {
+
+        await prisma.containerActivity.create({
+            data: {
+                container: {
+                    connect: { id: containerId }
+                },
+                type: ContainerActivityType.RESTARTED,
+                message: ""
+            }
+        })
+
         return true;
     }
 
@@ -269,7 +302,19 @@ export async function editAdminMemoryLimit(containerId: string, data: { memory: 
                 memory: parsedData.memory
             }
         });
+
+        await prisma.containerActivity.create({
+            data: {
+                container: {
+                    connect: { id: containerId }
+                },
+                type: ContainerActivityType.MEMORY_UPDATE,
+                message: `${parsedData.memory}`
+            }
+        })
+
         revalidatePath("/app/administration");
+        revalidatePath(`/app/containers/${containerId}`);
         return true;
     } catch (e) {
         console.log(`Error updating container memory limit: ${e}`);
@@ -303,7 +348,19 @@ export async function editAdminCpuLimit(containerId: string, data: { cpu: number
                 cpu: parsedData.cpu
             }
         });
+
+        await prisma.containerActivity.create({
+            data: {
+                container: {
+                    connect: { id: containerId }
+                },
+                type: ContainerActivityType.CPU_UPDATE,
+                message: `${parsedData.cpu}`
+            }
+        })
+
         revalidatePath("/app/administration");
+        revalidatePath(`/app/containers/${containerId}`);
         return true;
     } catch (e) {
         console.log(`Error updating container CPU limit: ${e}`);
