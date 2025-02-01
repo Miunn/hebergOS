@@ -165,6 +165,7 @@ export const containersColumns: ColumnDef<Container>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
+                            <DropdownMenuItem>{ t('open') }</DropdownMenuItem>
                             {state === "RUNNING"
                                 ? <DropdownMenuItem>{t('stop')}</DropdownMenuItem>
                                 : <DropdownMenuItem>{t('start')}</DropdownMenuItem>

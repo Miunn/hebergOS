@@ -340,6 +340,7 @@
       },
       "actions": {
         "label": "Actions",
+        "open": "Open container",
         "start": "Start",
         "stop": "Stop",
         "restart": "Restart",

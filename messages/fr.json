@@ -340,6 +340,7 @@
             },
             "actions": {
                 "label": "Actions",
+                "open": "Ouvrir le conteneur",
                 "start": "Démarrer",
                 "stop": "Arrêter",
                 "restart": "Redémarrer",
