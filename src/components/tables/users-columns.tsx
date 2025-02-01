@@ -10,6 +10,8 @@ import { useTranslations } from "next-intl"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import LinkContainers from "../dialogs/users/LinkContainers"
+import React from "react"
 
 export const usersColumns: ColumnDef<UserWithContainers>[] = [
     {
@@ -53,7 +55,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
         header: ({ column }) => {
             const t = useTranslations(("tables.users.columns"));
 
-            return <span>{ t('nickname') }</span>
+            return <span>{t('nickname')}</span>
         }
     },
     {
@@ -61,7 +63,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
         header: ({ column }) => {
             const t = useTranslations("tables.users.columns");
 
-            return <span>{ t('email') }</span>
+            return <span>{t('email')}</span>
         }
     },
     {
@@ -118,22 +120,28 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
         id: "actions",
         cell: ({ row }) => {
             const t = useTranslations("tables.users.actions");
+
+            const [openEditContainers, setOpenEditContainers] = React.useState(false);
+
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
-                        <DropdownMenuItem>{t('editRoles')}</DropdownMenuItem>
-                        <DropdownMenuItem>{t('editContainers')}</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
+                            <DropdownMenuItem onClick={() => setOpenEditContainers(true)}>{t('editContainers')}</DropdownMenuItem>
+                            <DropdownMenuItem>{t('editRoles')}</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <LinkContainers user={row.original} open={openEditContainers} setOpen={setOpenEditContainers} />
+                </>
             )
         }
     }

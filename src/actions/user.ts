@@ -1,13 +1,14 @@
 'use server'
 
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
-import { RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
+import { LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import bcrypt from 'bcryptjs';
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { revalidatePath } from "next/cache";
 
 export async function getMe(): Promise<UserWithContainers | null> {
     const session = await getServerSession(authConfig);
@@ -83,5 +84,34 @@ export async function createUser(data: { name: string, email: string, nickname: 
         }
 
         return { error: 'unknown-error' };
+    }
+}
+
+export async function linkContainers(userId: string, containers: { containers: string[] }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsedContainersIds = LinkContainersFormSchema.safeParse(containers);
+
+    if (!parsedContainersIds.success) {
+        return false;
+    }
+
+    try {
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                containers: {
+                    set: parsedContainersIds.data.containers.map(c => ({ id: c }))
+                }
+            }
+        });
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error linking containers to user: ${e}`);
+        return false;
     }
 }

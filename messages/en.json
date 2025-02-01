@@ -348,6 +348,32 @@
           "title": "User created",
           "description": "The user has been created successfully."
         }
+      },
+      "linkContainers": {
+        "title": "Link containers to {name}",
+        "description": "Link containers to {name}.",
+        "form": {
+          "fields": {
+            "containers": {
+              "label": "Containers",
+              "description": "Select the containers to link to the user",
+              "placeholder": "Select containers"
+            }
+          }
+        },
+        "actions": {
+          "submit": "Link",
+          "submitting": "Linking...",
+          "cancel": "Cancel"
+        },
+        "error": {
+          "title": "Error",
+          "description": "An error occurred while linking the containers. Please try again later."
+        },
+        "success": {
+          "title": "Containers linked",
+          "description": "The containers have been linked successfully."
+        }
       }
     }
   },
@@ -389,8 +415,8 @@
       },
       "actions": {
         "label": "Actions",
-        "editRoles": "Edit roles",
         "editContainers": "Edit containers",
+        "editRoles": "Edit roles",
         "delete": "Delete"
       }
     }

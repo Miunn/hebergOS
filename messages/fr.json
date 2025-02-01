@@ -348,6 +348,32 @@
                     "title": "Utilisateur créé",
                     "description": "L'utilisateur a été créé avec succès."
                 }
+            },
+            "linkContainers": {
+                "title": "Lier les conteneurs à {name}",
+                "description": "Sélectionnez les conteneurs à lier à l'utilisateur {name}.",
+                "form": {
+                    "fields": {
+                        "containers": {
+                            "label": "Conteneurs",
+                            "description": "Sélectionnez les conteneurs à lier à l'utilisateur",
+                            "placeholder": "Sélectionnez les conteneurs"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Lier",
+                    "submitting": "Liaison...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la liaison des conteneurs",
+                    "description": "Une erreur est survenue lors de la liaison des conteneurs. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneurs liés",
+                    "description": "Les conteneurs ont été liés avec succès."
+                }
             }
         }
     },
@@ -389,8 +415,8 @@
             },
             "actions": {
                 "label": "Actions",
-                "editRoles": "Modifier les rôles",
                 "editContainers": "Modifier les conteneurs",
+                "editRoles": "Modifier les rôles",
                 "delete": "Supprimer"
             }
         }

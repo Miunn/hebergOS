@@ -38,6 +38,10 @@ export const RegisterFormSchema = z.object({
     path: ["passwordConfirmation"],
 });
 
+export const LinkContainersFormSchema = z.object({
+    containers: z.array(z.string())
+});
+
 export const CreateContainerFormSchema = z.object({
     name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
     hostPort: z.number({ coerce: true }).int().min(1024, { message: 'Host port must be at least 1024.' }),
