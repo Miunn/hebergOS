@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default async function Footer() {
     return (
-        <footer className="2xl:px-96 px-11 bg-purple-600 text-white flex flex-col gap-4 py-11">
+        <footer className="2xl:px-96 px-11 bg-purple-600 text-white flex flex-col gap-4 py-11 mt-11">
             <div className="w-full grid grid-cols-3 h-40">
                 <div className="h-fit flex items-center gap-4 col-span-2">
                     <Image className="object-cover" src={"/favicon.png"} alt="HebergOS" width={64} height={64} />

@@ -9,7 +9,7 @@ export default async function AppLayout(
     await syncContainers();
 
     return (
-        <main className="max-w-7xl mx-auto mt-14 px-24 md:h-screen">
+        <main className="max-w-7xl mx-auto mt-14 px-24 md:min-h-screen">
             {children}
         </main>
     );

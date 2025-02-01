@@ -86,6 +86,9 @@ export default function ContainerActions({ container }: { container: ContainerWi
                     {container.containerActivities.map((activity) => (
                         renderActivity(activity)
                     ))}
+                    {container.containerActivities.length === 0
+                        ? <p className="italic mx-auto text-center">{t('activity.empty')}</p>
+                        : null}
                 </CardContent>
             </Card>
 

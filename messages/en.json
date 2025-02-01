@@ -22,6 +22,7 @@
         "overview": {
           "title": "{name} Overview",
           "activity": {
+            "empty": "No activity for now",
             "title": "Container's activity",
             "started": "Container started",
             "stopped": "Container stopped",
@@ -51,6 +52,7 @@
           "descriptionCreated": "{name} has just been created. You can now start it below.",
           "descriptionPaused": "{name} is paused.",
           "activity": {
+            "empty": "No activity for now",
             "title": "Container's activity",
             "started": "Container started",
             "stopped": "Container stopped",

@@ -26,8 +26,8 @@ export default function ContainerOverview({ container }: { container: ContainerW
 
         return (
             <p key={activity.id} className="flex justify-start gap-4">
-                <span>{ formatter.dateTime(activity.createdAt, {day: "2-digit", month: "2-digit", year: "numeric", hour: "numeric", minute: "2-digit"}) }</span>
-                <span>{ text }</span>
+                <span>{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "2-digit", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
+                <span>{text}</span>
             </p>
         )
     }
@@ -48,6 +48,9 @@ export default function ContainerOverview({ container }: { container: ContainerW
                     {container.containerActivities.map((activity) => (
                         renderActivity(activity)
                     ))}
+                    {container.containerActivities.length === 0
+                        ? <p className="italic mx-auto text-center">{t('activity.empty')}</p>
+                        : null}
                 </CardContent>
             </Card>
 
