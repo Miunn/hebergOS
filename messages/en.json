@@ -322,6 +322,14 @@
     }
   },
   "tables": {
+    "generic": {
+      "page": "Page {current} of {total}",
+      "actions": {
+        "selection": "{selected} of {count} {selected, plural, =0 {rows} one {row} other {rows}} selected",
+        "next": "Next",
+        "previous": "Previous"
+      }
+    },
     "containers": {
       "columns": {
         "name": "Name",
