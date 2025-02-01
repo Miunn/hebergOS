@@ -46,7 +46,7 @@
                 },
                 "actions": {
                     "title": "Gérer {name}",
-                    "descriptionRunning": "Actuellement {name} est en cours d'exécution depuis {time}.",
+                    "descriptionRunning": "{name} a été démarré {time}.",
                     "descriptionStopped": "Actuellement {name} est arrêté. Vous pouvez le démarrer ci-dessous.",
                     "descriptionRestarting": "Actuellement {name} est en cours de redémarrage.",
                     "descriptionCreated": "{name} vient d'être créé. Vous pouvez maintenant le démarrer ci-dessous.",

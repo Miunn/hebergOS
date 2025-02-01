@@ -46,7 +46,7 @@
         },
         "actions": {
           "title": "Manage {name}",
-          "descriptionRunning": "Currently {name} has been running for {time}.",
+          "descriptionRunning": "{name} has been started {time}.",
           "descriptionStopped": "Currently {name} is stopped. You can start it below.",
           "descriptionRestarting": "Currently {name} is restarting.",
           "descriptionCreated": "{name} has just been created. You can now start it below.",
