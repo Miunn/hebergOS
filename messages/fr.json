@@ -270,6 +270,10 @@
                 "trigger": "Supprimer",
                 "title": "Supprimer {name} ?",
                 "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+                "confirmationInput": {
+                    "label": "Type user's name to confirm deletion",
+                    "placeholder": "Enter {name}"
+                },
                 "actions": {
                     "cancel": "Annuler",
                     "delete": "Supprimer",

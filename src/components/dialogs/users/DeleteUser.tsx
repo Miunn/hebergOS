@@ -44,7 +44,12 @@ export default function DeleteUser({ user, open, setOpen }: { user: UserLight, o
     }
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={(open) => {
+            setConfirmation("");
+            if (setOpen) {
+                setOpen(open);
+            }
+        }}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{t('title', { name: user.name })}</DialogTitle>

@@ -1,6 +1,8 @@
 import { deleteContainer } from "@/actions/containers";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Container } from "@prisma/client";
 import { Loader2 } from "lucide-react";
@@ -12,6 +14,7 @@ export default function DeleteContainer({ children, container, open, setOpen }: 
     const t = useTranslations("dialogs.containers.delete");
 
     const [loading, setLoading] = React.useState(false);
+    const [confirmation, setConfirmation] = React.useState<string>("");
 
     const onDelete = async () => {
         setLoading(true);
@@ -39,7 +42,12 @@ export default function DeleteContainer({ children, container, open, setOpen }: 
     }
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={(open) => {
+            setConfirmation("");
+            if (setOpen) {
+                setOpen(open);
+            }
+        }}>
             {children
                 ? <DialogTrigger asChild>
                     {children}
@@ -47,16 +55,20 @@ export default function DeleteContainer({ children, container, open, setOpen }: 
                 : null}
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle className="text-red-500">{t('title', { name: container.name })}</DialogTitle>
+                    <DialogTitle>{t('title', { name: container.name })}</DialogTitle>
                     <DialogDescription>{t('description', { name: container.name })}</DialogDescription>
                 </DialogHeader>
+
+                <Label>{t('confirmationInput.label')}</Label>
+                <Input placeholder={t('confirmationInput.placeholder', { name: container.name })} onChange={(e) => setConfirmation(e.currentTarget.value)} />
+
                 <DialogFooter>
                     <DialogClose asChild>
                         <Button variant={"outline"}>{t('actions.cancel')}</Button>
                     </DialogClose>
                     {loading
-                        ? <Button className="bg-red-600 hover:bg-red-700" disabled><Loader2 className="animate-spin" /> {t('actions.deleting')}</Button>
-                        : <Button className="bg-red-600 hover:bg-red-700" onClick={onDelete}>{t('actions.delete')}</Button>
+                        ? <Button variant={"destructive"} disabled><Loader2 className="animate-spin" /> {t('actions.deleting')}</Button>
+                        : <Button variant={"destructive"} disabled={confirmation !== container.name} onClick={onDelete}>{t('actions.delete')}</Button>
                     }
                 </DialogFooter>
             </DialogContent>

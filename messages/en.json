@@ -270,6 +270,10 @@
                 "trigger": "Delete",
                 "title": "Delete {name} ?",
                 "description": "Are you sure you want to delete {name} ? This action is irreversible.",
+                "confirmationInput": {
+                    "label": "Type container's name to confirm deletion",
+                    "placeholder": "Enter {name}"
+                },
                 "actions": {
                     "cancel": "Cancel",
                     "delete": "Delete",
