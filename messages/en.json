@@ -22,13 +22,6 @@
                 },
                 "overview": {
                     "title": "{name} Overview",
-                    "activity": {
-                        "empty": "No activity for now",
-                        "title": "Container's activity",
-                        "started": "Container started",
-                        "stopped": "Container stopped",
-                        "restarted": "Container restarted"
-                    },
                     "users": {
                         "title": "Users"
                     }
@@ -113,6 +106,18 @@
                         "forgotPassword": "Forgot password"
                     }
                 }
+            }
+        },
+        "containers": {
+            "activities": {
+                "empty": "No activity for now",
+                "title": "Container's activity",
+                "started": "Container started",
+                "stopped": "Container stopped",
+                "restarted": "Container restarted",
+                "memoryUpdate": "Memory limit updated to {memory} Go",
+                "cpuUpdate": "CPU limit updated to {cpu} %",
+                "checkAllTooltip": "Check all activities"
             }
         }
     },

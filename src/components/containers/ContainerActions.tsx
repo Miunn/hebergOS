@@ -10,6 +10,7 @@ import StartContainer from "@/components/dialogs/containers/StartContainer";
 import StopContainer from "@/components/dialogs/containers/StopContainer";
 import RestartContainer from "@/components/dialogs/containers/RestartContainer";
 import { DialogTrigger } from "../ui/dialog";
+import ActivitiesCard from "./ActivitiesCard";
 
 export default function ContainerActions({ container }: { container: ContainerWithActivity }) {
 
@@ -46,29 +47,6 @@ export default function ContainerActions({ container }: { container: ContainerWi
         return text;
     }
 
-    const renderActivity = (activity: ContainerActivity) => {
-
-        let text;
-        switch (activity.type) {
-            case "STARTED":
-                text = t('activity.started');
-                break;
-            case "STOPPED":
-                text = t('activity.stopped');
-                break;
-            case "RESTARTED":
-                text = t('activity.restarted');
-                break;
-        }
-
-        return (
-            <p key={activity.id} className="flex justify-start gap-4">
-                <span>{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "2-digit", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
-                <span>{text}</span>
-            </p>
-        )
-    }
-
     return (
         <div className="grid grid-cols-2 gap-8">
             <Card className="col-span-2">
@@ -78,19 +56,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
                 </CardHeader>
             </Card>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('activity.title')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    {container.containerActivities.map((activity) => (
-                        renderActivity(activity)
-                    ))}
-                    {container.containerActivities.length === 0
-                        ? <p className="italic mx-auto text-center">{t('activity.empty')}</p>
-                        : null}
-                </CardContent>
-            </Card>
+            <ActivitiesCard container={container} />
 
             <Card>
                 <CardHeader>
