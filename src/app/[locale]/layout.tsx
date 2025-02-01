@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../globals.css";
 import { roboto, robotoMono } from "../../ui/fonts";
 import { Providers } from "./providers";
@@ -10,11 +10,19 @@ import { Button } from '@/components/ui/button';
 import { Github, LogIn, MessageSquareMore } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import { authConfig } from '../api/auth/[...nextauth]/route';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "HebergOS",
   description: "Fast way to host projects",
 };
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+}
 
 export default async function RootLayout(
   props: Readonly<{
@@ -41,25 +49,9 @@ export default async function RootLayout(
       >
         <NextIntlClientProvider messages={messages}>
           <Providers>
-            <header className="grid grid-cols-3 h-20 items-center px-4 bg-purple-600 text-white">
-              <h1 className="font-bold text-xl">HebergOS</h1>
-              <h1 className={`${robotoMono.className} antialiased text-center text-xl`}>./insa.sh</h1>
-              <div className="flex justify-end items-center gap-4 text-xl">
-                {session?.user.roles.includes("ADMIN")
-                  ? <Button variant={"link"} asChild><Link href={"/app/administration"} className="text-white text-lg"><MessageSquareMore className="w-6 h-6" /> Administration</Link></Button>
-                  : null
-                }
-                {session?.user
-                  ? <p>{session.user.name}</p>
-                  : <>
-                    <Button variant={"link"} asChild><Link href={"/contact"} className="text-white text-lg"><MessageSquareMore className="w-6 h-6" /> Contactez-nous</Link></Button>
-                    <Button variant={"link"} asChild><Link href={"/login"} className="text-white text-lg"><LogIn className="w-6 h-6" /> Connexion</Link></Button>
-                  </>
-                }
-                <Button variant={"link"} asChild><Link href={"/github"} className="text-white text-lg"><Github className="w-6 h-6" /> Github</Link></Button>
-              </div>
-            </header>
+            <Header />
             {children}
+            <Footer />
           </Providers>
         </NextIntlClientProvider>
       </body>
