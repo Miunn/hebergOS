@@ -1,371 +1,398 @@
 {
-  "title": "HebergOS",
-  "pages": {
-    "home": {
-      "title": "HebergOS"
+    "title": "HebergOS",
+    "pages": {
+        "home": {
+            "title": "HebergOS"
+        },
+        "app": {
+            "dashboard": {
+                "title": "Mes projets",
+                "empty": "Aucun projet ne vous est attribué pour le moment.<br />Contactez un administrateur afin de discuter de vos envies !",
+                "administration": "Administration"
+            },
+            "container": {
+                "tabs": {
+                    "overview": "Vue d'ensemble",
+                    "graphs": "Graphiques",
+                    "shell": "Console",
+                    "actions": "Actions",
+                    "admin": "Administration",
+                    "asks": "Demandes"
+                },
+                "overview": {
+                    "title": "Vue d'ensemble de {name}",
+                    "activity": {
+                        "empty": "Aucune activité récente pour le moment",
+                        "title": "Activité du conteneur",
+                        "started": "Projet démarré",
+                        "stopped": "Projet arrêté",
+                        "restarted": "Projet redémarré"
+                    },
+                    "users": {
+                        "title": "Utilisateurs"
+                    }
+                },
+                "graphs": {
+                    "title": "Statistiques d'utilisation de {name}",
+                    "period": {
+                        "label": "Sélectionnez une période",
+                        "options": {
+                            "hour": "Dernière heure",
+                            "4hours": "Dernières 4 heures",
+                            "day": "Dernières 24 heures",
+                            "week": "Dernière semaine"
+                        }
+                    }
+                },
+                "actions": {
+                    "title": "Gérer {name}",
+                    "descriptionRunning": "Actuellement {name} est en cours d'exécution depuis {time}.",
+                    "descriptionStopped": "Actuellement {name} est arrêté. Vous pouvez le démarrer ci-dessous.",
+                    "descriptionRestarting": "Actuellement {name} est en cours de redémarrage.",
+                    "descriptionCreated": "{name} vient d'être créé. Vous pouvez maintenant le démarrer ci-dessous.",
+                    "descriptionPaused": "{name} est en pause.",
+                    "activity": {
+                        "empty": "Aucune activité récente pour le moment",
+                        "title": "Activité du conteneur",
+                        "started": "Projet démarré",
+                        "stopped": "Projet arrêté",
+                        "restarted": "Projet redémarré"
+                    },
+                    "actions": {
+                        "title": "Actions",
+                        "start": "Démarrer",
+                        "stop": "Arrêter",
+                        "restart": "Redémarrer"
+                    }
+                },
+                "administration": {
+                    "title": "Administration",
+                    "description": "Vous pouvez gérer le conteneur ci-dessous.",
+                    "hostPort": "Le conteneur est en cours d'exécution sur le port {port} de docker",
+                    "memory": "La limite de mémoire actuelle est de {memory} Go",
+                    "cpu": "La limite de CPU actuelle est de {cpu} %",
+                    "actions": {
+                        "changeMemory": "Changer la limite de mémoire",
+                        "changeCpu": "Changer la limite de CPU",
+                        "deleteContainer": "Supprimer le conteneur"
+                    }
+                }
+            },
+            "administration": {
+                "title": "Administration",
+                "users": "{count, plural, zero {Utilisateur} one {Utilisateur} other {Utilisateurs}}",
+                "searchUsers": "Filtrer les utilisateurs",
+                "createUser": "Créer un utilisateur",
+                "containers": "{count, plural, zero {Conteneur hébergé} one {Conteneur hébergé} other {Conteneurs hébergés}}",
+                "searchContainers": "Filtrer les conteneurs",
+                "createContainer": "Créer un conteneur",
+                "otherContainers": "Autres conteneurs"
+            }
+        }
     },
-    "app": {
-      "dashboard": {
-        "title": "Mes projets",
-        "empty": "Aucun projet ne vous est attribué pour le moment.<br />Contactez un administrateur afin de discuter de vos envies !",
-        "administration": "Administration"
-      },
-      "container": {
-        "tabs": {
-          "overview": "Vue d'ensemble",
-          "graphs": "Graphiques",
-          "shell": "Console",
-          "actions": "Actions",
-          "admin": "Administration",
-          "asks": "Demandes"
-        },
-        "overview": {
-          "title": "Vue d'ensemble de {name}",
-          "activity": {
-            "empty": "Aucune activité récente pour le moment",
-            "title": "Activité du conteneur",
-            "started": "Projet démarré",
-            "stopped": "Projet arrêté",
-            "restarted": "Projet redémarré"
-          },
-          "users": {
-            "title": "Utilisateurs"
-          }
-        },
-        "graphs": {
-          "title": "Statistiques d'utilisation de {name}",
-          "period": {
-            "label": "Sélectionnez une période",
-            "options": {
-              "hour": "Dernière heure",
-              "4hours": "Dernières 4 heures",
-              "day": "Dernières 24 heures",
-              "week": "Dernière semaine"
+    "components": {
+        "auth": {
+            "login": {
+                "title": "Connexion",
+                "description": "Connectez-vous à votre compte HebergOS",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Nom d'utilisateur",
+                            "placeholder": "Entrez votre nom d'utilisateur"
+                        },
+                        "password": {
+                            "label": "Mot de passe",
+                            "placeholder": "Entrez votre mot de passe"
+                        }
+                    },
+                    "actions": {
+                        "submit": "Se connecter",
+                        "submitting": "Connexion...",
+                        "forgotPassword": "Mot de passe oublié"
+                    }
+                }
             }
-          }
-        },
-        "actions": {
-          "title": "Gérer {name}",
-          "descriptionRunning": "Actuellement {name} est en cours d'exécution depuis {time}.",
-          "descriptionStopped": "Actuellement {name} est arrêté. Vous pouvez le démarrer ci-dessous.",
-          "descriptionRestarting": "Actuellement {name} est en cours de redémarrage.",
-          "descriptionCreated": "{name} vient d'être créé. Vous pouvez maintenant le démarrer ci-dessous.",
-          "descriptionPaused": "{name} est en pause.",
-          "activity": {
-            "empty": "Aucune activité récente pour le moment",
-            "title": "Activité du conteneur",
-            "started": "Projet démarré",
-            "stopped": "Projet arrêté",
-            "restarted": "Projet redémarré"
-          },
-          "actions": {
-            "title": "Actions",
-            "start": "Démarrer",
-            "stop": "Arrêter",
-            "restart": "Redémarrer"
-          }
-        },
-        "administration": {
-          "title": "Administration",
-          "description": "Vous pouvez gérer le conteneur ci-dessous.",
-          "hostPort": "Le conteneur est en cours d'exécution sur le port {port} de docker",
-          "memory": "La limite de mémoire actuelle est de {memory} Go",
-          "cpu": "La limite de CPU actuelle est de {cpu} %",
-          "actions": {
-            "changeMemory": "Changer la limite de mémoire",
-            "changeCpu": "Changer la limite de CPU",
-            "deleteContainer": "Supprimer le conteneur"
-          }
         }
-      },
-      "administration": {
-        "title": "Administration",
-        "users": "{count, plural, zero {Utilisateur} one {Utilisateur} other {Utilisateurs}}",
-        "searchUsers": "Filtrer les utilisateurs",
-        "createUser": "Créer un utilisateur",
-        "containers": "{count, plural, zero {Conteneur hébergé} one {Conteneur hébergé} other {Conteneurs hébergés}}",
-        "searchContainers": "Filtrer les conteneurs",
-        "createContainer": "Créer un conteneur",
-        "otherContainers": "Autres conteneurs"
-      }
-    }
-  },
-  "components": {
-    "auth": {
-      "login": {
-        "title": "Connexion",
-        "description": "Connectez-vous à votre compte HebergOS",
-        "form": {
-          "fields": {
-            "nickname": {
-              "label": "Nom d'utilisateur",
-              "placeholder": "Entrez votre nom d'utilisateur"
-            },
-            "password": {
-              "label": "Mot de passe",
-              "placeholder": "Entrez votre mot de passe"
-            }
-          },
-          "actions": {
-            "submit": "Se connecter",
-            "submitting": "Connexion...",
-            "forgotPassword": "Mot de passe oublié"
-          }
-        }
-      }
-    }
-  },
-  "dialogs": {
-    "containers": {
-      "create": {
-        "trigger": "Créer un conteneur",
-        "title": "Créer un conteneur",
-        "description": "Créez un nouveau conteneur",
-        "form": {
-          "fields": {
-            "name": {
-              "label": "Nom",
-              "placeholder": "Entrez le nom du conteneur"
-            },
-            "hostPort": {
-              "label": "Port hôte",
-              "placeholder": "Sélectionnez le port hôte"
-            },
-            "memory": {
-              "label": "Limite mémoire",
-              "placeholder": "Entrez la limite de mémoire",
-              "description": "La mémoire limite est exprimé en Go."
-            },
-            "cpu": {
-              "label": "Limite CPU",
-              "placeholder": "Entrez la limite de CPU",
-              "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
-            }
-          }
-        },
-        "actions": {
-          "submit": "Créer",
-          "submitting": "Création...",
-          "cancel": "Annuler"
-        },
-        "errors": {
-          "title": "Erreur lors de la création du conteneur",
-          "description": "Une erreur est survenue lors de la création du conteneur. Veuillez réessayer."
-        },
-        "success": {
-          "title": "Conteneur créé",
-          "description": "Le conteneur a été créé avec succès."
-        }
-      },
-      "start": {
-        "trigger": "Démarrer",
-        "title": "Démarrer {name}",
-        "description": "Êtes-vous sûr de vouloir démarrer {name} ?",
-        "actions": {
-          "cancel": "Annuler",
-          "start": "Démarrer"
-        }
-      },
-      "stop": {
-        "trigger": "Arrêter",
-        "title": "Arrêter {name}",
-        "description": "Êtes-vous sûr de vouloir arrêter {name} ?",
-        "actions": {
-          "cancel": "Annuler",
-          "stop": "Arrêter"
-        }
-      },
-      "restart": {
-        "trigger": "Redémarrer",
-        "title": "Redémarrer {name}",
-        "description": "Êtes-vous sûr de vouloir redémarrer {name} ?",
-        "actions": {
-          "cancel": "Annuler",
-          "restart": "Redémarrer"
-        }
-      },
-      "editMemoryLimit": {
-        "trigger": "Modifier la limite mémoire",
-        "title": "Modifier la limite mémoire de {name}",
-        "description": "Entrez la nouvelle limite de mémoire pour {name}.",
-        "form": {
-          "fields": {
-            "memory": {
-              "label": "Limite mémoire",
-              "placeholder": "Entrez la nouvelle limite de mémoire",
-              "description": "La mémoire limite est exprimée en Go."
-            }
-          }
-        },
-        "actions": {
-          "submit": "Modifier",
-          "submitting": "Modification...",
-          "cancel": "Annuler"
-        },
-        "errors": {
-          "title": "Erreur lors de la modification de la limite mémoire",
-          "description": "Une erreur est survenue lors de la modification de la limite mémoire. Veuillez réessayer."
-        },
-        "success": {
-          "title": "Limite mémoire modifiée",
-          "description": "La limite mémoire a été modifiée avec succès."
-        }
-      },
-      "editCpuLimit": {
-        "trigger": "Modifier la limite CPU",
-        "title": "Modifier la limite CPU de {name}",
-        "description": "Entrez la nouvelle limite de CPU pour {name}.",
-        "form": {
-          "fields": {
-            "cpu": {
-              "label": "Limite CPU",
-              "placeholder": "Entrez la nouvelle limite de CPU",
-              "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
-            }
-          }
-        },
-        "actions": {
-          "submit": "Modifier",
-          "submitting": "Modification...",
-          "cancel": "Annuler"
-        },
-        "errors": {
-          "title": "Erreur lors de la modification de la limite CPU",
-          "description": "Une erreur est survenue lors de la modification de la limite CPU. Veuillez réessayer."
-        },
-        "success": {
-          "title": "Limite CPU modifiée",
-          "description": "La limite CPU a été modifiée avec succès."
-        }
-      },
-      "delete": {
-        "trigger": "Supprimer",
-        "title": "Supprimer {name} ?",
-        "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
-        "actions": {
-          "cancel": "Annuler",
-          "delete": "Supprimer",
-          "deleting": "Suppression..."
-        },
-        "error": {
-          "title": "Erreur lors de la suppression du conteneur",
-          "description": "Une erreur est survenue lors de la suppression du conteneur. Veuillez réessayer."
-        },
-        "success": {
-          "title": "Conteneur supprimé",
-          "description": "Le conteneur a été supprimé avec succès."
-        }
-      }
     },
-    "users": {
-      "create": {
-        "title": "Créer un utilisateur",
-        "description": "Créez un nouvel utilisateur pour l'application HebergOS.",
-        "form": {
-          "fields": {
-            "name": {
-              "label": "Nom",
-              "placeholder": "Entrez le nom"
+    "dialogs": {
+        "containers": {
+            "create": {
+                "trigger": "Créer un conteneur",
+                "title": "Créer un conteneur",
+                "description": "Créez un nouveau conteneur",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Nom",
+                            "placeholder": "Entrez le nom du conteneur"
+                        },
+                        "hostPort": {
+                            "label": "Port hôte",
+                            "placeholder": "Sélectionnez le port hôte"
+                        },
+                        "memory": {
+                            "label": "Limite mémoire",
+                            "placeholder": "Entrez la limite de mémoire",
+                            "description": "La mémoire limite est exprimé en Go."
+                        },
+                        "cpu": {
+                            "label": "Limite CPU",
+                            "placeholder": "Entrez la limite de CPU",
+                            "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la création du conteneur",
+                    "description": "Une erreur est survenue lors de la création du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur créé",
+                    "description": "Le conteneur a été créé avec succès."
+                }
             },
-            "email": {
-              "label": "Email",
-              "placeholder": "Entrez l'email"
+            "start": {
+                "trigger": "Démarrer",
+                "title": "Démarrer {name}",
+                "description": "Êtes-vous sûr de vouloir démarrer {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "start": "Démarrer",
+                    "starting": "Démarrage..."
+                },
+                "error": {
+                    "title": "Erreur lors du démarrage du conteneur",
+                    "description": "Une erreur est survenue lors du démarrage du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur démarré",
+                    "description": "Le conteneur a été démarré avec succès."
+                }
             },
-            "nickname": {
-              "label": "Nom d'utilisateur",
-              "placeholder": "Entrez le nom d'utilisateur"
+            "stop": {
+                "trigger": "Arrêter",
+                "title": "Arrêter {name}",
+                "description": "Êtes-vous sûr de vouloir arrêter {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "stop": "Arrêter",
+                    "stopping": "Arrêt..."
+                },
+                "error": {
+                    "title": "Erreur lors de l'arrêt du conteneur",
+                    "description": "Une erreur est survenue lors de l'arrêt du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur arrêté",
+                    "description": "Le conteneur a été arrêté avec succès."
+                }
             },
-            "password": {
-              "label": "Mot de passe",
-              "placeholder": "Entrez le mot de passe"
+            "restart": {
+                "trigger": "Redémarrer",
+                "title": "Redémarrer {name}",
+                "description": "Êtes-vous sûr de vouloir redémarrer {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "restart": "Redémarrer",
+                    "restarting": "Redémarrage..."
+                },
+                "error": {
+                    "title": "Erreur lors du redémarrage du conteneur",
+                    "description": "Une erreur est survenue lors du redémarrage du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur redémarré",
+                    "description": "Le conteneur a été redémarré avec succès."
+                }
             },
-            "passwordConfirmation": {
-              "label": "Confirmation du mot de passe",
-              "placeholder": "Confirmez le mot de passe"
+            "editMemoryLimit": {
+                "trigger": "Modifier la limite mémoire",
+                "title": "Modifier la limite mémoire de {name}",
+                "description": "Entrez la nouvelle limite de mémoire pour {name}.",
+                "form": {
+                    "fields": {
+                        "memory": {
+                            "label": "Limite mémoire",
+                            "placeholder": "Entrez la nouvelle limite de mémoire",
+                            "description": "La mémoire limite est exprimée en Go."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la modification de la limite mémoire",
+                    "description": "Une erreur est survenue lors de la modification de la limite mémoire. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Limite mémoire modifiée",
+                    "description": "La limite mémoire a été modifiée avec succès."
+                }
             },
-            "roles": {
-              "label": "Rôles",
-              "description": "Sélectionnez les rôles de l'utilisateur",
-              "options": {
-                "admin": "Administrateur",
-                "info": "Informatique",
-                "user": "Utilisateur"
-              }
+            "editCpuLimit": {
+                "trigger": "Modifier la limite CPU",
+                "title": "Modifier la limite CPU de {name}",
+                "description": "Entrez la nouvelle limite de CPU pour {name}.",
+                "form": {
+                    "fields": {
+                        "cpu": {
+                            "label": "Limite CPU",
+                            "placeholder": "Entrez la nouvelle limite de CPU",
+                            "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la modification de la limite CPU",
+                    "description": "Une erreur est survenue lors de la modification de la limite CPU. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Limite CPU modifiée",
+                    "description": "La limite CPU a été modifiée avec succès."
+                }
+            },
+            "delete": {
+                "trigger": "Supprimer",
+                "title": "Supprimer {name} ?",
+                "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+                "actions": {
+                    "cancel": "Annuler",
+                    "delete": "Supprimer",
+                    "deleting": "Suppression..."
+                },
+                "error": {
+                    "title": "Erreur lors de la suppression du conteneur",
+                    "description": "Une erreur est survenue lors de la suppression du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur supprimé",
+                    "description": "Le conteneur a été supprimé avec succès."
+                }
             }
-          }
         },
-        "actions": {
-          "submit": "Créer",
-          "submitting": "Création...",
-          "cancel": "Annuler"
-        },
-        "errors": {
-          "nicknameAlreadyExists": {
-            "title": "Nom d'utilisateur déjà utilisé",
-            "description": "Le nom d'utilisateur est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
-          },
-          "emailAlreadyExists": {
-            "title": "Email déjà utilisé",
-            "description": "L'email est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
-          },
-          "invalidData": {
-            "title": "Données invalides",
-            "description": "Les données fournies sont invalides. Veuillez vérifier les champs et réessayer."
-          },
-          "unknown": {
-            "title": "Erreur lors de la création de l'utilisateur",
-            "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
-          }
-        },
-        "success": {
-          "title": "Utilisateur créé",
-          "description": "L'utilisateur a été créé avec succès."
+        "users": {
+            "create": {
+                "title": "Créer un utilisateur",
+                "description": "Créez un nouvel utilisateur pour l'application HebergOS.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Nom",
+                            "placeholder": "Entrez le nom"
+                        },
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Entrez l'email"
+                        },
+                        "nickname": {
+                            "label": "Nom d'utilisateur",
+                            "placeholder": "Entrez le nom d'utilisateur"
+                        },
+                        "password": {
+                            "label": "Mot de passe",
+                            "placeholder": "Entrez le mot de passe"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Confirmation du mot de passe",
+                            "placeholder": "Confirmez le mot de passe"
+                        },
+                        "roles": {
+                            "label": "Rôles",
+                            "description": "Sélectionnez les rôles de l'utilisateur",
+                            "options": {
+                                "admin": "Administrateur",
+                                "info": "Informatique",
+                                "user": "Utilisateur"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "nicknameAlreadyExists": {
+                        "title": "Nom d'utilisateur déjà utilisé",
+                        "description": "Le nom d'utilisateur est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
+                    },
+                    "emailAlreadyExists": {
+                        "title": "Email déjà utilisé",
+                        "description": "L'email est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
+                    },
+                    "invalidData": {
+                        "title": "Données invalides",
+                        "description": "Les données fournies sont invalides. Veuillez vérifier les champs et réessayer."
+                    },
+                    "unknown": {
+                        "title": "Erreur lors de la création de l'utilisateur",
+                        "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
+                    }
+                },
+                "success": {
+                    "title": "Utilisateur créé",
+                    "description": "L'utilisateur a été créé avec succès."
+                }
+            }
         }
-      }
-    }
-  },
-  "tables": {
-    "generic": {
-      "page": "Page {current} sur {total}",
-      "actions": {
-        "selection": "{selected} sur {count, plural, =0 {0 ligne sélectionnée} one {1 ligne sélectionnée} other {# lignes sélectionnées}}",
-        "next": "Suivant",
-        "previous": "Précédent"
-      }
     },
-    "containers": {
-      "columns": {
-        "name": "Nom",
-        "state": "Statut",
-        "hostPort": "Port hôte",
-        "memory": "Limite mémoire",
-        "cpu": "Limite CPU"
-      },
-      "actions": {
-        "label": "Actions",
-        "open": "Ouvrir le conteneur",
-        "start": "Démarrer",
-        "stop": "Arrêter",
-        "restart": "Redémarrer",
-        "editMemory": "Modifier la limite mémoire",
-        "editCpu": "Modifier la limite CPU",
-        "delete": "Supprimer"
-      }
-    },
-    "users": {
-      "columns": {
-        "name": "Nom",
-        "nickname": "Nom d'utilisateur",
-        "email": "Email",
-        "roles": "Rôles",
-        "actions": "Actions"
-      },
-      "actions": {
-        "label": "Actions",
-        "editRoles": "Modifier les rôles",
-        "editContainers": "Modifier les conteneurs",
-        "delete": "Supprimer"
-      }
+    "tables": {
+        "generic": {
+            "page": "Page {current} sur {total}",
+            "actions": {
+                "selection": "{selected} sur {count, plural, =0 {0 ligne sélectionnée} one {1 ligne sélectionnée} other {# lignes sélectionnées}}",
+                "next": "Suivant",
+                "previous": "Précédent"
+            }
+        },
+        "containers": {
+            "columns": {
+                "name": "Nom",
+                "state": "Statut",
+                "hostPort": "Port hôte",
+                "memory": "Limite mémoire",
+                "cpu": "Limite CPU"
+            },
+            "actions": {
+                "label": "Actions",
+                "open": "Ouvrir le conteneur",
+                "start": "Démarrer",
+                "stop": "Arrêter",
+                "restart": "Redémarrer",
+                "editMemory": "Modifier la limite mémoire",
+                "editCpu": "Modifier la limite CPU",
+                "delete": "Supprimer"
+            }
+        },
+        "users": {
+            "columns": {
+                "name": "Nom",
+                "nickname": "Nom d'utilisateur",
+                "email": "Email",
+                "roles": "Rôles",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "editRoles": "Modifier les rôles",
+                "editContainers": "Modifier les conteneurs",
+                "delete": "Supprimer"
+            }
+        }
     }
-  }
 }

@@ -120,6 +120,99 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
     return clientStats;
 }
 
+export async function startContainer(containerId: string): Promise<boolean> {
+    const session = await getServerSession(authConfig);
+
+    if (!session) {
+        return false;
+    }
+
+    const container = await prisma.container.findUnique({
+        where: { id: containerId },
+        include: { users: { select: { id: true } } }
+    });
+
+    if (!container) {
+        return false;
+    }
+
+    if (!(await isAdmin() || container.users.some((user) => user.id === session.user.id))) {
+        return false;
+    }
+
+    const r = await fetch(process.env.API_URL + `/container/start?id=${containerId}`, {
+        method: "POST"
+    });
+
+    if (r.ok) {
+        return true;
+    }
+
+    return false;
+}
+
+export async function stopContainer(containerId: string): Promise<boolean> {
+    const session = await getServerSession(authConfig);
+
+    if (!session) {
+        return false;
+    }
+
+    const container = await prisma.container.findUnique({
+        where: { id: containerId },
+        include: { users: { select: { id: true } } }
+    });
+
+    if (!container) {
+        return false;
+    }
+
+    if (!(await isAdmin() || container.users.some((user) => user.id === session.user.id))) {
+        return false;
+    }
+
+    const r = await fetch(process.env.API_URL + `/container/stop?id=${containerId}`, {
+        method: "POST"
+    });
+
+    if (r.ok) {
+        return true;
+    }
+
+    return false;
+}
+
+export async function restartContainer(containerId: string): Promise<boolean> {
+    const session = await getServerSession(authConfig);
+
+    if (!session) {
+        return false;
+    }
+
+    const container = await prisma.container.findUnique({
+        where: { id: containerId },
+        include: { users: { select: { id: true } } }
+    });
+
+    if (!container) {
+        return false;
+    }
+
+    if (!(await isAdmin() || container.users.some((user) => user.id === session.user.id))) {
+        return false;
+    }
+
+    const r = await fetch(process.env.API_URL + `/container/restart?id=${containerId}`, {
+        method: "POST"
+    });
+
+    if (r.ok) {
+        return true;
+    }
+
+    return false;
+}
+
 export async function getContainersAdmin(): Promise<Container[]> {
     if (!(await isAdmin())) {
         return [];

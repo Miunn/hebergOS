@@ -163,7 +163,16 @@
         "description": "Are you sure you want to start {name} ?",
         "actions": {
           "cancel": "Cancel",
-          "start": "Start"
+          "start": "Start",
+          "starting": "Starting..."
+        },
+        "error": {
+          "title": "Error",
+          "description": "An error occurred while starting the container. Please try again later."
+        },
+        "success": {
+          "title": "Container started",
+          "description": "The container has been started successfully."
         }
       },
       "stop": {
@@ -172,7 +181,16 @@
         "description": "Are you sure you want to stop {name} ?",
         "actions": {
           "cancel": "Cancel",
-          "stop": "Stop"
+          "stop": "Stop",
+          "stopping": "Stopping..."
+        },
+        "error": {
+          "title": "Error",
+          "description": "An error occurred while stopping the container. Please try again later."
+        },
+        "success": {
+          "title": "Container stopped",
+          "description": "The container has been stopped successfully."
         }
       },
       "restart": {
@@ -181,7 +199,16 @@
         "description": "Are you sure you want to restart {name} ?",
         "actions": {
           "cancel": "Cancel",
-          "restart": "Restart"
+          "restart": "Restart",
+          "restarting": "Restarting..."
+        },
+        "error": {
+          "title": "Error",
+          "description": "An error occurred while restarting the container. Please try again later."
+        },
+        "success": {
+          "title": "Container restarted",
+          "description": "The container has been restarted successfully."
         }
       },
       "editMemoryLimit": {
