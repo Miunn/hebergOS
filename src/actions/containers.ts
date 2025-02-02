@@ -2,7 +2,7 @@
 
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
-import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
+import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
 import { Container, ContainerActivityType } from "@prisma/client";
@@ -118,6 +118,65 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
     })
 
     return clientStats;
+}
+
+export async function createContainer(data: { name: string, image: string, hostPort: number, memory: number, cpu: number, users: string[] }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsed = CreateContainerFormSchema.safeParse(data);
+
+    if (!parsed.success) {
+        return false;
+    }
+
+    const parsedData = parsed.data;
+
+    try {
+        const r = await fetch(process.env.API_URL + "/container/create", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: parsedData.name,
+                host_port_root: parsedData.hostPort,
+                memory: parsedData.memory,
+                cpulimit: parsedData.cpu,
+            })
+        });
+
+        if (!r.ok) {
+            return false;
+        }
+
+        const json = await r.json();
+
+        await prisma.container.create({
+            data: {
+                id: json.id,
+                name: parsedData.name,
+                hostPort: parsedData.hostPort,
+                memory: parsedData.memory,
+                cpu: parsedData.cpu,
+            }
+        });
+
+        await prisma.containerActivity.create({
+            data: {
+                container: { connect: { id: json.id } },
+                type: ContainerActivityType.CREATED,
+                message: "",
+            }
+        })
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error creating container: ${e}`);
+        return false;
+    }
 }
 
 export async function startContainer(containerId: string): Promise<boolean> {

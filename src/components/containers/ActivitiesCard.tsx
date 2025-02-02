@@ -16,6 +16,9 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
 
         let text;
         switch (activity.type) {
+            case "CREATED":
+                text = t('created');
+                break;
             case "STARTED":
                 text = t('started');
                 break;

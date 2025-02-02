@@ -114,6 +114,7 @@
                 "title": "Activité du conteneur",
                 "descriptionFull": "Toutes les activités récentes du conteneur",
                 "description": "Les {count} dernières activités du conteneur",
+                "created": "Projet créé",
                 "started": "Projet démarré",
                 "stopped": "Projet arrêté",
                 "restarted": "Projet redémarré",

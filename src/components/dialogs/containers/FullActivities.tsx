@@ -13,6 +13,9 @@ export default function FullActivities({ container, children }: { container: Con
 
         let text;
         switch (activity.type) {
+            case "CREATED":
+                text = t('created');
+                break;
             case "STARTED":
                 text = t('started');
                 break;

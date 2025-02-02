@@ -114,6 +114,7 @@
                 "title": "Container's activity",
                 "descriptionFull": "Here are the last activities of the container.",
                 "description": "Here are the last {count} activities of the container.",
+                "created": "Container created",
                 "started": "Container started",
                 "stopped": "Container stopped",
                 "restarted": "Container restarted",
