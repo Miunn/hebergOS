@@ -20,7 +20,6 @@ async function customMiddleware(request: NextRequestWithAuth) {
         }
 
         if (RegExp(`^${process.env.NEXTAUTH_URL}/(${routing.locales.join('|')})/app/containers/(.*)$`).test(request.nextUrl.searchParams.get("callbackUrl")!)) {
-            console.log("Login redirect to callback if authorized container");
             const match = request.nextUrl.searchParams.get("callbackUrl")!.match(RegExp(`^/(${routing.locales.join('|')})/app/containers/(.*)$`));
             if (!match) {
                 return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
