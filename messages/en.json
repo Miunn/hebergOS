@@ -7,7 +7,7 @@
         "app": {
             "dashboard": {
                 "title": "Dashboard",
-                "empty": "No project assigned to you for now.</br>Contact an administrator to discuss your desires !",
+                "empty": "No project assigned to you for now.<br />Contact an administrator to discuss your desires !",
                 "administration": "Go to administration"
             },
             "container": {
@@ -121,6 +121,14 @@
                 "memoryUpdate": "Memory limit updated to {memory} Go",
                 "cpuUpdate": "CPU limit updated to {cpu} %",
                 "checkAllTooltip": "Check all activities"
+            }
+        },
+        "users": {
+            "userDropdown": {
+                "label": "Account",
+                "notifications": "Notifications",
+                "administration": "Administration",
+                "logout": "Logout"
             }
         }
     },

@@ -25,14 +25,14 @@ export default function LoginForm() {
     const form = useForm({
         resolver: zodResolver(SignInFormSchema),
         defaultValues: {
-            email: '',
+            nickname: '',
             password: '',
         }
     });
 
-    const onSubmit = async (data: { email: string; password: string; }) => {
+    const onSubmit = async (data: { nickname: string; password: string; }) => {
         setLoading(true);
-        const r = await signIn('credentials', { email: data.email, password: data.password, redirectUrl: '/app', redirectTo: '/app', redirect: true });
+        const r = await signIn('credentials', { nickname: data.nickname, password: data.password, redirectUrl: '/app', redirectTo: '/app', redirect: true });
         if (r && r.error) {
             toast({
                 title: "form.error.title",
@@ -55,7 +55,7 @@ export default function LoginForm() {
                     <form onSubmit={form.handleSubmit(onSubmit)} className={"space-y-4"}>
                         <FormField
                             control={form.control}
-                            name="email"
+                            name="nickname"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>{t('form.fields.nickname.label')}</FormLabel>

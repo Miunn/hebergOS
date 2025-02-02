@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { User } from '@prisma/client';
+import { SignInFormSchema } from '@/lib/definitions';
 
 export const authConfig: NextAuthOptions = {
     session: {
@@ -24,23 +25,23 @@ export const authConfig: NextAuthOptions = {
                 password: { label: 'Password', type: 'password' }
             },
             async authorize(credentials) {
-                const parsedCredentials = z
-                  .object({ email: z.string().email(), password: z.string(), csrfToken: z.string() })
-                  .safeParse(credentials);
+                const parsedCredentials = SignInFormSchema.safeParse(credentials);
           
                 if (!parsedCredentials.success) {
                     return null;
                 }
 
-                const { email, password } = parsedCredentials.data;
+                const { nickname, password } = parsedCredentials.data;
                 
-                const user = await prisma.user.findUnique({ where: { email }, omit: { password: false } });
+                const user = await prisma.user.findUnique({ where: { nickname }, omit: { password: false } });
 
                 if (!user) return null;
 
                 const passwordsMatch = await bcrypt.compare(password, user.password);
         
                 if (!passwordsMatch) return null;
+
+                console.log("Connect User", user);
 
                 return { id: user.id, email: user.email, name: user.name, roles: user.roles };
             },

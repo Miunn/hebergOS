@@ -1,5 +1,5 @@
 import { Prisma, Role } from "@prisma/client";
-import { coerce, z } from "zod";
+import { z } from "zod";
 
 export type ClientContainerStat = {
     timestamp: number;
@@ -14,7 +14,7 @@ export type ClientContainerStat = {
 }
 
 export const SignInFormSchema = z.object({
-    email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
+    nickname: z.string().trim(),
     password: z
         .string()
         .trim(),

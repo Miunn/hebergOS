@@ -122,6 +122,14 @@
                 "cpuUpdate": "Limite CPU modifiée à {cpu} %",
                 "checkAllTooltip": "Check all activities"
             }
+        },
+        "users": {
+            "userDropdown": {
+                "label": "Compte",
+                "notifications": "Notifications",
+                "administration": "Administration",
+                "logout": "Déconnexion"
+            }
         }
     },
     "dialogs": {
