@@ -15,11 +15,12 @@ body {
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     /*--primary: 0 0% 9%;*/
-    --primary: 287 51.3% 54.1%;
+    --primary: 272 51.28% 54.12%;
     --primary-foreground: 0 0% 98%;
     /*--secondary: 0 0% 96.1%;*/
-    --secondary: 23 93.4% 52.5%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 22.83 93.39% 52.55%;
+    /*--secondary-foreground: 0 0% 9%;*/
+    --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     --accent: 0 0% 96.1%;
@@ -35,6 +36,13 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    --role-admin: 49 88% 48%;
+    --role-admin-foreground: 0 0% 9%;
+    --role-user: 111 60% 45%;
+    --role-user-foreground: 0 0% 45.1%;
+    --role-info: 111 60% 45%;
+    --role-info-foreground: 0 0% 9%;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -61,6 +69,13 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --role-admin: 0 0% 14.9%;
+    --role-admin-foreground: 0 0% 98%;
+    --role-user: 0 0% 14.9%;
+    --role-user-foreground: 0 0% 63.9%;
+    --role-info: 0 0% 14.9%;
+    --role-info-foreground: 0 0% 98%;
   }
 }
 

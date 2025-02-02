@@ -25,6 +25,7 @@ export const containersColumns: ColumnDef<Container>[] = [
                 }
                 onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
                 aria-label="Select all"
+                className="border-black"
             />
         ),
         cell: ({ row }) => (
@@ -32,6 +33,7 @@ export const containersColumns: ColumnDef<Container>[] = [
                 checked={row.getIsSelected()}
                 onCheckedChange={(value) => row.toggleSelected(!!value)}
                 aria-label="Select row"
+                className="border-black"
             />
         ),
         enableSorting: false,
@@ -53,7 +55,7 @@ export const containersColumns: ColumnDef<Container>[] = [
         cell: ({ row }) => {
             const name = row.original.name;
             return <Button variant={"link"} asChild>
-                <Link href={`/app/containers/${row.original.id}`}>{name}</Link>
+                <Link href={`/app/containers/${row.original.id}`} className="!text-black">{name}</Link>
             </Button>
         }
     },

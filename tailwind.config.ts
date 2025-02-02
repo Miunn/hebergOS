@@ -49,7 +49,19 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			"role-admin": {
+				DEFAULT: 'hsl(var(--role-admin))',
+				foreground: 'hsl(var(--role-admin-foreground))'
+			},
+			"role-info": {
+				DEFAULT: 'hsl(var(--role-info))',
+				foreground: 'hsl(var(--role-info-foreground))'
+			},
+			"role-user": {
+				DEFAULT: 'hsl(var(--role-user))',
+				foreground: 'hsl(var(--role-user-foreground))'
+			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

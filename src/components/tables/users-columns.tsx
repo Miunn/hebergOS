@@ -14,6 +14,7 @@ import LinkContainers from "../dialogs/users/LinkContainers"
 import React from "react"
 import EditRoles from "../dialogs/users/EditRoles"
 import DeleteUser from "../dialogs/users/DeleteUser"
+import { Role } from "@prisma/client"
 
 export const usersColumns: ColumnDef<UserWithContainers>[] = [
     {
@@ -26,6 +27,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                 }
                 onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
                 aria-label="Select all"
+                className="border-black"
             />
         ),
         cell: ({ row }) => (
@@ -33,6 +35,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                 checked={row.getIsSelected()}
                 onCheckedChange={(value) => row.toggleSelected(!!value)}
                 aria-label="Select row"
+                className="border-black"
             />
         ),
         enableSorting: false,
@@ -111,9 +114,23 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
         header: "Roles",
         cell: ({ row }) => {
             const roles = row.original.roles;
+
+            const getRoleColorClass = (role: string) => {
+                switch (role) {
+                    case Role.ADMIN:
+                        return "bg-yellow-600 hover:bg-yellow-600/80";
+                    case Role.INFO:
+                        return "bg-green-600 hover:bg-green-600/80";
+                    case Role.USER:
+                        return "bg-green-600 hover:bg-green-600/80";
+                    default:
+                        return "";
+                }
+            }
+
             return <div className="flex gap-2">
                 {roles.map((role: string) => (
-                    <Badge key={role} className={`${robotoMono.className} p-1`}>{role}</Badge>
+                    <Badge key={role} className={`${robotoMono.className} ${getRoleColorClass(role)} p-1`}>{role}</Badge>
                 ))}
             </div>
         }

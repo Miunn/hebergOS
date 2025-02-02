@@ -10,7 +10,7 @@ export default async function Header() {
     const session = await getServerSession(authConfig);
 
     return (
-        <header className="w-full grid grid-cols-3 h-20 items-center px-11 bg-purple-600 text-white">
+        <header className="w-full grid grid-cols-3 h-20 items-center px-11 bg-primary text-white">
             <h1 className="font-bold text-xl">
                 {session?.user
                     ? <Link href={"/app"} className="text-white">HebergOS</Link>
