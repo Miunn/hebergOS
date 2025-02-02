@@ -1,10 +1,26 @@
 import createMiddleware from 'next-intl/middleware';
-import { withAuth } from "next-auth/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 import { routing } from './i18n/routing';
 
-function customMiddleware(request: NextRequest) {
+async function customMiddleware(request: NextRequestWithAuth) {
     const handleI18nRouting = createMiddleware(routing);
+
+    const pathname = request.nextUrl.pathname;
+    const locale = getLocaleFromUrl(request.nextUrl);
+
+    if (RegExp(`^/(${routing.locales.join('|')})/login$`).test(pathname) && request.nextUrl.searchParams.get("callbackUrl") === null) {
+        const defaultLoginUrl = new URL(`/${locale}/login?callbackUrl=${process.env.NEXTAUTH_URL}/${locale}/app${request.nextUrl.search.replace("?", "&")}`, request.url);
+        return NextResponse.redirect(defaultLoginUrl);
+    }
+
+    if (RegExp(`^/(${routing.locales.join('|')})/login$`).test(pathname) && request.nextauth.token) {
+        if (request.nextUrl.searchParams.get("callbackUrl") === null) {
+            return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
+        }
+        return NextResponse.redirect(request.nextUrl.searchParams.get("callbackUrl")!);
+    }
+
     return handleI18nRouting(request);
 }
 
@@ -43,6 +59,11 @@ export default withAuth(customMiddleware, {
         },
     },
 });
+
+function getLocaleFromUrl(url: URL) {
+    const locale = url.pathname.split('/')[1];
+    return routing.locales.includes(locale as "en" | "fr") ? locale : routing.defaultLocale;
+}
 
 export const config = {
     matcher: [
