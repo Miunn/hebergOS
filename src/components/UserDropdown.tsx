@@ -17,7 +17,7 @@ export default function UserDropdown() {
     }
 
     return (
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <Button variant={"ghost"}>
                     <UserCircle /> {user?.name}
