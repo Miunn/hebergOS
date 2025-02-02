@@ -74,6 +74,7 @@ export async function createUser(data: { name: string, email: string, nickname: 
             }
         });
 
+        revalidatePath("/app/administration");
         return { error: undefined };
     } catch (error) {
 
