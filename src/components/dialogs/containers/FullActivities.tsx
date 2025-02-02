@@ -1,4 +1,5 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ContainerWithActivity } from "@/lib/definitions";
 import { ContainerActivity } from "@prisma/client";
 import { useFormatter, useTranslations } from "next-intl";
@@ -40,7 +41,7 @@ export default function FullActivities({ container, children }: { container: Con
     return (
         <Dialog>
             {children
-                ? <DialogTrigger asChild>{ children }</DialogTrigger>
+                ? <DialogTrigger asChild>{children}</DialogTrigger>
                 : null
             }
             <DialogContent>
@@ -50,9 +51,11 @@ export default function FullActivities({ container, children }: { container: Con
                 </DialogHeader>
 
                 <div className="space-y-4">
-                    {container.containerActivities.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).slice(0, 5).map((activity) => (
-                        renderActivity(activity)
-                    ))}
+                    <ScrollArea className="max-h-64">
+                        {container.containerActivities.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).slice(0, 5).map((activity) => (
+                            renderActivity(activity)
+                        ))}
+                    </ScrollArea>
                 </div>
                 {container.containerActivities.length === 0
                     ? <p className="italic mx-auto text-center">{t('empty')}</p>
