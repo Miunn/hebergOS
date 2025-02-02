@@ -112,6 +112,8 @@
             "activities": {
                 "empty": "No activity for now",
                 "title": "Container's activity",
+                "descriptionFull": "Here are the last activities of the container.",
+                "description": "Here are the last {count} activities of the container.",
                 "started": "Container started",
                 "stopped": "Container stopped",
                 "restarted": "Container restarted",

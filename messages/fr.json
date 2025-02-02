@@ -112,6 +112,8 @@
             "activities": {
                 "empty": "Aucune activité récente pour le moment",
                 "title": "Activité du conteneur",
+                "descriptionFull": "Toutes les activités récentes du conteneur",
+                "description": "Les {count} dernières activités du conteneur",
                 "started": "Projet démarré",
                 "stopped": "Projet arrêté",
                 "restarted": "Projet redémarré",

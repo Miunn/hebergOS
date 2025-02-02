@@ -19,7 +19,7 @@ export default function ContainerOverview({ container }: { container: ContainerW
 
             <ActivitiesCard container={container} />
 
-            <Card>
+            <Card className="h-fit">
                 <CardHeader>
                     <CardTitle>{t('users.title')}</CardTitle>
                 </CardHeader>

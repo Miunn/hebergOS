@@ -1,13 +1,9 @@
-import { ContainerActivity } from "@prisma/client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ContainerWithActivity } from "@/lib/definitions";
+import { ContainerActivity } from "@prisma/client";
 import { useFormatter, useTranslations } from "next-intl";
-import { Button } from "../ui/button";
-import { ScrollText } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
-import FullActivities from "../dialogs/containers/FullActivities";
 
-export default function ActivitiesCard({ container }: { container: ContainerWithActivity }) {
+export default function FullActivities({ container, children }: { container: ContainerWithActivity, children?: React.ReactNode }) {
 
     const t = useTranslations("components.containers.activities");
     const formatter = useFormatter();
@@ -42,27 +38,17 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
     }
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex justify-between items-start">
-                    {t('title')}
-                    <TooltipProvider>
-                        <Tooltip>
-                            <FullActivities container={container}>
-                                <TooltipTrigger asChild>
-                                    <Button variant={"outline"} size={"icon"}>
-                                        <ScrollText />
-                                    </Button>
-                                </TooltipTrigger>
-                            </FullActivities>
-                            <TooltipContent>
-                                <p>{t('checkAllTooltip')}</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
+        <Dialog>
+            {children
+                ? <DialogTrigger asChild>{ children }</DialogTrigger>
+                : null
+            }
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>{t('title')}</DialogTitle>
+                    <DialogDescription>{t('descriptionFull')}</DialogDescription>
+                </DialogHeader>
+
                 <div className="space-y-4">
                     {container.containerActivities.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).slice(0, 5).map((activity) => (
                         renderActivity(activity)
@@ -71,7 +57,7 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
                 {container.containerActivities.length === 0
                     ? <p className="italic mx-auto text-center">{t('empty')}</p>
                     : null}
-            </CardContent>
-        </Card>
+            </DialogContent>
+        </Dialog>
     )
 }
