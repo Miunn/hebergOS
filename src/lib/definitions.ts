@@ -54,7 +54,7 @@ export const CreateContainerFormSchema = z.object({
 })
 
 export const ChangeDomainFormSchema = z.object({
-    domain: z.string().min(3, { message: 'Domain must be at least 3 characters long.' }).trim().regex(/(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/, { message: 'Please enter a valid domain.' }),
+    domain: z.string().min(3, { message: 'Domain must be at least 3 characters long.' }).trim().regex(/(http(s)?\:\/\/)?(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/, { message: 'Please enter a valid domain.' }),
 })
 
 export const EditMemoryLimitContainerFormSchema = z.object({
