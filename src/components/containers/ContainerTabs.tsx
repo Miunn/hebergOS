@@ -23,19 +23,19 @@ export default function ContainerTabs({ container }: { container: ContainerWithA
             newSearchParams.set('tab', value);
             const newUrl = `${window.location.pathname}?${newSearchParams.toString()}`;
             replace(newUrl);
-        }}>
-            <TabsList className="block w-fit h-auto rounded-l-full rounded-r-full mx-auto mb-11">
+        }} className="flex flex-col items-center">
+            <TabsList className="w-fit h-auto rounded-l-full rounded-r-full mx-auto mb-11">
                 <TabsTrigger className="w-32 p-2 rounded-l-full" value="overview">{ t('overview') }</TabsTrigger>
                 <TabsTrigger className="w-32 p-2" value="graphs">{ t('graphs') }</TabsTrigger>
                 <TabsTrigger className="w-32 p-2" value="shell">{ t('shell') }</TabsTrigger>
                 <TabsTrigger className="w-32 p-2" value="actions">{ t('actions') }</TabsTrigger>
                 <TabsTrigger className="w-32 p-2 rounded-r-full" value="asks">{ t('asks') }</TabsTrigger>
             </TabsList>
-            <TabsContent value="overview"><ContainerOverview container={container} /></TabsContent>
-            <TabsContent value="graphs"><ContainerGraphs container={container} /></TabsContent>
-            <TabsContent value="shell"><ContainerShell container={container} /></TabsContent>
-            <TabsContent value="actions"><ContainerActions container={container} /></TabsContent>
-            <TabsContent value="asks"><ContainerAsks /></TabsContent>
+            <TabsContent value="overview" className="w-full"><ContainerOverview container={container} /></TabsContent>
+            <TabsContent value="graphs" className="w-full"><ContainerGraphs container={container} /></TabsContent>
+            <TabsContent value="shell" className="w-full"><ContainerShell container={container} /></TabsContent>
+            <TabsContent value="actions" className="w-full"><ContainerActions container={container} /></TabsContent>
+            <TabsContent value="asks" className="w-full"><ContainerAsks /></TabsContent>
         </Tabs>
     )
 }
