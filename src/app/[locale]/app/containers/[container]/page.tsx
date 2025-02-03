@@ -1,7 +1,10 @@
 import { getContainerFull } from "@/actions/containers"
 import ContainerTabs from "@/components/containers/ContainerTabs";
+import ChangeDomain from "@/components/dialogs/containers/ChangeDomain";
+import { Button } from "@/components/ui/button";
 import { robotoMono } from "@/ui/fonts";
 import { ContainerState } from "@prisma/client";
+import { Bolt } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 export default async function Container({ params }: { params: Promise<{ locale: string, container: string }> }) {
@@ -30,11 +33,14 @@ export default async function Container({ params }: { params: Promise<{ locale: 
         <>
             <div className="mb-8 space-y-2">
                 <h1 className={`${robotoMono.className} antialiased text-xl`}>{container?.name}</h1>
-                <p className={`${robotoMono.className} ${container.domain ? '' : '!italic'}`}>
+                <p className={`${robotoMono.className} ${container.domain ? '' : '!italic'} flex items-center gap-2`}>
                     {container.domain
                         ? container.domain
                         : t('noDomain')
                     }
+                    <ChangeDomain container={container}>
+                        <Button variant={"ghost"} size={"icon"}><Bolt /></Button>
+                    </ChangeDomain>
                 </p>
                 <p className="flex items-center gap-2 capitalize"><span className={`${getStateColor(container.state)} inline-block w-3 h-3 rounded-full`} /> {container.state.toLowerCase()}</p>
             </div>

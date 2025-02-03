@@ -118,6 +118,7 @@
                 "started": "Projet démarré",
                 "stopped": "Projet arrêté",
                 "restarted": "Projet redémarré",
+                "domainUpdate": "Domaine modifié en {domain}",
                 "memoryUpdate": "Limite mémoire modifiée à {memory} Go",
                 "cpuUpdate": "Limite CPU modifiée à {cpu} %",
                 "checkAllTooltip": "Check all activities"
@@ -226,6 +227,32 @@
                 "success": {
                     "title": "Conteneur redémarré",
                     "description": "Le conteneur a été redémarré avec succès."
+                }
+            },
+            "changeDomain": {
+                "trigger": "Changer le domaine",
+                "title": "Changer le domaine de {name}",
+                "description": "Entrez le nouveau domaine pour {name}.",
+                "form": {
+                    "fields": {
+                        "domain": {
+                            "label": "Domaine",
+                            "placeholder": "Entrez le nouveau domaine"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors du changement de domaine",
+                    "description": "Une erreur est survenue lors du changement de domaine. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Domaine changé",
+                    "description": "Le domaine a été changé avec succès."
                 }
             },
             "editMemoryLimit": {

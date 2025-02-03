@@ -45,7 +45,7 @@ export default function RestartContainer({ children, container }: { children: Re
                     <DialogDescription>{t('description', { name: container.name })}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose>
+                    <DialogClose asChild>
                         <Button variant={"outline"}>{t('actions.cancel')}</Button>
                     </DialogClose>
                     {loading

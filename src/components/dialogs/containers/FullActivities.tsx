@@ -25,6 +25,9 @@ export default function FullActivities({ container, children }: { container: Con
             case "RESTARTED":
                 text = t('restarted');
                 break;
+            case "DOMAIN_UPDATE":
+                text = t('domainUpdate', { domain: activity.message });
+                break;
             case "MEMORY_UPDATE":
                 text = t('memoryUpdate', { memory: activity.message });
                 break;
@@ -35,8 +38,8 @@ export default function FullActivities({ container, children }: { container: Con
 
         return (
             <p key={activity.id} className="flex justify-start gap-4">
-                <span className="capitalize">{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
-                <span>{text}</span>
+                <span className="capitalize text-nowrap">{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
+                <span className="truncate">{text}</span>
             </p>
         )
     }

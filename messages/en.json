@@ -118,6 +118,7 @@
                 "started": "Container started",
                 "stopped": "Container stopped",
                 "restarted": "Container restarted",
+                "domainUpdate": "Domain updated to {domain}",
                 "memoryUpdate": "Memory limit updated to {memory} Go",
                 "cpuUpdate": "CPU limit updated to {cpu} %",
                 "checkAllTooltip": "Check all activities"
@@ -226,6 +227,32 @@
                 "success": {
                     "title": "Container restarted",
                     "description": "The container has been restarted successfully."
+                }
+            },
+            "changeDomain": {
+                "title": "Change domain of {name}",
+                "description": "Change the domain of {name}.",
+                "form": {
+                    "fields": {
+                        "domain": {
+                            "label": "Domain",
+                            "placeholder": "Enter new domain",
+                            "description": "The container's domain will be displayed under its name"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Change",
+                    "submitting": "Changing...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while changing the domain. Please try again later."
+                },
+                "success": {
+                    "title": "Domain changed",
+                    "description": "The domain has been changed successfully."
                 }
             },
             "editMemoryLimit": {

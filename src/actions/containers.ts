@@ -2,7 +2,7 @@
 
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
-import { ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
+import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
 import { Container, ContainerActivityType } from "@prisma/client";
@@ -175,6 +175,56 @@ export async function createContainer(data: { name: string, image: string, hostP
         return true;
     } catch (e) {
         console.log(`Error creating container: ${e}`);
+        return false;
+    }
+}
+
+export async function changeContainerDomain(containerId: string, data: { domain: string}): Promise<boolean> {
+    const session = await getServerSession(authConfig);
+
+    if (!session) {
+        return false;
+    }
+
+    const container = await prisma.container.findUnique({
+        where: { id: containerId },
+        include: { users: { select: { id: true } } }
+    });
+
+    if (!container) {
+        return false;
+    }
+
+    if (!(await isAdmin() || container.users.some((user) => user.id === session.user.id))) {
+        return false;
+    }
+
+    const parsedDomain = ChangeDomainFormSchema.safeParse(data);
+
+    if (!parsedDomain.success) {
+        return false;
+    }
+
+    try {
+        await prisma.container.update({
+            where: { id: containerId },
+            data: { domain: parsedDomain.data.domain }
+        });
+
+        await prisma.containerActivity.create({
+            data: {
+                container: {
+                    connect: { id: containerId }
+                },
+                type: ContainerActivityType.DOMAIN_UPDATE,
+                message: parsedDomain.data.domain
+            }
+        })
+
+        revalidatePath(`/app/containers/${containerId}`);
+        return true;
+    } catch (e) {
+        console.log(`Error updating container domain: ${e}`);
         return false;
     }
 }
