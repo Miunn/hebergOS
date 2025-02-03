@@ -39,7 +39,7 @@ export default function FullActivities({ container, children }: { container: Con
         return (
             <p key={activity.id} className="flex justify-start gap-4">
                 <span className="capitalize text-nowrap">{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
-                <span className="">{text}</span>
+                <span>{text}</span>
             </p>
         )
     }
