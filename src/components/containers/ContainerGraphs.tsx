@@ -1,10 +1,10 @@
 import { useFormatter, useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardHeader, CardTitle } from "../ui/card";
 import { Container } from "@prisma/client";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "../ui/chart";
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { getContainerStats } from "@/actions/containers";
 
 export default function ContainerGraphs({ container }: { container: Container }) {

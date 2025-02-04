@@ -2,6 +2,7 @@ import { getMe } from "@/actions/user"
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import Container from "@/components/containers/ContainerCard";
 import { Button } from "@/components/ui/button";
+import { SparklesText } from "@/components/ui/sparkles-text";
 import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -15,8 +16,9 @@ export default async function Dashboard() {
 
     return (
         <>
+        <SparklesText text={t('title')} />
             <h1 className="font-semibold text-3xl mb-7 flex justify-between items-center">
-                {t('title')}
+                
                 {session?.user.roles.includes("ADMIN")
                     ? <Button variant={"link"} asChild><Link href={"/app/administration"}>{t('administration')}</Link></Button>
                     : null}

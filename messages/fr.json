@@ -2,7 +2,17 @@
     "title": "HebergOS",
     "pages": {
         "home": {
-            "title": "HebergOS"
+            "title": "HebergOS",
+            "catchLine": "La solution d'hébergement pour les étudiants <br /> de l'INSA Hauts-de-France",
+            "description": "Déployez vos applications web en quelques clics.<br />HebergOS abstrait la complexité de l'hébergement et vous laisse vous concentrer sur l'essentiel.",
+            "contact": "Contactez-nous",
+
+            "monitor": {
+                "title": "Gardez un oeil sur vos applications en temps réel",
+                "description": "HebergOS vous permet de surveiller l'état de vos applications en temps réel. Vous pouvez voir les statistiques d'utilisation de vos conteneurs et observer la réponses de vos applications en fonction du traffic.",
+                "link": "Monitor",
+                "widgetTitle": "Statistiques d'utilisation"
+            }
         },
         "app": {
             "dashboard": {

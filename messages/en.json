@@ -2,7 +2,17 @@
     "title": "HebergOS",
     "pages": {
         "home": {
-            "title": "HebergOS"
+            "title": "HebergOS",
+            "catchLine": "Hosting solution for <br /> INSA Hauts-de-France students",
+            "description": "Deploy your applications in seconds.<br />HebergOS abstract the complexity of hosting and let you focus on what's important.",
+            "contact": "Contact us",
+
+            "monitor": {
+                "title": "Always keep an eye on your hosted applications",
+                "description": "Monitor your applications in real time. Get statistics to understand how your applications behave and responds to traffic loads.",
+                "link": "Monitor",
+                "widgetTitle": "Memory statistics"
+            }
         },
         "app": {
             "dashboard": {

@@ -19,9 +19,7 @@ export default function UserDropdown() {
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-                <Button variant={"ghost"}>
-                    <UserCircle /> {user?.name}
-                </Button>
+                <Button variant={"link"} className="text-inherit text-base">{user?.name}</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
