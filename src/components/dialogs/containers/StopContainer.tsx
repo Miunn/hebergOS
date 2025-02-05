@@ -24,6 +24,7 @@ export default function StopContainer({ children, container }: { children: React
             toast({
                 title: t('error.title'),
                 description: t('error.description'),
+                variant: 'destructive'
             })
             return;
         }
@@ -45,7 +46,7 @@ export default function StopContainer({ children, container }: { children: React
                     <DialogDescription>{t('description', { name: container.name })}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose>
+                    <DialogClose asChild>
                         <Button variant={"outline"}>{t('actions.cancel')}</Button>
                     </DialogClose>
                     {loading

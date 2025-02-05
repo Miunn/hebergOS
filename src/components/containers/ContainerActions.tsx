@@ -62,7 +62,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
                 <CardHeader>
                     <CardTitle>{t('actions.title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex gap-6">
+                <CardContent className="flex flex-wrap gap-6">
                     <StartContainer container={container}>
                         <DialogTrigger asChild>
                             <Button>{t('actions.start')}</Button>

@@ -24,6 +24,7 @@ export default function StartContainer({ children, container }: { children: Reac
             toast({
                 title: t('error.title'),
                 description: t('error.description'),
+                variant: 'destructive'
             })
             return;
         }

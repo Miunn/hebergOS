@@ -24,6 +24,7 @@ export default function RestartContainer({ children, container }: { children: Re
             toast({
                 title: t('error.title'),
                 description: t('error.description'),
+                variant: 'destructive'
             })
             return;
         }

@@ -260,7 +260,8 @@
                     "fields": {
                         "domain": {
                             "label": "Domaine",
-                            "placeholder": "Entrez le nouveau domaine"
+                            "placeholder": "Entrez le nouveau domaine",
+                            "description": "Le domaine du conteneur sera affiché en dessous du nom"
                         }
                     }
                 },
