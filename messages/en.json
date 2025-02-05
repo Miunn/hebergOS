@@ -22,6 +22,59 @@
                 "description": "Monitor your applications in real time. Get statistics to understand how your applications behave and responds to traffic loads.",
                 "link": "Monitor",
                 "widgetTitle": "Memory statistics"
+            },
+
+            "faq": {
+                "title": "Frequently Asked Questions",
+                "questions": {
+                    "1": {
+                        "question": "What is HebergOS ?",
+                        "answer": "HebergOS is a hosting solution for INSA Hauts-de-France students. It allows you to deploy your applications in seconds and monitor them in real time."
+                    },
+                    "2": {
+                        "question": "Who is HebergOS for?",
+                        "answer": "HebergOS was designed to be easy to use for both people with a background in computer science and those who are not initiated. This way, even if you are not a member of the club but want to, for example, set up a website for your association, the computer club can provide the technical skills. On your side, you keep control over the state of your project, its statistics, and can perform various actions at any time."
+                    },
+                    "3": {
+                        "question": "How can I get access to HebergOS ?",
+                        "answer": "HebergOS is only available for INSA Hauts-de-France students. You can get access by contacting us."
+                    },
+                    "4": {
+                        "question": "How can I contact you ?",
+                        "answer": "You can contact us by clicking on the button below."
+                    }
+                }
+            }
+        },
+        "contact": {
+            "form": {
+                "fields": {
+                    "name": {
+                        "label": "Name",
+                        "placeholder": "Enter your name"
+                    },
+                    "email": {
+                        "label": "Email",
+                        "placeholder": "Enter your email",
+                        "description": "We will use this email to get back to you."
+                    },
+                    "message": {
+                        "label": "Message",
+                        "placeholder": "Enter your message"
+                    }
+                }
+            },
+            "actions": {
+                "submit": "Send",
+                "submitting": "Sending..."
+            },
+            "error": {
+                "title": "Error",
+                "description": "An error occurred while sending the message. Please try again later."
+            },
+            "success": {
+                "title": "Message sent",
+                "description": "Your message has been sent successfully. We will get back to you as soon as possible."
             }
         },
         "app": {

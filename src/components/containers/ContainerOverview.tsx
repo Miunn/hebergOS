@@ -13,7 +13,7 @@ export default function ContainerOverview({ container }: { container: ContainerW
         <div className="grid grid-cols-2 gap-8">
             <Card className="col-span-2">
                 <CardHeader>
-                    <CardTitle className={`${robotoMono.className}`}>{t('title', { name: container.name })}</CardTitle>
+                    <CardTitle className={`${robotoMono.className} text-primary`}>{t('title', { name: container.name })}</CardTitle>
                 </CardHeader>
             </Card>
 
@@ -21,7 +21,7 @@ export default function ContainerOverview({ container }: { container: ContainerW
 
             <Card className="h-fit">
                 <CardHeader>
-                    <CardTitle>{t('users.title')}</CardTitle>
+                    <CardTitle className="text-primary">{t('users.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     {container.users.map((user) => (

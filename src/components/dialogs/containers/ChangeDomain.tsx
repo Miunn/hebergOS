@@ -34,7 +34,6 @@ export default function ChangeDomain({ children, container }: { children?: React
     const submit = async (data: z.infer<typeof ChangeDomainFormSchema>) => {
         setLoading(true);
 
-        console.log("Data", data);
         data.domain = protocolValue + data.domain;
         const r = await changeContainerDomain(container.id, data);
 

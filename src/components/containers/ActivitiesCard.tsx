@@ -50,13 +50,13 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="flex justify-between items-start">
+                <CardTitle className="flex justify-between items-start text-primary">
                     {t('title')}
                     <TooltipProvider>
                         <Tooltip>
                             <FullActivities container={container}>
                                 <TooltipTrigger asChild>
-                                    <Button variant={"outline"} size={"icon"}>
+                                    <Button variant={"outline"} size={"icon"} className="text-secondary">
                                         <ScrollText />
                                     </Button>
                                 </TooltipTrigger>

@@ -29,7 +29,7 @@ export default async function ContainersTable({ containers }: { containers: Cont
             columns={containersColumns}
             data={sortedContainers}
             tableTitle={(
-                <h1 className={`${robotoMono.className} text-xl`}><NumberTicker value={containers.length} /> {t('containers', { count: containers.length })}</h1>
+                <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}><NumberTicker value={containers.length} className="text-secondary" /> {t('containers', { count: containers.length })}</h1>
             )}
             rightContent={(
                 <CreateContainerDialog availableHostPorts={availableHostPorts}>

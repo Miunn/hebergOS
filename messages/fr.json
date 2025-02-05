@@ -13,8 +13,8 @@
             },
 
             "section2": {
-                "title": "Manage your applications easily",
-                "description": "Directly start, stop or restart your applications through HebergOS. If you're familiar we provide an integrated terminal to manage your applications."
+                "title": "Gérez vos applications en toute simplicité",
+                "description": "Démarrez, arrêtez, redémarrez vos conteneurs en deux clics directement ou accédez à la console de vos conteneurs directement depuis l'interface de l'application."
             },
 
             "section3": {
@@ -22,6 +22,61 @@
                 "description": "HebergOS vous permet de surveiller l'état de vos applications en temps réel. Vous pouvez voir les statistiques d'utilisation de vos conteneurs et observer la réponses de vos applications en fonction du traffic.",
                 "link": "Monitor",
                 "widgetTitle": "Statistiques d'utilisation"
+            },
+
+            "faq": {
+                "title": "Questions fréquentes",
+                "questions": {
+                    "1": {
+                        "question": "Qu'est-ce que HebergOS ?",
+                        "answer": "HebergOS est une solution d'hébergement mise en place par le club informatique de l'INSA Hauts-de-France pour ses étudiants et associations ayant besoin d'infrastructures informatiques pour divers projets. Elle permet de déployer des applications ou services centrés sur le Web et de les gérer à travers une interface intuitive."
+                    },
+                    "2": {
+                        "question": "A qui HebergOS s'adresse-t-il ?",
+                        "answer": "HebergOS a été pensé pour être le plus simple d'utilisation afin de correspondre aux personnes possédant un bagage informatique tout comme aux personnes non initiées. De cette manière, même si vous n'êtes pas membre du club mais que vous voulez, par exemple, mettre en place un site web pour votre association, le club informatique peut fournir les compétences techinques. De votre côté, vous gardez la main sur l'état de votre projet, ses statistiques, et pouvez à tout moment effectuer différentes actions."
+                    },
+                    "3": {
+                        "question": "Comment puis-je y accéder ?",
+                        "answer": "HebergOS est destiné aux étudiants ainsi qu'aux associations de l'INSA Hauts-de-France. Contactez-nous pour nous faire part de vos projets et obtenir un accès."
+                    },
+                    "4": {
+                        "question": "Comment puis-je vous contacter ?",
+                        "answer": "Vous pouvez nous contacter directement via le formulaire de contact en cliquant sur Contactez-nous, sur Instagram, LinkedIn, Discord ou par mail"
+                    }
+                }
+            }
+        },
+        "contact": {
+            "title": "Contactez-nous",
+            "description": "Vous avez une question, une suggestion ou une demande particulière",
+            "form": {
+                "fields": {
+                    "name": {
+                        "label": "Nom",
+                        "placeholder": "Entrez votre nom"
+                    },
+                    "email": {
+                        "label": "Email",
+                        "placeholder": "Entrez votre email",
+                        "description": "Nous utiliserons cette adresse afin de vous recontacter"
+                    },
+                    "message": {
+                        "label": "Message",
+                        "placeholder": "Entrez votre message"
+                    }
+                }
+            },
+            "actions": {
+                "submit": "Envoyer",
+                "submitting": "Envoi..."
+            },
+            "error": {
+                "title": "Erreur lors de l'envoi du message",
+                "description": "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer."
+            },
+            "success": {
+                "title": "Message envoyé",
+                "description": "Votre message a été envoyé avec succès. Nous vous recontacterons dans les plus brefs délais."
             }
         },
         "app": {
@@ -67,7 +122,7 @@
                     "descriptionPaused": "{name} est en pause.",
                     "activity": {
                         "empty": "Aucune activité récente pour le moment",
-                        "title": "Activité du conteneur",
+                        "title": "Activités du conteneur",
                         "started": "Projet démarré",
                         "stopped": "Projet arrêté",
                         "restarted": "Projet redémarré"
@@ -134,7 +189,7 @@
         "containers": {
             "activities": {
                 "empty": "Aucune activité récente pour le moment",
-                "title": "Activité du conteneur",
+                "title": "Activités du conteneur",
                 "descriptionFull": "Toutes les activités récentes du conteneur",
                 "description": "Les {count} dernières activités du conteneur",
                 "created": "Projet créé",

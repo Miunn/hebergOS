@@ -52,7 +52,6 @@ export async function createUser(data: { name: string, email: string, nickname: 
         return { error: 'not-authorized' };
     }
 
-    console.log("Creating user with data : ", data);
     const parsedData = RegisterFormSchema.safeParse(data);
 
     if (!parsedData.success) {

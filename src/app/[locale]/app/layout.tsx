@@ -12,8 +12,10 @@ export default async function AppLayout(
     return (
         <>
             <Header />
-            <main className="max-w-7xl mx-auto mt-14 px-24 md:min-h-screen">
-                {children}
+            <main className="md:min-h-screen pt-14 bg-primary/4">
+                <div className="max-w-7xl mx-auto px-24">
+                    {children}
+                </div>
             </main>
         </>
     );

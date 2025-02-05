@@ -41,8 +41,6 @@ export const authConfig: NextAuthOptions = {
         
                 if (!passwordsMatch) return null;
 
-                console.log("Connect User", user);
-
                 return { id: user.id, email: user.email, name: user.name, roles: user.roles };
             },
         })

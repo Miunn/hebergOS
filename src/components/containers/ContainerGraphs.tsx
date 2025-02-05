@@ -20,7 +20,6 @@ export default function ContainerGraphs({ container }: { container: Container })
     const [networkDeltaChartData, setNetworkDeltaChartData] = useState<{ timestamp: number; netDeltaUp: number; netDeltaDown: number }[]>([]);
 
     const fetchChartsData = async () => {
-        console.log("Asking period", selectedPeriod);
         let stats = await getContainerStats(container.id, selectedPeriod);
 
         if (!stats) {

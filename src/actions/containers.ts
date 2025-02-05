@@ -103,8 +103,6 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
     }
     clientStats.sort((a, b) => a.timestamp - b.timestamp);
 
-    console.log("First", clientStats[0]);
-    console.log("Last", clientStats[clientStats.length - 1]);
 
     // Sync limits according to last stat
     await prisma.container.update({

@@ -32,8 +32,8 @@ export default async function Container({ params }: { params: Promise<{ locale: 
 
     return (
         <>
-            <div className="mb-8 space-y-2">
-                <h1 className={`${robotoMono.className} antialiased text-xl`}>{container?.name}</h1>
+            <div className="mt-24 mb-8 space-y-2">
+                <h1 className={`${robotoMono.className} antialiased text-xl text-secondary`}>{container?.name}</h1>
                 <div className={`${robotoMono.className} flex items-center gap-2`}>
                     {container.domain
                         ? <Link href={container.domain} target="_blank">{container.domain}</Link>

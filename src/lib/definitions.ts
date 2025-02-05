@@ -38,6 +38,12 @@ export const RegisterFormSchema = z.object({
     path: ["passwordConfirmation"],
 });
 
+export const ContactFormSchema = z.object({
+    name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
+    email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
+    message: z.string().min(10, { message: 'Message must be at least 10 characters long.' }).trim(),
+});
+
 export const LinkContainersFormSchema = z.object({
     containers: z.array(z.string())
 });

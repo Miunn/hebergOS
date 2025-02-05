@@ -23,8 +23,6 @@ export default function DummyChart() {
             memory: Math.max(0, Math.min(1.5, (Math.sin(i * 0.5) * 10 + Math.random() * 2 + 20) / 30))
         }))
 
-    console.log(memoryChartData)
-
     return (
         <Card className="pb-4">
             <CardHeader>
