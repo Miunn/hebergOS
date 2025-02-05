@@ -7,7 +7,7 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 export default function DummyChart() {
 
-    const t = useTranslations("pages.home.monitor");
+    const t = useTranslations("pages.home.section3");
     const formatter = useFormatter();
 
     const chartConfig = {

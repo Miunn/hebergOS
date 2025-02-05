@@ -7,7 +7,17 @@
             "description": "Déployez vos applications web en quelques clics.<br />HebergOS abstrait la complexité de l'hébergement et vous laisse vous concentrer sur l'essentiel.",
             "contact": "Contactez-nous",
 
-            "monitor": {
+            "section1": {
+                "title": "Partagez nous vos idées et créeons ensemble votre solution",
+                "description": "Contactez-nous pour discuter de vos besoins et de vos envies. Préparons la meilleure solution, adaptée à vos projets."
+            },
+
+            "section2": {
+                "title": "Manage your applications easily",
+                "description": "Directly start, stop or restart your applications through HebergOS. If you're familiar we provide an integrated terminal to manage your applications."
+            },
+
+            "section3": {
                 "title": "Gardez un oeil sur vos applications en temps réel",
                 "description": "HebergOS vous permet de surveiller l'état de vos applications en temps réel. Vous pouvez voir les statistiques d'utilisation de vos conteneurs et observer la réponses de vos applications en fonction du traffic.",
                 "link": "Monitor",
@@ -95,6 +105,9 @@
         }
     },
     "components": {
+        "header": {
+            "goToApp": "Aller à l'application"
+        },
         "auth": {
             "login": {
                 "title": "Connexion",

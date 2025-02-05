@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { routing } from './i18n/routing';
 
 async function customMiddleware(request: NextRequestWithAuth) {
@@ -41,7 +41,11 @@ async function customMiddleware(request: NextRequestWithAuth) {
         return NextResponse.redirect(request.nextUrl.searchParams.get("callbackUrl")!);
     }
 
-    return handleI18nRouting(request);
+    const response = handleI18nRouting(request);
+
+    response.headers.set('X-Current-Path', pathname);
+
+    return response;
 }
 
 export default withAuth(customMiddleware, {

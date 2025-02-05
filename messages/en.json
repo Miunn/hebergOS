@@ -7,7 +7,17 @@
             "description": "Deploy your applications in seconds.<br />HebergOS abstract the complexity of hosting and let you focus on what's important.",
             "contact": "Contact us",
 
-            "monitor": {
+            "section1": {
+                "title": "Tell us about your projects",
+                "description": "Contact us with your ideas and requirements so that we prepare together the optimal hosting solution for you."
+            },
+
+            "section2": {
+                "title": "Manage your applications easily",
+                "description": "Directly start, stop or restart your applications through HebergOS. If you're familiar we provide an integrated terminal to manage your applications."
+            },
+
+            "section3": {
                 "title": "Always keep an eye on your hosted applications",
                 "description": "Monitor your applications in real time. Get statistics to understand how your applications behave and responds to traffic loads.",
                 "link": "Monitor",
@@ -95,6 +105,9 @@
         }
     },
     "components": {
+        "header": {
+            "goToApp": "Go to application"
+        },
         "auth": {
             "login": {
                 "title": "Login",
