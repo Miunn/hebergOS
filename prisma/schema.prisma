@@ -45,6 +45,15 @@ enum ContainerState {
   PAUSED
 }
 
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String

@@ -11,6 +11,8 @@ import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
 import { cn } from "@/lib/utils"
 import { Button } from "./ui/button"
+import { submitContactMessage } from "@/actions/contact"
+import { toast } from "@/hooks/use-toast"
 
 export default function ContactForm({ className }: { className?: string }) {
 
@@ -27,6 +29,28 @@ export default function ContactForm({ className }: { className?: string }) {
     })
 
     const submit = async (data: z.infer<typeof ContactFormSchema>) => {
+        setLoading(true);
+
+        const r = await submitContactMessage(data);
+        console.log(r);
+
+        setLoading(false);
+
+        if (!r) {
+            toast({
+                title: t('error.title'),
+                description: t('error.description'),
+                variant: 'destructive'
+            })
+            return;
+        }
+
+        form.reset();
+
+        toast({
+            title: t('success.title'),
+            description: t('success.description'),
+        })
     }
 
     return (
@@ -77,8 +101,8 @@ export default function ContactForm({ className }: { className?: string }) {
                 />
 
                 {loading
-                    ? <Button type="submit">{t('actions.submitting')}</Button>
-                    : <Button disabled>{t('actions.submit')}</Button>
+                    ? <Button disabled>{t('actions.submitting')}</Button>
+                    : <Button type="submit">{t('actions.submit')}</Button>
                 }
             </form>
         </Form>
