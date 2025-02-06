@@ -47,6 +47,19 @@
             }
         },
         "contact": {
+            "title": "Get in touch",
+            "description": "Do you have a question or a project in mind? Contact us and we will get back to you as soon as possible.",
+            "contact": {
+                "address": "INSA Hauts-de-France, Claudin LeJeune 3, E15<br />Thursday 14h-18h",
+                "instagram": {
+                    "label": "@clubinfoinsahdf",
+                    "link": "https://instagram.com/clubinfoinsahdf"
+                },
+                "mail": {
+                    "label": "insa.sh.hdf@gmail.com",
+                    "link": "mailto:insa.sh.hdf@gmail.com"
+                }
+            },
             "form": {
                 "fields": {
                     "name": {
