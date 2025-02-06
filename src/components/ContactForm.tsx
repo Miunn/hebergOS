@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "./ui/button"
 import { submitContactMessage } from "@/actions/contact"
 import { toast } from "@/hooks/use-toast"
+import { Loader2 } from "lucide-react"
 
 export default function ContactForm({ className }: { className?: string }) {
 
@@ -101,7 +102,7 @@ export default function ContactForm({ className }: { className?: string }) {
                 />
 
                 {loading
-                    ? <Button disabled>{t('actions.submitting')}</Button>
+                    ? <Button disabled><Loader2 className="animate-spin" /> {t('actions.submitting')}</Button>
                     : <Button type="submit">{t('actions.submit')}</Button>
                 }
             </form>

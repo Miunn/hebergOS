@@ -2,6 +2,8 @@
 
 import { ContactFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
+import { isAdmin } from "@/lib/utils";
+import { Contact } from "@prisma/client";
 
 export async function submitContactMessage(data: { name: string, email: string, message: string }) {
 
@@ -24,5 +26,33 @@ export async function submitContactMessage(data: { name: string, email: string, 
     } catch (error) {
         console.log(error)
         return false;
+    }
+}
+
+export async function deleteContactMessage(id: string): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    try {
+        await prisma.contact.delete({
+            where: { id: id }
+        })
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+export async function getContactMessages(): Promise<Contact[] | null> {
+    if (!(await isAdmin())) {
+        return [];
+    }
+
+    try {
+        const messages = await prisma.contact.findMany();
+        return messages;
+    } catch (error) {
+        return null;
     }
 }

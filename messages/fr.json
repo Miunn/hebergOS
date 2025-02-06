@@ -218,6 +218,7 @@
                 "label": "Compte",
                 "notifications": "Notifications",
                 "administration": "Administration",
+                "messages": "Messages",
                 "logout": "Déconnexion"
             }
         }
@@ -563,6 +564,40 @@
                     "title": "Utilisateur supprimé",
                     "description": "L'utilisateur a été supprimé avec succès."
                 }
+            }
+        },
+        "contact": {
+            "title": "Messages de contact",
+            "description": "Tous les messages de contact reçus",
+            "empty": "Aucun message de contact pour le moment.",
+            "message": {
+                "actions": {
+                    "label": "Actions",
+                    "open": "Ouvrir",
+                    "anwser": "Répondre",
+                    "delete": {
+                        "trigger": "Supprimer",
+                        "title": "Supprimer le message ?",
+                        "description": "Êtes-vous sûr de vouloir supprimer ce message ? Cette action est irréversible.",
+                        "actions": {
+                            "cancel": "Annuler",
+                            "submit": "Supprimer",
+                            "submitting": "Suppression..."
+                        },
+                        "error": {
+                            "title": "Erreur lors de la suppression du message",
+                            "description": "Une erreur est survenue lors de la suppression du message. Veuillez réessayer."
+                        },
+                        "success": {
+                            "title": "Message supprimé",
+                            "description": "Le message a été supprimé avec succès."
+                        }
+                    }
+                }
+            },
+            "actions": {
+                "close": "Fermer",
+                "answer": "Répondre"
             }
         }
     },
