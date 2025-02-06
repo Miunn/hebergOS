@@ -3,7 +3,7 @@
     "pages": {
         "home": {
             "title": "HebergOS",
-            "catchLine": "Hosting solution for <br /> INSA Hauts-de-France students",
+            "catchLine": "The hosting solution for <br /> INSA Hauts-de-France students",
             "description": "Deploy your applications in seconds.<br />HebergOS abstract the complexity of hosting and let you focus on what's important.",
             "contact": "Contact us",
 

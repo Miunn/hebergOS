@@ -4,12 +4,13 @@ import ContainerActions from "@/components/containers/ContainerActions";
 import ContainerCard from "@/components/containers/ContainerCard";
 import Header from "@/components/Header";
 import DummyChart from "@/components/landing/DummyChart";
-import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Card } from "@/components/ui/card";
 import { ContainerActivityType, ContainerState } from "@prisma/client";
 import { getLocale, getTranslations } from "next-intl/server";
+import { DotPattern } from "@/components/dot-pattern";
+import { cn } from "@/lib/utils";
 
 export default async function Home() {
 
@@ -19,16 +20,22 @@ export default async function Home() {
   return (
     <>
       <Header className="translate-y-[-1rem] opacity-0 animate-fade-in [--animation-delay:600ms]" />
-      <main className="max-w-[80rem] min-h-screen row-start-2 px-6 mx-auto sm:items-start">
+      <main className="relative py-32">
+        <DotPattern
+          className={cn(
+            "top-0 bottom-0 -z-10 [mask-image:linear-gradient(to_right,transparent,white,white,white,white,white,white,white,white,white,transparent)]",
+          )}
+        />
 
-        <section className="relative mx-auto mt-32 max-w-[80rem] px-6 text-center md:px-8">
+        <section className="max-w-[80rem] min-h-screen row-start-2 px-6 mx-auto sm:items-start">
+        <section className="relative mx-auto mb-32 max-w-[80rem] px-6 text-center md:px-8">
           <h1 className="bg-gradient-to-br dark:from-white from-primary from-30% dark:to-white/40 to-primary/40 bg-clip-text py-6 text-5xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-6xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]" dangerouslySetInnerHTML={{ __html: t('catchLine') }} />
 
           <p className="mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]" dangerouslySetInnerHTML={{ __html: t('description') }} />
 
           <ContactUsCta className="animate-fade-in opacity-0 [--animation-delay:400ms]" />
 
-          <div className="relative mt-[8rem] animate-fade-up opacity-0 [--animation-delay:400ms] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]">
+          <div className="relative mt-[8rem] animate-fade-up opacity-0 [--animation-delay:400ms] ">
             <div className="rounded-xl border border-white/10 bg-white bg-opacity-[0.01] before:absolute before:bottom-1/2 before:left-0 before:top-0 before:h-full before:w-full before:opacity-0 before:[filter:blur(180px)] before:[background-image:linear-gradient(to_bottom,var(--color-one),var(--color-one),transparent_40%)] before:animate-image-glow">
               <BorderBeam />
 
@@ -38,7 +45,7 @@ export default async function Home() {
         </section>
 
         <section className="space-y-32 mx-auto animate-fade-in">
-          <section className="grid grid-cols-[0.7fr_1fr] gap-20 mx-auto">
+          <section className="grid grid-cols-[0.6fr_1fr] gap-20 mx-auto">
             <div>
               <Caribou className="text-[0.5px] font-thin" />
               <h2 className="text-4xl font-semibold mb-6">{t('section1.title')}</h2>
@@ -67,7 +74,7 @@ export default async function Home() {
             </div>
           </section>
 
-          <section className="grid grid-cols-[1fr_0.7fr] gap-20 mx-auto">
+          <section className="grid grid-cols-[1fr_0.6fr] gap-20 mx-auto">
             <Card className="border border-gray-200 rounded-lg p-4">
               <ContainerActions container={{
                 id: "1",
@@ -98,7 +105,7 @@ export default async function Home() {
             </div>
           </section>
 
-          <section className="grid grid-cols-[0.7fr_1fr] gap-20 mx-auto">
+          <section className="grid grid-cols-[0.6fr_1fr] gap-20 mx-auto">
             <div>
               <Caribou className="text-[0.5px] font-thin" />
               <h2 className="text-4xl font-semibold mb-6">{t('section3.title')}</h2>
@@ -111,7 +118,7 @@ export default async function Home() {
           </section>
         </section>
 
-        <section className="max-w-[1300px] w-[700px] mx-auto space-y-14 my-32">
+        <section className="max-w-[1300px] w-[700px] mx-auto space-y-14 mt-32">
           <h2 className="text-center text-4xl font-semibold">{t('faq.title')}</h2>
 
           <Accordion type="single" collapsible className="w-full space-y-2">
@@ -160,6 +167,7 @@ export default async function Home() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </section>
         </section>
       </main>
     </>
