@@ -23,7 +23,7 @@ export default async function Home() {
       <main className="relative py-32">
         <DotPattern
           className={cn(
-            "top-0 bottom-0 -z-10 [mask-image:linear-gradient(to_right,transparent,white,white,white,white,white,white,white,white,white,transparent)]",
+            "top-0 bottom-0 opacity-70 -z-10 [mask-image:linear-gradient(to_right,transparent,white,white,white,white,white,white,white,white,white,transparent)]",
           )}
         />
 

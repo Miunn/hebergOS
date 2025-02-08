@@ -35,7 +35,7 @@ export default function ContainerTabs({ container }: { container: ContainerWithA
             <TabsContent value="graphs" className="w-full"><ContainerGraphs container={container} /></TabsContent>
             <TabsContent value="shell" className="w-full"><ContainerShell container={container} /></TabsContent>
             <TabsContent value="actions" className="w-full"><ContainerActions container={container} /></TabsContent>
-            <TabsContent value="asks" className="w-full"><ContainerAsks /></TabsContent>
+            <TabsContent value="asks" className="w-full"><ContainerAsks containerNotifications={container.containerNotifications} /></TabsContent>
         </Tabs>
     )
 }

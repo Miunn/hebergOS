@@ -23,7 +23,11 @@ export default async function UsersTable({ users }: { users: UserWithContainers[
                 return a.name.localeCompare(b.name);
             })}
             tableTitle={(
-                <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}><NumberTicker value={users.length} className="text-secondary" /> {t('users', { count: users.length })}</h1>
+                <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
+                    {users.length === 0
+                        ? <span className="text-secondary">0</span>
+                        : <NumberTicker value={users.length} className="text-secondary" />
+                    } {t('users', { count: users.length })} </h1>
             )}
             rightContent={(
                 <CreateUserDialog>

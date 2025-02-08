@@ -15,7 +15,7 @@ export default async function Footer() {
                     <ul>
                         <p className="text-sm font-semibold text-gray-300">About</p>
                         <li>
-                            <Button variant={"link"} className="p-0" asChild><Link href={"/contact"} className="text-white text-lg">Contact</Link></Button>
+                            <Button variant={"link"} className="p-0" asChild><Link href={"/contact-us"} className="text-white text-lg">Contact</Link></Button>
                         </li>
                     </ul>
                     <ul>

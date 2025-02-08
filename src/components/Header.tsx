@@ -16,7 +16,7 @@ export default async function Header({ className }: { className?: string }) {
     const headerList = headers();
 
     const session = await getServerSession(authConfig);
-    const isOnLandingPage = new RegExp(`^\/(${routing.locales.join('|')})$`).test((await headerList).get("X-Current-Path") || '');
+    const isOnLandingPage = new RegExp(`^\/(${routing.locales.join('|')})(/contact-us)?$`).test((await headerList).get("X-Current-Path") || '');
     const t = await getTranslations('components.header');
 
     return (

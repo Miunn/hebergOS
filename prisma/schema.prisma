@@ -30,7 +30,6 @@ enum ContainerActivityType {
 }
 
 enum NotificationType {
-  CONTACT
   CREATE
   CONTAINER_MEMORY
   CONTAINER_CPU
@@ -102,18 +101,16 @@ model ContainerActivity {
 
 model Notification {
   id          String   @id @default(cuid())
-  userId      String?
-  containerId String?
-  title       String
+  userId      String
+  containerId String
   message     String
-  value       Float?
   contact     String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   type      NotificationType
-  user      User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  container Container?       @relation(fields: [containerId], references: [id], onDelete: Cascade)
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  container Container       @relation(fields: [containerId], references: [id], onDelete: Cascade)
 }
 
 model Account {

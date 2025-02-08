@@ -156,6 +156,21 @@
                         "changeCpu": "Changer la limite de CPU",
                         "deleteContainer": "Supprimer le conteneur"
                     }
+                },
+                "asks": {
+                    "title": "Asks",
+                    "tickets": "{count, plural, zero {Ticket} one {Ticket} other {Tickets}}",
+                    "empty": "No ask for now",
+                    "create": "Create a ticket",
+                    "searchTickets": "Filter tickets",
+                    "description": "Here are the last asks of the container.",
+                    "created": "Container created",
+                    "started": "Container started",
+                    "stopped": "Container stopped",
+                    "restarted": "Container restarted",
+                    "domainUpdate": "Domain updated to {domain}",
+                    "memoryUpdate": "Memory limit updated to {memory} Go",
+                    "cpuUpdate": "CPU limit updated to {cpu} %"
                 }
             },
             "administration": {
@@ -641,6 +656,21 @@
                 "label": "Actions",
                 "editContainers": "Modifier les conteneurs",
                 "editRoles": "Modifier les rôles",
+                "delete": "Supprimer"
+            }
+        },
+        "notifications": {
+            "columns": {
+                "user": "Utilisateur",
+                "container": "Projet",
+                "type": "Type",
+                "message": "Message",
+                "createdAt": "Créé le",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "open": "Ouvrir",
                 "delete": "Supprimer"
             }
         }

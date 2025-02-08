@@ -1,7 +1,10 @@
-export default function ContainerAsks() {
+import { Notification } from "@prisma/client";
+import NotificationTable from "../tables/NotificationTable";
+
+export default function ContainerAsks({ containerNotifications }: { containerNotifications: Notification[] }) {
     return (
         <>
-            <p>Asks</p>
+            <NotificationTable notifications={containerNotifications} />
         </>
     )
 }

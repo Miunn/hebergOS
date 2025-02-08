@@ -156,6 +156,21 @@
                         "changeCpu": "Change CPU limit",
                         "deleteContainer": "Delete container"
                     }
+                },
+                "asks": {
+                    "title": "Asks",
+                    "tickets": "{count, plural, zero {Tickets} one {Ticket} other {Tickets}}",
+                    "empty": "No ask for now",
+                    "create": "Create a ticket",
+                    "searchTickets": "Filter tickets",
+                    "description": "Here are the last asks of the container.",
+                    "created": "Container created",
+                    "started": "Container started",
+                    "stopped": "Container stopped",
+                    "restarted": "Container restarted",
+                    "domainUpdate": "Domain updated to {domain}",
+                    "memoryUpdate": "Memory limit updated to {memory} Go",
+                    "cpuUpdate": "CPU limit updated to {cpu} %"
                 }
             },
             "administration": {
@@ -640,6 +655,21 @@
                 "label": "Actions",
                 "editContainers": "Edit containers",
                 "editRoles": "Edit roles",
+                "delete": "Delete"
+            }
+        },
+        "notifications": {
+            "columns": {
+                "user": "User",
+                "container": "Project",
+                "type": "Type",
+                "message": "Message",
+                "createdAt": "Date",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "open": "Open",
                 "delete": "Delete"
             }
         }
