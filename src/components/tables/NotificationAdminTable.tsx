@@ -1,11 +1,8 @@
 import { DataTable } from "../ui/data-table";
-import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
 import { NumberTicker } from "../ui/number-ticker";
-import { notificationsColumns } from "./notifications-columns";
 import { useTranslations } from "next-intl";
-import CreateTicketDialog from "../dialogs/CreateTicket";
-import { ContainerWithNotificationsAndUsers, NotificationWithUserAndContainer } from "@/lib/definitions";
+import { NotificationWithUserAndContainer } from "@/lib/definitions";
 import { NotificationState } from "@prisma/client";
 import { notificationsAdminColumns } from "./notifications-admin-columns";
 

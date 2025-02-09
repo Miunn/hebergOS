@@ -1,7 +1,6 @@
 import { UserWithContainers } from "@/lib/definitions";
 import { DataTable } from "../ui/data-table";
 import { usersColumns } from "./users-columns";
-import { getTranslations } from "next-intl/server";
 import CreateUserDialog from "../dialogs/users/CreateUser";
 import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";

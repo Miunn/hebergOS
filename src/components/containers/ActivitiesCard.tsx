@@ -1,5 +1,5 @@
 import { ContainerActivity } from "@prisma/client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { ContainerWithActivity } from "@/lib/definitions";
 import { useFormatter, useTranslations } from "next-intl";
 import { Button } from "../ui/button";

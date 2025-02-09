@@ -6,7 +6,6 @@ import { Providers } from "./providers";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default async function RootLayout(
   } = props;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes((await props.params).locale as any)) {
+  if (!routing.locales.includes((await props.params).locale as "en" | "fr")) {
     notFound();
   }
 

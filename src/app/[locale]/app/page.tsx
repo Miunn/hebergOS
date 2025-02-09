@@ -1,13 +1,10 @@
 import { getMe } from "@/actions/user"
-import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import Container from "@/components/containers/ContainerCard";
-import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 
 export default async function Dashboard() {
 
-    const session = await getServerSession(authConfig);
     const t = await getTranslations("pages.app.dashboard");
     const me = await getMe();
 

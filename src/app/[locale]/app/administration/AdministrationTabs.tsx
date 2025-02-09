@@ -4,7 +4,7 @@ import ContainersTable from "@/components/tables/ContainersTable";
 import NotificationAdminTable from "@/components/tables/NotificationAdminTable";
 import UsersTable from "@/components/tables/UsersTable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { NotificationWithUser, NotificationWithUserAndContainer, UserWithContainers } from "@/lib/definitions";
+import { NotificationWithUserAndContainer, UserWithContainers } from "@/lib/definitions";
 import { Container } from "@prisma/client";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";

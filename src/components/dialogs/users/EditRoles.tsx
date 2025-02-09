@@ -1,5 +1,4 @@
-import { getContainersAdmin } from "@/actions/containers";
-import { editRoles, linkContainers } from "@/actions/user";
+import { editRoles } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -81,7 +80,7 @@ export default function EditRoles({ user, open, setOpen }: { user: UserLight, op
                         <FormField
                             control={form.control}
                             name="roles"
-                            render={({ field }) => (
+                            render={() => (
                                 <FormItem>
 
                                     {roles.map(role => (

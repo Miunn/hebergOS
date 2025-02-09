@@ -1,9 +1,8 @@
 'use server'
 
-import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
-import { isAdmin } from "@/lib/utils";
+import { authConfig, isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import bcrypt from 'bcryptjs';

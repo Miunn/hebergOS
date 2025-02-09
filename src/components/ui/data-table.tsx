@@ -2,7 +2,6 @@
 
 import {
   ColumnDef,
-  ColumnFilter,
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
@@ -23,7 +22,6 @@ import {
 } from "@/components/ui/table"
 import { useState } from "react"
 import { Input } from "./input"
-import { robotoMono } from "@/ui/fonts"
 import { Button } from "./button"
 import { useTranslations } from "next-intl"
 

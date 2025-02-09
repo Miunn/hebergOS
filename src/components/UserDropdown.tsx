@@ -1,6 +1,6 @@
 'use client'
 
-import { Bell, LogOut, MessagesSquare, Shield, UserCircle } from "lucide-react";
+import { Bell, LogOut, MessagesSquare, Shield } from "lucide-react";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";

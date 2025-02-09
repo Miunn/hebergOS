@@ -3,7 +3,6 @@
 import { useFormatter, useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { ContainerWithActivity } from "@/lib/definitions";
-import { ContainerActivity } from "@prisma/client";
 import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
 import StartContainer from "@/components/dialogs/containers/StartContainer";

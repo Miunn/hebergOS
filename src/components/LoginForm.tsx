@@ -11,17 +11,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { Input } from "./ui/input";
 import { SignInFormSchema } from "@/lib/definitions";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
     const t = useTranslations("components.auth.login");
-    const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
     const [loading, setLoading] = useState<boolean>(false);
 
-    const session = useSession();
     const form = useForm({
         resolver: zodResolver(SignInFormSchema),
         defaultValues: {

@@ -1,9 +1,78 @@
-import { authConfig } from "@/app/api/auth/[...nextauth]/route";
+import { type NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import bcrypt from 'bcryptjs';
+import { User } from '@prisma/client';
+import { SignInFormSchema } from '@/lib/definitions';
 import { clsx, type ClassValue } from "clsx"
 import { getServerSession } from "next-auth";
 import { twMerge } from "tailwind-merge"
 import { prisma } from "./prisma";
 import { ContainerState } from "@prisma/client";
+
+export const authConfig: NextAuthOptions = {
+  session: {
+      strategy: 'jwt'
+  },
+  pages: {
+      signIn: '/login',
+  },
+  providers: [
+      CredentialsProvider({
+          name: 'Sign in',
+          credentials: {
+              email: {
+                  label: 'Email',
+                  type: 'email',
+                  placeholder: 'hello@exemple.com'
+              },
+              password: { label: 'Password', type: 'password' }
+          },
+          async authorize(credentials) {
+              const parsedCredentials = SignInFormSchema.safeParse(credentials);
+        
+              if (!parsedCredentials.success) {
+                  return null;
+              }
+
+              const { nickname, password } = parsedCredentials.data;
+              
+              const user = await prisma.user.findUnique({ where: { nickname }, omit: { password: false } });
+
+              if (!user) return null;
+
+              const passwordsMatch = await bcrypt.compare(password, user.password);
+      
+              if (!passwordsMatch) return null;
+
+              return { id: user.id, email: user.email, name: user.name, roles: user.roles };
+          },
+      })
+  ],
+  callbacks: {
+      session: ({ session, token }) => {
+          return {
+              ...session,
+              user: {
+                  ...session.user,
+                  id: token.id,
+                  roles: token.roles
+              }
+          }
+      },
+      jwt: ({ token, user }) => {
+          // Means they just logged in
+          if (user) {
+              const u = user as unknown as User;
+              return {
+                  ...token,
+                  id: u.id,
+                  roles: u.roles
+              }
+          }
+          return token;
+      }
+  }
+};
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -38,7 +107,8 @@ export async function syncContainers() {
     return false;
   }
 
-  for (const [id, value] of Object.entries(containers) as [string, any][]) {
+  console.log(containers);
+  for (const [id, value] of Object.entries(containers) as [string, { dockerlink: string, host_port_root: string, name: string, ports: { [key: string]: string}[], state: string, started_at?: number, exit_code?: number}][]) {
     let state;
 
     switch (value.state) {
@@ -58,7 +128,7 @@ export async function syncContainers() {
         state = ContainerState.RESTARTING;
         break;
 
-      case "stopped":
+      case "exited":
         state = ContainerState.STOPPED;
         break;
 
@@ -72,14 +142,14 @@ export async function syncContainers() {
       update: {
         name: value.name,
         hostPort: parseInt(value.host_port_root) || 0,
-        startedAt: state == "RUNNING" ? new Date(value.started_at*1000) : undefined,
+        startedAt: state == "RUNNING" ? new Date(value.started_at! * 1000) : undefined,
         state: state,
       },
       create: {
         id: id,
         name: value.name,
         hostPort: parseInt(value.host_port_root) || 0,
-        startedAt: state == "RUNNING" ? new Date(value.started_at) : undefined,
+        startedAt: state == "RUNNING" ? new Date(value.started_at!) : undefined,
         state: state,
       }
     })

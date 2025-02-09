@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { routing } from './i18n/routing';
 
 async function customMiddleware(request: NextRequestWithAuth) {

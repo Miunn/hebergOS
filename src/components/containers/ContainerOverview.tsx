@@ -1,6 +1,5 @@
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Container, ContainerActivity } from "@prisma/client";
 import { robotoMono } from "@/ui/fonts";
 import { ContainerWithActivity, ContainerWithUsers } from "@/lib/definitions";
 import ActivitiesCard from "./ActivitiesCard";

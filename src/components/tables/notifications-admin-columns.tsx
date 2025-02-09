@@ -6,7 +6,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useState } from "react";
-import { NotificationWithUser, NotificationWithUserAndContainer } from "@/lib/definitions";
+import { NotificationWithUserAndContainer } from "@/lib/definitions";
 import CancelTicket from "../dialogs/CancelTicket";
 
 export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContainer>[] = [

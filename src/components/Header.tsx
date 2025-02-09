@@ -1,4 +1,3 @@
-import { authConfig } from "@/app/api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -10,7 +9,7 @@ import ContactUsCta from "./ContactUsCta";
 import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
-import { cn } from "@/lib/utils";
+import { authConfig, cn } from "@/lib/utils";
 
 export default async function Header({ className }: { className?: string }) {
     const headerList = headers();

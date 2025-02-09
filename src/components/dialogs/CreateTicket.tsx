@@ -1,16 +1,14 @@
 'use client'
 
 import { createTicket } from "@/actions/ticket";
-import { createUser } from "@/actions/user";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { CreateTicketFormSchema, RegisterFormSchema } from "@/lib/definitions";
+import { CreateTicketFormSchema } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Container, NotificationType, Role } from "@prisma/client";
+import { Container, NotificationType } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";

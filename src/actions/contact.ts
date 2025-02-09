@@ -39,7 +39,7 @@ export async function deleteContactMessage(id: string): Promise<boolean> {
             where: { id: id }
         })
         return true;
-    } catch (error) {
+    } catch {
         return false;
     }
 }
@@ -52,7 +52,7 @@ export async function getContactMessages(): Promise<Contact[] | null> {
     try {
         const messages = await prisma.contact.findMany();
         return messages;
-    } catch (error) {
+    } catch {
         return null;
     }
 }

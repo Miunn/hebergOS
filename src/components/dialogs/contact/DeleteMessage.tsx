@@ -4,7 +4,7 @@ import { DialogHeader, DialogFooter, Dialog, DialogTrigger, DialogContent, Dialo
 import { toast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import React, { useEffect } from "react";
+import React from "react";
 
 
 export default function DeleteMessage({ children, messageId, open, setOpen }: { children?: React.ReactNode, messageId: string, open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {

@@ -2,9 +2,8 @@ import Header from "@/components/Header";
 import { syncContainers } from "@/lib/utils";
 
 export default async function AppLayout(
-    { children, params }: Readonly<{
+    { children }: Readonly<{
         children: React.ReactNode;
-        params: { locale: string };
     }>
 ) {
     await syncContainers();

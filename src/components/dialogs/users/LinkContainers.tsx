@@ -3,7 +3,7 @@ import { linkContainers } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
 import { LinkContainersFormSchema, UserWithContainers } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,7 +12,7 @@ import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
+import { z } from "zod";
 
 export default function LinkContainers({ user, open, setOpen }: { user: UserWithContainers, open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
 
@@ -72,7 +72,7 @@ export default function LinkContainers({ user, open, setOpen }: { user: UserWith
                         <FormField
                             control={form.control}
                             name="containers"
-                            render={({ field }) => (
+                            render={() => (
                                 <FormItem>
 
                                     {containers.map(container => (

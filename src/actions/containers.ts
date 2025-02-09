@@ -1,10 +1,9 @@
 'use server'
 
-import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
-import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithNotificationsAndUsers, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
+import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotificationsAndUsers, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
-import { isAdmin } from "@/lib/utils";
+import { authConfig, isAdmin } from "@/lib/utils";
 import { Container, ContainerActivityType } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
@@ -93,7 +92,7 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
 
     const stats = await r.json();
 
-    let clientStats: ClientContainerStat[] = [];
+    const clientStats: ClientContainerStat[] = [];
     for (const [timestamp, stat] of Object.entries(stats) as [string, any][]) {
         clientStats.push({
             timestamp: parseInt(timestamp),
@@ -366,7 +365,7 @@ export async function getContainersAdmin(): Promise<Container[]> {
 
     try {
         return await prisma.container.findMany();
-    } catch (e) {
+    } catch {
         return []
     }
 }
@@ -384,7 +383,7 @@ export async function getAvailableHostPorts(): Promise<number[]> {
                 hostPort: true
             }
         }).then(containers => basePorts.filter(port => !containers.some(container => container.hostPort === port)));
-    } catch (e) {
+    } catch {
         return []
     }
 }
