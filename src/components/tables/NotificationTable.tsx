@@ -1,38 +1,42 @@
 import { DataTable } from "../ui/data-table";
-import CreateUserDialog from "../dialogs/users/CreateUser";
 import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
 import { NumberTicker } from "../ui/number-ticker";
 import { notificationsColumns } from "./notifications-columns";
-import { Notification } from "@prisma/client";
 import { useTranslations } from "next-intl";
+import CreateTicketDialog from "../dialogs/CreateTicket";
+import { ContainerWithNotificationsAndUsers } from "@/lib/definitions";
+import { NotificationState } from "@prisma/client";
 
-export default function NotificationTable({ notifications }: { notifications: Notification[] }) {
+export default function NotificationTable({ container }: { container: ContainerWithNotificationsAndUsers }) {
 
     const t = useTranslations('pages.app.container.asks');
-    console.log(notifications);
-    console.log("Notification length: ", notifications.length);
 
     return (
         <DataTable
             columns={notificationsColumns}
-            data={notifications.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())}
+            data={container.containerNotifications.sort((a, b) => {
+                if (a.state === NotificationState.CANCELED && b.state !== NotificationState.CANCELED) return 1;
+                if (a.state !== NotificationState.CANCELED && b.state === NotificationState.CANCELED) return -1;
+
+                return b.createdAt.getTime() - a.createdAt.getTime();
+            })}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
-                    {notifications.length === 0
+                    {container.containerNotifications.length === 0
                         ? <span className="text-secondary">0</span>
-                        : <NumberTicker value={notifications.length} className="text-secondary" />
-                    } {t('tickets', { count: notifications.length })}
+                        : <NumberTicker value={container.containerNotifications.length} className="text-secondary" />
+                    } {t('tickets', { count: container.containerNotifications.length })}
                 </h1>
             )}
             rightContent={(
-                <CreateUserDialog>
+                <CreateTicketDialog container={container}>
                     <Button variant={"secondary"}>
                         {t('create')}
                     </Button>
-                </CreateUserDialog>
+                </CreateTicketDialog>
             )}
-            filterPlaceholder={t('searchTickets')}
+            filterPlaceholder={t('search')}
             filteredColumn="message"
         />
     )

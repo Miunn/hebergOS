@@ -7,11 +7,11 @@ import ContainerGraphs from "./ContainerGraphs";
 import ContainerShell from "./ContainerShell";
 import ContainerActions from "./ContainerActions";
 import ContainerAsks from "./ContainerAsks";
-import { ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers } from "@/lib/definitions";
+import { ContainerWithActivity, ContainerWithNotificationsAndUsers, ContainerWithUsers } from "@/lib/definitions";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-export default function ContainerTabs({ container }: { container: ContainerWithActivity & ContainerWithUsers & ContainerWithNotifications }) {
+export default function ContainerTabs({ container }: { container: ContainerWithActivity & ContainerWithUsers & ContainerWithNotificationsAndUsers }) {
 
     const { replace } = useRouter();
     const searchParams = useSearchParams();
@@ -35,7 +35,7 @@ export default function ContainerTabs({ container }: { container: ContainerWithA
             <TabsContent value="graphs" className="w-full"><ContainerGraphs container={container} /></TabsContent>
             <TabsContent value="shell" className="w-full"><ContainerShell container={container} /></TabsContent>
             <TabsContent value="actions" className="w-full"><ContainerActions container={container} /></TabsContent>
-            <TabsContent value="asks" className="w-full"><ContainerAsks containerNotifications={container.containerNotifications} /></TabsContent>
+            <TabsContent value="asks" className="w-full"><ContainerAsks container={container} /></TabsContent>
         </Tabs>
     )
 }

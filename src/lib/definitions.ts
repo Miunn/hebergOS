@@ -1,4 +1,4 @@
-import { Prisma, Role } from "@prisma/client";
+import { NotificationType, Prisma, Role } from "@prisma/client";
 import { z } from "zod";
 
 export type ClientContainerStat = {
@@ -41,6 +41,11 @@ export const RegisterFormSchema = z.object({
 export const ContactFormSchema = z.object({
     name: z.string().min(3, { message: 'Name must be at least 3 characters long.' }).trim(),
     email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
+    message: z.string().min(10, { message: 'Message must be at least 10 characters long.' }).max(1000, { message: 'Message must be less than 1000 characters long' }).trim(),
+});
+
+export const CreateTicketFormSchema = z.object({
+    type: z.nativeEnum(NotificationType).default(NotificationType.CONTAINER_MEMORY),
     message: z.string().min(10, { message: 'Message must be at least 10 characters long.' }).max(1000, { message: 'Message must be less than 1000 characters long' }).trim(),
 });
 
@@ -102,3 +107,19 @@ const containerWithNotifications = Prisma.validator<Prisma.ContainerDefaultArgs>
 })
 
 export type ContainerWithNotifications = Prisma.ContainerGetPayload<typeof containerWithNotifications>
+
+const containerWithNotificationsAndUsers = Prisma.validator<Prisma.ContainerDefaultArgs>()({
+    include: {
+        containerNotifications: {
+            include: { user: true }
+        }
+    }
+})
+
+export type ContainerWithNotificationsAndUsers = Prisma.ContainerGetPayload<typeof containerWithNotificationsAndUsers>
+
+const notificationsWithUser = Prisma.validator<Prisma.NotificationDefaultArgs>()({
+    include: { user: { omit: { password: true } } }
+})
+
+export type NotificationWithUser = Prisma.NotificationGetPayload<typeof notificationsWithUser>

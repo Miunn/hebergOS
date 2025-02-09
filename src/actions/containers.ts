@@ -2,7 +2,7 @@
 
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
 import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
-import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
+import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotifications, ContainerWithNotificationsAndUsers, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/utils";
 import { Container, ContainerActivityType } from "@prisma/client";
@@ -32,7 +32,7 @@ export async function getContainer(id: string) {
     return null;
 }
 
-export async function getContainerFull(id: string): Promise<ContainerWithActivity & ContainerWithUsers & ContainerWithNotifications | null> {
+export async function getContainerFull(id: string): Promise<ContainerWithActivity & ContainerWithUsers & ContainerWithNotificationsAndUsers | null> {
     const session = await getServerSession(authConfig);
 
     if (!session) {
@@ -44,7 +44,13 @@ export async function getContainerFull(id: string): Promise<ContainerWithActivit
         include: {
             users: true,
             containerActivities: true,
-            containerNotifications: true
+            containerNotifications: {
+                include: { 
+                    user: {
+                        omit: { password: true }
+                    }
+                }
+            }
         }
     });
 

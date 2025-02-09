@@ -30,10 +30,17 @@ enum ContainerActivityType {
 }
 
 enum NotificationType {
-  CREATE
   CONTAINER_MEMORY
   CONTAINER_CPU
   CONTAINER_DELETE
+  OTHER
+}
+
+enum NotificationState {
+  CREATED
+  READ
+  PROCESSED
+  CANCELED
 }
 
 enum ContainerState {
@@ -108,9 +115,10 @@ model Notification {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  state     NotificationState @default(CREATED)
   type      NotificationType
-  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  container Container       @relation(fields: [containerId], references: [id], onDelete: Cascade)
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  container Container         @relation(fields: [containerId], references: [id], onDelete: Cascade)
 }
 
 model Account {

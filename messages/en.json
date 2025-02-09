@@ -6,24 +6,20 @@
             "catchLine": "The hosting solution for <br /> INSA Hauts-de-France students",
             "description": "Deploy your applications in seconds.<br />HebergOS abstract the complexity of hosting and let you focus on what's important.",
             "contact": "Contact us",
-
             "section1": {
                 "title": "Tell us about your projects",
                 "description": "Contact us with your ideas and requirements so that we prepare together the optimal hosting solution for you."
             },
-
             "section2": {
                 "title": "Manage your applications easily",
                 "description": "Directly start, stop or restart your applications through HebergOS. If you're familiar we provide an integrated terminal to manage your applications."
             },
-
             "section3": {
                 "title": "Always keep an eye on your hosted applications",
                 "description": "Monitor your applications in real time. Get statistics to understand how your applications behave and responds to traffic loads.",
                 "link": "Monitor",
                 "widgetTitle": "Memory statistics"
             },
-
             "faq": {
                 "title": "Frequently Asked Questions",
                 "questions": {
@@ -158,19 +154,9 @@
                     }
                 },
                 "asks": {
-                    "title": "Asks",
                     "tickets": "{count, plural, zero {Tickets} one {Ticket} other {Tickets}}",
-                    "empty": "No ask for now",
                     "create": "Create a ticket",
-                    "searchTickets": "Filter tickets",
-                    "description": "Here are the last asks of the container.",
-                    "created": "Container created",
-                    "started": "Container started",
-                    "stopped": "Container stopped",
-                    "restarted": "Container restarted",
-                    "domainUpdate": "Domain updated to {domain}",
-                    "memoryUpdate": "Memory limit updated to {memory} Go",
-                    "cpuUpdate": "CPU limit updated to {cpu} %"
+                    "search": "Filter tickets"
                 }
             },
             "administration": {
@@ -414,6 +400,70 @@
                     "description": "The CPU limit has been edited successfully."
                 }
             },
+            "createTicket": {
+                "title": "Create a ticket",
+                "description": "Create a new ticket to ask an action on you project",
+                "user": {
+                    "label": "User"
+                },
+                "container": {
+                    "label": "Container"
+                },
+                "form": {
+                    "fields": {
+                        "user": {
+                            "label": "User"
+                        },
+                        "container": {
+                            "label": "Container"
+                        },
+                        "type": {
+                            "label": "Type",
+                            "description": "Select the subject of your ticket",
+                            "options": {
+                                "memory": "Memory update",
+                                "cpu": "CPU update",
+                                "delete": "Delete",
+                                "other": "Other"
+                            }
+                        },
+                        "message": {
+                            "label": "Message",
+                            "placeholder": "What do you expect from us ?"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Create",
+                    "submitting": "Creating...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while creating the ticket. Please try again later."
+                },
+                "success": {
+                    "title": "Ticket created",
+                    "description": "The ticket has been created successfully."
+                }
+            },
+            "cancelTicket": {
+                "title": "Cancel ticket",
+                "description": "Are you sure you want to cancel this ticket ?",
+                "actions": {
+                    "cancel": "No, keep it",
+                    "submit": "Yes, cancel",
+                    "submitting": "Canceling..."
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while canceling the ticket. Please try again later."
+                },
+                "success": {
+                    "title": "Ticket canceled",
+                    "description": "The ticket has been canceled successfully."
+                }
+            },
             "delete": {
                 "trigger": "Delete",
                 "title": "Delete {name} ?",
@@ -617,6 +667,7 @@
     },
     "tables": {
         "generic": {
+            "empty": "No data for now",
             "page": "Page {current} of {total}",
             "actions": {
                 "selection": "{selected} of {count, plural, =0 {rows} one {row} other {rows}} selected",
@@ -663,14 +714,27 @@
                 "user": "User",
                 "container": "Project",
                 "type": "Type",
+                "state": "State",
                 "message": "Message",
                 "createdAt": "Date",
                 "actions": "Actions"
             },
+            "types": {
+                "memory": "Memory update",
+                "cpu": "CPU update",
+                "delete": "Delete",
+                "other": "Other"
+            },
+            "states": {
+                "created": "Created",
+                "read": "Read",
+                "processed": "Processed",
+                "canceled": "Canceled"
+            },
             "actions": {
                 "label": "Actions",
                 "open": "Open",
-                "delete": "Delete"
+                "cancel": "Cancel"
             }
         }
     }

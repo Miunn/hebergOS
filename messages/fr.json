@@ -158,19 +158,9 @@
                     }
                 },
                 "asks": {
-                    "title": "Asks",
                     "tickets": "{count, plural, zero {Ticket} one {Ticket} other {Tickets}}",
-                    "empty": "No ask for now",
-                    "create": "Create a ticket",
-                    "searchTickets": "Filter tickets",
-                    "description": "Here are the last asks of the container.",
-                    "created": "Container created",
-                    "started": "Container started",
-                    "stopped": "Container stopped",
-                    "restarted": "Container restarted",
-                    "domainUpdate": "Domain updated to {domain}",
-                    "memoryUpdate": "Memory limit updated to {memory} Go",
-                    "cpuUpdate": "CPU limit updated to {cpu} %"
+                    "create": "Créer un ticket",
+                    "search": "Filtrer les tickets"
                 }
             },
             "administration": {
@@ -415,6 +405,71 @@
                     "description": "La limite CPU a été modifiée avec succès."
                 }
             },
+            "createTicket": {
+                "title": "Créer un ticket",
+                "description": "Créez un nouveau ticket pour demander une action sur votre projet.",
+                "user": {
+                    "label": "Utilisateur"
+                },
+                "container": {
+                    "label": "Projet"
+                },
+                "form": {
+                    "fields": {
+                        "user": {
+                            "label": "Utilisateur"
+                        },
+                        "container": {
+                            "label": "Projet"
+                        },
+                        "type": {
+                            "label": "Type",
+                            "description": "Sélectionnez le type de demande",
+                            "options": {
+                                "memory": "Mise à jour de la mémoire",
+                                "cpu": "Mise à jour du CPU",
+                                "delete": "Suppression du projet",
+                                "other": "Autre"
+                            }
+                        },
+                        "message": {
+                            "label": "Message",
+                            "placeholder": "Le message que vous souhaitez nous transmettre"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la création du ticket",
+                    "description": "Une erreur est survenue lors de la création du ticket. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Ticket créé",
+                    "description": "Le ticket a été créé avec succès."
+                }
+            },
+            "cancelTicket": {
+                "trigger": "Annuler la demande",
+                "title": "Annuler la demande",
+                "description": "Êtes-vous sûr de vouloir annuler la demande ?",
+                "actions": {
+                    "cancel": "Non, garder la demande",
+                    "submit": "Oui, annuler la demande",
+                    "submitting": "Annulation..."
+                },
+                "error": {
+                    "title": "Erreur lors de l'annulation de la demande",
+                    "description": "Une erreur est survenue lors de l'annulation de la demande. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Demande annulée",
+                    "description": "La demande a été annulée avec succès."
+                }
+            },
             "delete": {
                 "trigger": "Supprimer",
                 "title": "Supprimer {name} ?",
@@ -618,6 +673,7 @@
     },
     "tables": {
         "generic": {
+            "empty": "Aucune donnée à afficher",
             "page": "Page {current} sur {total}",
             "actions": {
                 "selection": "{selected} sur {count, plural, =0 {0 ligne sélectionnée} one {1 ligne sélectionnée} other {# lignes sélectionnées}}",
@@ -664,14 +720,27 @@
                 "user": "Utilisateur",
                 "container": "Projet",
                 "type": "Type",
+                "state": "Statut",
                 "message": "Message",
                 "createdAt": "Créé le",
                 "actions": "Actions"
             },
+            "types": {
+                "memory": "Mise à jour de la mémoire",
+                "cpu": "Mise à jour du CPU",
+                "delete": "Suppression du projet",
+                "other": "Autre"
+            },
+            "states": {
+                "created": "Créée",
+                "read": "Lue",
+                "processed": "Traitée",
+                "canceled": "Annulée"
+            },
             "actions": {
                 "label": "Actions",
                 "open": "Ouvrir",
-                "delete": "Supprimer"
+                "cancel": "Annuler la demande"
             }
         }
     }
