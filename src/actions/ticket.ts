@@ -1,11 +1,22 @@
 'use server'
 
 import { authConfig } from "@/app/api/auth/[...nextauth]/route";
-import { CreateTicketFormSchema } from "@/lib/definitions";
+import { CreateTicketFormSchema, NotificationWithUserAndContainer } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
+import { isAdmin } from "@/lib/utils";
 import { NotificationState, NotificationType } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
+
+export async function getAllTickets(): Promise<NotificationWithUserAndContainer[]> {
+    if (!(await isAdmin())) {
+        return [];
+    }
+
+    return prisma.notification.findMany({
+        include: { user: true, container: true }
+    });
+}
 
 export async function createTicket(containerId: string, data: { type: NotificationType, message: string }): Promise<boolean> {
     const session = await getServerSession(authConfig);

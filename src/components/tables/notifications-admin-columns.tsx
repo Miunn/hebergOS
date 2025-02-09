@@ -1,4 +1,3 @@
-import { Notification, NotificationType } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
 import { useFormatter, useTranslations } from "next-intl";
@@ -7,10 +6,10 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useState } from "react";
-import { NotificationWithUser } from "@/lib/definitions";
+import { NotificationWithUser, NotificationWithUserAndContainer } from "@/lib/definitions";
 import CancelTicket from "../dialogs/CancelTicket";
 
-export const notificationsColumns: ColumnDef<NotificationWithUser>[] = [
+export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContainer>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -46,6 +45,21 @@ export const notificationsColumns: ColumnDef<NotificationWithUser>[] = [
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
                 {t('user')}
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+        }
+    },
+    {
+        accessorKey: "container_name",
+        accessorFn: (row) => row.container.name,
+        header: ({ column }) => {
+            const t = useTranslations("tables.notifications.columns");
+
+            return <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                {t('container')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         }
@@ -148,7 +162,7 @@ export const notificationsColumns: ColumnDef<NotificationWithUser>[] = [
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => setOpenCancelTicket(true)} className="font-semibold text-red-500 focus:text-red-500">{t('cancel')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenCancelTicket(true)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <CancelTicket open={openCancelTicket} setOpen={setOpenCancelTicket} ticketId={row.original.id} />

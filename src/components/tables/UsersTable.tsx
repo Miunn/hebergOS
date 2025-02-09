@@ -7,10 +7,11 @@ import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
 import { NumberTicker } from "../ui/number-ticker";
 import { Role } from "@prisma/client";
+import { useTranslations } from "next-intl";
 
-export default async function UsersTable({ users }: { users: UserWithContainers[] }) {
+export default function UsersTable({ users }: { users: UserWithContainers[] }) {
 
-    const t = await getTranslations('pages.app.administration');
+    const t = useTranslations('pages.app.administration');
 
     return (
         <DataTable

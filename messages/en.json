@@ -160,6 +160,11 @@
                 }
             },
             "administration": {
+                "tabs": {
+                    "users": "Users",
+                    "containers": "Containers",
+                    "notifications": "Notifications"
+                },
                 "title": "Administration",
                 "users": "{count, plural, zero {Users} one {User} other {Users}}",
                 "searchUsers": "Filter users",
@@ -712,7 +717,7 @@
         "notifications": {
             "columns": {
                 "user": "User",
-                "container": "Project",
+                "container": "Container",
                 "type": "Type",
                 "state": "State",
                 "message": "Message",
@@ -734,7 +739,8 @@
             "actions": {
                 "label": "Actions",
                 "open": "Open",
-                "cancel": "Cancel"
+                "cancel": "Cancel this ticket",
+                "delete": "Delete"
             }
         }
     }

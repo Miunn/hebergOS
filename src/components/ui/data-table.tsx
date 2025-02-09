@@ -132,7 +132,7 @@ export function DataTable<TData, TValue>({
           { t('actions.selection', { selected: table.getFilteredSelectedRowModel().rows.length, count: table.getFilteredRowModel().rows.length }) }
         </div>
 
-        <p className="text-sm font-medium">{ t('page', { current: table.getState().pagination.pageIndex + 1, total: table.getPageCount() }) }</p>
+        <p className="text-sm font-medium">{ t('page', { current: table.getState().pagination.pageIndex + 1, total: Math.max(table.getPageCount(), 1) }) }</p>
         <Button
           variant="outline"
           size="sm"

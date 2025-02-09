@@ -1,17 +1,15 @@
 import { Container } from "@prisma/client";
 import { DataTable } from "../ui/data-table";
 import { containersColumns } from "./containers-columns";
-import { getTranslations } from "next-intl/server";
 import CreateContainerDialog from "../dialogs/containers/CreateContainer";
 import { Button } from "../ui/button";
-import { getAvailableHostPorts } from "@/actions/containers";
 import { NumberTicker } from "../ui/number-ticker";
 import { robotoMono } from "@/ui/fonts";
+import { useTranslations } from "next-intl";
 
-export default async function ContainersTable({ containers }: { containers: Container[] }) {
+export default function ContainersTable({ containers, availableHostPorts }: { containers: Container[], availableHostPorts: number[] }) {
 
-    const t = await getTranslations('pages.app.administration');
-    const availableHostPorts = await getAvailableHostPorts();
+    const t = useTranslations('pages.app.administration');
 
     const sortedContainers = [...containers].sort((a, b) => {
         if (a.hostPort === 0 && b.hostPort === 0) {

@@ -164,6 +164,11 @@
                 }
             },
             "administration": {
+                "tabs": {
+                    "users": "Utilisateurs",
+                    "containers": "Conteneurs",
+                    "notifications": "Notifications"
+                },
                 "title": "Administration",
                 "users": "{count, plural, zero {Utilisateur} one {Utilisateur} other {Utilisateurs}}",
                 "searchUsers": "Filtrer les utilisateurs",
@@ -740,7 +745,8 @@
             "actions": {
                 "label": "Actions",
                 "open": "Ouvrir",
-                "cancel": "Annuler la demande"
+                "cancel": "Annuler la demande",
+                "delete": "Supprimer"
             }
         }
     }
