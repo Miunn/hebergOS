@@ -48,7 +48,7 @@ export default function ContainerGraphs({ container }: { container: Container })
             netDeltaUp: entry.netDeltaUp,
             netDeltaDown: entry.netDeltaDown
         })));
-    }, []);
+    }, [container.id, selectedPeriod]);
 
     const chartConfig = {
         memory: {
