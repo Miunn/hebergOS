@@ -704,6 +704,8 @@
                 "name": "Name",
                 "nickname": "Username",
                 "email": "Email",
+                "container": "Container",
+                "otherContainers": "Other containers",
                 "roles": "Roles",
                 "actions": "Actions"
             },

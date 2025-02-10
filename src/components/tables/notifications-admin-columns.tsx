@@ -1,6 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
-import { useFormatter, useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Badge } from "../ui/badge";
@@ -37,14 +36,12 @@ export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContain
     {
         accessorKey: "user_name",
         accessorFn: (row) => row.user.name,
-        header: ({ column }) => {
-            const t = useTranslations("tables.notifications.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('user')}
+                {table.options.meta?.t('columns.user')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         }
@@ -52,33 +49,27 @@ export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContain
     {
         accessorKey: "container_name",
         accessorFn: (row) => row.container.name,
-        header: ({ column }) => {
-            const t = useTranslations("tables.notifications.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('container')}
+                {table.options.meta?.t('container')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         }
     },
     {
         accessorKey: "type",
-        header: ({ column }) => {
-            const t = useTranslations("tables.notifications.columns");
-
-            return <span>{t('type')}</span>
+        header: ({ table }) => {
+            return <span>{table.options.meta?.t('columns.type')}</span>
         },
-        cell: ({ row }) => {
-            const t = useTranslations("tables.notifications.types");
-
+        cell: ({ row, table }) => {
             const types = {
-                CONTAINER_MEMORY: t('memory'),
-                CONTAINER_CPU: t('cpu'),
-                CONTAINER_DELETE: t('delete'),
-                OTHER: t('other')
+                CONTAINER_MEMORY: table.options.meta?.t('types.memory'),
+                CONTAINER_CPU: table.options.meta?.t('types.cpu'),
+                CONTAINER_DELETE: table.options.meta?.t('types.delete'),
+                OTHER: table.options.meta?.t('types.other')
             }
 
             return <Badge className="text-nowrap">{types[row.original.type]}</Badge>
@@ -86,38 +77,32 @@ export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContain
     },
     {
         accessorKey: "state",
-        header: ({ column }) => {
-            const t = useTranslations("tables.notifications.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('state')}
+                {table.options.meta?.t('columns.state')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         },
-        cell: ({ row }) => {
-            const t = useTranslations("tables.notifications.states");
-
+        cell: ({ row, table }) => {
             switch (row.original.state) {
                 case "CREATED":
-                    return <Badge className="bg-blue-600 hover:bg-blue-700">{t('created')}</Badge>
+                    return <Badge className="bg-blue-600 hover:bg-blue-700">{table.options.meta?.t('states.created')}</Badge>
                 case "READ":
-                    return <Badge className="bg-yellow-600 hover:bg-yellow-700">{t('read')}</Badge>
+                    return <Badge className="bg-yellow-600 hover:bg-yellow-700">{table.options.meta?.t('states.read')}</Badge>
                 case "PROCESSED":
-                    return <Badge className="bg-green-600 hover:bg-green-700">{t('processed')}</Badge>
+                    return <Badge className="bg-green-600 hover:bg-green-700">{table.options.meta?.t('states.processed')}</Badge>
                 case "CANCELED":
-                    return <Badge className="bg-red-600 hover:bg-red-700">{t('canceled')}</Badge>
+                    return <Badge className="bg-red-600 hover:bg-red-700">{table.options.meta?.t('states.canceled')}</Badge>
             }
         }
     },
     {
         accessorKey: "message",
-        header: ({ column }) => {
-            const t = useTranslations("tables.notifications.columns");
-
-            return <span>{t('message')}</span>
+        header: ({ table }) => {
+            return <span>{table.options.meta?.t('columns.message')}</span>
         },
         cell: ({ row }) => {
             return <span className="line-clamp-4">{row.original.message}</span>
@@ -125,29 +110,24 @@ export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContain
     },
     {
         accessorKey: "createdAt",
-        header: ({ column }) => {
-            const t = useTranslations("tables.notifications.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('createdAt')}
+                {table.options.meta?.t('columns.createdAt')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         },
-        cell: ({ row }) => {
-            const t = useTranslations("tables.notifications.columns");
-            const formatter = useFormatter();
-
+        cell: ({ row, table }) => {
+            const formatter = table.options.meta?.formatter;
+            if (!formatter) return null;
             return <span className="capitalize text-nowrap">{formatter.dateTime(row.original.createdAt, { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
         }
     },
     {
         id: "actions",
-        cell: ({ row }) => {
-            const t = useTranslations("tables.notifications.actions");
-
+        cell: ({ row, table }) => {
             const [openCancelTicket, setOpenCancelTicket] = useState(false);
 
             return (
@@ -160,9 +140,9 @@ export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContain
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{table.options.meta?.t('actions.label')}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => setOpenCancelTicket(true)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenCancelTicket(true)} className="font-semibold text-red-500 focus:text-red-500">{table.options.meta?.t('actions.delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <CancelTicket open={openCancelTicket} setOpen={setOpenCancelTicket} ticketId={row.original.id} />

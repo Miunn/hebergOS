@@ -43,39 +43,34 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
     },
     {
         accessorKey: "name",
-        header: ({ column }) => {
-            const t = useTranslations("tables.users.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('name')}
+                {table.options.meta?.t('columns.name')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         }
     },
     {
         accessorKey: "nickname",
-        header: ({ column }) => {
-            const t = useTranslations(("tables.users.columns"));
-
-            return <span>{t('nickname')}</span>
+        header: ({ table }) => {
+            return <span>{table.options.meta?.t('columns.nickname')}</span>
         }
     },
     {
         accessorKey: "email",
-        header: ({ column }) => {
-            const t = useTranslations("tables.users.columns");
-
-            return <span>{t('email')}</span>
+        header: ({ table }) => {
+            return <span>{table.options.meta?.t('columns.email')}</span>
         }
     },
     {
         accessorKey: "containers",
-        header: "Containers",
-        cell: ({ row }) => {
-            const t = useTranslations("pages.app.administration");
+        header: ({ table }) => {
+            return <span>{table.options.meta?.t('columns.containers')}</span>
+        },
+        cell: ({ row, table }) => {
             const containers = row.original.containers;
 
             const sliceLength = 2;
@@ -92,7 +87,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                             </HoverCardTrigger>
                             <HoverCardContent>
                                 <div className="">
-                                    <h3>{t('otherContainers')}</h3>
+                                    <h3>{table.options.meta?.t('columns.otherContainers')}</h3>
                                     <ul className="list-disc px-4">
                                         {containers.slice(sliceLength).map((container) => (
                                             <li key={container.id} className={`${robotoMono.className}`}>{container.name}</li>

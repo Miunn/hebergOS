@@ -3,6 +3,7 @@
 import {
   ColumnDef,
   ColumnFiltersState,
+  ColumnMeta,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -28,6 +29,7 @@ import { useTranslations } from "next-intl"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  meta?: ColumnMeta<TData, TValue>
   tableTitle?: React.ReactNode
   rightContent?: React.ReactNode
   filteredColumn?: string
@@ -37,6 +39,7 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
+  meta,
   tableTitle,
   rightContent,
   filteredColumn,
@@ -50,6 +53,7 @@ export function DataTable<TData, TValue>({
   const table = useReactTable({
     data,
     columns,
+    meta: meta,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFiltering,

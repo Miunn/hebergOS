@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { robotoMono } from "@/ui/fonts";
 import { NumberTicker } from "../ui/number-ticker";
 import { notificationsColumns } from "./notifications-columns";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import CreateTicketDialog from "../dialogs/CreateTicket";
 import { ContainerWithNotificationsAndUsers } from "@/lib/definitions";
 import { NotificationState } from "@prisma/client";
@@ -11,6 +11,7 @@ import { NotificationState } from "@prisma/client";
 export default function NotificationTable({ container }: { container: ContainerWithNotificationsAndUsers }) {
 
     const t = useTranslations('pages.app.container.asks');
+    const tableT = useTranslations('tables.notifications');
 
     return (
         <DataTable
@@ -21,6 +22,7 @@ export default function NotificationTable({ container }: { container: ContainerW
 
                 return b.createdAt.getTime() - a.createdAt.getTime();
             })}
+            meta={{ t: tableT, formatter: useFormatter() }}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
                     {container.containerNotifications.length === 0

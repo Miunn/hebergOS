@@ -3,12 +3,11 @@ import { Button } from "../../ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../ui/dialog";
 import React, { Suspense } from "react";
 import { Contact } from "@prisma/client";
-import { deleteContactMessage, getContactMessages } from "@/actions/contact";
+import { getContactMessages } from "@/actions/contact";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../../ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { ScrollArea } from "../../ui/scroll-area";
-import { toast } from "@/hooks/use-toast";
 import DeleteMessage from "./DeleteMessage";
 
 export default function ContactMessages({ children, open, setOpen }: { children?: React.ReactNode, open?: boolean, setOpen?: React.Dispatch<React.SetStateAction<boolean>> }) {

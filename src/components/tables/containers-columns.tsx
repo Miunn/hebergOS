@@ -41,14 +41,14 @@ export const containersColumns: ColumnDef<Container>[] = [
     },
     {
         accessorKey: "name",
-        header: ({ column }) => {
+        header: ({ column, table }) => {
             const t = useTranslations("tables.containers.columns");
 
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('name')}
+                {table.options.meta?.t('columns.name')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         },
@@ -61,14 +61,12 @@ export const containersColumns: ColumnDef<Container>[] = [
     },
     {
         accessorKey: "state",
-        header: ({ column }) => {
-            const t = useTranslations("tables.containers.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('state')}
+                {table.options.meta?.t('columns.state')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         },
@@ -97,28 +95,25 @@ export const containersColumns: ColumnDef<Container>[] = [
     },
     {
         accessorKey: "hostPort",
-        header: ({ column }) => {
-            const t = useTranslations("tables.containers.columns");
+        header: ({ column, table }) => {
 
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('hostPort')}
+                {table.options.meta?.t('columns.hostPort')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         }
     },
     {
         accessorKey: "memory",
-        header: ({ column }) => {
-            const t = useTranslations("tables.containers.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('memory')}
+                {table.options.meta?.t('columns.memory')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         },
@@ -129,14 +124,12 @@ export const containersColumns: ColumnDef<Container>[] = [
     },
     {
         accessorKey: "cpu",
-        header: ({ column }) => {
-            const t = useTranslations("tables.containers.columns");
-
+        header: ({ column, table }) => {
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {t('cpu')}
+                {table.options.meta?.t('columns.cpu')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         },
@@ -147,9 +140,7 @@ export const containersColumns: ColumnDef<Container>[] = [
     },
     {
         id: "actions",
-        cell: ({ row }) => {
-            const t = useTranslations("tables.containers.actions");
-
+        cell: ({ row, table }) => {
             const state = row.original.state;
 
             const [openEditMemory, setOpenEditMemory] = useState(false);
@@ -166,16 +157,16 @@ export const containersColumns: ColumnDef<Container>[] = [
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
-                            <DropdownMenuItem>{ t('open') }</DropdownMenuItem>
+                            <DropdownMenuLabel>{table.options.meta?.t('actions.label')}</DropdownMenuLabel>
+                            <DropdownMenuItem>{ table.options.meta?.t('actions.open') }</DropdownMenuItem>
                             {state === "RUNNING"
-                                ? <DropdownMenuItem>{t('stop')}</DropdownMenuItem>
-                                : <DropdownMenuItem>{t('start')}</DropdownMenuItem>
+                                ? <DropdownMenuItem>{table.options.meta?.t('actions.stop')}</DropdownMenuItem>
+                                : <DropdownMenuItem>{table.options.meta?.t('actions.start')}</DropdownMenuItem>
                             }
-                            <DropdownMenuItem onClick={() => setOpenEditMemory(true)}>{t('editMemory')}</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setOpenEditCpu(true)}>{t('editCpu')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenEditMemory(true)}>{table.options.meta?.t('actions.editMemory')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenEditCpu(true)}>{table.options.meta?.t('actions.editCpu')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => setOpenDelete(true)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenDelete(true)} className="font-semibold text-red-500 focus:text-red-500">{table.options.meta?.t('actions.delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <EditMemoryLimitContainer container={row.original} open={openEditMemory} setOpen={setOpenEditMemory} />

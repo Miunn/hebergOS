@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 export default function UsersTable({ users }: { users: UserWithContainers[] }) {
 
     const t = useTranslations('pages.app.administration');
+    const tableT = useTranslations('tables.users');
 
     return (
         <DataTable
@@ -22,6 +23,7 @@ export default function UsersTable({ users }: { users: UserWithContainers[] }) {
                 // Then sort by name
                 return a.name.localeCompare(b.name);
             })}
+            meta={{ t: tableT }}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
                     {users.length === 0

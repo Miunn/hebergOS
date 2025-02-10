@@ -45,9 +45,7 @@ export async function getContainerFull(id: string): Promise<ContainerWithActivit
             containerActivities: true,
             containerNotifications: {
                 include: { 
-                    user: {
-                        omit: { password: true }
-                    }
+                    user: true
                 }
             }
         }

@@ -710,6 +710,8 @@
                 "name": "Nom",
                 "nickname": "Nom d'utilisateur",
                 "email": "Email",
+                "containers": "Conteneurs",
+                "otherContainers":"Autres conteneurs",
                 "roles": "Rôles",
                 "actions": "Actions"
             },

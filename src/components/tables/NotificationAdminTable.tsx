@@ -9,6 +9,8 @@ import { notificationsAdminColumns } from "./notifications-admin-columns";
 export default function NotificationAdminTable({ notifications }: { notifications: NotificationWithUserAndContainer[] }) {
 
     const t = useTranslations('pages.app.container.asks');
+    const tableT = useTranslations('tables.notifications');
+    const formatter = useFormatter();
 
     return (
         <DataTable
@@ -19,6 +21,7 @@ export default function NotificationAdminTable({ notifications }: { notification
 
                 return b.createdAt.getTime() - a.createdAt.getTime();
             })}
+            meta={{ t: tableT, formatter }}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
                     {notifications.length === 0

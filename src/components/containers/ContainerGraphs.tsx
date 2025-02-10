@@ -2,7 +2,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import { Card, CardHeader, CardTitle } from "../ui/card";
 import { Container } from "@prisma/client";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { getContainerStats } from "@/actions/containers";
@@ -19,7 +19,7 @@ export default function ContainerGraphs({ container }: { container: Container })
     const [networkChartData, setNetworkChartData] = useState<{ timestamp: number; netUp: number; netDown: number }[]>([]);
     const [networkDeltaChartData, setNetworkDeltaChartData] = useState<{ timestamp: number; netDeltaUp: number; netDeltaDown: number }[]>([]);
 
-    const fetchChartsData = async () => {
+    const fetchChartsData = useCallback(async () => {
         let stats = await getContainerStats(container.id, selectedPeriod);
 
         if (!stats) {
@@ -48,7 +48,7 @@ export default function ContainerGraphs({ container }: { container: Container })
             netDeltaUp: entry.netDeltaUp,
             netDeltaDown: entry.netDeltaDown
         })));
-    };
+    }, []);
 
     const chartConfig = {
         memory: {
@@ -93,7 +93,7 @@ export default function ContainerGraphs({ container }: { container: Container })
 
     useEffect(() => {
         fetchChartsData();
-    }, [selectedPeriod]);
+    }, [fetchChartsData, selectedPeriod]);
 
     return (
         <div className="flex flex-col gap-8">

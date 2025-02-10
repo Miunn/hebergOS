@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl";
 export default function ContainersTable({ containers, availableHostPorts }: { containers: Container[], availableHostPorts: number[] }) {
 
     const t = useTranslations('pages.app.administration');
+    const tableT = useTranslations('tables.containers');
 
     const sortedContainers = [...containers].sort((a, b) => {
         if (a.hostPort === 0 && b.hostPort === 0) {
@@ -26,6 +27,7 @@ export default function ContainersTable({ containers, availableHostPorts }: { co
         <DataTable
             columns={containersColumns}
             data={sortedContainers}
+            meta={{ t: tableT }}
             tableTitle={(
                 <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
                     {containers.length === 0

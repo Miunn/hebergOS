@@ -111,7 +111,7 @@ export type ContainerWithNotifications = Prisma.ContainerGetPayload<typeof conta
 const containerWithNotificationsAndUsers = Prisma.validator<Prisma.ContainerDefaultArgs>()({
     include: {
         containerNotifications: {
-            include: { user: true }
+            include: { user: { omit: { password: true } } }
         }
     }
 })
