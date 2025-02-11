@@ -42,8 +42,6 @@ export const containersColumns: ColumnDef<Container>[] = [
     {
         accessorKey: "name",
         header: ({ column, table }) => {
-            const t = useTranslations("tables.containers.columns");
-
             return <Button
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}

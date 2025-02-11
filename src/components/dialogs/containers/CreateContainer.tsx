@@ -1,10 +1,12 @@
 'use client'
 
+import { createContainer } from "@/actions/containers";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "@/hooks/use-toast";
 import { CreateContainerFormSchema } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -30,7 +32,29 @@ export default function CreateContainerDialog({ children, availableHostPorts }: 
     })
 
     const submit = async (data: z.infer<typeof CreateContainerFormSchema>) => {
+        setLoading(true);
 
+        const r = createContainer(data);
+
+        setLoading(false);
+
+        if (!r) {
+            toast({
+                title: t('error.title'),
+                description: t('error.description'),
+                variant: 'destructive'
+            })
+            return;
+        }
+
+        form.reset();
+
+        setOpen(false);
+
+        toast({
+            title: t('success.title'),
+            description: t('success.description')
+        });
     }
 
     return (

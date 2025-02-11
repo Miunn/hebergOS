@@ -107,7 +107,6 @@ export async function syncContainers() {
     return false;
   }
 
-  console.log(containers);
   for (const [id, value] of Object.entries(containers) as [string, { dockerlink: string, host_port_root: string, name: string, ports: { [key: string]: string}[], state: string, started_at?: number, exit_code?: number}][]) {
     let state;
 

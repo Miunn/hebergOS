@@ -91,7 +91,7 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
     const stats = await r.json();
 
     const clientStats: ClientContainerStat[] = [];
-    for (const [timestamp, stat] of Object.entries(stats) as [string, any][]) {
+    for (const [timestamp, stat] of Object.entries(stats) as [string, { memory: { used: number, limit: number}, cpu: { usage_percent: number, limit: number }, net: { up: number, down: number, delta_up: number, delta_down: number } }][]) {
         clientStats.push({
             timestamp: parseInt(timestamp),
             memory: stat.memory.used,
@@ -121,7 +121,7 @@ export async function getContainerStats(containerId: string, period: "hour" | "4
     return clientStats;
 }
 
-export async function createContainer(data: { name: string, image: string, hostPort: number, memory: number, cpu: number, users: string[] }): Promise<boolean> {
+export async function createContainer(data: { name: string, hostPort: number, memory: number, cpu: number }): Promise<boolean> {
     if (!(await isAdmin())) {
         return false;
     }
