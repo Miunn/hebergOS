@@ -58,7 +58,7 @@ export default function CreateContainerDialog({ children, availableHostPorts }: 
     }
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 {children}
             </DialogTrigger>

@@ -21,16 +21,19 @@ export default async function Footer() {
                     <ul>
                         <p className="text-sm font-semibold text-gray-300">./insa.sh</p>
                         <li>
-                            <Button variant={"link"} className="p-0" asChild><Link href={"/contact"} className="text-white text-lg">Instagram</Link></Button>
+                            <Button variant={"link"} className="p-0" asChild><Link href={"https://www.instagram.com/clubinfoinsahdf/#"} target="_blank" className="text-white text-lg">Instagram</Link></Button>
                         </li>
                         <li>
-                            <Button variant={"link"} className="p-0" asChild><Link href={"/contact"} className="text-white text-lg">LinkedIn</Link></Button>
+                            <Button variant={"link"} className="p-0" asChild><Link href={"https://www.linkedin.com/company/insa-sh/"} target="_blank" className="text-white text-lg">LinkedIn</Link></Button>
                         </li>
                     </ul>
                     <ul>
                         <p className="text-sm font-semibold text-gray-300">More</p>
                         <li>
-                            <Button variant={"link"} className="p-0" asChild><Link href={"/github"} className="text-white text-lg">Github</Link></Button>
+                            <Button variant={"link"} className="p-0" asChild><Link href={"https://github.com/Miunn/hebergOS"} target="_blank" className="text-white text-lg">Github</Link></Button>
+                        </li>
+                        <li>
+                            <Button variant={"link"} className="p-0" asChild><Link href={"https://github.com/f7ed0/HebergOS-dockerlink/tree/d413a2cc1d5a7bb9b4863a240501aeaa90f762c8"} target="_blank" className="text-white text-lg">Dockerlink</Link></Button>
                         </li>
                     </ul>
                 </div>
