@@ -1,7 +1,7 @@
 import { DataTable } from "../ui/data-table";
 import { robotoMono } from "@/ui/fonts";
 import { NumberTicker } from "../ui/number-ticker";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { NotificationWithUserAndContainer } from "@/lib/definitions";
 import { NotificationState } from "@prisma/client";
 import { notificationsAdminColumns } from "./notifications-admin-columns";
