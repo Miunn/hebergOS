@@ -62,7 +62,6 @@ export const authConfig: NextAuthOptions = {
     jwt: ({ token, user }) => {
       // Means they just logged in
       if (user) {
-        console.log("Just logged in user", user);
         const u = user as unknown as { id: string, email: string, name: string, roles: string[] };
         return {
           ...token,
