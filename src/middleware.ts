@@ -15,27 +15,7 @@ async function customMiddleware(request: NextRequestWithAuth) {
     }
 
     if (RegExp(`^/(${routing.locales.join('|')})/login$`).test(pathname) && request.nextauth.token) {
-        if (request.nextUrl.searchParams.get("callbackUrl") === null) {
-            return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
-        }
-
-        /*if (RegExp(`^${process.env.NEXTAUTH_URL}/(${routing.locales.join('|')})/app/containers/(.*)$`).test(request.nextUrl.searchParams.get("callbackUrl")!)) {
-            const match = request.nextUrl.searchParams.get("callbackUrl")!.match(RegExp(`^/(${routing.locales.join('|')})/app/containers/(.*)$`));
-            if (!match) {
-                return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
-            }
-            const containerId = match[2];
-
-            const isAllowed = await fetch(`${process.env.NEXTAUTH_URL}/api/users/check-container?containerId=${containerId.toString()}`, {
-                method: 'POST'
-            });
-
-            if (!isAllowed.ok) {
-                return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
-            }
-        }*/
-
-        return NextResponse.redirect(request.nextUrl.searchParams.get("callbackUrl")!);
+        return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
     }
 
     const response = handleI18nRouting(request);
