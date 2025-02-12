@@ -1,19 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
-import { authConfig } from "@/lib/utils";
-import { getServerSession } from "next-auth";
+import { NextRequest } from "next/server";
 import { Role } from "@prisma/client";
-import { getSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
 
-export async function POST(request: NextRequest, res: NextResponse) {
+export async function POST(request: NextRequest) {
     if (!request.nextUrl.searchParams.get("containerId")) {
         return new Response(null, { status: 400 });
     }
 
     const token = await getToken({ req: request });
-
-    console.log("Check container session:", token);
 
     if (!token) {
         return new Response(null, { status: 401 });
