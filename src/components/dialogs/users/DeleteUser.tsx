@@ -20,7 +20,7 @@ export default function DeleteUser({ user, open, setOpen }: { user: UserLight, o
     const handleDelete = async () => {
         setLoading(true);
 
-        const r = deleteUser(user.id);
+        const r = await deleteUser(user.id);
 
         setLoading(false);
 

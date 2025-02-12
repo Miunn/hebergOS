@@ -1,8 +1,8 @@
 import { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { User } from '@prisma/client';
-import { SignInFormSchema, UserLight } from '@/lib/definitions';
+import { Role, User } from '@prisma/client';
+import { SignInFormSchema, UserLight, UserWithContainers } from '@/lib/definitions';
 import { clsx, type ClassValue } from "clsx"
 import { getServerSession } from "next-auth";
 import { twMerge } from "tailwind-merge"
@@ -11,67 +11,67 @@ import { ContainerState } from "@prisma/client";
 
 export const authConfig: NextAuthOptions = {
   session: {
-      strategy: 'jwt'
+    strategy: 'jwt'
   },
   pages: {
-      signIn: '/login',
+    signIn: '/login',
   },
   providers: [
-      CredentialsProvider({
-          name: 'Sign in',
-          credentials: {
-              email: {
-                  label: 'Email',
-                  type: 'email',
-                  placeholder: 'hello@exemple.com'
-              },
-              password: { label: 'Password', type: 'password' }
-          },
-          async authorize(credentials) {
-              const parsedCredentials = SignInFormSchema.safeParse(credentials);
-        
-              if (!parsedCredentials.success) {
-                  return null;
-              }
+    CredentialsProvider({
+      name: 'Sign in',
+      credentials: {
+        email: {
+          label: 'Email',
+          type: 'email',
+          placeholder: 'hello@exemple.com'
+        },
+        password: { label: 'Password', type: 'password' }
+      },
+      async authorize(credentials) {
+        const parsedCredentials = SignInFormSchema.safeParse(credentials);
 
-              const { nickname, password } = parsedCredentials.data;
-              
-              const user = await prisma.user.findUnique({ where: { nickname }, include: { userRoles: true }, omit: { password: false } });
+        if (!parsedCredentials.success) {
+          return null;
+        }
 
-              if (!user) return null;
+        const { nickname, password } = parsedCredentials.data;
 
-              const passwordsMatch = await bcrypt.compare(password, user.password);
-      
-              if (!passwordsMatch) return null;
+        const user = await prisma.user.findUnique({ where: { nickname }, include: { userRoles: true }, omit: { password: false } });
 
-              return { id: user.id, email: user.email, name: user.name, roles: user.userRoles.map((r) => r.role) };
-          },
-      })
+        if (!user) return null;
+
+        const passwordsMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordsMatch) return null;
+
+        return { id: user.id, email: user.email, name: user.name, roles: user.userRoles.map((r) => r.role) };
+      },
+    })
   ],
   callbacks: {
-      session: ({ session, token }) => {
-          return {
-              ...session,
-              user: {
-                  ...session.user,
-                  id: token.id,
-                  roles: token.roles
-              }
-          }
-      },
-      jwt: ({ token, user }) => {
-          // Means they just logged in
-          if (user) {
-              console.log("Just logged in user", user);
-              const u = user as unknown as { id: string, email: string, name: string, roles: string[] };
-              return {
-                  ...token,
-                  id: u.id,
-                  roles: u.roles
-              }
-          }
-          return token;
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          roles: token.roles
+        }
       }
+    },
+    jwt: ({ token, user }) => {
+      // Means they just logged in
+      if (user) {
+        console.log("Just logged in user", user);
+        const u = user as unknown as { id: string, email: string, name: string, roles: string[] };
+        return {
+          ...token,
+          id: u.id,
+          roles: u.roles
+        }
+      }
+      return token;
+    }
   }
 };
 
@@ -86,7 +86,35 @@ export async function isAdmin() {
     return false;
   }
 
-  return session.user.roles.includes("ADMIN");
+  return session.user.roles.includes(Role.ADMIN);
+}
+
+export async function canAccessContainer(containerId: string) {
+  const session = await getServerSession(authConfig);
+
+  if (!session) {
+    return false;
+  }
+
+  let user: UserWithContainers | null = null;
+  try {
+    user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      include: { containers: true, userRoles: true }
+    });
+  } catch (e) {
+    return false;
+  }
+
+  if (!user) {
+    return false;
+  }
+
+  if (user.userRoles.map(r => r.role).includes(Role.ADMIN) || user?.containers.some(c => c.id === containerId)) {
+    return true;
+  }
+
+  return false;
 }
 
 export async function syncContainers() {
@@ -108,7 +136,7 @@ export async function syncContainers() {
     return false;
   }
 
-  for (const [id, value] of Object.entries(containers) as [string, { dockerlink: string, host_port_root: string, name: string, ports: { [key: string]: string}[], state: string, started_at?: number, exit_code?: number}][]) {
+  for (const [id, value] of Object.entries(containers) as [string, { dockerlink: string, host_port_root: string, name: string, ports: { [key: string]: string }[], state: string, started_at?: number, exit_code?: number }][]) {
     let state;
 
     switch (value.state) {

@@ -1,25 +1,31 @@
+import { NextRequest, NextResponse } from "next/server";
+import { authConfig } from "@/lib/utils";
+import { getServerSession } from "next-auth";
+import { Role } from "@prisma/client";
+import { getSession } from "next-auth/react";
+import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
-import { NextRequest } from "next/server";
-import { isAdmin } from "@/lib/utils";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, res: NextResponse) {
     if (!request.nextUrl.searchParams.get("containerId")) {
         return new Response(null, { status: 400 });
     }
 
-    const body = await request.json();
+    const token = await getToken({ req: request });
 
-    if (!body.user) {
-        return new Response(null, { status: 400 });
-    }
+    console.log("Check container session:", token);
 
-    const user = await prisma.user.findUnique({ where: { id: body.user }, include: { containers: true } });
-
-    if (!user) {
+    if (!token) {
         return new Response(null, { status: 401 });
     }
 
-    if ((await isAdmin()) || user.containers.map(c => c.id).includes(request.nextUrl.searchParams.get("containerId")!)) {
+    const user = await prisma.user.findUnique({
+        where: { id: token.id },
+        include: { containers: true }
+    });
+        
+
+    if (token.roles.includes(Role.ADMIN) || user?.containers.some(c => c.id === request.nextUrl.searchParams.get("containerId"))) {
         return new Response(JSON.stringify({ status: true }), { status: 200 });
     }
 

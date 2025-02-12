@@ -2,15 +2,23 @@ import { getContainerFull } from "@/actions/containers"
 import ContainerTabs from "@/components/containers/ContainerTabs";
 import ChangeDomain from "@/components/dialogs/containers/ChangeDomain";
 import { Button } from "@/components/ui/button";
+import { canAccessContainer } from "@/lib/utils";
 import { robotoMono } from "@/ui/fonts";
 import { ContainerState } from "@prisma/client";
 import { Bolt } from "lucide-react";
+import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Container({ params }: { params: Promise<{ locale: string, container: string }> }) {
 
     const t = await getTranslations('pages.app.container');
+
+    if (!(await canAccessContainer((await params).container))) {
+        return redirect("/app");
+    }
+
     const container = (await getContainerFull((await params).container))!;
 
     const getStateColor = (state: ContainerState) => {

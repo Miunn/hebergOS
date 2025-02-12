@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { routing } from './i18n/routing';
 
 async function customMiddleware(request: NextRequestWithAuth) {
@@ -19,7 +19,7 @@ async function customMiddleware(request: NextRequestWithAuth) {
             return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
         }
 
-        if (RegExp(`^${process.env.NEXTAUTH_URL}/(${routing.locales.join('|')})/app/containers/(.*)$`).test(request.nextUrl.searchParams.get("callbackUrl")!)) {
+        /*if (RegExp(`^${process.env.NEXTAUTH_URL}/(${routing.locales.join('|')})/app/containers/(.*)$`).test(request.nextUrl.searchParams.get("callbackUrl")!)) {
             const match = request.nextUrl.searchParams.get("callbackUrl")!.match(RegExp(`^/(${routing.locales.join('|')})/app/containers/(.*)$`));
             if (!match) {
                 return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
@@ -27,16 +27,13 @@ async function customMiddleware(request: NextRequestWithAuth) {
             const containerId = match[2];
 
             const isAllowed = await fetch(`${process.env.NEXTAUTH_URL}/api/users/check-container?containerId=${containerId.toString()}`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    user: request.nextauth.token.id
-                })
+                method: 'POST'
             });
 
             if (!isAllowed.ok) {
                 return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/${locale}/app`);
             }
-        }
+        }*/
 
         return NextResponse.redirect(request.nextUrl.searchParams.get("callbackUrl")!);
     }
@@ -65,22 +62,19 @@ export default withAuth(customMiddleware, {
 
                 const isOnContainerPageRegExp = new RegExp(`(${routing.locales.join('|')})/app/containers/(.*)`);
 
-                if (isOnContainerPageRegExp.test(req.nextUrl.pathname)) {
+                /*if (isOnContainerPageRegExp.test(req.nextUrl.pathname)) {
                     const match = req.nextUrl.pathname.match(isOnContainerPageRegExp);
                     if (!match) return false;
                     const containerId = match[2];
 
                     const isAllowed = await fetch(`${process.env.NEXTAUTH_URL}/api/users/check-container?containerId=${containerId.toString()}`, {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            user: token.id
-                        })
+                        method: 'POST'
                     });
 
                     if (!isAllowed.ok) return false;
 
                     return true;
-                }
+                }*/
 
                 return true; // Redirect unauthenticated users to login page
             }
