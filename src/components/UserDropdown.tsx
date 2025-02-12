@@ -8,6 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import ContactMessages from "./dialogs/contact/ContactMessages";
 import React from "react";
+import { Role } from "@prisma/client";
 
 export default function UserDropdown() {
 
@@ -31,7 +32,7 @@ export default function UserDropdown() {
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                         <DropdownMenuItem><Bell /> {t('notifications')}</DropdownMenuItem>
-                        {user?.roles.includes("ADMIN")
+                        {user?.roles.includes(Role.ADMIN)
                             ? <DropdownMenuItem asChild>
                                 <Link href={"/app/administration"}>
                                     <Shield /> {t('administration')}
@@ -39,7 +40,7 @@ export default function UserDropdown() {
                             </DropdownMenuItem>
                             : null
                         }
-                        {user?.roles.includes("ADMIN")
+                        {user?.roles.includes(Role.ADMIN)
                             ? <DropdownMenuItem onClick={() => setOpenMessages(true)}>
                                 <MessagesSquare /> {t('messages')}
                             </DropdownMenuItem>
