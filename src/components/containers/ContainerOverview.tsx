@@ -29,6 +29,9 @@ export default function ContainerOverview({ container }: { container: ContainerW
                             <i>{user.email}</i>
                         </p>
                     ))}
+                    {container.containerActivities.length === 0
+                    ? <p className="italic mx-auto max-w-72 text-wrap text-center">{t('users.empty')}</p>
+                    : null}
                 </CardContent>
             </Card>
         </div>

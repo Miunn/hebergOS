@@ -105,7 +105,8 @@
                 "overview": {
                     "title": "{name} Overview",
                     "users": {
-                        "title": "Users"
+                        "title": "Users",
+                        "empty": "No user for now"
                     }
                 },
                 "graphs": {

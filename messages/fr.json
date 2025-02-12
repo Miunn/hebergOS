@@ -109,7 +109,8 @@
                 "overview": {
                     "title": "Vue d'ensemble de {name}",
                     "users": {
-                        "title": "Utilisateurs"
+                        "title": "Utilisateurs",
+                        "empty": "Aucun utilisateur n'est lié à ce projet pour le moment."
                     }
                 },
                 "graphs": {
