@@ -13,8 +13,8 @@ export default async function ContactUs() {
     return (
         <>
             <Header locale={locale} />
-            <main className="min-h-screen mx-auto grid grid-cols-2 gap-16">
-                <div className="relative h-full border-r overflow-hidden">
+            <main className="min-h-screen mx-auto grid grid-cols-[1fr_auto_1fr] gap-8">
+                <div className="relative h-full overflow-hidden">
                     <div className="mt-64 max-w-lg mx-auto z-40">
                         <h1 className="text-4xl font-semibold tracking-wide leading-relaxed z-40">{t('title')}</h1>
                         <p className="text-xl">{t('description')}</p>
@@ -33,6 +33,8 @@ export default async function ContactUs() {
                     </div>
                     <Caribou className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[0.5rem] opacity-40" />
                 </div>
+
+                <div className="w-0 h-full border-r" />
 
                 <ContactForm className="mt-64 max-w-xl w-full mx-auto" />
             </main>

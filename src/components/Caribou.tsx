@@ -4,9 +4,7 @@ import { robotoMono } from "@/ui/fonts";
 export default function Caribou({ className }: { className?: string }) {
     return (
         <pre className={cn(`${robotoMono.className} w-fit h-fit whitespace-pre text-[0.2rem] text-primary`, className)}>
-{`
-
-                                   #=..::.                                                       ..:..=#
+{`                                   #=..::.                                                       ..:..=#
                                      #=--*                                                       *=-=#
                                   #:.:::.-                                                       -.:::.:#
                                  *:.:::.:#                      #*+---:-+*#                      #:.:::.:#
