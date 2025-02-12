@@ -96,7 +96,7 @@ export default function ContainerGraphs({ container }: { container: Container })
     }, [fetchChartsData, selectedPeriod]);
 
     return (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 mb-8">
             <Card>
                 <CardHeader>
                     <div className="flex justify-between items-center">
