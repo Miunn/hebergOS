@@ -77,14 +77,16 @@ export const EditCpuLimitContainerFormSchema = z.object({
 })
 
 const userLight = Prisma.validator<Prisma.UserDefaultArgs>()({
-    select: { id: true, name: true, email: true, roles: true, createdAt: true, updatedAt: true }
+    select: { id: true, name: true, email: true, createdAt: true, updatedAt: true },
+    include: { userRoles: true },
+    omit: { password: true }
 })
 
 export type UserLight = Prisma.UserGetPayload<typeof userLight>
 
 const userWithContainers = Prisma.validator<Prisma.UserDefaultArgs>()({
-    select: { id: true, name: true, email: true, roles: true, createdAt: true, updatedAt: true },
-    include: { containers: true },
+    select: { id: true, name: true, email: true, createdAt: true, updatedAt: true },
+    include: { containers: true, userRoles: true },
     omit: { password: true }
 })
 

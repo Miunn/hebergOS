@@ -18,8 +18,10 @@ export default function UsersTable({ users }: { users: UserWithContainers[] }) {
             columns={usersColumns}
             data={users.sort((a, b) => {
                 // Sort by admin role first
-                if (a.roles.includes(Role.ADMIN) && !b.roles.includes(Role.ADMIN)) return -1;
-                if (!a.roles.includes(Role.ADMIN) && b.roles.includes(Role.ADMIN)) return 1;
+                const aRoles = a.userRoles.map((r) => r.role);
+                const bRoles = b.userRoles.map((r) => r.role);
+                if (aRoles.includes(Role.ADMIN) && !bRoles.includes(Role.ADMIN)) return -1;
+                if (!aRoles.includes(Role.ADMIN) && bRoles.includes(Role.ADMIN)) return 1;
                 // Then sort by name
                 return a.name.localeCompare(b.name);
             })}

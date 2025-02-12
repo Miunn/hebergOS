@@ -2,7 +2,7 @@ import { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { User } from '@prisma/client';
-import { SignInFormSchema } from '@/lib/definitions';
+import { SignInFormSchema, UserLight } from '@/lib/definitions';
 import { clsx, type ClassValue } from "clsx"
 import { getServerSession } from "next-auth";
 import { twMerge } from "tailwind-merge"
@@ -36,7 +36,7 @@ export const authConfig: NextAuthOptions = {
 
               const { nickname, password } = parsedCredentials.data;
               
-              const user = await prisma.user.findUnique({ where: { nickname }, omit: { password: false } });
+              const user = await prisma.user.findUnique({ where: { nickname }, include: { userRoles: true }, omit: { password: false } });
 
               if (!user) return null;
 
@@ -44,7 +44,7 @@ export const authConfig: NextAuthOptions = {
       
               if (!passwordsMatch) return null;
 
-              return { id: user.id, email: user.email, name: user.name, roles: user.roles };
+              return { id: user.id, email: user.email, name: user.name, roles: user.userRoles.map((r) => r.role) };
           },
       })
   ],
@@ -62,7 +62,8 @@ export const authConfig: NextAuthOptions = {
       jwt: ({ token, user }) => {
           // Means they just logged in
           if (user) {
-              const u = user as unknown as User;
+              console.log("Just logged in user", user);
+              const u = user as unknown as { id: string, email: string, name: string, roles: string[] };
               return {
                   ...token,
                   id: u.id,

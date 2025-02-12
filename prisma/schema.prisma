@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -70,8 +70,8 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   password      String
-  roles         Role[]    @default([USER])
-
+  userRoles     UserRole[]
+  
   containers             Container[]
   accounts               Account[]
   sessions               Session[]
@@ -157,4 +157,15 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  role      Role     @default(USER)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, role])
 }

@@ -21,7 +21,8 @@ export async function getMe(): Promise<UserWithContainers | null> {
             id: session.user.id
         },
         include: {
-            containers: true
+            containers: true,
+            userRoles: true
         }
     });
 
@@ -39,7 +40,8 @@ export async function getUsers(): Promise<UserWithContainers[]> {
 
     const users = await prisma.user.findMany({
         include: {
-            containers: true
+            containers: true,
+            userRoles: true
         }
     })
 
@@ -68,7 +70,9 @@ export async function createUser(data: { name: string, email: string, nickname: 
                 email: email,
                 nickname: nickname,
                 password: hashedPassword,
-                roles
+                userRoles: {
+                    create: roles.map(r => ({ role: r }))
+                }
             }
         });
 
@@ -121,11 +125,16 @@ export async function editRoles(userId: string, roles: { roles: Role[] }): Promi
     }
 
     try {
+        await prisma.userRole.deleteMany({
+            where: {
+                userId: userId
+            }
+        });
         await prisma.user.update({
             where: { id: userId },
             data: {
-                roles: {
-                    set: roles.roles
+                userRoles: {
+                    create: roles.roles.map(r => ({ role: r }))
                 }
             }
         });

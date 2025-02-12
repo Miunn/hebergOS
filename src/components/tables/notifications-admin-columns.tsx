@@ -54,7 +54,7 @@ export const notificationsAdminColumns: ColumnDef<NotificationWithUserAndContain
                 variant="ghost"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {table.options.meta?.t('container')}
+                {table.options.meta?.t('columns.container')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
         }

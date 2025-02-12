@@ -108,7 +108,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
         accessorKey: "roles",
         header: "Roles",
         cell: ({ row }) => {
-            const roles = row.original.roles;
+            const roles = row.original.userRoles.map((r) => r.role);
 
             const getRoleColorClass = (role: string) => {
                 switch (role) {
@@ -124,7 +124,15 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
             }
 
             return <div className="flex gap-2">
-                {roles.map((role: string) => (
+                {roles.sort((a, b) => {
+                    if (a === Role.ADMIN) return -1;
+                    if (b === Role.ADMIN) return 1;
+
+                    if (a === Role.INFO) return -1;
+                    if (b === Role.INFO) return 1;
+
+                    return 0;
+                }).map((role: string) => (
                     <Badge key={role} className={`${robotoMono.className} ${getRoleColorClass(role)} p-1`}>{role}</Badge>
                 ))}
             </div>

@@ -21,7 +21,7 @@ export default function EditRoles({ user, open, setOpen }: { user: UserLight, op
     const form = useForm<z.infer<typeof EditRolesFormSchema>>({
         resolver: zodResolver(EditRolesFormSchema),
         defaultValues: {
-            roles: user.roles
+            roles: user.userRoles.map((r) => r.role)
         }
     })
 
@@ -98,6 +98,7 @@ export default function EditRoles({ user, open, setOpen }: { user: UserLight, op
                                                                     ? field.onChange([...field.value, role.id])
                                                                     : field.onChange(field.value.filter((v: string) => v !== role.id))
                                                             }}
+                                                            disabled={role.id === Role.USER && field.value.includes(Role.USER)}
                                                         />
                                                     </FormControl>
                                                     <FormLabel className="mt-0 space-y-0">{role.label}</FormLabel>
