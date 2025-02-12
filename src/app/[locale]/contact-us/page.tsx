@@ -2,16 +2,17 @@ import Caribou from "@/components/Caribou";
 import ContactForm from "@/components/ContactForm";
 import Header from "@/components/Header";
 import { Building, Instagram, Mail } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 export default async function ContactUs() {
 
     const t = await getTranslations("pages.contact");
+    const locale = await getLocale();
 
     return (
         <>
-            <Header />
+            <Header locale={locale} />
             <main className="min-h-screen mx-auto grid grid-cols-2 gap-16">
                 <div className="relative h-full border-r overflow-hidden">
                     <div className="mt-64 max-w-lg mx-auto z-40">

@@ -10,8 +10,9 @@ import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";
 import { authConfig, cn } from "@/lib/utils";
+import ChangeLocale from "./ChangeLocale";
 
-export default async function Header({ className }: { className?: string }) {
+export default async function Header({ className, locale }: { className?: string, locale: string }) {
     const headerList = headers();
 
     const session = await getServerSession(authConfig);
@@ -44,8 +45,13 @@ export default async function Header({ className }: { className?: string }) {
                 }
                 {session?.user && isOnLandingPage
                     ? <Button variant={"link"}><Link href={"/app"}>{ t('goToApp') }</Link></Button>
-                    : <UserDropdown />
+                    : null
                 }
+                {session?.user && !isOnLandingPage
+                    ? <UserDropdown />
+                    : null
+                }
+                <ChangeLocale locale={locale} />
             </div>
         </header>
     )

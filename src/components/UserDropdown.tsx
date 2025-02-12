@@ -26,7 +26,7 @@ export default function UserDropdown() {
                 <DropdownMenuTrigger asChild>
                     <Button variant={"link"} className="text-inherit text-base">{user?.name}</Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="min-w-40">
                     <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>

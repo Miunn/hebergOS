@@ -19,7 +19,7 @@ export default async function Home() {
 
   return (
     <>
-      <Header className="translate-y-[-1rem] opacity-0 animate-fade-in [--animation-delay:600ms]" />
+      <Header className="translate-y-[-1rem] opacity-0 animate-fade-in [--animation-delay:600ms]" locale={locale} />
       <main className="relative py-32">
         <DotPattern
           className={cn(
