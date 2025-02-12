@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "@/hooks/use-toast";
 import { LinkContainersFormSchema, UserWithContainers } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -74,30 +75,30 @@ export default function LinkContainers({ user, open, setOpen }: { user: UserWith
                             name="containers"
                             render={() => (
                                 <FormItem>
-
-                                    {containers.map(container => (
-                                        <FormField
-                                            key={container.id}
-                                            control={form.control}
-                                            name="containers"
-                                            render={({ field }) => (
-                                                <FormItem key={container.id} className="flex items-center gap-2 space-y-0">
-                                                    <FormControl>
-                                                        <Checkbox
-                                                            checked={field.value.includes(container.id)}
-                                                            onCheckedChange={(checked) => {
-                                                                return checked
-                                                                    ? field.onChange([...field.value, container.id])
-                                                                    : field.onChange(field.value.filter((v: string) => v !== container.id))
-                                                            }}
-                                                        />
-                                                    </FormControl>
-                                                    <FormLabel className="mt-0 space-y-0">{container.name}</FormLabel>
-                                                </FormItem>
-                                            )}
-                                        />
-                                    ))}
-
+                                    <ScrollArea className="flex max-h-96 flex-col overflow-y-auto">
+                                        {containers.map(container => (
+                                            <FormField
+                                                key={container.id}
+                                                control={form.control}
+                                                name="containers"
+                                                render={({ field }) => (
+                                                    <FormItem key={container.id} className="flex items-center gap-2 space-y-0 my-2">
+                                                        <FormControl>
+                                                            <Checkbox
+                                                                checked={field.value.includes(container.id)}
+                                                                onCheckedChange={(checked) => {
+                                                                    return checked
+                                                                        ? field.onChange([...field.value, container.id])
+                                                                        : field.onChange(field.value.filter((v: string) => v !== container.id))
+                                                                }}
+                                                            />
+                                                        </FormControl>
+                                                        <FormLabel className="mt-0 space-y-0">{container.name}</FormLabel>
+                                                    </FormItem>
+                                                )}
+                                            />
+                                        ))}
+                                    </ScrollArea>
                                     <FormMessage />
                                 </FormItem>
                             )} />
