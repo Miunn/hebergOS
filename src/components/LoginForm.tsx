@@ -13,10 +13,12 @@ import { SignInFormSchema } from "@/lib/definitions";
 import { signIn } from "next-auth/react";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
     const t = useTranslations("components.auth.login");
     const [loading, setLoading] = useState<boolean>(false);
+    const searchParams = useSearchParams();
 
     const form = useForm({
         resolver: zodResolver(SignInFormSchema),
@@ -47,6 +49,12 @@ export default function LoginForm() {
                 <CardDescription>{t('description')}</CardDescription>
             </CardHeader>
             <CardContent>
+                {searchParams.get('error')
+                    ? <div className="w-full p-3 bg-red-500 text-sm text-white rounded-md mb-4">
+                        {t('error')}
+                    </div>
+                    : null
+                }
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className={"space-y-4"}>
                         <FormField

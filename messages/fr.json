@@ -205,7 +205,8 @@
                         "submitting": "Connexion...",
                         "forgotPassword": "Mot de passe oublié"
                     }
-                }
+                },
+                "error": "Nom d'utilisateur ou mot de passe incorrect"
             }
         },
         "containers": {

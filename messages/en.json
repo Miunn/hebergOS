@@ -201,7 +201,8 @@
                         "submitting": "Logging in...",
                         "forgotPassword": "Forgot password"
                     }
-                }
+                },
+                "error": "Invalid username or password"
             }
         },
         "containers": {
