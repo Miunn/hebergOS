@@ -47,7 +47,7 @@ export default function ContainerActions({ container }: { container: ContainerWi
     }
 
     return (
-        <div className="grid grid-cols-2 gap-8">
+        <div className="flex flex-wrap md:grid md:grid-cols-2 gap-8">
             <Card className="col-span-2">
                 <CardHeader>
                     <CardTitle className={`${robotoMono.className}`}>{t('title', { name: container.name })}</CardTitle>

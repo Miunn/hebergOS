@@ -22,36 +22,52 @@ export default async function Header({ className, locale }: { className?: string
     return (
         <header className={cn(
             "fixed left-0 top-0 z-50 w-full border-b backdrop-blur-[12px]",
-            "w-full grid grid-cols-3 h-20 items-center px-24",
+            "grid grid-cols-2 md:grid-cols-3 h-20 items-center lg:px-24 md:px-12 px-2",
             className
-            )}>
-            <div className="flex items-center gap-4">
-                {/* <Image src={"/favicon.png"} alt="HebergOS" width={48} height={48} /> */}
-                <h1 className={`${robotoMono.className} font-bold text-2xl`}>
-                    {session?.user
-                        ? <Link href={"/app"}><AppName /></Link>
-                        : <Link href={"/"}><AppName /></Link>
+        )}>
+            {/* <Image src={"/favicon.png"} alt="HebergOS" width={48} height={48} /> */}
+            <h1 className={`${robotoMono.className} font-bold text-2xl`}>
+                {session?.user
+                    ? <Link href={"/app"}><AppName /></Link>
+                    : <Link href={"/"}><AppName /></Link>
+                }
+            </h1>
+            <h1 className={`hidden md:block ${robotoMono.className} antialiased text-center text-xl text-primary`}>./insa.sh</h1>
+            <div>
+                <div className="hidden md:flex justify-end items-center gap-4 text-xl">
+                    {!session?.user
+                        ? <>
+                            <ContactUsCta variant={"outline"} />
+                            <Button asChild><Link href={"/login"} className="text-lg"><LogIn className="w-6 h-6" /> Connexion</Link></Button>
+                        </>
+                        : null
                     }
-                </h1>
-            </div>
-            <h1 className={`${robotoMono.className} antialiased text-center text-xl text-primary`}>./insa.sh</h1>
-            <div className="flex justify-end items-center gap-4 text-xl">
-                {!session?.user
-                    ? <>
-                        <ContactUsCta variant={"outline"} />
-                        <Button asChild><Link href={"/login"} className="text-lg"><LogIn className="w-6 h-6" /> Connexion</Link></Button>
-                    </>
-                    : null
-                }
-                {session?.user && isOnLandingPage
-                    ? <Button variant={"link"}><Link href={"/app"}>{ t('goToApp') }</Link></Button>
-                    : null
-                }
-                {session?.user && !isOnLandingPage
-                    ? <UserDropdown />
-                    : null
-                }
-                <ChangeLocale locale={locale} />
+                    {session?.user && isOnLandingPage
+                        ? <Button variant={"link"}><Link href={"/app"}>{t('goToApp')}</Link></Button>
+                        : null
+                    }
+                    {session?.user && !isOnLandingPage
+                        ? <UserDropdown />
+                        : null
+                    }
+                    <ChangeLocale locale={locale} />
+                </div>
+
+                <div className="md:hidden flex justify-end items-center gap-4 text-xl">
+                    {!session?.user
+                        ? <>
+                            <ContactUsCta variant={"outline"} />
+                            <Button asChild><Link href={"/login"} className="text-lg"><LogIn className="w-6 h-6" /> Connexion</Link></Button>
+                        </>
+                        : null
+                    }
+                    {session?.user
+                        ? <UserDropdown />
+                        : null
+                    }
+
+                    <ChangeLocale locale={locale} />
+                </div>
             </div>
         </header>
     )
