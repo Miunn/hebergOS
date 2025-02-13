@@ -62,7 +62,7 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                                 setMessage(message);
                                 setOpenMessage(true);
                             }} key={message.id}>
-                                <div>
+                                <div className="cursor-pointer">
                                     <p className="w-full text-start truncate">{message.name}</p>
                                     <p className="w-full text-start truncate italic">{message.email}</p>
                                 </div>
