@@ -59,7 +59,7 @@ export default async function Home() {
                 <div className="hidden md:block transform hover:-translate-y-2 transition-transform duration-200 rotate-6">
                   <ContainerCard name="plateformer" state={ContainerState.RUNNING} />
                 </div>
-                <div className="transform hover:-translate-y-2 translate-x-[-80px] translate-y-[40px] transition-transform duration-200 -rotate-3">
+                <div className="transform hover:-translate-y-2 translate-x-[-80px] translate-y-[40px] md:translate-x-0 md:translate-y-0 transition-transform duration-200 -rotate-3">
                   <ContainerCard name="api-service" state={ContainerState.CREATED} />
                 </div>
                 <div className="hidden md:block transform hover:-translate-y-2 transition-transform duration-200 -rotate-3">
