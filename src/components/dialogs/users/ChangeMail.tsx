@@ -1,10 +1,10 @@
-import { changeMail, changePassword } from "@/actions/user";
+import { changeMail } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { ChangeMailFormSchema, ChangePasswordFormSchema, UserLight } from "@/lib/definitions";
+import { ChangeMailFormSchema, UserLight } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
