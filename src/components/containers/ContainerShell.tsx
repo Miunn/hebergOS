@@ -3,14 +3,14 @@
 import { Container } from "@prisma/client";
 import { Terminal, X } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
 export default function ContainerShell({ container }: { container: Container }) {
     const widthRef = useRef<HTMLInputElement>(null);
     const heightRef = useRef<HTMLInputElement>(null);
-    
+
     const [width, setWidth] = useState(800);
     const [height, setHeight] = useState(450);
 
@@ -31,7 +31,9 @@ export default function ContainerShell({ container }: { container: Container }) 
                     <Link href={`https://ssh.${container.name.replace('/', '')}.insash.org/wetty`} target="_blank"><Terminal /></Link>
                 </Button>
             </div>
-            <iframe className="mx-auto" src={`https://ssh.${container.name.replace('/', '')}.insash.org/wetty`} width={width} height={height} />
+            <Suspense fallback={<div>Loading...</div>}>
+                <iframe className="mx-auto" src={`https://ssh.${container.name.replace('/', '')}.insash.org/wetty`} width={width} height={height} />
+            </Suspense>
         </div>
     )
 }
