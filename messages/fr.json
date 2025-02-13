@@ -565,6 +565,31 @@
                     "description": "L'utilisateur a été créé avec succès."
                 }
             },
+            "changeNickname": {
+                "title": "Changer le nom d'utilisateur",
+                "description": "Changez le nom d'utilisateur de {name}.",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Nouveau nom d'utilisateur",
+                            "placeholder": "Entrez le nouveau nom d'utilisateur"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors du changement du nom d'utilisateur",
+                    "description": "Une erreur est survenue lors du changement du nom d'utilisateur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Nom d'utilisateur changé",
+                    "description": "Le nom d'utilisateur a été changé avec succès."
+                }
+            },
             "changeMail": {
                 "title": "Changer l'adresse mail",
                 "description": "Changez l'email de {name}.",
@@ -776,6 +801,7 @@
                 "label": "Actions",
                 "editContainers": "Modifier les conteneurs",
                 "editRoles": "Modifier les rôles",
+                "changeNickname": "Changer le nom d'utilisateur",
                 "changeMail": "Changer l'email",
                 "changePassword": "Changer le mot de passe",
                 "delete": "Supprimer"

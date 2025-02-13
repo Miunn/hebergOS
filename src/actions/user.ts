@@ -1,6 +1,6 @@
 'use server'
 
-import { ChangeMailFormSchema, ChangePasswordFormSchema, LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
+import { ChangeMailFormSchema, ChangeNicknameFormSchema, ChangePasswordFormSchema, LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { authConfig, isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
@@ -115,6 +115,32 @@ export async function linkContainers(userId: string, containers: { containers: s
         return true;
     } catch (e) {
         console.log(`Error linking containers to user: ${e}`);
+        return false;
+    }
+}
+
+export async function changeNickname(userId: string, data: { nickname: string }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsedData = ChangeNicknameFormSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        return false;
+    }
+
+    try {
+        await prisma.user.update({
+            data: {
+                nickname: parsedData.data.nickname
+            },
+            where: { id: userId }
+        });
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch {
         return false;
     }
 }

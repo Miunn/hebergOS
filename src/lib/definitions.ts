@@ -53,6 +53,10 @@ export const LinkContainersFormSchema = z.object({
     containers: z.array(z.string())
 });
 
+export const ChangeNicknameFormSchema = z.object({
+    nickname: z.string().min(3, { message: 'Nickname must be at least 3 characters long.' }).trim(),
+});
+
 export const ChangeMailFormSchema = z.object({
     email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
 });

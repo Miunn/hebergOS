@@ -559,6 +559,31 @@
                     "description": "The user has been created successfully."
                 }
             },
+            "changeNickname": {
+                "title": "Change username",
+                "description": "Change the username of {name}.",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Username",
+                            "placeholder": "Enter new username"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Change",
+                    "submitting": "Changing...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while changing the username. Please try again later."
+                },
+                "success": {
+                    "title": "Username changed",
+                    "description": "The username has been changed successfully."
+                }
+            },
             "changeMail": {
                 "title": "Change email",
                 "description": "Change the email of {name}.",
@@ -770,6 +795,7 @@
                 "label": "Actions",
                 "editContainers": "Edit containers",
                 "editRoles": "Edit roles",
+                "changeNickname": "Change username",
                 "changeMail": "Change email",
                 "changePassword": "Change password",
                 "delete": "Delete"
