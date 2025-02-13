@@ -102,7 +102,7 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                         <DialogHeader>
                             <DialogTitle className="truncate">{message.name}</DialogTitle>
                             <DialogDescription>
-                                <Link href={`mailto:${message.email}?subject=${"messages.actions.answerSubject"}`}>{message.email}</Link> - <span className="capitalize">{formatter.dateTime(message.createdAt, { day: "numeric", weekday: "short", month: "long", year: "numeric", hour: "numeric", minute: "numeric" })}</span>
+                                <Link href={`mailto:${message.email}?subject=${t("message.actions.answerSubject")}`}>{message.email}</Link> - <span className="capitalize">{formatter.dateTime(message.createdAt, { day: "numeric", weekday: "short", month: "long", year: "numeric", hour: "numeric", minute: "numeric" })}</span>
                             </DialogDescription>
                         </DialogHeader>
 
@@ -115,7 +115,7 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                                 <Button variant={"outline"}>{t('actions.close')}</Button>
                             </DialogClose>
                             <Button asChild>
-                                <Link href={`mailto:${message.email}?subject=${"messages.actions.answerSubject"}`}>{t('actions.answer')}</Link>
+                                <Link href={`mailto:${message.email}?subject=${t("message.actions.answerSubject")}`}>{t('actions.answer')}</Link>
                             </Button>
                         </DialogFooter>
                     </DialogContent>
