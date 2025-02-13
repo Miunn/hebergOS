@@ -17,6 +17,8 @@ export default function ContactMessages({ children, open, setOpen }: { children?
     const [messages, setMessages] = React.useState<Contact[]>([]);
     const [messageToDelete, setMessageToDelete] = React.useState<string>("");
     const [openDeleteMessage, setOpenDeleteMessage] = React.useState(false);
+    const [openMessage, setOpenMessage] = React.useState(false);
+    const [message, setMessage] = React.useState<Contact>({ id: "", name: "", email: "", message: "", createdAt: new Date(), updatedAt: new Date() });
 
     React.useEffect(() => {
         getContactMessages().then((messages) => {
@@ -56,34 +58,14 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                             : null
                         }
                         {messages.map((message) => (
-                            <div className="flex justify-between items-center w-full max-w-full" key={message.id}>
-                                <Dialog>
-                                    <DialogTrigger className="w-full">
-                                        <p className="w-full text-start truncate">{message.name}</p>
-                                        <p className="w-full text-start truncate italic">{message.email}</p>
-                                    </DialogTrigger>
-                                    <DialogContent className="w-[900px]">
-                                        <DialogHeader>
-                                            <DialogTitle className="truncate">{message.name}</DialogTitle>
-                                            <DialogDescription>
-                                                {message.email} - <span className="capitalize">{formatter.dateTime(message.createdAt, { day: "numeric", weekday: "short", month: "long", year: "numeric", hour: "numeric", minute: "numeric" })}</span>
-                                            </DialogDescription>
-                                        </DialogHeader>
-
-                                        <ScrollArea className={"h-64 w-full overflow-hidden"}>
-                                            <p className="text-wrap break-all">{message.message}</p>
-                                        </ScrollArea>
-
-                                        <DialogFooter>
-                                            <DialogClose asChild>
-                                                <Button variant={"outline"}>{t('actions.close')}</Button>
-                                            </DialogClose>
-                                            <Button>
-                                                <Link href={`mailto:${message.email}`}>{t('actions.answer')}</Link>
-                                            </Button>
-                                        </DialogFooter>
-                                    </DialogContent>
-                                </Dialog>
+                            <div className="flex justify-between items-center w-full max-w-full" onClick={() => {
+                                setMessage(message);
+                                setOpenMessage(true);
+                            }} key={message.id}>
+                                <div>
+                                    <p className="w-full text-start truncate">{message.name}</p>
+                                    <p className="w-full text-start truncate italic">{message.email}</p>
+                                </div>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className="w-6 h-6">
                                         <p>
@@ -94,7 +76,10 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                                     <DropdownMenuContent align="end">
                                         <DropdownMenuLabel>{t('message.actions.label')}</DropdownMenuLabel>
                                         <DropdownMenuSeparator />
-                                        <DropdownMenuItem>{t('message.actions.open')}</DropdownMenuItem>
+                                        <DropdownMenuItem onClick={() => {
+                                            setMessage(message);
+                                            setOpenMessage(true)
+                                        }}>{t('message.actions.open')}</DropdownMenuItem>
                                         <DropdownMenuItem asChild>
                                             <Link href={`mailto:${message.email}`}>
                                                 {t('message.actions.anwser')}
@@ -112,6 +97,29 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                         ))}
                     </ScrollArea>
                 </Suspense>
+                <Dialog open={openMessage} onOpenChange={setOpenMessage}>
+                    <DialogContent className="w-[900px]">
+                        <DialogHeader>
+                            <DialogTitle className="truncate">{message.name}</DialogTitle>
+                            <DialogDescription>
+                                {message.email} - <span className="capitalize">{formatter.dateTime(message.createdAt, { day: "numeric", weekday: "short", month: "long", year: "numeric", hour: "numeric", minute: "numeric" })}</span>
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <ScrollArea className={"h-64 w-full overflow-hidden"}>
+                            <p className="text-wrap break-all">{message.message}</p>
+                        </ScrollArea>
+
+                        <DialogFooter>
+                            <DialogClose asChild>
+                                <Button variant={"outline"}>{t('actions.close')}</Button>
+                            </DialogClose>
+                            <Button>
+                                <Link href={`mailto:${message.email}`}>{t('actions.answer')}</Link>
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
                 <DeleteMessage messageId={messageToDelete} open={openDeleteMessage} setOpen={setOpenDeleteMessage} />
                 <DialogFooter>
                     <DialogClose asChild>
