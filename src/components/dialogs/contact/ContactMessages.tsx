@@ -58,11 +58,11 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                             : null
                         }
                         {messages.map((message) => (
-                            <div className="flex justify-between items-center w-full max-w-full" onClick={() => {
+                            <div className="flex justify-between items-center w-full max-w-full" key={message.id}>
+                                <div className="cursor-pointer w-full" onClick={() => {
                                 setMessage(message);
                                 setOpenMessage(true);
-                            }} key={message.id}>
-                                <div className="cursor-pointer w-full">
+                            }}>
                                     <p className="w-full text-start truncate">{message.name}</p>
                                     <p className="w-full text-start truncate italic">{message.email}</p>
                                 </div>
