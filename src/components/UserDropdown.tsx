@@ -26,7 +26,11 @@ export default function UserDropdown() {
             <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                     <Button variant={"link"} className="text-inherit text-base">
+<<<<<<< HEAD
                         <span className="max-w-32 md:max-w-96 truncate">
+=======
+                        <span className="max-w-32 truncate">
+>>>>>>> 7bcaa8b3230a06a5b9956cbd894d92e8ab09d21b
                         {user?.name}rrrrrrrrrrrrrr rrrrrrrrrrr rrrrrrrrr rrrrrrrrrrr
                         </span>
                     </Button>
