@@ -646,6 +646,7 @@
                     "label": "Actions",
                     "open": "Open",
                     "anwser": "Answer",
+                    "answerSubject": "HebergOS - Regarding your message",
                     "delete": {
                         "trigger": "Delete",
                         "title": "Delete this message ?",

@@ -81,7 +81,7 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                                             setOpenMessage(true)
                                         }}>{t('message.actions.open')}</DropdownMenuItem>
                                         <DropdownMenuItem asChild>
-                                            <Link href={`mailto:${message.email}`}>
+                                            <Link href={`mailto:${message.email}?subject=${t('message.actions.answerSubject')}`}>
                                                 {t('message.actions.anwser')}
                                             </Link>
                                         </DropdownMenuItem>
@@ -102,7 +102,7 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                         <DialogHeader>
                             <DialogTitle className="truncate">{message.name}</DialogTitle>
                             <DialogDescription>
-                                {message.email} - <span className="capitalize">{formatter.dateTime(message.createdAt, { day: "numeric", weekday: "short", month: "long", year: "numeric", hour: "numeric", minute: "numeric" })}</span>
+                                <Link href={`mailto:${message.email}?subject=${"messages.actions.answerSubject"}`}>{message.email}</Link> - <span className="capitalize">{formatter.dateTime(message.createdAt, { day: "numeric", weekday: "short", month: "long", year: "numeric", hour: "numeric", minute: "numeric" })}</span>
                             </DialogDescription>
                         </DialogHeader>
 
@@ -114,8 +114,8 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                             <DialogClose asChild>
                                 <Button variant={"outline"}>{t('actions.close')}</Button>
                             </DialogClose>
-                            <Button>
-                                <Link href={`mailto:${message.email}`}>{t('actions.answer')}</Link>
+                            <Button asChild>
+                                <Link href={`mailto:${message.email}?subject=${"messages.actions.answerSubject"}`}>{t('actions.answer')}</Link>
                             </Button>
                         </DialogFooter>
                     </DialogContent>
