@@ -707,7 +707,7 @@
                 "name": "Name",
                 "nickname": "Username",
                 "email": "Email",
-                "container": "Container",
+                "containers": "Containers",
                 "otherContainers": "Other containers",
                 "roles": "Roles",
                 "actions": "Actions"
