@@ -10,7 +10,7 @@ export default async function Dashboard() {
 
     return (
         <>
-            <h1 className="font-semibold text-3xl mt-24 mb-7 flex justify-between items-center">
+            <h1 className="font-semibold text-3xl mt-24 mb-7">
                 {t('title')}
             </h1>
             <div className="flex flex-wrap gap-6">
