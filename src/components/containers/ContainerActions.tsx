@@ -10,6 +10,7 @@ import StopContainer from "@/components/dialogs/containers/StopContainer";
 import RestartContainer from "@/components/dialogs/containers/RestartContainer";
 import { DialogTrigger } from "../ui/dialog";
 import ActivitiesCard from "./ActivitiesCard";
+import { ContainerState } from "@prisma/client";
 
 export default function ContainerActions({ container }: { container: ContainerWithActivity }) {
 
@@ -64,17 +65,17 @@ export default function ContainerActions({ container }: { container: ContainerWi
                 <CardContent className="flex flex-wrap gap-6">
                     <StartContainer container={container}>
                         <DialogTrigger asChild>
-                            <Button>{t('actions.start')}</Button>
+                            <Button disabled={container.state === ContainerState.RUNNING || container.state === ContainerState.RESTARTING}>{t('actions.start')}</Button>
                         </DialogTrigger>
                     </StartContainer>
                     <StopContainer container={container}>
                         <DialogTrigger asChild>
-                            <Button>{t('actions.stop')}</Button>
+                            <Button disabled={container.state !== ContainerState.RUNNING}>{t('actions.stop')}</Button>
                         </DialogTrigger>
                     </StopContainer>
                     <RestartContainer container={container}>
                         <DialogTrigger asChild>
-                            <Button>{t('actions.restart')}</Button>
+                            <Button disabled={container.state !== ContainerState.RUNNING}>{t('actions.restart')}</Button>
                         </DialogTrigger>
                     </RestartContainer>
                 </CardContent>
