@@ -16,6 +16,7 @@ import EditRoles from "../dialogs/users/EditRoles"
 import DeleteUser from "../dialogs/users/DeleteUser"
 import { Role } from "@prisma/client"
 import ChangePassword from "../dialogs/users/ChangePassword"
+import ChangeMail from "../dialogs/users/ChangeMail"
 
 export const usersColumns: ColumnDef<UserWithContainers>[] = [
     {
@@ -147,6 +148,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
             const [openEditContainers, setOpenEditContainers] = React.useState(false);
             const [openEditRoles, setOpenEditRoles] = React.useState(false);
             const [openChangePassword, setOpenChangePassword] = React.useState(false);
+            const [openChangeMail, setOpenChangeMail] = React.useState(false);
             const [openDeleteUser, setOpenDeleteUser] = React.useState(false);
 
             return (
@@ -162,6 +164,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                             <DropdownMenuLabel>{t('label')}</DropdownMenuLabel>
                             <DropdownMenuItem onClick={() => setOpenEditContainers(true)}>{t('editContainers')}</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setOpenEditRoles(true)}>{t('editRoles')}</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setOpenChangeMail(true)}>{t('changeMail')}</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setOpenChangePassword(true)}>{t('changePassword')}</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem onClick={() => setOpenDeleteUser(true)} className="font-semibold text-red-500 focus:text-red-500">{t('delete')}</DropdownMenuItem>
@@ -169,6 +172,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                     </DropdownMenu>
                     <LinkContainers user={row.original} open={openEditContainers} setOpen={setOpenEditContainers} />
                     <EditRoles user={row.original} open={openEditRoles} setOpen={setOpenEditRoles} />
+                    <ChangeMail user={row.original} open={openChangeMail} setOpen={setOpenChangeMail} />
                     <ChangePassword user={row.original} open={openChangePassword} setOpen={setOpenChangePassword} />
                     <DeleteUser user={row.original} open={openDeleteUser} setOpen={setOpenDeleteUser} />
                 </>

@@ -565,6 +565,31 @@
                     "description": "L'utilisateur a été créé avec succès."
                 }
             },
+            "changeMail": {
+                "title": "Changer l'adresse mail",
+                "description": "Changez l'email de {name}.",
+                "form": {
+                    "fields": {
+                        "email": {
+                            "label": "Nouvel email",
+                            "placeholder": "Entrez le nouvel email"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors du changement de l'email",
+                    "description": "Une erreur est survenue lors du changement de l'email. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Email changé",
+                    "description": "L'email a été changé avec succès."
+                }
+            },
             "changePassword": {
                 "title": "Changer le mot de passe",
                 "description": "Changez le mot de passe de {name}.",
@@ -751,6 +776,7 @@
                 "label": "Actions",
                 "editContainers": "Modifier les conteneurs",
                 "editRoles": "Modifier les rôles",
+                "changeMail": "Changer l'email",
                 "changePassword": "Changer le mot de passe",
                 "delete": "Supprimer"
             }

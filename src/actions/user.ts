@@ -1,6 +1,6 @@
 'use server'
 
-import { ChangePasswordFormSchema, LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
+import { ChangeMailFormSchema, ChangePasswordFormSchema, LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { authConfig, isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
@@ -119,6 +119,32 @@ export async function linkContainers(userId: string, containers: { containers: s
     }
 }
 
+export async function changeMail(userId: string, data: { email: string }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsedData = ChangeMailFormSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        return false;
+    }
+
+    try {
+        await prisma.user.update({
+            data: {
+                email: parsedData.data.email
+            },
+            where: { id: userId }
+        });
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 export async function changePassword(userId: string, data: { password: string, passwordConfirmation: string }): Promise<boolean> {
     if (!(await isAdmin())) {
         return false;
@@ -141,7 +167,7 @@ export async function changePassword(userId: string, data: { password: string, p
         });
 
         return true;
-    } catch (error) {
+    } catch {
         return false;
     }
 }

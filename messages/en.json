@@ -559,6 +559,31 @@
                     "description": "The user has been created successfully."
                 }
             },
+            "changeMail": {
+                "title": "Change email",
+                "description": "Change the email of {name}.",
+                "form": {
+                    "fields": {
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Enter new email"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Change",
+                    "submitting": "Changing...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while changing the email. Please try again later."
+                },
+                "success": {
+                    "title": "Email changed",
+                    "description": "The email has been changed successfully."
+                }
+            },
             "changePassword": {
                 "title": "Set a new password",
                 "description": "Set a new password for {name}.",
@@ -745,6 +770,7 @@
                 "label": "Actions",
                 "editContainers": "Edit containers",
                 "editRoles": "Edit roles",
+                "changeMail": "Change email",
                 "changePassword": "Change password",
                 "delete": "Delete"
             }
