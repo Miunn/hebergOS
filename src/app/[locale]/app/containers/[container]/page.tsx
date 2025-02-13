@@ -6,7 +6,6 @@ import { canAccessContainer } from "@/lib/utils";
 import { robotoMono } from "@/ui/fonts";
 import { ContainerState } from "@prisma/client";
 import { Bolt } from "lucide-react";
-import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";

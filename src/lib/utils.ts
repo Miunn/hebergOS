@@ -1,8 +1,8 @@
 import { type NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { Role, User } from '@prisma/client';
-import { SignInFormSchema, UserLight, UserWithContainers } from '@/lib/definitions';
+import { Role } from '@prisma/client';
+import { SignInFormSchema, UserWithContainers } from '@/lib/definitions';
 import { clsx, type ClassValue } from "clsx"
 import { getServerSession } from "next-auth";
 import { twMerge } from "tailwind-merge"
@@ -101,7 +101,7 @@ export async function canAccessContainer(containerId: string) {
       where: { id: session.user.id },
       include: { containers: true, userRoles: true }
     });
-  } catch (e) {
+  } catch {
     return false;
   }
 

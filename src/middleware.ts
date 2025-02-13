@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { routing } from './i18n/routing';
 
 async function customMiddleware(request: NextRequestWithAuth) {
@@ -39,23 +39,6 @@ export default withAuth(customMiddleware, {
 
             if (isOnApp) {
                 if (!isLoggedIn) return false;
-
-                const isOnContainerPageRegExp = new RegExp(`(${routing.locales.join('|')})/app/containers/(.*)`);
-
-                /*if (isOnContainerPageRegExp.test(req.nextUrl.pathname)) {
-                    const match = req.nextUrl.pathname.match(isOnContainerPageRegExp);
-                    if (!match) return false;
-                    const containerId = match[2];
-
-                    const isAllowed = await fetch(`${process.env.NEXTAUTH_URL}/api/users/check-container?containerId=${containerId.toString()}`, {
-                        method: 'POST'
-                    });
-
-                    if (!isAllowed.ok) return false;
-
-                    return true;
-                }*/
-
                 return true; // Redirect unauthenticated users to login page
             }
             return true;
