@@ -42,7 +42,7 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
 
         return (
             <p key={activity.id} className="flex justify-start gap-4">
-                <span className="capitalize text-nowrap">{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
+                <span className="capitalize md:text-nowrap">{formatter.dateTime(activity.createdAt, { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</span>
                 <span>{text}</span>
             </p>
         )

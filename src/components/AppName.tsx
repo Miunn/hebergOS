@@ -5,7 +5,7 @@ export default function AppName() {
     return (
         <>
         <p className="hidden md:block">
-            <span className="text-secondary hidden">Heberg</span>
+            <span className="text-secondary">Heberg</span>
             <span className="text-primary">OS</span>
         </p>
         <div className="flex md:hidden justify-start items-center">

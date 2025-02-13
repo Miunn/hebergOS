@@ -28,7 +28,7 @@ export default async function Home() {
         />
 
         <section className="max-w-[80rem] min-h-screen row-start-2 px-6 mx-auto sm:items-start">
-          <section className="relative mx-auto mb-24 md:mb-32 max-w-[80rem] px-6 text-center md:px-8">
+          <section className="relative mx-auto mb-24 md:mb-32 max-w-[80rem] text-center md:px-8">
             <h1 className="bg-gradient-to-br dark:from-white from-primary from-30% dark:to-white/40 to-primary/40 bg-clip-text py-6 text-3xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-6xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]" dangerouslySetInnerHTML={{ __html: t('catchLine') }} />
 
             <p className="mb-6 md:mb-12 text-lg tracking-tight text-gray-400 md:text-xl text-balance translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]" dangerouslySetInnerHTML={{ __html: t('description') }} />
@@ -59,7 +59,7 @@ export default async function Home() {
                 <div className="hidden md:block transform hover:-translate-y-2 transition-transform duration-200 rotate-6">
                   <ContainerCard name="plateformer" state={ContainerState.RUNNING} />
                 </div>
-                <div className="transform hover:-translate-y-2 transition-transform duration-200 -rotate-3">
+                <div className="transform hover:-translate-y-2 translate-x-[-80px] translate-y-[40px] transition-transform duration-200 -rotate-3">
                   <ContainerCard name="api-service" state={ContainerState.CREATED} />
                 </div>
                 <div className="hidden md:block transform hover:-translate-y-2 transition-transform duration-200 -rotate-3">
