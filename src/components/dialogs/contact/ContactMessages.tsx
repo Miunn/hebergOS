@@ -52,7 +52,7 @@ export default function ContactMessages({ children, open, setOpen }: { children?
                 </DialogHeader>
 
                 <Suspense fallback={<div>Loading...</div>}>
-                    <ScrollArea className={"space-y-4 h-44 w-full gap-11 flex flex-col pr-4"}>
+                    <ScrollArea className="flex max-h-96 flex-col overflow-y-auto">
                         {messages.length === 0
                             ? <p className="text-center italic">{t('empty')}</p>
                             : null

@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { ScrollText } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import FullActivities from "../dialogs/containers/FullActivities";
+import { ScrollArea } from "../ui/scroll-area";
 
 export default function ActivitiesCard({ container }: { container: ContainerWithActivity }) {
 
@@ -69,11 +70,11 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="space-y-4">
+                <ScrollArea className="flex max-h-96 flex-col overflow-y-auto">
                     {container.containerActivities.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).slice(0, 5).map((activity) => (
                         renderActivity(activity)
                     ))}
-                </div>
+                </ScrollArea>
                 {container.containerActivities.length === 0
                     ? <p className="italic mx-auto text-center">{t('empty')}</p>
                     : null}
