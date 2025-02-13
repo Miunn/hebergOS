@@ -118,7 +118,7 @@ export default async function Home() {
             </section>
           </section>
 
-          <section className="max-w-[1300px] mx-auto space-y-14 mt-32">
+          <section className="max-w-[700px] mx-auto space-y-14 mt-32">
             <h2 className="text-center text-4xl font-semibold">{t('faq.title')}</h2>
 
             <Accordion type="single" collapsible className="w-full space-y-2">
