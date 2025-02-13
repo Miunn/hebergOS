@@ -565,6 +565,35 @@
                     "description": "L'utilisateur a été créé avec succès."
                 }
             },
+            "changePassword": {
+                "title": "Changer le mot de passe",
+                "description": "Changez le mot de passe de {name}.",
+                "form": {
+                    "fields": {
+                        "password": {
+                            "label": "Nouveau mot de passe",
+                            "placeholder": "Entrez le nouveau mot de passe"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Confirmation du mot de passe",
+                            "placeholder": "Confirmez le nouveau mot de passe"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors du changement de mot de passe",
+                    "description": "Une erreur est survenue lors du changement de mot de passe. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Mot de passe changé",
+                    "description": "Le mot de passe a été changé avec succès."
+                }
+            },
             "linkContainers": {
                 "title": "Lier les conteneurs à {name}",
                 "description": "Sélectionnez les conteneurs à lier à l'utilisateur {name}.",
@@ -722,6 +751,7 @@
                 "label": "Actions",
                 "editContainers": "Modifier les conteneurs",
                 "editRoles": "Modifier les rôles",
+                "changePassword": "Changer le mot de passe",
                 "delete": "Supprimer"
             }
         },

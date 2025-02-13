@@ -53,6 +53,20 @@ export const LinkContainersFormSchema = z.object({
     containers: z.array(z.string())
 });
 
+export const ChangePasswordFormSchema = z.object({
+    password: z
+        .string()
+        .min(8, { message: 'Password must be at least 8 characters long.' })
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, { message: 'Password must contain at least one special character.' })
+        .regex(/[A-Z]/, { message: 'Password must contain at least one uppercase character.' })
+        .regex(/[a-z]/, { message: 'Password must contain at least one lowercase character.' })
+        .trim(),
+    passwordConfirmation: z.string().trim(),
+}).refine((data) => data.password === data.passwordConfirmation, {
+    message: "Passwords don't match",
+    path: ["passwordConfirmation"],
+});
+
 export const EditRolesFormSchema = z.object({
     roles: z.array(z.nativeEnum(Role)).default([Role.USER]),
 });
@@ -99,7 +113,7 @@ const containerWithActivity = Prisma.validator<Prisma.ContainerDefaultArgs>()({
 export type ContainerWithActivity = Prisma.ContainerGetPayload<typeof containerWithActivity>
 
 const containerWithUsers = Prisma.validator<Prisma.ContainerDefaultArgs>()({
-    include: { users: { omit: { password: true }} },
+    include: { users: { omit: { password: true } } },
 })
 
 export type ContainerWithUsers = Prisma.ContainerGetPayload<typeof containerWithUsers>

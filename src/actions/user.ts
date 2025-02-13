@@ -1,6 +1,6 @@
 'use server'
 
-import { LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
+import { ChangePasswordFormSchema, LinkContainersFormSchema, RegisterFormSchema, UserWithContainers } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { authConfig, isAdmin } from "@/lib/utils";
 import { Role } from "@prisma/client";
@@ -115,6 +115,33 @@ export async function linkContainers(userId: string, containers: { containers: s
         return true;
     } catch (e) {
         console.log(`Error linking containers to user: ${e}`);
+        return false;
+    }
+}
+
+export async function changePassword(userId: string, data: { password: string, passwordConfirmation: string }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const parsedData = ChangePasswordFormSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        return false;
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(parsedData.data.password, 13);
+
+        await prisma.user.update({
+            data: {
+                password: hashedPassword
+            },
+            where: { id: userId }
+        });
+
+        return true;
+    } catch (error) {
         return false;
     }
 }
