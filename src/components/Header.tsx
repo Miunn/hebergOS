@@ -22,7 +22,7 @@ export default async function Header({ className, locale }: { className?: string
     return (
         <header className={cn(
             "fixed left-0 top-0 z-50 w-full border-b backdrop-blur-[12px]",
-            "grid grid-cols-2 md:grid-cols-3 h-20 items-center lg:px-24 md:px-12 px-2",
+            "grid grid-cols-[auto_1fr] md:grid-cols-3 h-20 items-center lg:px-24 md:px-12 px-2",
             className
         )}>
             {/* <Image src={"/favicon.png"} alt="HebergOS" width={48} height={48} /> */}
