@@ -2,6 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { NextRequestWithAuth, withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 import { routing } from './i18n/routing';
+import { Role } from '@prisma/client';
 
 async function customMiddleware(request: NextRequestWithAuth) {
     const handleI18nRouting = createMiddleware(routing);
@@ -33,7 +34,7 @@ export default withAuth(customMiddleware, {
             const isOnAdminPage = new RegExp(`(${routing.locales.join('|')})/app/administration`).test(req.nextUrl.pathname);
 
             if (isOnAdminPage) {
-                if (isLoggedIn && token.roles.includes('ADMIN')) return true;
+                if (isLoggedIn && token.roles.includes(Role.ADMIN)) return true;
                 return false; // Redirect unauthorized users to home page
             }
 
