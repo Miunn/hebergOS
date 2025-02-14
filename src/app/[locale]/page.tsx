@@ -27,7 +27,7 @@ export default async function Home() {
           )}
         />
 
-        <section className="max-w-[80rem] min-h-screen row-start-2 px-6 mx-auto sm:items-start">
+        <section className="max-w-[80rem] min-h-screen row-start-2 px-6 mx-auto sm:items-start overflow-hidden">
           <section className="relative mx-auto mb-24 md:mb-32 max-w-[80rem] text-center md:px-8">
             <h1 className="bg-gradient-to-br dark:from-white from-primary from-30% dark:to-white/40 to-primary/40 bg-clip-text py-6 text-3xl font-medium leading-none tracking-tighter text-transparent text-balance sm:text-6xl md:text-7xl lg:text-6xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]" dangerouslySetInnerHTML={{ __html: t('catchLine') }} />
 
