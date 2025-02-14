@@ -183,7 +183,8 @@
     },
     "components": {
         "header": {
-            "goToApp": "Aller à l'application"
+            "goToApp": "Aller à l'application",
+            "login": "Connexion"
         },
         "auth": {
             "login": {

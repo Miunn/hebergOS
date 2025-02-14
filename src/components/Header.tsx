@@ -38,7 +38,7 @@ export default async function Header({ className, locale }: { className?: string
                     {!session?.user
                         ? <>
                             <ContactUsCta variant={"outline"} />
-                            <Button asChild><Link href={"/login"} className="text-lg"><LogIn className="w-6 h-6" /> Connexion</Link></Button>
+                            <Button asChild><Link href={"/login"} className="text-lg"><LogIn className="w-6 h-6" /> { t('login') }</Link></Button>
                         </>
                         : null
                     }

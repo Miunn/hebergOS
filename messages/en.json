@@ -179,7 +179,8 @@
     },
     "components": {
         "header": {
-            "goToApp": "Go to application"
+            "goToApp": "Go to application",
+            "login": "Login"
         },
         "auth": {
             "login": {
