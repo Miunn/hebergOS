@@ -1,0 +1,841 @@
+{
+    "title": "HebergOS",
+    "pages": {
+        "home": {
+            "title": "HebergOS",
+            "catchLine": "La solution d'hébergement pour les étudiants <br /> de l'INSA Hauts-de-France",
+            "description": "Déployez vos applications web en quelques clics.<br />HebergOS abstrait la complexité de l'hébergement et vous laisse vous concentrer sur l'essentiel.",
+            "contact": "Contactez-nous",
+
+            "section1": {
+                "title": "Partagez nous vos idées et créeons ensemble votre solution",
+                "description": "Contactez-nous pour discuter de vos besoins et de vos envies. Préparons la meilleure solution, adaptée à vos projets."
+            },
+
+            "section2": {
+                "title": "Gérez vos applications en toute simplicité",
+                "description": "Démarrez, arrêtez, redémarrez vos conteneurs en deux clics directement ou accédez à la console de vos conteneurs directement depuis l'interface de l'application."
+            },
+
+            "section3": {
+                "title": "Gardez un oeil sur vos applications en temps réel",
+                "description": "HebergOS vous permet de surveiller l'état de vos applications en temps réel. Vous pouvez voir les statistiques d'utilisation de vos conteneurs et observer la réponses de vos applications en fonction du traffic.",
+                "link": "Monitor",
+                "widgetTitle": "Statistiques d'utilisation"
+            },
+
+            "faq": {
+                "title": "Questions fréquentes",
+                "questions": {
+                    "1": {
+                        "question": "Qu'est-ce que HebergOS ?",
+                        "answer": "HebergOS est une solution d'hébergement mise en place par le club informatique de l'INSA Hauts-de-France pour ses étudiants et associations ayant besoin d'infrastructures informatiques pour divers projets. Elle permet de déployer des applications ou services centrés sur le Web et de les gérer à travers une interface intuitive."
+                    },
+                    "2": {
+                        "question": "A qui HebergOS s'adresse-t-il ?",
+                        "answer": "HebergOS a été pensé pour être le plus simple d'utilisation afin de correspondre aux personnes possédant un bagage informatique tout comme aux personnes non initiées. De cette manière, même si vous n'êtes pas membre du club mais que vous voulez, par exemple, mettre en place un site web pour votre association, le club informatique peut fournir les compétences techinques. De votre côté, vous gardez la main sur l'état de votre projet, ses statistiques, et pouvez à tout moment effectuer différentes actions."
+                    },
+                    "3": {
+                        "question": "Comment puis-je y accéder ?",
+                        "answer": "HebergOS est destiné aux étudiants ainsi qu'aux associations de l'INSA Hauts-de-France. Contactez-nous pour nous faire part de vos projets et obtenir un accès."
+                    },
+                    "4": {
+                        "question": "Comment puis-je vous contacter ?",
+                        "answer": "Vous pouvez nous contacter directement via le formulaire de contact en cliquant sur Contactez-nous, sur Instagram, LinkedIn, Discord ou par mail"
+                    }
+                }
+            }
+        },
+        "contact": {
+            "title": "Contactez-nous",
+            "description": "Une question, une suggestion ou une demande ? Contactez-nous et nous reviendrons vers vous le plus rapidement possible.",
+            "contact": {
+                "address": "INSA Hauts-de-France, Claudin LeJeune 3, E15<br />Jeudi 14h-18h",
+                "instagram": {
+                    "label": "@clubinfoinsahdf",
+                    "link": "https://instagram.com/clubinfoinsahdf"
+                },
+                "mail": {
+                    "label": "insa.sh.hdf@gmail.com",
+                    "link": "mailto:insa.sh.hdf@gmail.com"
+                }
+            },
+            "form": {
+                "fields": {
+                    "name": {
+                        "label": "Nom",
+                        "placeholder": "Entrez votre nom"
+                    },
+                    "email": {
+                        "label": "Email",
+                        "placeholder": "Entrez votre email",
+                        "description": "Nous utiliserons cette adresse afin de vous recontacter"
+                    },
+                    "message": {
+                        "label": "Message",
+                        "placeholder": "Entrez votre message"
+                    }
+                }
+            },
+            "actions": {
+                "submit": "Envoyer",
+                "submitting": "Envoi..."
+            },
+            "error": {
+                "title": "Erreur lors de l'envoi du message",
+                "description": "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer."
+            },
+            "success": {
+                "title": "Message envoyé",
+                "description": "Votre message a été envoyé avec succès. Nous vous recontacterons dans les plus brefs délais."
+            }
+        },
+        "app": {
+            "dashboard": {
+                "title": "Mes projets",
+                "empty": "Aucun projet ne vous est attribué pour le moment.<br />Contactez un administrateur afin de discuter de vos envies !",
+                "administration": "Administration"
+            },
+            "container": {
+                "noDomain": "Aucun domaine associé",
+                "tabs": {
+                    "overview": "Vue d'ensemble",
+                    "graphs": "Graphiques",
+                    "shell": "Console",
+                    "actions": "Actions",
+                    "admin": "Administration",
+                    "asks": "Demandes"
+                },
+                "overview": {
+                    "title": "Vue d'ensemble de {name}",
+                    "users": {
+                        "title": "Utilisateurs",
+                        "empty": "Aucun utilisateur n'est lié à ce projet pour le moment."
+                    }
+                },
+                "graphs": {
+                    "title": "Statistiques d'utilisation de {name}",
+                    "period": {
+                        "label": "Sélectionnez une période",
+                        "options": {
+                            "hour": "Dernière heure",
+                            "4hours": "Dernières 4 heures",
+                            "day": "Dernières 24 heures",
+                            "week": "Dernière semaine"
+                        }
+                    }
+                },
+                "actions": {
+                    "title": "Gérer {name}",
+                    "descriptionRunning": "{name} a été démarré {time}.",
+                    "descriptionStopped": "Actuellement {name} est arrêté. Vous pouvez le démarrer ci-dessous.",
+                    "descriptionRestarting": "Actuellement {name} est en cours de redémarrage.",
+                    "descriptionCreated": "{name} vient d'être créé. Vous pouvez maintenant le démarrer ci-dessous.",
+                    "descriptionPaused": "{name} est en pause.",
+                    "activity": {
+                        "empty": "Aucune activité récente pour le moment",
+                        "title": "Activités du conteneur",
+                        "started": "Projet démarré",
+                        "stopped": "Projet arrêté",
+                        "restarted": "Projet redémarré"
+                    },
+                    "actions": {
+                        "title": "Actions",
+                        "start": "Démarrer",
+                        "stop": "Arrêter",
+                        "restart": "Redémarrer"
+                    }
+                },
+                "administration": {
+                    "title": "Administration",
+                    "description": "Vous pouvez gérer le conteneur ci-dessous.",
+                    "hostPort": "Le conteneur est en cours d'exécution sur le port {port} de docker",
+                    "memory": "La limite de mémoire actuelle est de {memory} Go",
+                    "cpu": "La limite de CPU actuelle est de {cpu} %",
+                    "actions": {
+                        "changeMemory": "Changer la limite de mémoire",
+                        "changeCpu": "Changer la limite de CPU",
+                        "deleteContainer": "Supprimer le conteneur"
+                    }
+                },
+                "asks": {
+                    "tickets": "{count, plural, zero {Ticket} one {Ticket} other {Tickets}}",
+                    "create": "Créer un ticket",
+                    "search": "Filtrer les tickets"
+                }
+            },
+            "administration": {
+                "tabs": {
+                    "users": "Utilisateurs",
+                    "containers": "Conteneurs",
+                    "notifications": "Notifications"
+                },
+                "title": "Administration",
+                "users": "{count, plural, zero {Utilisateur} one {Utilisateur} other {Utilisateurs}}",
+                "searchUsers": "Filtrer les utilisateurs",
+                "createUser": "Créer un utilisateur",
+                "containers": "{count, plural, zero {Conteneur hébergé} one {Conteneur hébergé} other {Conteneurs hébergés}}",
+                "searchContainers": "Filtrer les conteneurs",
+                "createContainer": "Créer un conteneur",
+                "otherContainers": "Autres conteneurs"
+            }
+        }
+    },
+    "components": {
+        "header": {
+            "goToApp": "Aller à l'application",
+            "login": "Connexion"
+        },
+        "auth": {
+            "login": {
+                "title": "Connexion",
+                "description": "Connectez-vous à votre compte HebergOS",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Nom d'utilisateur",
+                            "placeholder": "Entrez votre nom d'utilisateur"
+                        },
+                        "password": {
+                            "label": "Mot de passe",
+                            "placeholder": "Entrez votre mot de passe"
+                        }
+                    },
+                    "actions": {
+                        "submit": "Se connecter",
+                        "submitting": "Connexion...",
+                        "forgotPassword": "Mot de passe oublié"
+                    }
+                },
+                "error": "Nom d'utilisateur ou mot de passe incorrect"
+            }
+        },
+        "containers": {
+            "activities": {
+                "empty": "Aucune activité récente pour le moment",
+                "title": "Activités du conteneur",
+                "descriptionFull": "Toutes les activités récentes du conteneur",
+                "description": "Les {count} dernières activités du conteneur",
+                "created": "Projet créé",
+                "started": "Projet démarré",
+                "stopped": "Projet arrêté",
+                "restarted": "Projet redémarré",
+                "domainUpdate": "Domaine modifié en {domain}",
+                "memoryUpdate": "Limite mémoire modifiée à {memory} Go",
+                "cpuUpdate": "Limite CPU modifiée à {cpu} %",
+                "checkAllTooltip": "Check all activities"
+            }
+        },
+        "users": {
+            "userDropdown": {
+                "label": "Compte",
+                "notifications": "Notifications",
+                "administration": "Administration",
+                "messages": "Messages",
+                "logout": "Déconnexion"
+            }
+        }
+    },
+    "dialogs": {
+        "containers": {
+            "create": {
+                "trigger": "Créer un conteneur",
+                "title": "Créer un conteneur",
+                "description": "Créez un nouveau conteneur",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Nom",
+                            "placeholder": "Entrez le nom du conteneur"
+                        },
+                        "hostPort": {
+                            "label": "Port hôte",
+                            "placeholder": "Sélectionnez le port hôte"
+                        },
+                        "memory": {
+                            "label": "Limite mémoire",
+                            "placeholder": "Entrez la limite de mémoire",
+                            "description": "La mémoire limite est exprimé en Go."
+                        },
+                        "cpu": {
+                            "label": "Limite CPU",
+                            "placeholder": "Entrez la limite de CPU",
+                            "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la création du conteneur",
+                    "description": "Une erreur est survenue lors de la création du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur créé",
+                    "description": "Le conteneur a été créé avec succès."
+                }
+            },
+            "start": {
+                "trigger": "Démarrer",
+                "title": "Démarrer {name}",
+                "description": "Êtes-vous sûr de vouloir démarrer {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "start": "Démarrer",
+                    "starting": "Démarrage..."
+                },
+                "error": {
+                    "title": "Erreur lors du démarrage du conteneur",
+                    "description": "Une erreur est survenue lors du démarrage du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur démarré",
+                    "description": "Le conteneur a été démarré avec succès."
+                }
+            },
+            "stop": {
+                "trigger": "Arrêter",
+                "title": "Arrêter {name}",
+                "description": "Êtes-vous sûr de vouloir arrêter {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "stop": "Arrêter",
+                    "stopping": "Arrêt..."
+                },
+                "error": {
+                    "title": "Erreur lors de l'arrêt du conteneur",
+                    "description": "Une erreur est survenue lors de l'arrêt du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur arrêté",
+                    "description": "Le conteneur a été arrêté avec succès."
+                }
+            },
+            "restart": {
+                "trigger": "Redémarrer",
+                "title": "Redémarrer {name}",
+                "description": "Êtes-vous sûr de vouloir redémarrer {name} ?",
+                "actions": {
+                    "cancel": "Annuler",
+                    "restart": "Redémarrer",
+                    "restarting": "Redémarrage..."
+                },
+                "error": {
+                    "title": "Erreur lors du redémarrage du conteneur",
+                    "description": "Une erreur est survenue lors du redémarrage du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur redémarré",
+                    "description": "Le conteneur a été redémarré avec succès."
+                }
+            },
+            "changeDomain": {
+                "trigger": "Changer le domaine",
+                "title": "Changer le domaine de {name}",
+                "description": "Entrez le nouveau domaine pour {name}.",
+                "form": {
+                    "fields": {
+                        "domain": {
+                            "label": "Domaine",
+                            "placeholder": "Entrez le nouveau domaine",
+                            "description": "Le domaine du conteneur sera affiché en dessous du nom"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors du changement de domaine",
+                    "description": "Une erreur est survenue lors du changement de domaine. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Domaine changé",
+                    "description": "Le domaine a été changé avec succès."
+                }
+            },
+            "editMemoryLimit": {
+                "trigger": "Modifier la limite mémoire",
+                "title": "Modifier la limite mémoire de {name}",
+                "description": "Entrez la nouvelle limite de mémoire pour {name}.",
+                "form": {
+                    "fields": {
+                        "memory": {
+                            "label": "Limite mémoire",
+                            "placeholder": "Entrez la nouvelle limite de mémoire",
+                            "description": "La mémoire limite est exprimée en Go."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la modification de la limite mémoire",
+                    "description": "Une erreur est survenue lors de la modification de la limite mémoire. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Limite mémoire modifiée",
+                    "description": "La limite mémoire a été modifiée avec succès."
+                }
+            },
+            "editCpuLimit": {
+                "trigger": "Modifier la limite CPU",
+                "title": "Modifier la limite CPU de {name}",
+                "description": "Entrez la nouvelle limite de CPU pour {name}.",
+                "form": {
+                    "fields": {
+                        "cpu": {
+                            "label": "Limite CPU",
+                            "placeholder": "Entrez la nouvelle limite de CPU",
+                            "description": "La limite de CPU est exprimée en pourcentage. 100% équivaut à un coeur de CPU."
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "title": "Erreur lors de la modification de la limite CPU",
+                    "description": "Une erreur est survenue lors de la modification de la limite CPU. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Limite CPU modifiée",
+                    "description": "La limite CPU a été modifiée avec succès."
+                }
+            },
+            "createTicket": {
+                "title": "Créer un ticket",
+                "description": "Créez un nouveau ticket pour demander une action sur votre projet.",
+                "user": {
+                    "label": "Utilisateur"
+                },
+                "container": {
+                    "label": "Projet"
+                },
+                "form": {
+                    "fields": {
+                        "user": {
+                            "label": "Utilisateur"
+                        },
+                        "container": {
+                            "label": "Projet"
+                        },
+                        "type": {
+                            "label": "Type",
+                            "description": "Sélectionnez le type de demande",
+                            "options": {
+                                "memory": "Mise à jour de la mémoire",
+                                "cpu": "Mise à jour du CPU",
+                                "delete": "Suppression du projet",
+                                "other": "Autre"
+                            }
+                        },
+                        "message": {
+                            "label": "Message",
+                            "placeholder": "Le message que vous souhaitez nous transmettre"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la création du ticket",
+                    "description": "Une erreur est survenue lors de la création du ticket. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Ticket créé",
+                    "description": "Le ticket a été créé avec succès."
+                }
+            },
+            "cancelTicket": {
+                "trigger": "Annuler la demande",
+                "title": "Annuler la demande",
+                "description": "Êtes-vous sûr de vouloir annuler la demande ?",
+                "actions": {
+                    "cancel": "Non, garder la demande",
+                    "submit": "Oui, annuler la demande",
+                    "submitting": "Annulation..."
+                },
+                "error": {
+                    "title": "Erreur lors de l'annulation de la demande",
+                    "description": "Une erreur est survenue lors de l'annulation de la demande. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Demande annulée",
+                    "description": "La demande a été annulée avec succès."
+                }
+            },
+            "delete": {
+                "trigger": "Supprimer",
+                "title": "Supprimer {name} ?",
+                "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+                "confirmationInput": {
+                    "label": "Type user's name to confirm deletion",
+                    "placeholder": "Enter {name}"
+                },
+                "actions": {
+                    "cancel": "Annuler",
+                    "delete": "Supprimer",
+                    "deleting": "Suppression..."
+                },
+                "error": {
+                    "title": "Erreur lors de la suppression du conteneur",
+                    "description": "Une erreur est survenue lors de la suppression du conteneur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneur supprimé",
+                    "description": "Le conteneur a été supprimé avec succès."
+                }
+            }
+        },
+        "users": {
+            "create": {
+                "title": "Créer un utilisateur",
+                "description": "Créez un nouvel utilisateur pour l'application HebergOS.",
+                "form": {
+                    "fields": {
+                        "name": {
+                            "label": "Nom",
+                            "placeholder": "Entrez le nom"
+                        },
+                        "email": {
+                            "label": "Email",
+                            "placeholder": "Entrez l'email"
+                        },
+                        "nickname": {
+                            "label": "Nom d'utilisateur",
+                            "placeholder": "Entrez le nom d'utilisateur"
+                        },
+                        "password": {
+                            "label": "Mot de passe",
+                            "placeholder": "Entrez le mot de passe"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Confirmation du mot de passe",
+                            "placeholder": "Confirmez le mot de passe"
+                        },
+                        "roles": {
+                            "label": "Rôles",
+                            "description": "Sélectionnez les rôles de l'utilisateur",
+                            "options": {
+                                "admin": "Administrateur",
+                                "info": "Informatique",
+                                "user": "Utilisateur"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Créer",
+                    "submitting": "Création...",
+                    "cancel": "Annuler"
+                },
+                "errors": {
+                    "nicknameAlreadyExists": {
+                        "title": "Nom d'utilisateur déjà utilisé",
+                        "description": "Le nom d'utilisateur est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
+                    },
+                    "emailAlreadyExists": {
+                        "title": "Email déjà utilisé",
+                        "description": "L'email est déjà utilisé par un autre utilisateur. Veuillez en choisir un autre."
+                    },
+                    "invalidData": {
+                        "title": "Données invalides",
+                        "description": "Les données fournies sont invalides. Veuillez vérifier les champs et réessayer."
+                    },
+                    "unknown": {
+                        "title": "Erreur lors de la création de l'utilisateur",
+                        "description": "Une erreur est survenue lors de la création de l'utilisateur. Veuillez réessayer."
+                    }
+                },
+                "success": {
+                    "title": "Utilisateur créé",
+                    "description": "L'utilisateur a été créé avec succès."
+                }
+            },
+            "changeNickname": {
+                "title": "Changer le nom d'utilisateur",
+                "description": "Changez le nom d'utilisateur de {name}.",
+                "form": {
+                    "fields": {
+                        "nickname": {
+                            "label": "Nouveau nom d'utilisateur",
+                            "placeholder": "Entrez le nouveau nom d'utilisateur"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors du changement du nom d'utilisateur",
+                    "description": "Une erreur est survenue lors du changement du nom d'utilisateur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Nom d'utilisateur changé",
+                    "description": "Le nom d'utilisateur a été changé avec succès."
+                }
+            },
+            "changeMail": {
+                "title": "Changer l'adresse mail",
+                "description": "Changez l'email de {name}.",
+                "form": {
+                    "fields": {
+                        "email": {
+                            "label": "Nouvel email",
+                            "placeholder": "Entrez le nouvel email"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors du changement de l'email",
+                    "description": "Une erreur est survenue lors du changement de l'email. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Email changé",
+                    "description": "L'email a été changé avec succès."
+                }
+            },
+            "changePassword": {
+                "title": "Changer le mot de passe",
+                "description": "Changez le mot de passe de {name}.",
+                "form": {
+                    "fields": {
+                        "password": {
+                            "label": "Nouveau mot de passe",
+                            "placeholder": "Entrez le nouveau mot de passe"
+                        },
+                        "passwordConfirmation": {
+                            "label": "Confirmation du mot de passe",
+                            "placeholder": "Confirmez le nouveau mot de passe"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Changer",
+                    "submitting": "Changement...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors du changement de mot de passe",
+                    "description": "Une erreur est survenue lors du changement de mot de passe. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Mot de passe changé",
+                    "description": "Le mot de passe a été changé avec succès."
+                }
+            },
+            "linkContainers": {
+                "title": "Lier les conteneurs à {name}",
+                "description": "Sélectionnez les conteneurs à lier à l'utilisateur {name}.",
+                "form": {
+                    "fields": {
+                        "containers": {
+                            "label": "Conteneurs",
+                            "description": "Sélectionnez les conteneurs à lier à l'utilisateur",
+                            "placeholder": "Sélectionnez les conteneurs"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Lier",
+                    "submitting": "Liaison...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la liaison des conteneurs",
+                    "description": "Une erreur est survenue lors de la liaison des conteneurs. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Conteneurs liés",
+                    "description": "Les conteneurs ont été liés avec succès."
+                }
+            },
+            "editRoles": {
+                "title": "Modifier les rôles de {name}",
+                "description": "Sélectionnez les rôles de l'utilisateur {name}.",
+                "form": {
+                    "fields": {
+                        "roles": {
+                            "label": "Rôles",
+                            "description": "Sélectionnez les rôles de l'utilisateur",
+                            "options": {
+                                "admin": "Administrateur",
+                                "info": "Informatique",
+                                "user": "Utilisateur"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Modifier",
+                    "submitting": "Modification...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la modification des rôles",
+                    "description": "Une erreur est survenue lors de la modification des rôles. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Rôles modifiés",
+                    "description": "Les rôles ont été modifiés avec succès."
+                }
+            },
+            "delete": {
+                "title": "Supprimer {name} ?",
+                "description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+                "confirmationInput": {
+                    "label": "Entrez le nom de l'utilisateur pour confirmer la suppresion",
+                    "placeholder": "Entrez {name}"
+                },
+                "actions": {
+                    "cancel": "Annuler",
+                    "submit": "Supprimer",
+                    "submitting": "Suppression..."
+                },
+                "error": {
+                    "title": "Erreur lors de la suppression de l'utilisateur",
+                    "description": "Une erreur est survenue lors de la suppression de l'utilisateur. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Utilisateur supprimé",
+                    "description": "L'utilisateur a été supprimé avec succès."
+                }
+            }
+        },
+        "contact": {
+            "title": "Messages de contact",
+            "description": "Tous les messages de contact reçus",
+            "empty": "Aucun message de contact pour le moment.",
+            "message": {
+                "actions": {
+                    "label": "Actions",
+                    "open": "Ouvrir",
+                    "anwser": "Répondre",
+                    "answerSubject": "HebergOS - Demande d'informations",
+                    "delete": {
+                        "trigger": "Supprimer",
+                        "title": "Supprimer le message ?",
+                        "description": "Êtes-vous sûr de vouloir supprimer ce message ? Cette action est irréversible.",
+                        "actions": {
+                            "cancel": "Annuler",
+                            "submit": "Supprimer",
+                            "submitting": "Suppression..."
+                        },
+                        "error": {
+                            "title": "Erreur lors de la suppression du message",
+                            "description": "Une erreur est survenue lors de la suppression du message. Veuillez réessayer."
+                        },
+                        "success": {
+                            "title": "Message supprimé",
+                            "description": "Le message a été supprimé avec succès."
+                        }
+                    }
+                }
+            },
+            "actions": {
+                "close": "Fermer",
+                "answer": "Répondre"
+            }
+        }
+    },
+    "tables": {
+        "generic": {
+            "empty": "Aucune donnée à afficher",
+            "page": "Page {current} sur {total}",
+            "actions": {
+                "selection": "{selected} sur {count, plural, =0 {0 ligne sélectionnée} one {1 ligne sélectionnée} other {# lignes sélectionnées}}",
+                "next": "Suivant",
+                "previous": "Précédent"
+            }
+        },
+        "containers": {
+            "columns": {
+                "name": "Nom",
+                "state": "Statut",
+                "hostPort": "Port hôte",
+                "memory": "Limite mémoire",
+                "cpu": "Limite CPU"
+            },
+            "actions": {
+                "label": "Actions",
+                "open": "Ouvrir le conteneur",
+                "start": "Démarrer",
+                "stop": "Arrêter",
+                "restart": "Redémarrer",
+                "editMemory": "Modifier la limite mémoire",
+                "editCpu": "Modifier la limite CPU",
+                "delete": "Supprimer"
+            }
+        },
+        "users": {
+            "columns": {
+                "name": "Nom",
+                "nickname": "Nom d'utilisateur",
+                "email": "Email",
+                "containers": "Conteneurs",
+                "otherContainers":"Autres conteneurs",
+                "roles": "Rôles",
+                "actions": "Actions"
+            },
+            "actions": {
+                "label": "Actions",
+                "editContainers": "Modifier les conteneurs",
+                "editRoles": "Modifier les rôles",
+                "changeNickname": "Changer le nom d'utilisateur",
+                "changeMail": "Changer l'email",
+                "changePassword": "Changer le mot de passe",
+                "delete": "Supprimer"
+            }
+        },
+        "notifications": {
+            "columns": {
+                "user": "Utilisateur",
+                "container": "Projet",
+                "type": "Type",
+                "state": "Statut",
+                "message": "Message",
+                "createdAt": "Créé le",
+                "actions": "Actions"
+            },
+            "types": {
+                "memory": "Mise à jour de la mémoire",
+                "cpu": "Mise à jour du CPU",
+                "delete": "Suppression du projet",
+                "other": "Autre"
+            },
+            "states": {
+                "created": "Créée",
+                "read": "Lue",
+                "processed": "Traitée",
+                "canceled": "Annulée"
+            },
+            "actions": {
+                "label": "Actions",
+                "open": "Ouvrir",
+                "cancel": "Annuler la demande",
+                "delete": "Supprimer"
+            }
+        }
+    }
+}
