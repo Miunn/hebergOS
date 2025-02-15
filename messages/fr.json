@@ -110,7 +110,8 @@
                     "title": "Vue d'ensemble de {name}",
                     "users": {
                         "title": "Utilisateurs",
-                        "empty": "Aucun utilisateur n'est lié à ce projet pour le moment."
+                        "empty": "Aucun utilisateur n'est lié à ce projet pour le moment.",
+                        "linkUsers": "Lier des utilisateurs"
                     }
                 },
                 "graphs": {
@@ -330,6 +331,32 @@
                 "success": {
                     "title": "Conteneur redémarré",
                     "description": "Le conteneur a été redémarré avec succès."
+                }
+            },
+            "linkUsers": {
+                "title": "Lier des utilisateurs à {name}",
+                "description": "Sélectionnez les utilisateurs à lier au conteneur {name}.",
+                "form": {
+                    "fields": {
+                        "users": {
+                            "label": "Utilisateurs",
+                            "description": "Sélectionnez les utilisateurs à lier au conteneur",
+                            "placeholder": "Sélectionnez les utilisateurs"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Lier",
+                    "submitting": "Liaison...",
+                    "cancel": "Annuler"
+                },
+                "error": {
+                    "title": "Erreur lors de la liaison des utilisateurs",
+                    "description": "Une erreur est survenue lors de la liaison des utilisateurs. Veuillez réessayer."
+                },
+                "success": {
+                    "title": "Utilisateurs liés",
+                    "description": "Les utilisateurs ont été liés avec succès."
                 }
             },
             "changeDomain": {

@@ -86,6 +86,10 @@ export const CreateContainerFormSchema = z.object({
     cpu: z.number({ coerce: true }).min(0, { message: 'CPU must be at least 0.' }),
 })
 
+export const LinkUsersFormSchema = z.object({
+    users: z.array(z.string())
+});
+
 export const ChangeDomainFormSchema = z.object({
     domain: z.string().min(3, { message: 'Domain must be at least 3 characters long.' }).trim().regex(/(http(s)?\:\/\/)?(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/, { message: 'Please enter a valid domain.' }),
 })

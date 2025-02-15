@@ -57,7 +57,7 @@ export default function ActivitiesCard({ container }: { container: ContainerWith
                         <Tooltip>
                             <FullActivities container={container}>
                                 <TooltipTrigger asChild>
-                                    <Button variant={"outline"} size={"icon"} className="text-secondary">
+                                    <Button variant={"outline"} size={"icon"} className="text-secondary hover:text-secondary">
                                         <ScrollText />
                                     </Button>
                                 </TooltipTrigger>
