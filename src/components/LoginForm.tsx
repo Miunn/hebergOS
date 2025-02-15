@@ -43,7 +43,7 @@ export default function LoginForm() {
     };
 
     return (
-        <Card className={"w-96"}>
+        <Card className={"mx-1 md:w-96"}>
             <CardHeader>
                 <CardTitle>{t('title')}</CardTitle>
                 <CardDescription>{t('description')}</CardDescription>
@@ -78,9 +78,9 @@ export default function LoginForm() {
                                 <FormItem>
                                     <div className="flex justify-between">
                                         <FormLabel>{t('form.fields.password.label')}</FormLabel>
-                                        <Button variant={"link"} className="ml-auto p-0 h-fit focus-visible:ring-offset-2" asChild>
+                                        {/* <Button variant={"link"} className="ml-auto p-0 h-fit focus-visible:ring-offset-2" asChild>
                                             <Link href={`/forgot-password`} className="">{t('form.actions.forgotPassword')}</Link>
-                                        </Button>
+                                        </Button> */}
                                     </div>
                                     <FormControl>
                                         <Input placeholder={t('form.fields.password.placeholder')} type={"password"} {...field} />

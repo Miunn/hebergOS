@@ -11,7 +11,7 @@ export default function ContainerShell({ container }: { container: Container }) 
     const widthRef = useRef<HTMLInputElement>(null);
     const heightRef = useRef<HTMLInputElement>(null);
 
-    const [width, setWidth] = useState(800);
+    const [width, setWidth] = useState(Math.min(800, window.innerWidth - 50));
     const [height, setHeight] = useState(450);
 
     const handleSizeChange = (e: React.KeyboardEvent<HTMLInputElement>) => {

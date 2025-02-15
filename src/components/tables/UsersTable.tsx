@@ -7,6 +7,7 @@ import { robotoMono } from "@/ui/fonts";
 import { NumberTicker } from "../ui/number-ticker";
 import { Role } from "@prisma/client";
 import { useTranslations } from "next-intl";
+import { Plus } from "lucide-react";
 
 export default function UsersTable({ users }: { users: UserWithContainers[] }) {
 
@@ -27,7 +28,7 @@ export default function UsersTable({ users }: { users: UserWithContainers[] }) {
             })}
             meta={{ t: tableT }}
             tableTitle={(
-                <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
+                <h1 className={`${robotoMono.className} text-xl truncate text-primary font-semibold`}>
                     {users.length === 0
                         ? <span className="text-secondary">0</span>
                         : <NumberTicker value={users.length} className="text-secondary" />
@@ -36,7 +37,8 @@ export default function UsersTable({ users }: { users: UserWithContainers[] }) {
             rightContent={(
                 <CreateUserDialog>
                     <Button variant={"secondary"}>
-                        {t('createUser')}
+                        <span className="hidden md:inline">{t('createUser')}</span>
+                        <Plus className="block md:hidden" />
                     </Button>
                 </CreateUserDialog>
             )}
