@@ -1,7 +1,7 @@
 'use server'
 
 import { apiEditCpuLimit, apiEditMemoryLimit } from "@/lib/apiService";
-import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotificationsAndUsers, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema } from "@/lib/definitions";
+import { ChangeDomainFormSchema, ClientContainerStat, ContainerWithActivity, ContainerWithNotificationsAndUsers, ContainerWithUsers, CreateContainerFormSchema, EditCpuLimitContainerFormSchema, EditMemoryLimitContainerFormSchema, LinkUsersFormSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { authConfig, isAdmin } from "@/lib/utils";
 import { Container, ContainerActivityType } from "@prisma/client";
@@ -176,6 +176,44 @@ export async function createContainer(data: { name: string, hostPort: number, me
         return true;
     } catch (e) {
         console.log(`Error creating container: ${e}`);
+        return false;
+    }
+}
+
+export async function linkUsers(containerId: string, data: { users: string[] }): Promise<boolean> {
+    if (!(await isAdmin())) {
+        return false;
+    }
+
+    const container = await prisma.container.findUnique({
+        where: { id: containerId },
+        include: { users: { select: { id: true } } }
+    });
+
+    if (!container) {
+        return false;
+    }
+
+    const parsedData = LinkUsersFormSchema.safeParse(data);
+
+    if (!parsedData.success) {
+        return false;
+    }
+
+    try {
+        await prisma.container.update({
+            where: { id: containerId },
+            data: {
+                users: {
+                    set: parsedData.data.users.map(id => ({ id }))
+                }
+            }
+        });
+
+        revalidatePath("/app/administration");
+        return true;
+    } catch (e) {
+        console.log(`Error linking users to container: ${e}`);
         return false;
     }
 }

@@ -106,7 +106,8 @@
                     "title": "{name} Overview",
                     "users": {
                         "title": "Users",
-                        "empty": "No user for now"
+                        "empty": "No user for now",
+                        "linkUsers": "Link users"
                     }
                 },
                 "graphs": {
@@ -326,6 +327,32 @@
                 "success": {
                     "title": "Container restarted",
                     "description": "The container has been restarted successfully."
+                }
+            },
+            "linkUsers": {
+                "title": "Link users to {name}",
+                "description": "Link users to {name}.",
+                "form": {
+                    "fields": {
+                        "users": {
+                            "label": "Users",
+                            "description": "Select the users to link to the container",
+                            "placeholder": "Select users"
+                        }
+                    }
+                },
+                "actions": {
+                    "submit": "Link",
+                    "submitting": "Linking...",
+                    "cancel": "Cancel"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "An error occurred while linking the users. Please try again later."
+                },
+                "success": {
+                    "title": "Users linked",
+                    "description": "The users have been linked successfully."
                 }
             },
             "changeDomain": {
