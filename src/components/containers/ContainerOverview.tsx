@@ -9,8 +9,8 @@ export default function ContainerOverview({ container }: { container: ContainerW
     const t = useTranslations("pages.app.container.overview");
 
     return (
-        <div className="grid grid-cols-2 gap-8">
-            <Card className="col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="md:col-span-2">
                 <CardHeader>
                     <CardTitle className={`${robotoMono.className} text-primary`}>{t('title', { name: container.name })}</CardTitle>
                 </CardHeader>

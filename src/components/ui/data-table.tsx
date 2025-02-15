@@ -25,6 +25,7 @@ import { useState } from "react"
 import { Input } from "./input"
 import { Button } from "./button"
 import { useTranslations } from "next-intl"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -68,7 +69,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-6">
         {tableTitle}
 
         <div className="flex gap-2">
@@ -141,7 +142,8 @@ export function DataTable<TData, TValue>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          {t('actions.previous')}
+          <span className="hidden md:inline">{t('actions.previous')}</span>
+          <ChevronLeft className="block md:hidden" />
         </Button>
         <Button
           variant="outline"
@@ -149,7 +151,8 @@ export function DataTable<TData, TValue>({
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          {t('actions.next')}
+          <span className="hidden md:inline">{t('actions.next')}</span>
+          <ChevronRight className="block md:hidden" />
         </Button>
       </div>
     </div>

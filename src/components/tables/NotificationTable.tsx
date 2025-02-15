@@ -7,6 +7,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import CreateTicketDialog from "../dialogs/CreateTicket";
 import { ContainerWithNotificationsAndUsers } from "@/lib/definitions";
 import { NotificationState } from "@prisma/client";
+import { Plus } from "lucide-react";
 
 export default function NotificationTable({ container }: { container: ContainerWithNotificationsAndUsers }) {
 
@@ -24,7 +25,7 @@ export default function NotificationTable({ container }: { container: ContainerW
             })}
             meta={{ t: tableT, formatter: useFormatter() }}
             tableTitle={(
-                <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
+                <h1 className={`${robotoMono.className} text-xl text-nowrap text-primary font-semibold`}>
                     {container.containerNotifications.length === 0
                         ? <span className="text-secondary">0</span>
                         : <NumberTicker value={container.containerNotifications.length} className="text-secondary" />
@@ -34,7 +35,8 @@ export default function NotificationTable({ container }: { container: ContainerW
             rightContent={(
                 <CreateTicketDialog container={container}>
                     <Button variant={"secondary"}>
-                        {t('create')}
+                        <span className="hidden md:inline">{t('create')}</span>
+                        <Plus className="block md:hidden" />
                     </Button>
                 </CreateTicketDialog>
             )}
