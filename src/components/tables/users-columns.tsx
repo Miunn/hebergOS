@@ -54,6 +54,10 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                 {table.options.meta?.t('columns.name')}
                 <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
+        },
+        cell: ({ row }) => {
+            const name = row.original.name;
+            return <span className={`text-nowrap`}>{name}</span>
         }
     },
     {
@@ -101,7 +105,7 @@ export const usersColumns: ColumnDef<UserWithContainers>[] = [
                         </HoverCard>
                         : null}
                     {containers.length === 0
-                        ? <i>No containers</i>
+                        ? <i className="text-nowrap">No containers</i>
                         : null}
                 </div>
             )
