@@ -23,7 +23,7 @@ export default function NotificationAdminTable({ notifications }: { notification
             })}
             meta={{ t: tableT, formatter }}
             tableTitle={(
-                <h1 className={`${robotoMono.className} text-xl text-primary font-semibold`}>
+                <h1 className={`${robotoMono.className} text-xl text-nowrap text-primary font-semibold`}>
                     {notifications.length === 0
                         ? <span className="text-secondary">0</span>
                         : <NumberTicker value={notifications.length} className="text-secondary" />
