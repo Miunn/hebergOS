@@ -13,13 +13,13 @@ export default async function ContactUs() {
     return (
         <>
             <Header locale={locale} />
-            <main className="min-h-screen mx-auto grid grid-cols-[1fr_auto_1fr] gap-8">
+            <main className="min-h-screen mx-auto grid grid-cols-1 grid-rows-[1fr_auto_1fr] md:grid-cols-[1fr_auto_1fr] md:grid-rows-1 md:gap-8">
                 <div className="relative h-full overflow-hidden">
-                    <div className="mt-64 max-w-lg mx-auto z-40">
-                        <h1 className="text-4xl font-semibold tracking-wide leading-relaxed z-40">{t('title')}</h1>
-                        <p className="text-xl">{t('description')}</p>
+                    <div className="mt-32 md:mt-64 max-w-lg mx-auto px-3 md:px-0 z-40">
+                        <h1 className="text-2xl md:text-4xl font-semibold tracking-wide leading-relaxed z-40">{t('title')}</h1>
+                        <p className="text-md md:text-xl">{t('description')}</p>
 
-                        <div className="mt-11 space-y-6">
+                        <div className="mt-11 space-y-6 text-sm md:text-base">
                             <p className="flex gap-2 z-40">
                                 <Building className="text-secondary" /> <span dangerouslySetInnerHTML={{ __html: t('contact.address') }} />
                             </p>
@@ -31,12 +31,12 @@ export default async function ContactUs() {
                             </p>
                         </div>
                     </div>
-                    <Caribou className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[0.5rem] opacity-40" />
+                    <Caribou className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[0.3rem] md:text-[0.5rem] opacity-40" />
                 </div>
 
-                <div className="w-0 h-full border-r" />
+                <div className="w-full md:w-0 md:h-full border-b md:border-b-0 md:border-r" />
 
-                <ContactForm className="mt-64 max-w-xl w-full mx-auto" />
+                <ContactForm className="mt-8 mb-16 md:mb-0 md:mt-64 px-3 md:px-0 max-w-xl w-full mx-auto" />
             </main>
         </>
     )
