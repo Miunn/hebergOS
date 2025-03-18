@@ -142,7 +142,7 @@ export default function CreateContainerDialog({ children, availableHostPorts }: 
                                 <Button variant={"outline"}>{t('actions.cancel')}</Button>
                             </DialogClose>
                             {loading
-                                ? <Button type="submit" disabled><Loader2 className="w-4 h-4 mr-2" /> {t('actions.submitting')}</Button>
+                                ? <Button type="submit" disabled><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {t('actions.submitting')}</Button>
                                 : <Button type="submit">{t('actions.submit')}</Button>
                             }
                         </DialogFooter>
