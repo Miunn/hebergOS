@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "@/hooks/use-toast";
 import { CreateContainerFormSchema } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -34,7 +35,7 @@ export default function CreateContainerDialog({ children, availableHostPorts }: 
     const submit = async (data: z.infer<typeof CreateContainerFormSchema>) => {
         setLoading(true);
 
-        const r = createContainer(data);
+        const r = await createContainer(data);
 
         setLoading(false);
 
@@ -141,7 +142,7 @@ export default function CreateContainerDialog({ children, availableHostPorts }: 
                                 <Button variant={"outline"}>{t('actions.cancel')}</Button>
                             </DialogClose>
                             {loading
-                                ? <Button type="submit" disabled>{t('actions.submitting')}</Button>
+                                ? <Button type="submit" disabled><Loader2 className="w-4 h-4 mr-2" /> {t('actions.submitting')}</Button>
                                 : <Button type="submit">{t('actions.submit')}</Button>
                             }
                         </DialogFooter>

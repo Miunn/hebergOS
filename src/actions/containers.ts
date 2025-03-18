@@ -135,7 +135,7 @@ export async function createContainer(data: { name: string, hostPort: number, me
     const parsedData = parsed.data;
 
     try {
-        const r = await fetch(process.env.API_URL + "/container/create", {
+        const r = await fetch(process.env.API_URL + "/container", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -156,7 +156,7 @@ export async function createContainer(data: { name: string, hostPort: number, me
 
         await prisma.container.create({
             data: {
-                id: json.id,
+                id: json.Id,
                 name: parsedData.name,
                 hostPort: parsedData.hostPort,
                 memory: parsedData.memory,
@@ -166,7 +166,7 @@ export async function createContainer(data: { name: string, hostPort: number, me
 
         await prisma.containerActivity.create({
             data: {
-                container: { connect: { id: json.id } },
+                container: { connect: { id: json.Id } },
                 type: ContainerActivityType.CREATED,
                 message: "",
             }
@@ -518,6 +518,14 @@ export async function editAdminCpuLimit(containerId: string, data: { cpu: number
 
 export async function deleteContainer(id: string): Promise<boolean> {
     if (!(await isAdmin())) {
+        return false;
+    }
+
+    const r = await fetch(process.env.API_URL + "/container?id=" + id, {
+        method: "DELETE"
+    });
+
+    if (!r.ok) {
         return false;
     }
 
