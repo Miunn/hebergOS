@@ -148,11 +148,15 @@ export async function createContainer(data: { name: string, hostPort: number, me
             })
         });
 
+        console.log("Create container API response", r);
+
         if (!r.ok) {
             return false;
         }
 
         const json = await r.json();
+
+        console.log("Create container API response JSON", json);
 
         await prisma.container.create({
             data: {

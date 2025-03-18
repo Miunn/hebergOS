@@ -34,7 +34,7 @@ export default function CreateContainerDialog({ children, availableHostPorts }: 
     const submit = async (data: z.infer<typeof CreateContainerFormSchema>) => {
         setLoading(true);
 
-        const r = createContainer(data);
+        const r = await createContainer(data);
 
         setLoading(false);
 
