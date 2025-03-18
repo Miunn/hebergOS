@@ -533,8 +533,6 @@ export async function deleteContainer(id: string): Promise<boolean> {
         return false;
     }
 
-    console.log("Delete container API response", r);
-
     try {
         await prisma.container.update({
             where: { id: id },
