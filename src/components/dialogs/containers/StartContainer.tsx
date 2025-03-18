@@ -7,11 +7,13 @@ import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-export default function StartContainer({ children, container }: { children: React.ReactNode, container: Container }) {
+export default function StartContainer({ children, container, open, setOpen }: { children?: React.ReactNode, open?: boolean, setOpen?: React.Dispatch<React.SetStateAction<boolean>>, container: Container }) {
 
     const t = useTranslations("dialogs.containers.start");
-    const [open, setOpen] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
+    const [internalOpen, setInternalOpen] = React.useState(false);
+    const openValue = open ?? internalOpen;
+    const openSetter = setOpen ?? setInternalOpen;
 
     const submitStart = async () => {
         setLoading(true);
@@ -34,11 +36,11 @@ export default function StartContainer({ children, container }: { children: Reac
             description: t('success.description', { name: container.name }),
         })
 
-        setOpen(false);
+        openSetter(false);
     }
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={openValue} onOpenChange={openSetter}>
             {children}
             <DialogContent>
                 <DialogHeader>

@@ -13,6 +13,8 @@ import EditMemoryLimitContainer from "../dialogs/containers/EditMemoryLimitConta
 import EditCpuLimitContainer from "../dialogs/containers/EditCpuLimitContainer";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import StartContainer from "../dialogs/containers/StartContainer";
+import StopContainer from "../dialogs/containers/StopContainer";
 
 export const containersColumns: ColumnDef<Container>[] = [
     {
@@ -141,6 +143,8 @@ export const containersColumns: ColumnDef<Container>[] = [
         cell: ({ row, table }) => {
             const state = row.original.state;
 
+            const [openStart, setOpenStart] = useState(false);
+            const [openStop, setOpenStop] = useState(false);
             const [openEditMemory, setOpenEditMemory] = useState(false);
             const [openEditCpu, setOpenEditCpu] = useState(false);
             const [openDelete, setOpenDelete] = useState(false);
@@ -158,8 +162,8 @@ export const containersColumns: ColumnDef<Container>[] = [
                             <DropdownMenuLabel>{table.options.meta?.t('actions.label')}</DropdownMenuLabel>
                             <DropdownMenuItem>{ table.options.meta?.t('actions.open') }</DropdownMenuItem>
                             {state === "RUNNING"
-                                ? <DropdownMenuItem>{table.options.meta?.t('actions.stop')}</DropdownMenuItem>
-                                : <DropdownMenuItem>{table.options.meta?.t('actions.start')}</DropdownMenuItem>
+                                ? <DropdownMenuItem onClick={() => setOpenStop(true)}>{table.options.meta?.t('actions.stop')}</DropdownMenuItem>
+                                : <DropdownMenuItem onClick={() => setOpenStart(true)}>{table.options.meta?.t('actions.start')}</DropdownMenuItem>
                             }
                             <DropdownMenuItem onClick={() => setOpenEditMemory(true)}>{table.options.meta?.t('actions.editMemory')}</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => setOpenEditCpu(true)}>{table.options.meta?.t('actions.editCpu')}</DropdownMenuItem>
@@ -167,6 +171,8 @@ export const containersColumns: ColumnDef<Container>[] = [
                             <DropdownMenuItem onClick={() => setOpenDelete(true)} className="font-semibold text-red-500 focus:text-red-500">{table.options.meta?.t('actions.delete')}</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
+                    <StartContainer container={row.original} open={openStart} setOpen={setOpenStart} />
+                    <StopContainer container={row.original} open={openStop} setOpen={setOpenStop} />
                     <EditMemoryLimitContainer container={row.original} open={openEditMemory} setOpen={setOpenEditMemory} />
                     <EditCpuLimitContainer container={row.original} open={openEditCpu} setOpen={setOpenEditCpu} />
                     <DeleteContainer container={row.original} open={openDelete} setOpen={setOpenDelete} />
