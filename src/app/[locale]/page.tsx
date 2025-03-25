@@ -11,6 +11,7 @@ import { ContainerActivityType, ContainerState } from "@prisma/client";
 import { getLocale, getTranslations } from "next-intl/server";
 import { DotPattern } from "@/components/dot-pattern";
 import { cn } from "@/lib/utils";
+import DummyContainerActions from "@/components/dialogs/containers/DummyContainerActions";
 
 export default async function Home() {
 
@@ -76,7 +77,7 @@ export default async function Home() {
 
             <section className="flex flex-col-reverse md:grid md:grid-cols-[1fr_0.6fr] gap-20 mx-auto">
               <Card className="border border-gray-200 rounded-lg p-4">
-                <ContainerActions container={{
+                <DummyContainerActions container={{
                   id: "1",
                   name: '/mycontainer',
                   domain: 'https://my-container.insash.org',
@@ -85,9 +86,9 @@ export default async function Home() {
                   memory: 2,
                   cpu: 50,
                   containerActivities: [{
-                    id: "1",
+                    id: "0",
                     containerId: "1",
-                    type: ContainerActivityType.MEMORY_UPDATE,
+                    type: ContainerActivityType.CREATED,
                     message: '1.5',
                     createdAt: new Date('2025-01-01'),
                     updatedAt: new Date('2025-01-01')
