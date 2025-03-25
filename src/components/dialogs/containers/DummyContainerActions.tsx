@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { set } from "zod";
+import { toast } from "@/hooks/use-toast";
 
 export default function DummyContainerActions({ container }: { container: ContainerWithActivity }) {
 
@@ -107,6 +108,11 @@ export default function DummyContainerActions({ container }: { container: Contai
                                             });
                                             setOpenStart(false);
                                             setLoadingStart(false);
+
+                                            toast({
+                                                title: startT('success.title'),
+                                                description: startT('success.description', { name: container.name }),
+                                            })
                                         }, 250);
 
                                     }}>{startT('actions.start')}</Button>
@@ -144,6 +150,11 @@ export default function DummyContainerActions({ container }: { container: Contai
                                             });
                                             setOpenStop(false);
                                             setLoadingStop(false);
+
+                                            toast({
+                                                title: stopT('success.title'),
+                                                description: stopT('success.description', { name: container.name }),
+                                            })
                                         }, 250);
                                     }}>{stopT('actions.stop')}</Button>
                                 }
@@ -180,6 +191,11 @@ export default function DummyContainerActions({ container }: { container: Contai
                                             });
                                             setOpenRestart(false);
                                             setLoadingRestart(false);
+
+                                            toast({
+                                                title: restartT('success.title'),
+                                                description: restartT('success.description', { name: container.name }),
+                                            })
                                         }, 250);
                                     }}>{restartT('actions.restart')}</Button>
                                 }
